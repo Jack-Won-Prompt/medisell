@@ -37,16 +37,98 @@ class CoupangSearchService
             return $this->simulate($keyword, $refPrice);
         }
 
-        // 파트너스(제휴) 검색 API 실연동
+        // 실연동: SERP(구글쇼핑) 우선 → 파트너스
+        if (config('coupang.serp.api_key')) {
+            return $this->serpSearch($keyword);
+        }
+
         return $this->partnersSearch($keyword);
     }
 
-    /** 파트너스 키 설정 여부 */
+    /** 실연동 가능 여부 + 사용 엔진 */
+    public function engine(): ?string
+    {
+        if (config('coupang.simulate', true)) {
+            return null;
+        }
+        if (config('coupang.serp.api_key')) {
+            return 'serp';
+        }
+        if (config('coupang.partners.access_key') && config('coupang.partners.secret_key')) {
+            return 'partners';
+        }
+
+        return null;
+    }
+
     public function isReady(): bool
     {
-        return ! config('coupang.simulate', true)
-            && config('coupang.partners.access_key')
-            && config('coupang.partners.secret_key');
+        return $this->engine() !== null;
+    }
+
+    /**
+     * SERP(구글 쇼핑) 검색으로 경쟁가 조회. shopping_results[] → 표준 결과.
+     */
+    private function serpSearch(string $keyword): array
+    {
+        $cfg = config('coupang.serp');
+        if (! $cfg['api_key']) {
+            return [];
+        }
+
+        try {
+            $res = Http::timeout(15)->get($cfg['endpoint'], [
+                'engine'  => $cfg['engine'],
+                'q'       => $keyword,
+                'gl'      => $cfg['gl'],
+                'hl'      => $cfg['hl'],
+                'api_key' => $cfg['api_key'],
+            ]);
+
+            if (! $res->successful()) {
+                Log::warning('coupang.serp fail', ['status' => $res->status(), 'body' => mb_substr($res->body(), 0, 300)]);
+
+                return [];
+            }
+
+            $items = $res->json('shopping_results') ?? [];
+            $coupangOnly = (bool) $cfg['coupang_only'];
+            $rows = [];
+
+            foreach ($items as $r) {
+                $source = $r['source'] ?? '';
+                $link = $r['product_link'] ?? ($r['link'] ?? '');
+                $isCoupang = str_contains($source, '쿠팡') || stripos($source, 'coupang') !== false
+                    || stripos($link, 'coupang.com') !== false;
+
+                if ($coupangOnly && ! $isCoupang) {
+                    continue;
+                }
+
+                $price = (int) ($r['extracted_price'] ?? preg_replace('/\D/', '', (string) ($r['price'] ?? '0')));
+                if ($price <= 0) {
+                    continue;
+                }
+
+                $rows[] = [
+                    'seller'   => $source ?: '쿠팡',
+                    'title'    => $r['title'] ?? $keyword,
+                    'price'    => $price,
+                    'delivery' => $r['delivery'] ?? '-',
+                    'rating'   => (float) ($r['rating'] ?? 0),
+                    'review'   => (int) ($r['reviews'] ?? 0),
+                    'rocket'   => $isCoupang && stripos(($r['delivery'] ?? '').($r['title'] ?? ''), 'rocket') !== false,
+                    'url'      => $link ?: 'https://www.google.com/search?tbm=shop&q='.urlencode($keyword),
+                ];
+            }
+            usort($rows, fn ($a, $b) => $a['price'] <=> $b['price']);
+
+            return $rows;
+        } catch (\Throwable $e) {
+            Log::warning('coupang.serp error', ['msg' => $e->getMessage()]);
+
+            return [];
+        }
     }
 
     /**

@@ -44,6 +44,7 @@ class CoupangController extends Controller
             'results'  => $results,
             'stats'    => $stats,
             'simulate' => config('coupang.simulate'),
+            'engine'   => $this->service->engine(),
         ]);
     }
 }
