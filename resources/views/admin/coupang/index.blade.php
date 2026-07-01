@@ -5,7 +5,12 @@
 @section('content')
 <div class="adm-card">
     <div class="h">
-        <span>제품 선택 / 키워드 검색 @if($simulate)<span class="pill pill-w">시뮬레이트</span>@else<span class="pill pill-y">실연동</span>@endif</span>
+        <span>제품 선택 / 키워드 검색
+            @if($simulate)<span class="pill pill-w">시뮬레이트</span>
+            @elseif($engine==='serp')<span class="pill pill-y">실연동 · 구글쇼핑(SERP)</span>
+            @elseif($engine==='partners')<span class="pill pill-y">실연동 · 쿠팡 파트너스</span>
+            @else<span class="pill pill-n">실연동 키 미설정</span>@endif
+        </span>
     </div>
     <div style="padding:20px">
         <form method="GET" style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap">
@@ -26,10 +31,16 @@
         </form>
         <div class="ahint" style="margin-top:8px">
             @if($simulate)
-                <b>시뮬레이트 모드</b> — 제품명 기반 모의 경쟁가입니다. <b>쿠팡 파트너스 키 발급 대기중.</b><br>
-                키 발급 후 <code>.env</code>에 <code>COUPANG_PARTNERS_ACCESS_KEY</code>·<code>COUPANG_PARTNERS_SECRET_KEY</code> 설정 + <code>COUPANG_SIMULATE=false</code> 하면 실제 쿠팡 파트너스 검색가로 전환됩니다.
+                <b>시뮬레이트 모드</b> — 제품명 기반 모의 경쟁가입니다. 실연동 방법(택1):<br>
+                • <b>구글쇼핑(SERP) API</b>: <code>.env</code>에 <code>COUPANG_SERP_API_KEY</code>(SerpAPI 등) + <code>COUPANG_SIMULATE=false</code> → 쿠팡 포함 마켓 경쟁가 조회<br>
+                • <b>쿠팡 파트너스 API</b>: <code>COUPANG_PARTNERS_ACCESS_KEY/SECRET_KEY</code> + <code>COUPANG_SIMULATE=false</code>
+            @elseif($engine==='serp')
+                실연동(구글쇼핑) — 구글 쇼핑 색인에서 쿠팡·타 마켓 판매가를 조회합니다.
+                @if(!config('coupang.serp.coupang_only'))<span class="muted">(쿠팡 외 마켓 포함. 쿠팡만 보려면 <code>COUPANG_SERP_COUPANG_ONLY=true</code>)</span>@endif
+            @elseif($engine==='partners')
+                실연동 — 쿠팡 파트너스 검색 API로 조회합니다.
             @else
-                실연동 모드 — 쿠팡 파트너스 검색 API로 타사 판매가를 조회합니다.
+                <b style="color:#e0322d">실연동 키 미설정</b> — <code>COUPANG_SIMULATE=false</code> 인데 SERP/파트너스 키가 없어 결과가 비어 있습니다.
             @endif
         </div>
     </div>
