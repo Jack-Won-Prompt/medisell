@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 118 120" fill="none">
+  <defs>
+    <linearGradient id="ms-blue" x1="10" y1="6" x2="104" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2f8fdc"/><stop offset="1" stop-color="#1667b8"/>
+    </linearGradient>
+    <linearGradient id="ms-teal" x1="20" y1="40" x2="74" y2="66" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1cb6a6"/><stop offset="1" stop-color="#12897c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 파란 십자 -->
+  <g fill="url(#ms-blue)">
+    <rect x="35" y="2" width="42" height="102" rx="13"/>
+    <rect x="4" y="33" width="104" height="42" rx="13"/>
+  </g>
+
+  <!-- 캡슐 (흰색 / 청록 반) -->
+  <g transform="rotate(-38 47 52)">
+    <clipPath id="ms-cap"><rect x="19" y="39" width="54" height="26" rx="13"/></clipPath>
+    <g clip-path="url(#ms-cap)">
+      <rect x="19" y="39" width="54" height="26" fill="#ffffff"/>
+      <rect x="46" y="39" width="27" height="26" fill="url(#ms-teal)"/>
+    </g>
+    <rect x="19" y="39" width="54" height="26" rx="13" fill="none" stroke="#0e7d72" stroke-width="3"/>
+    <line x1="46" y1="39" x2="46" y2="65" stroke="#0e7d72" stroke-width="2.4"/>
+  </g>
+
+  <!-- 장바구니 + 위쪽 화살표 (청록) -->
+  <g stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- 화살표 -->
+    <path d="M84 92 L104 72" stroke="#1cb6a6" stroke-width="6"/>
+    <path d="M104 72 h-9 M104 72 v9" stroke="#1cb6a6" stroke-width="6"/>
+    <!-- 카트 바구니 -->
+    <path d="M69 82 h34 l-5 19 h-24 z" stroke="#12897c" stroke-width="5.5"/>
+    <!-- 손잡이 -->
+    <path d="M69 82 l-6 -7" stroke="#12897c" stroke-width="5.5"/>
+  </g>
+  <circle cx="80" cy="112" r="4.5" fill="#12897c"/>
+  <circle cx="93" cy="112" r="4.5" fill="#12897c"/>
+</svg>
