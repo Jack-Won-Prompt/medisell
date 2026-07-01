@@ -1,0 +1,71 @@
+@extends('layouts.admin')
+@section('title', $cfg['label'])
+@section('heading', $cfg['label'].' 관리')
+
+@section('content')
+<div class="toolbar">
+    <form method="GET" class="search-mini">
+        <input type="text" name="q" value="{{ request('q') }}" placeholder="{{ $cfg['label'] }} 검색">
+        <button type="submit"><x-icon name="search" :size="16"/></button>
+    </form>
+    <div class="spacer"></div>
+    @if($cfg['key'] === 'products')
+        <a href="{{ route('admin.export.products') }}" class="abtn abtn-ghost"><x-icon name="doc" :size="15"/> CSV</a>
+    @endif
+    <a href="{{ route('admin.create', $cfg['key']) }}" class="abtn abtn-pri"><x-icon name="plus"/> {{ $cfg['label'] }} 등록</a>
+</div>
+
+<div class="adm-card">
+    <table class="atable">
+        <thead>
+            <tr>
+                @foreach($cfg['columns'] as $col => $label)<th>{{ $label }}</th>@endforeach
+                <th style="width:120px">관리</th>
+            </tr>
+        </thead>
+        <tbody>
+        @forelse($items as $item)
+            <tr>
+                @foreach($cfg['columns'] as $col => $label)
+                    <td>
+                        @if($loop->first && isset($item->_depth) && $item->_depth > 0)
+                            <span style="display:inline-block;color:#c7cedd">{!! str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item->_depth) !!}└</span>
+                        @endif
+                        @php($val = data_get($item, $col))
+                        @if(is_bool($val))
+                            @if($val)<span class="tick">●</span>@else<span class="cross">○</span>@endif
+                        @elseif(in_array($col, ['price','member_price']) && is_numeric($val))
+                            {{ number_format($val) }}원
+                        @elseif($val instanceof \Illuminate\Support\Carbon)
+                            {{ $val->format('Y.m.d') }}
+                        @elseif($loop->first && isset($item->_depth) && $item->_depth === 0)
+                            <b>{{ Str::limit((string) $val, 40) ?: '-' }}</b>
+                        @else
+                            {{ Str::limit((string) $val, 40) ?: '-' }}
+                        @endif
+                    </td>
+                @endforeach
+                <td>
+                    @if($cfg['key'] === 'coupons')
+                        <a href="{{ route('admin.coupons.issue', $item->id) }}" class="abtn abtn-pri abtn-sm">발행</a>
+                    @endif
+                    <a href="{{ route('admin.edit', [$cfg['key'], $item->id]) }}" class="abtn abtn-ghost abtn-sm">수정</a>
+                    <form method="POST" action="{{ route('admin.destroy', [$cfg['key'], $item->id]) }}" style="display:inline" onsubmit="return confirm('삭제하시겠습니까?')">
+                        @csrf @method('DELETE')
+                        <button class="abtn abtn-red abtn-sm">삭제</button>
+                    </form>
+                </td>
+            </tr>
+        @empty
+            <tr><td colspan="{{ count($cfg['columns'])+1 }}" style="text-align:center;color:#97a0b8;padding:40px">등록된 항목이 없습니다.</td></tr>
+        @endforelse
+        </tbody>
+    </table>
+</div>
+
+@if($items instanceof \Illuminate\Contracts\Pagination\Paginator)
+    {{ $items->links('pagination.simple') }}
+@else
+    <div style="margin-top:12px;font-size:12.5px;color:#97a0b8">계층 구조로 전체 {{ $items->count() }}개 표시 (검색 시 평면 목록)</div>
+@endif
+@endsection
