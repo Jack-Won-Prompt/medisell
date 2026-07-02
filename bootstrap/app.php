@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // 토스 웹훅은 외부 서버가 호출 → CSRF 제외
         $middleware->validateCsrfTokens(except: [
             'payment/toss/webhook',
+            'payment/portone/webhook',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

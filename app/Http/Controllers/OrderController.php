@@ -75,13 +75,13 @@ class OrderController extends Controller
             'address1'       => ['required', 'string', 'max:200'],
             'address2'       => ['nullable', 'string', 'max:200'],
             'memo'           => ['nullable', 'string', 'max:300'],
-            'payment_method' => ['required', 'in:bank,toss'],
+            'payment_method' => ['required', 'in:bank,toss,portone'],
             'depositor'      => ['required_if:payment_method,bank', 'nullable', 'string', 'max:50'],
             'bank'           => ['required_if:payment_method,bank', 'nullable', 'string', 'max:50'],
             'point_used'     => ['nullable', 'integer', 'min:0'],
         ]);
 
-        $isToss = $data['payment_method'] === 'toss';
+        $isPg = $data['payment_method'] !== 'bank';
 
         $user = $request->user();
         $items = $user->cartItems()->with('product')->get()
@@ -99,13 +99,13 @@ class OrderController extends Controller
         $pointUsed = min((int) ($data['point_used'] ?? 0), $user->point, $pointCap);
         $total = max(0, $summary['subtotal'] + $summary['shipping'] - $couponDiscount - $pointUsed);
 
-        $order = DB::transaction(function () use ($user, $items, $summary, $data, $pointUsed, $isToss, $coupon, $couponDiscount, $total) {
+        $order = DB::transaction(function () use ($user, $items, $summary, $data, $pointUsed, $isPg, $coupon, $couponDiscount, $total) {
             $order = Order::create([
                 'order_no'       => 'MS'.now()->format('ymd').strtoupper(substr(uniqid(), -5)),
                 'user_id'        => $user->id,
                 'status'         => 'pending',
                 'payment_method' => $data['payment_method'],
-                'pay_provider'   => $isToss ? 'toss' : null,
+                'pay_provider'   => $isPg ? $data['payment_method'] : null,
                 'receiver_name'  => $data['receiver_name'],
                 'receiver_phone' => $data['receiver_phone'],
                 'postcode'       => $data['postcode'] ?? null,
@@ -119,8 +119,8 @@ class OrderController extends Controller
                 'coupon_code'    => $coupon?->code,
                 'point_used'     => $pointUsed,
                 'total'          => $total,
-                'bank'           => $isToss ? null : ($data['bank'] ?? null),
-                'depositor'      => $isToss ? null : ($data['depositor'] ?? null),
+                'bank'           => $isPg ? null : ($data['bank'] ?? null),
+                'depositor'      => $isPg ? null : ($data['depositor'] ?? null),
             ]);
 
             foreach ($items as $i) {
@@ -161,7 +161,7 @@ class OrderController extends Controller
 
         $request->session()->forget('coupon_code');
 
-        if ($isToss) {
+        if ($isPg) {
             return redirect()->route('order.pay', $order);
         }
 

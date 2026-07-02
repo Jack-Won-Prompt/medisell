@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Services\PortOne\PortOneService;
 use App\Services\TossPayments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
-    /** 토스 결제위젯 페이지 (주문 생성 후 결제 진행) */
+    /** 결제 페이지 (주문 생성 후 결제 진행) — PG(toss/portone)별 분기 */
     public function pay(Request $request, Order $order)
     {
         abort_unless($order->user_id === $request->user()->id, 403);
@@ -30,7 +31,81 @@ class PaymentController extends Controller
             'orderName'   => $orderName,
             'clientKey'   => config('services.toss.client_key'),
             'customerKey' => 'cust_'.substr(sha1($order->user_id.config('app.key')), 0, 24),
+            'portone'     => config('portone'),
         ]);
+    }
+
+    /** 포트원 시뮬레이트 결제 완료 (실호출 없이 결제확인) */
+    public function portoneSimulate(Request $request, Order $order)
+    {
+        abort_unless($order->user_id === $request->user()->id, 403);
+        abort_unless(config('portone.simulate'), 400);
+
+        $order->fill(['pay_provider' => 'portone', 'pay_status' => 'DONE', 'pay_method' => '카드(시뮬레이트)']);
+        $order->save();
+        $order->markPaid();
+
+        return redirect()->route('order.complete', $order)->with('ok', '결제가 완료되었습니다. (포트원 시뮬레이트)');
+    }
+
+    /** 포트원 결제검증 (IMP.request_pay 콜백 → imp_uid 서버검증) */
+    public function portoneVerify(Request $request, PortOneService $portone)
+    {
+        $data = $request->validate([
+            'imp_uid'      => ['required', 'string'],
+            'merchant_uid' => ['required', 'string'],
+        ]);
+        $order = Order::where('order_no', $data['merchant_uid'])->firstOrFail();
+        abort_unless($order->user_id === $request->user()->id, 403);
+
+        $res = $portone->verify($data['imp_uid'], (int) $order->total);
+        if (! $res['ok']) {
+            return redirect()->route('order.pay', $order)->with('error', '결제 검증 실패: '.($res['message'] ?? ''));
+        }
+
+        $order->fill([
+            'pay_provider' => 'portone',
+            'payment_key'  => $data['imp_uid'],
+            'pay_status'   => $res['status'],
+            'pay_method'   => $res['method'],
+        ]);
+
+        if ($res['status'] === 'paid') {
+            $order->save();
+            $order->markPaid();
+        } elseif ($res['status'] === 'ready' && $res['vbank']) {
+            $va = $res['vbank'];
+            $order->fill([
+                'status' => 'pending',
+                'va_bank' => $va['bank'], 'va_account' => $va['account'],
+                'va_holder' => $va['holder'], 'va_due_at' => $va['due'],
+            ])->save();
+        } else {
+            $order->save();
+        }
+
+        return redirect()->route('order.complete', $order)->with('ok', '결제가 정상 처리되었습니다.');
+    }
+
+    /** 포트원 웹훅 (가상계좌 입금 등 비동기) */
+    public function portoneWebhook(Request $request, PortOneService $portone)
+    {
+        $impUid = $request->input('imp_uid');
+        $merchantUid = $request->input('merchant_uid');
+        if (! $impUid || ! $merchantUid) {
+            return response()->json(['ok' => false], 400);
+        }
+        $order = Order::where('order_no', $merchantUid)->first();
+        if ($order) {
+            $res = $portone->verify($impUid, (int) $order->total);
+            if (($res['status'] ?? null) === 'paid') {
+                $order->update(['pay_status' => 'DONE', 'payment_key' => $impUid]);
+                $order->markPaid();
+            }
+        }
+        Log::info('portone.webhook', ['imp_uid' => $impUid, 'merchant_uid' => $merchantUid]);
+
+        return response()->json(['ok' => true]);
     }
 
     /** 결제 성공 리다이렉트 → 서버 승인 */
