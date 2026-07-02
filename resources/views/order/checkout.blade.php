@@ -53,10 +53,12 @@ function msApplyCoupon(code){var i=document.querySelector('input[name=code][form
             {{-- 결제수단 --}}
             <div class="form-card">
                 <h3><x-icon name="coin"/> 결제수단</h3>
+                @php($pg = $site['payment_pg'] ?? 'toss')
+                @php($pgName = $pg === 'portone' ? '포트원(아임포트)' : '토스페이먼츠')
                 <div class="radio-cards" data-radio-cards style="margin-bottom:16px">
                     <label class="radio-card on">
-                        <input type="radio" name="payment_method" value="toss" hidden checked>
-                        <strong>카드 · 가상계좌</strong><small>토스페이먼츠 (카드/계좌이체/가상계좌)</small>
+                        <input type="radio" name="payment_method" value="{{ $pg }}" hidden checked>
+                        <strong>카드 · 가상계좌</strong><small>{{ $pgName }} (카드/계좌이체/가상계좌)</small>
                     </label>
                     <label class="radio-card">
                         <input type="radio" name="payment_method" value="bank" hidden>

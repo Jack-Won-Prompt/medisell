@@ -28,6 +28,9 @@ return [
         ['bank' => '하나은행', 'account' => '000-000000-00000', 'holder' => '메디셀(주)'],
     ],
 
+    // 결제 PG (관리자 사이트설정에서 선택): toss | portone
+    'payment_pg' => env('PAYMENT_PG', 'toss'),
+
     // 배송비 정책
     'free_ship_over' => 50000,  // 5만원 이상 무료배송
     'shipping_fee'   => 3000,

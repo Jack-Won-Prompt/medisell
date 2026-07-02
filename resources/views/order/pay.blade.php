@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title', '결제하기 — 메디셀')
 
+@php($provider = $order->pay_provider ?? 'toss')
+
 @section('content')
 <div class="container" style="max-width:680px;padding:30px 20px">
     <div class="page-head" style="background:none;color:var(--ink);padding:0 0 18px">
@@ -15,23 +17,76 @@
         <div style="display:flex;justify-content:space-between;font-size:14px;padding:4px 0">
             <span class="muted">상품</span><span>{{ $orderName }}</span>
         </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0">
+            <span class="muted">결제수단</span><span>{{ $provider === 'portone' ? '포트원(아임포트)' : '토스페이먼츠' }}</span>
+        </div>
         <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:10px;padding-top:12px">
             <span>결제금액</span><b class="text-red" style="font-size:22px">{{ number_format($order->total) }}원</b>
         </div>
     </div>
 
-    <div class="form-card">
-        <div id="payment-method"></div>
-        <div id="agreement"></div>
-        <button id="pay-btn" class="btn btn-red btn-lg btn-block" style="margin-top:16px" disabled>
-            {{ number_format($order->total) }}원 결제하기
-        </button>
-        <p class="muted" style="font-size:12px;margin-top:10px;text-align:center">테스트 모드입니다. 실제 청구되지 않습니다.</p>
-    </div>
+    @if($provider === 'portone')
+        {{-- 포트원(아임포트) --}}
+        <div class="form-card">
+            @if($portone['simulate'])
+                <form method="POST" action="{{ route('payment.portone.simulate', $order) }}">
+                    @csrf
+                    <button class="btn btn-red btn-lg btn-block">{{ number_format($order->total) }}원 결제하기</button>
+                </form>
+                <p class="muted" style="font-size:12px;margin-top:10px;text-align:center">포트원 시뮬레이트 모드 — 실제 결제창 없이 완료 처리됩니다.</p>
+            @else
+                <button id="pay-btn" class="btn btn-red btn-lg btn-block">{{ number_format($order->total) }}원 결제하기</button>
+                <form id="poVerify" method="POST" action="{{ route('payment.portone.verify') }}" style="display:none">
+                    @csrf
+                    <input type="hidden" name="imp_uid">
+                    <input type="hidden" name="merchant_uid" value="{{ $order->order_no }}">
+                </form>
+                <p class="muted" style="font-size:12px;margin-top:10px;text-align:center">포트원 결제창으로 진행됩니다.</p>
+            @endif
+        </div>
+    @else
+        {{-- 토스페이먼츠 위젯 --}}
+        <div class="form-card">
+            <div id="payment-method"></div>
+            <div id="agreement"></div>
+            <button id="pay-btn" class="btn btn-red btn-lg btn-block" style="margin-top:16px" disabled>
+                {{ number_format($order->total) }}원 결제하기
+            </button>
+            <p class="muted" style="font-size:12px;margin-top:10px;text-align:center">테스트 모드입니다. 실제 청구되지 않습니다.</p>
+        </div>
+    @endif
 </div>
 @endsection
 
 @push('scripts')
+@if($provider === 'portone' && ! $portone['simulate'])
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script>
+(function () {
+    var IMP = window.IMP; IMP.init(@json($portone['imp_code']));
+    var btn = document.getElementById('pay-btn');
+    var form = document.getElementById('poVerify');
+    btn.addEventListener('click', function () {
+        IMP.request_pay({
+            pg: @json($portone['pg']),
+            pay_method: @json($portone['pay_method']),
+            merchant_uid: @json($order->order_no),
+            name: @json($orderName),
+            amount: {{ (int) $order->total }},
+            buyer_name: @json($order->receiver_name),
+            buyer_tel: @json($order->receiver_phone)
+        }, function (rsp) {
+            if (rsp.success || rsp.imp_uid) {
+                form.querySelector('[name=imp_uid]').value = rsp.imp_uid;
+                form.submit();
+            } else {
+                alert('결제 실패: ' + (rsp.error_msg || ''));
+            }
+        });
+    });
+})();
+</script>
+@elseif($provider !== 'portone')
 <script src="https://js.tosspayments.com/v2/standard"></script>
 <script>
 (function () {
@@ -45,11 +100,9 @@
         failUrl:      @json(route('payment.fail')),
         customerName: @json($order->receiver_name)
     };
-
     var btn = document.getElementById('pay-btn');
     var toss = TossPayments(clientKey);
     var widgets = toss.widgets({ customerKey: customerKey });
-
     (async function () {
         await widgets.setAmount({ currency: 'KRW', value: amount });
         await Promise.all([
@@ -59,14 +112,11 @@
         btn.disabled = false;
         btn.addEventListener('click', async function () {
             btn.disabled = true;
-            try {
-                await widgets.requestPayment(payload);
-            } catch (e) {
-                btn.disabled = false;
-                console.error(e);
-            }
+            try { await widgets.requestPayment(payload); }
+            catch (e) { btn.disabled = false; console.error(e); }
         });
     })();
 })();
 </script>
+@endif
 @endpush

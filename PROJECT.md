@@ -88,6 +88,13 @@
 
 > 재가져오기: `php artisan migrate:fresh --seed` (cols DB가 떠 있어야 함)
 
+## 결제 PG 선택 (토스 / 포트원)
+- **관리자 사이트설정에서 사용 PG 선택**(`payment_pg`: toss | portone) → 체크아웃 카드결제가 선택 PG로 진행
+- **포트원(아임포트)**: `config/portone.php`(`PORTONE_*`), `PortOneService`(getToken/getPayment 검증),
+  `order.pay`에서 IMP.request_pay → `payment.portone.verify`(금액대조) → `markPaid`, 가상계좌 웹훅(`payment.portone.webhook`)
+  - ⚠️ `PORTONE_SIMULATE` 기본 **true**(실결제창 없이 완료처리). 실연동은 `false` + `PORTONE_IMP_CODE/KEY/SECRET`·`PORTONE_PG` 설정
+- 무통장입금은 PG와 무관하게 항상 제공
+
 ## 결제 — 토스페이먼츠 (결제위젯 v2)
 - `.env`의 `TOSS_*` 키 사용(테스트키 `test_ck_`/`test_sk_`), `config/services.php` → `services.toss`
 - 흐름: 체크아웃에서 결제수단 선택 → (토스) 주문 생성 후 `/order/pay/{order}` 결제위젯

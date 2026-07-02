@@ -62,6 +62,21 @@
         </div>
     </div>
 
+    {{-- 결제 PG --}}
+    <div class="adm-card">
+        <div class="h">결제 PG (카드·간편·가상계좌)</div>
+        <div style="padding:20px">
+            <div class="afield" style="max-width:320px;margin:0">
+                <label>사용할 PG</label>
+                <select name="payment_pg" class="aselect">
+                    <option value="toss" {{ ($site['payment_pg'] ?? 'toss')==='toss' ? 'selected' : '' }}>토스페이먼츠</option>
+                    <option value="portone" {{ ($site['payment_pg'] ?? '')==='portone' ? 'selected' : '' }}>포트원(아임포트)</option>
+                </select>
+                <div class="ahint">체크아웃의 카드/간편결제가 선택한 PG로 진행됩니다. (무통장입금은 항상 제공)</div>
+            </div>
+        </div>
+    </div>
+
     {{-- 배송 / 적립 정책 --}}
     <div class="adm-card">
         <div class="h">배송 / 적립 정책</div>

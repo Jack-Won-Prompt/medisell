@@ -52,10 +52,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/checkout/coupon', [OrderController::class, 'removeCoupon'])->name('order.coupon.remove');
     Route::get('/order/complete/{order}', [OrderController::class, 'complete'])->name('order.complete');
 
-    // 토스페이먼츠 결제위젯
+    // 결제 페이지 (PG 공통)
     Route::get('/order/pay/{order}', [PaymentController::class, 'pay'])->name('order.pay');
+    // 토스
     Route::get('/payment/toss/success', [PaymentController::class, 'success'])->name('payment.success');
     Route::get('/payment/toss/fail', [PaymentController::class, 'fail'])->name('payment.fail');
+    // 포트원(아임포트)
+    Route::post('/payment/portone/verify', [PaymentController::class, 'portoneVerify'])->name('payment.portone.verify');
+    Route::post('/payment/portone/simulate/{order}', [PaymentController::class, 'portoneSimulate'])->name('payment.portone.simulate');
 
     // ===== 마이페이지 =====
     Route::prefix('mypage')->name('mypage.')->controller(MypageController::class)->group(function () {
@@ -166,8 +170,9 @@ Route::get('/chat/open', [ChatController::class, 'open'])->name('chat.open');
 Route::post('/chat/start', [ChatController::class, 'start'])->name('chat.start');
 Route::post('/chat/send', [ChatController::class, 'send'])->name('chat.send');
 
-// ===== 토스 웹훅 (공개, CSRF 제외) =====
+// ===== 결제 웹훅 (공개, CSRF 제외) =====
 Route::post('/payment/toss/webhook', [PaymentController::class, 'webhook'])->name('payment.webhook');
+Route::post('/payment/portone/webhook', [PaymentController::class, 'portoneWebhook'])->name('payment.portone.webhook');
 
 // ===== 인증 =====
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
