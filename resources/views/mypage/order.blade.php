@@ -48,7 +48,7 @@
                     <p style="line-height:1.9;font-size:14px">
                         무통장입금 · {{ $order->bank }}<br>
                         입금자명 {{ $order->depositor }}<br>
-                        @if($order->paid_at)<span style="color:var(--navy-800);font-weight:700">입금확인 {{ $order->paid_at->format('Y.m.d H:i') }}</span>
+                        @if($order->paid_at)<span style="color:var(--navy-800);font-weight:600">입금확인 {{ $order->paid_at->format('Y.m.d H:i') }}</span>
                         @else<span class="text-red">입금대기중</span>@endif
                     </p>
                 </div>

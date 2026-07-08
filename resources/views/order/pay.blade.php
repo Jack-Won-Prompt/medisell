@@ -98,7 +98,10 @@
         orderName:    @json($orderName),
         successUrl:   @json(route('payment.success')),
         failUrl:      @json(route('payment.fail')),
-        customerName: @json($order->receiver_name)
+        customerName: @json($order->receiver_name),
+        // PC: 별도 브라우저 창 대신 인페이지 모달(iframe)로 결제창 표시.
+        // (카드사 본인인증 ISP/앱카드 등 일부 인증창은 카드사가 별도 창을 강제할 수 있음)
+        windowTarget: 'iframe'
     };
     var btn = document.getElementById('pay-btn');
     var toss = TossPayments(clientKey);

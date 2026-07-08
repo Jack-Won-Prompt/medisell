@@ -18,7 +18,7 @@
         </div>
         <div style="padding:0 20px 18px">
             <div style="border-top:1px solid var(--a-line);padding-top:14px">
-                <div style="font-size:13px;font-weight:800;margin-bottom:8px">적립금 수동조정 (보유 {{ number_format($user->point) }}원)</div>
+                <div style="font-size:13px;font-weight:700;margin-bottom:8px">적립금 수동조정 (보유 {{ number_format($user->point) }}원)</div>
                 <form method="POST" action="{{ route('admin.users.points', $user) }}" style="display:flex;gap:8px;align-items:flex-end">
                     @csrf
                     <div class="afield" style="width:130px;margin:0"><label>금액(±)</label><input type="number" name="amount" class="ainput" placeholder="예: 1000 / -500" required></div>
@@ -151,7 +151,7 @@
         <form method="POST" action="{{ route('admin.users.prices.import', $user) }}" enctype="multipart/form-data"
               style="display:flex;gap:10px;align-items:center;background:#f7f9fc;border:1px dashed #c7cedd;border-radius:10px;padding:12px 14px;margin-bottom:16px">
             @csrf
-            <span style="font-size:13px;font-weight:700;color:#33415c">엑셀(CSV) 일괄 등록</span>
+            <span style="font-size:13px;font-weight:600;color:#33415c">엑셀(CSV) 일괄 등록</span>
             <input type="file" name="file" accept=".csv,text/csv" class="ainput" style="flex:1;padding:7px" required>
             <button class="abtn abtn-pri">업로드</button>
         </form>

@@ -6,7 +6,7 @@
 <div class="container" style="padding:26px 20px;max-width:920px">
     <div class="form-card">
         <div style="border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:20px">
-            <h2 style="font-size:21px;font-weight:800">@if($notice->is_pinned)<span class="badge badge-best" style="vertical-align:middle">공지</span> @endif{{ $notice->title }}</h2>
+            <h2 style="font-size:21px;font-weight:700">@if($notice->is_pinned)<span class="badge badge-best" style="vertical-align:middle">공지</span> @endif{{ $notice->title }}</h2>
             <div class="muted" style="font-size:13px;margin-top:8px">{{ optional($notice->published_at)->format('Y.m.d') }} · 조회 {{ $notice->views }}</div>
         </div>
         <div class="prose" style="white-space:pre-line">{{ $notice->body }}</div>

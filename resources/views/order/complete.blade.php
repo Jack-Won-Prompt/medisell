@@ -8,7 +8,7 @@
         <div style="width:72px;height:72px;border-radius:50%;background:var(--navy-50);color:var(--navy-800);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
             <x-icon name="check" :size="40"/>
         </div>
-        <h1 style="font-size:24px;font-weight:900">{{ $isPaid ? '결제가 완료되었습니다' : '주문이 정상 접수되었습니다' }}</h1>
+        <h1 style="font-size:24px;font-weight:800">{{ $isPaid ? '결제가 완료되었습니다' : '주문이 정상 접수되었습니다' }}</h1>
         <p class="muted" style="margin-top:8px">주문번호 <b style="color:var(--navy-800)">{{ $order->order_no }}</b></p>
     </div>
 
@@ -25,7 +25,7 @@
             <h3 style="border:0;margin:0 0 10px"><x-icon name="coin"/> 가상계좌 입금 안내</h3>
             <p style="font-size:15px">아래 가상계좌로 <b class="text-red" style="font-size:18px">{{ number_format($order->total) }}원</b>을 입금해 주세요.</p>
             <div style="margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px">
-                <div style="font-size:17px;font-weight:800;color:var(--navy-800)">{{ $order->va_bank }} {{ $order->va_account }}</div>
+                <div style="font-size:17px;font-weight:700;color:var(--navy-800)">{{ $order->va_bank }} {{ $order->va_account }}</div>
                 <div class="muted" style="font-size:13px;margin-top:4px">예금주 {{ $order->va_holder }}@if($order->va_due_at) · 입금기한 {{ $order->va_due_at->format('Y.m.d H:i') }}@endif</div>
             </div>
             <p class="muted" style="font-size:12.5px;margin-top:10px">※ 입금이 확인되면 자동으로 결제완료 처리됩니다.</p>
@@ -37,7 +37,7 @@
             <p style="font-size:15px">아래 계좌로 <b class="text-red" style="font-size:18px">{{ number_format($order->total) }}원</b>을 입금해 주세요.</p>
             <div style="margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px">
                 @php($bankInfo = collect($site['banks'])->firstWhere('bank', $order->bank) ?? $site['banks'][0])
-                <div style="font-size:17px;font-weight:800;color:var(--navy-800)">{{ $bankInfo['bank'] }} {{ $bankInfo['account'] }}</div>
+                <div style="font-size:17px;font-weight:700;color:var(--navy-800)">{{ $bankInfo['bank'] }} {{ $bankInfo['account'] }}</div>
                 <div class="muted" style="font-size:13px;margin-top:4px">예금주 {{ $bankInfo['holder'] }} · 입금자명 {{ $order->depositor }}</div>
             </div>
             <p class="muted" style="font-size:12.5px;margin-top:10px">※ 입금 확인 후 상품이 준비·배송됩니다. 입금자명이 다를 경우 1:1 문의로 알려주세요.</p>

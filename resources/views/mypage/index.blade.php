@@ -9,7 +9,7 @@
         <div>
             <div style="background:linear-gradient(120deg,var(--navy-800),var(--navy-600));color:#fff;border-radius:var(--radius);padding:24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between">
                 <div>
-                    <div style="font-size:20px;font-weight:800">{{ $user->name }}님</div>
+                    <div style="font-size:20px;font-weight:700">{{ $user->name }}님</div>
                     <div style="opacity:.85;font-size:13.5px;margin-top:4px">
                         @if($user->member_type==='business')
                             병원회원 · {{ $user->company_name }}
@@ -23,7 +23,7 @@
                 </div>
                 <div style="text-align:right">
                     <div style="font-size:12.5px;opacity:.85">보유 적립금</div>
-                    <div style="font-size:26px;font-weight:900">{{ number_format($user->point) }}<span style="font-size:15px">원</span></div>
+                    <div style="font-size:26px;font-weight:800">{{ number_format($user->point) }}<span style="font-size:15px">원</span></div>
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
                         <tbody>
                         @foreach($recentOrders as $o)
                             <tr>
-                                <td><a href="{{ route('mypage.order', $o) }}" style="font-weight:700;color:var(--navy-800)">{{ $o->order_no }}</a></td>
+                                <td><a href="{{ route('mypage.order', $o) }}" style="font-weight:600;color:var(--navy-800)">{{ $o->order_no }}</a></td>
                                 <td>{{ $o->created_at->format('Y.m.d') }}</td>
                                 <td>{{ number_format($o->total) }}원</td>
                                 <td><span class="status-pill st-{{ $o->status }}">{{ $o->statusLabel() }}</span></td>

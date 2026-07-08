@@ -10,7 +10,7 @@
                     @if($isOn && $cat->children->count())
                         <div class="subs">
                             @foreach($cat->children as $sub)
-                                <a href="{{ route('catalog.category', $sub->slug) }}" style="{{ $activeCat->id === $sub->id ? 'color:var(--navy-800);font-weight:700' : '' }}">{{ $sub->name }}</a>
+                                <a href="{{ route('catalog.category', $sub->slug) }}" style="{{ $activeCat->id === $sub->id ? 'color:var(--navy-800);font-weight:600' : '' }}">{{ $sub->name }}</a>
                             @endforeach
                         </div>
                     @endif

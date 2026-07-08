@@ -82,7 +82,7 @@
                     <td>
                         @if($refPrice)
                             @php($d = $r['price'] - $refPrice)
-                            <span style="color:{{ $d<0 ? '#e0322d' : ($d>0 ? '#16a34a' : '#6b7794') }};font-weight:700">{{ $d>0?'+':'' }}{{ number_format($d) }}</span>
+                            <span style="color:{{ $d<0 ? '#e0322d' : ($d>0 ? '#16a34a' : '#6b7794') }};font-weight:600">{{ $d>0?'+':'' }}{{ number_format($d) }}</span>
                         @else - @endif
                     </td>
                     <td><a href="{{ $r['url'] }}" target="_blank" class="abtn abtn-ghost abtn-sm">쿠팡</a></td>

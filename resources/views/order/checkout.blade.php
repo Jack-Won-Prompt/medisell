@@ -91,7 +91,7 @@ function msApplyCoupon(code){var i=document.querySelector('input[name=code][form
             <div style="margin-bottom:12px">
                 @if($coupon)
                     <div style="display:flex;align-items:center;justify-content:space-between;background:var(--navy-50);border:1px solid var(--navy-100);border-radius:8px;padding:9px 12px">
-                        <span style="font-size:13px;font-weight:700;color:var(--navy-800)"><x-icon name="tag" :size="14"/> {{ $coupon->name }}</span>
+                        <span style="font-size:13px;font-weight:600;color:var(--navy-800)"><x-icon name="tag" :size="14"/> {{ $coupon->name }}</span>
                         <button type="submit" form="couponRemoveForm" class="btn btn-ghost btn-sm" style="padding:5px 10px">해제</button>
                     </div>
                 @else

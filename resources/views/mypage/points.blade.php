@@ -9,7 +9,7 @@
         <div>
             <div style="background:linear-gradient(120deg,var(--teal),var(--navy-700));color:#fff;border-radius:var(--radius);padding:24px;margin-bottom:24px">
                 <div style="font-size:13px;opacity:.85">보유 적립금</div>
-                <div style="font-size:30px;font-weight:900">{{ number_format(auth()->user()->point) }}원</div>
+                <div style="font-size:30px;font-weight:800">{{ number_format(auth()->user()->point) }}원</div>
             </div>
             @if($logs->count())
                 <table class="dtable">
@@ -19,7 +19,7 @@
                         <tr>
                             <td>{{ $log->created_at->format('Y.m.d') }}</td>
                             <td>{{ $log->reason }}</td>
-                            <td style="text-align:right;font-weight:700;color:{{ $log->amount >= 0 ? 'var(--navy-800)' : 'var(--red)' }}">{{ $log->amount >= 0 ? '+' : '' }}{{ number_format($log->amount) }}원</td>
+                            <td style="text-align:right;font-weight:600;color:{{ $log->amount >= 0 ? 'var(--navy-800)' : 'var(--red)' }}">{{ $log->amount >= 0 ? '+' : '' }}{{ number_format($log->amount) }}원</td>
                             <td style="text-align:right">{{ number_format($log->balance) }}원</td>
                         </tr>
                     @endforeach

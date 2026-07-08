@@ -6,7 +6,7 @@
     <div style="width:72px;height:72px;border-radius:50%;background:var(--red-50);color:var(--red);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
         <x-icon name="close" :size="40"/>
     </div>
-    <h1 style="font-size:23px;font-weight:900">결제가 완료되지 않았습니다</h1>
+    <h1 style="font-size:23px;font-weight:800">결제가 완료되지 않았습니다</h1>
     <p class="muted" style="margin-top:10px">{{ $message }}</p>
     @if($code)<p class="muted" style="font-size:12.5px;margin-top:4px">오류코드: {{ $code }}</p>@endif
 
