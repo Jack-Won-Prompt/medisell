@@ -4,15 +4,26 @@
 <div class="container" style="padding-top:24px">
 
     {{-- 히어로 + 사이드 프로모 --}}
+    @php($heroPics = $bestProducts->pluck('thumbnail')->filter()->values())
     <div class="home-top">
         <div class="hero">
             @foreach($mainBanners as $i => $b)
                 <div class="slide {{ $i === 0 ? 'on' : '' }}"
-                     style="{{ $b->image ? "background-image:linear-gradient(90deg,rgba(6,37,107,.78),rgba(6,37,107,.25)),url('{$b->image}')" : 'background:'.($b->bg_color ?? '#0b3d91') }}">
-                    <small>MEDISELL</small>
-                    <h2>{{ $b->title }}</h2>
-                    @if($b->subtitle)<p>{{ $b->subtitle }}</p>@endif
-                    <a href="{{ $b->link ?: route('catalog.index') }}" class="btn btn-white" style="background:#fff;color:var(--navy-800)">상품 보러가기 <x-icon name="arrow-right"/></a>
+                     style="{{ $b->image ? "background-image:linear-gradient(100deg,rgba(6,37,107,.82),rgba(6,37,107,.3)),url('{$b->image}');background-size:cover;background-position:center" : 'background:'.($b->bg_color ?? '#0b3d91') }}">
+                    <div class="slide-text">
+                        <small>MEDISELL</small>
+                        <h2>{{ $b->title }}</h2>
+                        @if($b->subtitle)<p>{{ $b->subtitle }}</p>@endif
+                        <a href="{{ $b->link ?: route('catalog.index') }}" class="btn btn-white" style="background:#fff;color:var(--navy-800)">상품 보러가기 <x-icon name="arrow-right"/></a>
+                    </div>
+                    @if(! $b->image && $heroPics->count())
+                        <div class="slide-visual" aria-hidden="true">
+                            @foreach([0,1,2] as $k)
+                                @php($src = $heroPics[($i * 3 + $k) % $heroPics->count()] ?? null)
+                                @if($src)<div class="hv hv{{ $k + 1 }}"><img src="{{ $src }}" alt="" loading="lazy"></div>@endif
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             @endforeach
             @if($mainBanners->count() > 1)

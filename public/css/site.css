@@ -147,10 +147,21 @@ main{min-height:60vh}
 .hero{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:360px;color:#fff}
 .hero .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:54px;opacity:0;transition:opacity .6s;background-size:cover;background-position:center}
 .hero .slide.on{opacity:1}
+.hero .slide::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(circle at 84% 26%,rgba(255,255,255,.16),transparent 46%),radial-gradient(circle at 66% 92%,rgba(255,255,255,.08),transparent 42%)}
+.hero .slide .slide-text{position:relative;z-index:2;max-width:54%}
 .hero .slide small{font-size:14px;font-weight:600;letter-spacing:.05em;opacity:.92;margin-bottom:12px}
-.hero .slide h2{font-size:34px;font-weight:800;line-height:1.25;letter-spacing:-.03em;max-width:78%}
-.hero .slide p{margin-top:14px;font-size:16px;opacity:.92;max-width:70%}
+.hero .slide h2{font-size:34px;font-weight:800;line-height:1.25;letter-spacing:-.03em}
+.hero .slide p{margin-top:14px;font-size:16px;opacity:.92}
 .hero .slide .btn{margin-top:24px;align-self:flex-start}
+/* 우측 떠 있는 상품 이미지 클러스터 */
+.slide-visual{position:absolute;right:44px;top:0;bottom:0;width:44%;z-index:1;pointer-events:none}
+.slide-visual .hv{position:absolute;background:#fff;border-radius:16px;overflow:hidden;
+  box-shadow:0 22px 46px rgba(3,18,54,.34);border:1px solid rgba(255,255,255,.55)}
+.slide-visual .hv img{width:100%;height:100%;object-fit:contain;padding:12px}
+.slide-visual .hv1{width:196px;height:196px;right:160px;top:64px;transform:rotate(-5deg)}
+.slide-visual .hv2{width:158px;height:158px;right:24px;top:44px;transform:rotate(5deg);z-index:2}
+.slide-visual .hv3{width:168px;height:168px;right:96px;bottom:48px;transform:rotate(3deg)}
 .hero-dots{position:absolute;bottom:20px;left:54px;display:flex;gap:8px;z-index:3}
 .hero-dots button{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.45);border:0;cursor:pointer;padding:0}
 .hero-dots button.on{background:#fff;width:26px}
@@ -494,7 +505,8 @@ main{min-height:60vh}
   .side,.sum-card,.side .side-card{position:static}
   .shell .side{display:none}
   .detail{gap:24px}
-  .hero .slide h2,.hero .slide p{max-width:100%}
+  .hero .slide .slide-text{max-width:100%}
+  .slide-visual{display:none}
 }
 @media(max-width:720px){
   .top-bar,.search-box .popular{display:none}
