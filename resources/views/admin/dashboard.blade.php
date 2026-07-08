@@ -15,7 +15,7 @@
 </div>
 
 <div class="adm-card">
-    <div class="h">오늘 매출 <span style="color:var(--a-navy);font-size:20px;font-weight:900">{{ number_format($todaySales) }}원</span></div>
+    <div class="h">오늘 매출 <span style="color:var(--a-navy);font-size:20px;font-weight:800">{{ number_format($todaySales) }}원</span></div>
 </div>
 
 <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:20px">
@@ -26,7 +26,7 @@
             <tbody>
             @forelse($recentOrders as $o)
                 <tr>
-                    <td><a href="{{ route('admin.orders.show', $o) }}" style="font-weight:700;color:var(--a-navy)">{{ $o->order_no }}</a></td>
+                    <td><a href="{{ route('admin.orders.show', $o) }}" style="font-weight:600;color:var(--a-navy)">{{ $o->order_no }}</a></td>
                     <td>{{ $o->receiver_name }}</td>
                     <td>{{ number_format($o->total) }}원</td>
                     <td><span class="status-pill st-{{ $o->status }}">{{ $o->statusLabel() }}</span></td>

@@ -9,7 +9,7 @@
     <title>@yield('title', '관리자') — 메디셀 관리자</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
     <link rel="icon" href="{{ asset('images/logo-mark.svg') }}">
-    <link rel="stylesheet" href="{{ asset('css/site.css') }}?v=5">
+    <link rel="stylesheet" href="{{ asset('css/site.css') }}?v=6">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}?v=5">
 </head>
 <body>

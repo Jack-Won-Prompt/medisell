@@ -2,7 +2,7 @@
     <div class="foot-top">
         <div class="container">
             <div class="foot-cs">
-                <div style="font-size:13px;font-weight:700;color:#cdd5e6">고객센터</div>
+                <div style="font-size:13px;font-weight:600;color:#cdd5e6">고객센터</div>
                 <div class="tel">{{ $site['cs_tel'] }}</div>
                 <div class="hours">{{ $site['cs_hours'] }}<br>이메일 {{ $site['email'] }}</div>
                 <div class="btns">

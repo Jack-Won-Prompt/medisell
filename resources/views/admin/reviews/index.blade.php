@@ -22,9 +22,9 @@
         <tbody>
         @forelse($reviews as $rv)
             <tr style="{{ $rv->is_hidden ? 'opacity:.55' : '' }}">
-                <td><span style="color:#f59e0b;font-weight:800">★ {{ $rv->rating }}</span></td>
+                <td><span style="color:#f59e0b;font-weight:700">★ {{ $rv->rating }}</span></td>
                 <td>
-                    <div style="font-weight:700">{{ $rv->title }}</div>
+                    <div style="font-weight:600">{{ $rv->title }}</div>
                     <div style="color:#6b7794;font-size:12.5px">{{ \Illuminate\Support\Str::limit($rv->body, 60) }}</div>
                 </td>
                 <td>{{ $rv->product?->name ? \Illuminate\Support\Str::limit($rv->product->name, 16) : '-' }}</td>

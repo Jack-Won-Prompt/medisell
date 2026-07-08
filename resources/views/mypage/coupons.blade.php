@@ -7,18 +7,18 @@
     <div class="my-layout">
         @include('partials.mynav')
         <div>
-            <h3 style="font-size:18px;font-weight:800;margin-bottom:14px">사용 가능한 쿠폰 <span class="text-red">{{ $available->count() }}</span></h3>
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:14px">사용 가능한 쿠폰 <span class="text-red">{{ $available->count() }}</span></h3>
             @if($available->count())
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:30px">
                     @foreach($available as $uc)
                         @php($c = $uc->coupon)
                         <div style="border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex">
                             <div style="background:var(--navy-800);color:#fff;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;min-width:110px;text-align:center">
-                                <div style="font-size:24px;font-weight:900">{{ $c->typeLabel() }}</div>
+                                <div style="font-size:24px;font-weight:800">{{ $c->typeLabel() }}</div>
                                 <div style="font-size:11px;opacity:.85">할인</div>
                             </div>
                             <div style="padding:14px 16px;flex:1">
-                                <div style="font-weight:800;font-size:15px">{{ $c->name }}</div>
+                                <div style="font-weight:700;font-size:15px">{{ $c->name }}</div>
                                 <div class="muted" style="font-size:12.5px;margin-top:4px">
                                     {{ number_format($c->min_order_amount) }}원 이상 사용<br>
                                     @if($c->ends_at)~{{ $c->ends_at->format('Y.m.d') }}까지@else기간 제한 없음@endif
@@ -33,7 +33,7 @@
             @endif
 
             @if($used->count())
-                <h3 style="font-size:16px;font-weight:800;margin:24px 0 12px;color:var(--slate-500)">사용 완료</h3>
+                <h3 style="font-size:16px;font-weight:700;margin:24px 0 12px;color:var(--slate-500)">사용 완료</h3>
                 <table class="dtable">
                     <thead><tr><th>쿠폰</th><th>할인</th><th>사용일</th></tr></thead>
                     <tbody>

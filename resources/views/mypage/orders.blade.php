@@ -13,7 +13,7 @@
                     <tbody>
                     @foreach($orders as $o)
                         <tr>
-                            <td><a href="{{ route('mypage.order', $o) }}" style="font-weight:700;color:var(--navy-800)">{{ $o->order_no }}</a></td>
+                            <td><a href="{{ route('mypage.order', $o) }}" style="font-weight:600;color:var(--navy-800)">{{ $o->order_no }}</a></td>
                             <td>{{ $o->created_at->format('Y.m.d') }}</td>
                             <td>{{ $o->items_count }}건</td>
                             <td><b>{{ number_format($o->total) }}원</b></td>

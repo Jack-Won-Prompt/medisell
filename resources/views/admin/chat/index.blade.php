@@ -47,7 +47,7 @@
 .cc-room.on{background:#e5edff}
 .cc-row1{display:flex;justify-content:space-between;align-items:center}
 .cc-row1 strong{font-size:14px}
-.cc-badge{background:#e0322d;color:#fff;font-size:11px;font-weight:800;min-width:18px;height:18px;border-radius:999px;display:flex;align-items:center;justify-content:center;padding:0 5px}
+.cc-badge{background:#e0322d;color:#fff;font-size:11px;font-weight:700;min-width:18px;height:18px;border-radius:999px;display:flex;align-items:center;justify-content:center;padding:0 5px}
 .cc-row2{display:flex;justify-content:space-between;font-size:11.5px;color:#97a0b8;margin-top:3px}
 .cc-thread{display:flex;flex-direction:column;overflow:hidden}
 .cc-messages{flex:1;overflow-y:auto;padding:18px;background:#f4f6fb;display:flex;flex-direction:column;gap:10px}

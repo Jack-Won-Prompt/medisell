@@ -20,7 +20,7 @@
                 <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13.5px"><span>배송비</span><span>{{ number_format($order->shipping_fee) }}원</span></div>
                 @if($order->discount)<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13.5px;color:#e0322d"><span>쿠폰 할인{{ $order->coupon_code ? ' ('.$order->coupon_code.')' : '' }}</span><span>-{{ number_format($order->discount) }}원</span></div>@endif
                 @if($order->point_used)<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13.5px"><span>적립금 사용</span><span>-{{ number_format($order->point_used) }}원</span></div>@endif
-                <div style="display:flex;justify-content:space-between;padding:8px 0 0;font-size:17px;font-weight:900;color:var(--a-navy);border-top:2px solid var(--a-ink);margin-top:6px"><span>결제금액</span><span>{{ number_format($order->total) }}원</span></div>
+                <div style="display:flex;justify-content:space-between;padding:8px 0 0;font-size:17px;font-weight:800;color:var(--a-navy);border-top:2px solid var(--a-ink);margin-top:6px"><span>결제금액</span><span>{{ number_format($order->total) }}원</span></div>
             </div>
         </div>
 

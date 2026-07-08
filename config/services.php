@@ -36,9 +36,15 @@ return [
     ],
 
     'toss' => [
+        // TOSS_TEST_MODE=true 면 테스트 키(TOSS_TEST_*), false 면 운영 키(TOSS_*)를 사용.
+        // 테스트 키가 없으면 운영 키로 폴백. 실수로 운영 청구되는 사고를 방지한다.
         'test_mode'      => env('TOSS_TEST_MODE', true),
-        'client_key'     => env('TOSS_CLIENT_KEY'),
-        'secret_key'     => env('TOSS_SECRET_KEY'),
+        'client_key'     => env('TOSS_TEST_MODE', true)
+                                ? env('TOSS_TEST_CLIENT_KEY', env('TOSS_CLIENT_KEY'))
+                                : env('TOSS_CLIENT_KEY'),
+        'secret_key'     => env('TOSS_TEST_MODE', true)
+                                ? env('TOSS_TEST_SECRET_KEY', env('TOSS_SECRET_KEY'))
+                                : env('TOSS_SECRET_KEY'),
         'webhook_secret' => env('TOSS_WEBHOOK_SECRET'),
         'api_base'       => 'https://api.tosspayments.com',
         'va' => [

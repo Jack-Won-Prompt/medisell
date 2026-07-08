@@ -24,7 +24,7 @@
         <tbody>
         @forelse($orders as $o)
             <tr>
-                <td><a href="{{ route('admin.orders.show', $o) }}" style="font-weight:700;color:var(--a-navy)">{{ $o->order_no }}</a></td>
+                <td><a href="{{ route('admin.orders.show', $o) }}" style="font-weight:600;color:var(--a-navy)">{{ $o->order_no }}</a></td>
                 <td>{{ $o->receiver_name }}<div style="font-size:11.5px;color:#97a0b8">{{ $o->user?->email }}</div></td>
                 <td>{{ $o->depositor }} <span style="font-size:11.5px;color:#97a0b8">({{ $o->bank }})</span></td>
                 <td><b>{{ number_format($o->total) }}원</b></td>

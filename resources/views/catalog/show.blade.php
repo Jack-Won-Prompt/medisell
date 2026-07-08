@@ -80,7 +80,7 @@
                 <form method="POST" action="{{ route('cart.add', $product) }}">
                     @csrf
                     <div style="display:flex;align-items:center;gap:14px">
-                        <span style="font-weight:700;font-size:14px">수량</span>
+                        <span style="font-weight:600;font-size:14px">수량</span>
                         <div class="qty">
                             <button type="button" data-dec><x-icon name="minus" :size="16"/></button>
                             <input type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}">
@@ -118,7 +118,7 @@
     <div id="desc" class="prose" style="margin-bottom:40px">
         {!! $product->description ?: '<p>등록된 상세설명이 없습니다.</p>' !!}
         @if($product->spec)
-            <h3 style="margin:24px 0 12px;font-size:18px;font-weight:800;color:var(--ink)">규격 / 사양</h3>
+            <h3 style="margin:24px 0 12px;font-size:18px;font-weight:700;color:var(--ink)">규격 / 사양</h3>
             <pre style="white-space:pre-wrap;font-family:inherit;background:var(--slate-50);border:1px solid var(--line);border-radius:10px;padding:16px">{{ $product->spec }}</pre>
         @endif
     </div>
