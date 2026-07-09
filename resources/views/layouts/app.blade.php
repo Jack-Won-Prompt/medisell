@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
     <link rel="icon" href="{{ asset('images/logo-mark.svg') }}">
-    <link rel="stylesheet" href="{{ asset('css/site.css') }}?v=11">
+    <link rel="stylesheet" href="{{ asset('css/site.css') }}?v=12">
     @stack('head')
 </head>
 <body>

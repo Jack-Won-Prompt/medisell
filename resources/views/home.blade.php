@@ -3,10 +3,10 @@
 @section('content')
 <div class="container" style="padding-top:24px">
 
-    {{-- 히어로 + 사이드 프로모 --}}
+    {{-- 메인 비주얼: 좌 카테고리 + 중 슬라이드 + 우 배너 (mediversal 구조) --}}
     @php($heroPics = $bestProducts->pluck('thumbnail')->filter()->values())
     <div class="home-top">
-        {{-- 좌측 전체 카테고리 (슬라이드와 같은 높이) --}}
+        {{-- 좌측 전체 카테고리 --}}
         <aside class="home-cats">
             <div class="hc-head"><x-icon name="grid"/> 전체 카테고리</div>
             <ul class="hc-list">
@@ -30,7 +30,7 @@
             <a href="{{ route('community.inquiry', ['type' => 'quote']) }}" class="hc-cta">대량구매 견적문의 <x-icon name="arrow-right" :size="14"/></a>
         </aside>
 
-        {{-- 히어로 슬라이드 --}}
+        {{-- 중앙 히어로 슬라이드 --}}
         <div class="hero">
             @foreach($mainBanners as $i => $b)
                 <div class="slide {{ $i === 0 ? 'on' : '' }}"
@@ -57,23 +57,23 @@
                 </div>
             @endif
         </div>
+
+        {{-- 우측 배너 (특가·신상·가입) --}}
+        <div class="side-promos">
+            @foreach($subBanners as $b)
+                @php($pt = number_format($site['signup_point'] ?? 0))
+                @php($ttl = str_replace('{point}', $pt, $b->title))
+                @php($sub = str_replace('{point}', $pt, (string) $b->subtitle))
+                <a href="{{ $b->link ?: '#' }}" class="promo"
+                   style="{{ $b->image ? "background-image:linear-gradient(135deg,rgba(6,37,107,.74),rgba(6,37,107,.34)),url('{$b->image}');background-size:cover;background-position:center" : 'background:'.($b->bg_color ?: '#c0392b') }}">
+                    @if($sub)<small>{{ $sub }}</small>@endif
+                    <strong>{{ $ttl }}</strong>
+                </a>
+            @endforeach
+        </div>
     </div>
 
-    {{-- 프로모 3종 (슬라이드 아래 가로) --}}
-    <div class="promo-row">
-        @foreach($subBanners as $b)
-            @php($pt = number_format($site['signup_point'] ?? 0))
-            @php($ttl = str_replace('{point}', $pt, $b->title))
-            @php($sub = str_replace('{point}', $pt, (string) $b->subtitle))
-            <a href="{{ $b->link ?: '#' }}" class="promo"
-               style="{{ $b->image ? "background-image:linear-gradient(135deg,rgba(6,37,107,.74),rgba(6,37,107,.34)),url('{$b->image}');background-size:cover;background-position:center" : 'background:'.($b->bg_color ?: '#c0392b') }}">
-                @if($sub)<small>{{ $sub }}</small>@endif
-                <strong>{{ $ttl }}</strong>
-            </a>
-        @endforeach
-    </div>
-
-    {{-- 혜택 서비스 스트립 --}}
+    {{-- 혜택 아이콘 배너 5개 --}}
     <div class="benefit-strip">
         <a href="{{ route('catalog.index') }}" class="benefit">
             <span class="bi"><x-icon name="truck"/></span>
@@ -97,17 +97,7 @@
         </a>
     </div>
 
-    {{-- 빠른 카테고리 --}}
-    <div class="quick-cats">
-        @foreach($navCategories as $cat)
-            <a href="{{ route('catalog.category', $cat->slug) }}" class="quick-cat">
-                <span class="ic"><x-icon :name="$cat->icon ?? 'box'"/></span>
-                <span>{{ $cat->name }}</span>
-            </a>
-        @endforeach
-    </div>
-
-    {{-- 오늘의 특가 + 카운트다운 --}}
+    {{-- 오늘의 특가 (타이머 + 한 줄 5개) --}}
     @if($dealProducts->count())
     <section class="section deal-section">
         <div class="section-head">
@@ -116,19 +106,19 @@
                 <x-icon name="clock" :size="16"/> <span id="dealCountdown">00:00:00</span> 남음
             </div>
         </div>
-        <div class="deal-slider">
-            @foreach($dealProducts as $p)
-                <div class="deal-item"><x-product-card :product="$p"/></div>
+        <div class="prod-grid">
+            @foreach($dealProducts->take(5) as $p)
+                <x-product-card :product="$p"/>
             @endforeach
         </div>
     </section>
     @endif
 
-    {{-- 카테고리 탭형 베스트 --}}
+    {{-- 카테고리별 베스트 (5탭 + 한 줄 4개) --}}
     @if($categoryTabs->count())
     <section class="section">
         <div class="section-head">
-            <h3><x-icon name="grid"/> 카테고리 베스트</h3>
+            <h3><x-icon name="grid"/> 카테고리별 베스트</h3>
             <a href="{{ route('catalog.index', ['sort' => 'popular']) }}" class="more">전체보기 <x-icon name="chevron-right" :size="14"/></a>
         </div>
         <div class="cat-tabs">
@@ -137,42 +127,12 @@
             @endforeach
         </div>
         @foreach($categoryTabs as $i => $t)
-            <div class="cat-panel prod-grid {{ $i === 0 ? 'on' : '' }}" id="cat-panel-{{ $i }}">
-                @foreach($t['products']->take(5) as $p)
+            <div class="cat-panel prod-grid cols4 {{ $i === 0 ? 'on' : '' }}" id="cat-panel-{{ $i }}">
+                @foreach($t['products']->take(4) as $p)
                     <x-product-card :product="$p"/>
                 @endforeach
             </div>
         @endforeach
-    </section>
-    @endif
-
-    {{-- 추천 상품 --}}
-    @if($featuredProducts->count())
-    <section class="section">
-        <div class="section-head">
-            <h3><x-icon name="star"/> 추천 상품</h3>
-            <a href="{{ route('catalog.index') }}" class="more">더보기 <x-icon name="chevron-right" :size="14"/></a>
-        </div>
-        <div class="prod-grid cols4">
-            @foreach($featuredProducts->take(4) as $p)
-                <x-product-card :product="$p"/>
-            @endforeach
-        </div>
-    </section>
-    @endif
-
-    {{-- 신상품 --}}
-    @if($newProducts->count())
-    <section class="section">
-        <div class="section-head">
-            <h3><x-icon name="tag"/> 신상품</h3>
-            <a href="{{ route('catalog.index', ['sort' => 'new']) }}" class="more">더보기 <x-icon name="chevron-right" :size="14"/></a>
-        </div>
-        <div class="prod-grid cols4">
-            @foreach($newProducts->take(4) as $p)
-                <x-product-card :product="$p"/>
-            @endforeach
-        </div>
     </section>
     @endif
 
@@ -191,8 +151,8 @@
     </section>
     @endif
 
-    {{-- 공지 + 입금계좌 --}}
-    <div class="home-foot">
+    {{-- 공지 + 고객센터 + 입금계좌 (3단) --}}
+    <div class="home-foot cols3">
         <div class="box">
             <h4><x-icon name="doc"/> 공지사항</h4>
             <ul class="notice-list">
@@ -206,6 +166,18 @@
                     <li><span class="muted">등록된 공지가 없습니다.</span></li>
                 @endforelse
             </ul>
+        </div>
+        <div class="box">
+            <h4><x-icon name="headset"/> 고객센터</h4>
+            <div class="cs-box">
+                <strong>{{ $site['cs_tel'] }}</strong>
+                <p>{{ $site['cs_hours'] }}</p>
+                <p class="muted">{{ $site['email'] }}</p>
+                <div class="cs-links">
+                    <a href="{{ route('community.inquiry', ['type' => 'qna']) }}">1:1 문의</a>
+                    <a href="{{ route('community.faq') }}">자주묻는질문</a>
+                </div>
+            </div>
         </div>
         <div class="box">
             <h4><x-icon name="coin"/> 무통장 입금계좌</h4>
@@ -236,7 +208,7 @@
         tick(); setInterval(tick, 1000);
     }
 
-    // 카테고리 베스트 탭 전환
+    // 카테고리별 베스트 탭 전환
     document.querySelectorAll('.cat-tab').forEach(function (btn) {
         btn.addEventListener('click', function () {
             document.querySelectorAll('.cat-tab').forEach(function (b) { b.classList.remove('on'); });
