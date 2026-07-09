@@ -555,6 +555,55 @@ main{min-height:60vh}
 .mobile-nav{display:none}
 
 /* =========================================================
+   mediversal 구조: 탭바 / 3단 정보 / 대형 프로모 / 브랜드카드
+   ========================================================= */
+/* 탭 바 (슬라이드 하단) */
+.home-tabbar{display:flex;gap:2px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:20px}
+.home-tabbar a{flex:1;text-align:center;padding:15px 10px;font-size:14.5px;font-weight:600;color:var(--slate-600);border-bottom:2px solid transparent;transition:var(--t)}
+.home-tabbar a:hover{color:var(--navy-800);background:var(--slate-50)}
+.home-tabbar a.on{color:var(--navy-800);border-bottom-color:var(--navy-800);font-weight:700}
+
+/* 3단 정보: 고객센터 | 배너 | 달력 */
+.info-3col{display:grid;grid-template-columns:280px 1fr 300px;gap:16px;margin-bottom:34px}
+.ic-cs,.ic-cal{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.ic-cs .cs-label{font-size:13px;color:var(--slate-500);font-weight:600}
+.ic-cs .cs-tel{display:flex;align-items:center;gap:8px;font-size:26px;font-weight:800;color:var(--navy-800);letter-spacing:-.02em;margin-top:6px}
+.ic-cs .cs-tel .icon{width:24px;height:24px}
+.ic-cs .cs-hours{font-size:12.5px;color:var(--slate-500);margin-top:8px;line-height:1.5}
+.cs-icons{display:flex;gap:8px;margin-top:18px}
+.cs-icons a{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 4px;border:1px solid var(--line);border-radius:9px;font-size:12px;font-weight:600;color:var(--slate-600);transition:var(--t)}
+.cs-icons a:hover{border-color:var(--navy-800);color:var(--navy-800)}
+.cs-icons a .icon{width:20px;height:20px;color:var(--navy-800)}
+.ic-banners{display:flex;flex-direction:column;gap:16px}
+.ic-banner{flex:1;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:22px 26px;border-radius:var(--radius);color:#fff;overflow:hidden}
+.ic-banner .icon{opacity:.85;flex:none}
+.ic-banner strong{display:block;font-size:18px;font-weight:700}
+.ic-banner span{display:block;font-size:13px;opacity:.9;margin-top:4px}
+.ic-banner-dark{background:linear-gradient(120deg,#0b3d91,#06255b)}
+.ic-banner-soft{background:linear-gradient(120deg,#127a8a,#0b3d91)}
+.ic-cal .cal-head{text-align:center;font-weight:700;color:var(--navy-800);font-size:15px;margin-bottom:12px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.cal-grid span{font-size:12.5px;padding:5px 0;color:var(--slate-600);border-radius:6px}
+.cal-grid .cal-dow{font-weight:700;color:var(--slate-400);font-size:11.5px}
+.cal-grid .cal-today{background:var(--navy-800);color:#fff;font-weight:700}
+.ic-cal .cal-note{text-align:center;font-size:12px;color:var(--slate-500);margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+
+/* 대형 프로모 배너 (풀와이드) */
+.wide-promo{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(115deg,#eef3fb,#dfe8f7);border-radius:var(--radius-lg);padding:34px 48px;margin-bottom:34px;overflow:hidden;position:relative}
+.wide-promo .wp-text small{font-size:13px;font-weight:700;color:var(--red);letter-spacing:.06em}
+.wide-promo .wp-text h3{font-size:28px;font-weight:800;color:var(--navy-800);letter-spacing:-.03em;margin-top:8px}
+.wide-promo .wp-text p{font-size:15px;color:var(--slate-600);margin-top:10px}
+.wide-promo .wp-btn{display:inline-flex;align-items:center;gap:6px;margin-top:18px;background:var(--navy-800);color:#fff;font-size:14px;font-weight:700;padding:11px 20px;border-radius:999px}
+.wide-promo .wp-img{width:230px;height:150px;object-fit:contain;flex:none}
+
+/* 추천 브랜드 카드 (별 뱃지) */
+.brand-grid-card{grid-template-columns:repeat(5,1fr)}
+.brand-grid-card .brand-cell{position:relative;aspect-ratio:auto;padding:22px 12px}
+.brand-cell .br-star{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:#ffb300;color:#fff;display:flex;align-items:center;justify-content:center}
+.brand-cell b{font-size:14px;font-weight:700;color:var(--ink);margin-top:4px}
+.brand-cell em{font-size:11.5px;color:var(--slate-500);font-style:normal}
+
+/* =========================================================
    RESPONSIVE
    ========================================================= */
 @media(max-width:1100px){
@@ -578,8 +627,16 @@ main{min-height:60vh}
   .home-top .side-promos{grid-column:auto;flex-direction:row}
   .benefit-strip{grid-template-columns:repeat(3,1fr)}
   .benefit em{display:none}
+  .info-3col{grid-template-columns:1fr;}
+  .brand-grid-card{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:720px){
+  .home-tabbar{overflow-x:auto}
+  .home-tabbar a{flex:0 0 auto;padding:13px 16px;white-space:nowrap}
+  .brand-grid-card{grid-template-columns:repeat(2,1fr)}
+  .wide-promo{padding:26px 24px}
+  .wide-promo .wp-img{display:none}
+  .wide-promo .wp-text h3{font-size:22px}
   .top-bar,.search-box .popular{display:none}
   .header-main{height:64px;gap:14px}
   .search-box{order:3;flex-basis:100%;max-width:100%;margin-top:0}
