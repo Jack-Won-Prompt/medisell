@@ -24,6 +24,7 @@ class SettingController extends Controller
             'ceo'         => ['nullable', 'string', 'max:50'],
             'biz_no'      => ['nullable', 'string', 'max:50'],
             'mailorder'   => ['nullable', 'string', 'max:100'],
+            'med_device'  => ['nullable', 'string', 'max:100'],
             'address'     => ['nullable', 'string', 'max:200'],
             'cs_tel'      => ['nullable', 'string', 'max:50'],
             'cs_hours'    => ['nullable', 'string', 'max:150'],
