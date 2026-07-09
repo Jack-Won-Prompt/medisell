@@ -28,11 +28,11 @@ return [
     'supplier' => [
         'corp_num'  => env('POPBILL_TEST_CORP_NUM', ''),                 // 사업자등록번호(숫자만)
         'user_id'   => env('POPBILL_TEST_USER_ID', ''),                  // 팝빌 회원 아이디
-        'corp_name' => env('COMPANY_CORP_NAME', '메디셀(주)'),
-        'ceo_name'  => env('COMPANY_CEO_NAME', ''),
-        'addr'      => env('COMPANY_ADDR', ''),
+        'corp_name' => env('COMPANY_CORP_NAME', '메디셀'),
+        'ceo_name'  => env('COMPANY_CEO_NAME', '최연아'),
+        'addr'      => env('COMPANY_ADDR', '서울특별시 강서구 마곡중앙로 161-8, C동 5층 502호'),
         'biz_type'  => env('COMPANY_BIZ_CLASS', '도매 및 소매업'),        // 업태
-        'biz_class' => env('COMPANY_BIZ_TYPE', '의료용품 도소매'),        // 종목
+        'biz_class' => env('COMPANY_BIZ_TYPE', '전자상거래 소매업, 의료기기 도소매'),  // 종목
         'tel'       => env('COMPANY_TEL', ''),
         'email'     => env('COMPANY_EMAIL', ''),
     ],
