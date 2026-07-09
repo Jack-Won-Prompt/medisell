@@ -34,15 +34,15 @@
         </div>
         <div class="side-promos">
             @foreach($subBanners as $b)
-                <a href="{{ $b->link ?: '#' }}" class="promo" style="background:{{ $b->bg_color ?? '#c0392b' }}">
-                    <small>{{ $b->subtitle }}</small>
-                    <strong>{{ $b->title }}</strong>
+                @php($pt = number_format($site['signup_point'] ?? 0))
+                @php($ttl = str_replace('{point}', $pt, $b->title))
+                @php($sub = str_replace('{point}', $pt, (string) $b->subtitle))
+                <a href="{{ $b->link ?: '#' }}" class="promo"
+                   style="{{ $b->image ? "background-image:linear-gradient(135deg,rgba(6,37,107,.74),rgba(6,37,107,.34)),url('{$b->image}');background-size:cover;background-position:center" : 'background:'.($b->bg_color ?: '#c0392b') }}">
+                    @if($sub)<small>{{ $sub }}</small>@endif
+                    <strong>{{ $ttl }}</strong>
                 </a>
             @endforeach
-            <div class="promo" style="background:linear-gradient(135deg,#0f8a8a,#0b3d91)">
-                <small>신규회원 혜택</small>
-                <strong>가입 즉시 {{ number_format($site['signup_point']) }}원 적립</strong>
-            </div>
         </div>
     </div>
 

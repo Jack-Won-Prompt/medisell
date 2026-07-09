@@ -87,10 +87,10 @@ return [
         'order' => ['sort_order', 'asc'],
         'columns' => ['title' => '제목', 'position' => '위치', 'sort_order' => '순서', 'is_active' => '활성'],
         'fields' => [
-            ['name' => 'title', 'label' => '제목', 'type' => 'text', 'required' => true],
+            ['name' => 'title', 'label' => '제목', 'type' => 'text', 'required' => true, 'hint' => '{point} 입력 시 사이트설정의 신규가입 적립금으로 자동 치환'],
             ['name' => 'subtitle', 'label' => '부제', 'type' => 'text'],
-            ['name' => 'image', 'label' => '배너 이미지', 'type' => 'image'],
-            ['name' => 'bg_color', 'label' => '배경색(이미지 없을 때)', 'type' => 'text', 'hint' => '예: #0b3d91'],
+            ['name' => 'image', 'label' => '배너 이미지', 'type' => 'image', 'hint' => '메인 슬라이드·서브 배너 모두 배경 이미지로 표시(어둡게 오버레이). 없으면 아래 배경색 사용'],
+            ['name' => 'bg_color', 'label' => '배경색(이미지 없을 때)', 'type' => 'text', 'hint' => '예: #0b3d91 또는 linear-gradient(135deg,#0f8a8a,#0b3d91)'],
             ['name' => 'link', 'label' => '링크', 'type' => 'text'],
             ['name' => 'position', 'label' => '위치', 'type' => 'select', 'required' => true,
                 'options' => ['main' => '메인 슬라이드', 'sub' => '서브 배너']],
