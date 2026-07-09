@@ -24,3 +24,6 @@ yarn-error.log
 
 # Playwright MCP 테스트 아티팩트
 .playwright-mcp/
+
+# Claude Code 로컬 설정/메모리
+.claude/
