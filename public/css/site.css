@@ -143,8 +143,8 @@ main{min-height:60vh}
 /* =========================================================
    HOME
    ========================================================= */
-.home-top{display:grid;grid-template-columns:230px 1fr 300px;gap:16px;margin-bottom:30px}
-.hero{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:392px;color:#fff}
+.home-top{margin-bottom:18px}
+.hero{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:360px;color:#fff}
 
 /* 좌측 전체 카테고리 패널 */
 .home-cats{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);display:flex;flex-direction:column;overflow:visible}
