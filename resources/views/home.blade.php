@@ -3,10 +3,9 @@
 @section('content')
 <div class="container" style="padding-top:24px">
 
-    {{-- 메인 비주얼: 좌 카테고리 + 중 슬라이드 + 우 배너 (mediversal 구조) --}}
+    {{-- 1. 풀와이드 메인 배너 (슬라이드) --}}
     @php($heroPics = $bestProducts->pluck('thumbnail')->filter()->values())
     <div class="home-top">
-        {{-- 풀와이드 히어로 슬라이드 --}}
         <div class="hero">
             @foreach($mainBanners as $i => $b)
                 <div class="slide {{ $i === 0 ? 'on' : '' }}"
@@ -35,45 +34,54 @@
         </div>
     </div>
 
-    {{-- 혜택 아이콘 배너 5개 (슬라이드 바로 아래) --}}
-    <div class="benefit-strip">
-        <a href="{{ route('catalog.index') }}" class="benefit">
-            <span class="bi"><x-icon name="truck"/></span>
-            <b>당일배송</b><em>오후 2시 이전 주문</em>
-        </a>
-        <a href="{{ route('community.qna') }}" class="benefit">
-            <span class="bi"><x-icon name="tag"/></span>
-            <b>대량구매 할인</b><em>병의원 최대 30%</em>
-        </a>
-        <a href="{{ route('community.qna') }}" class="benefit">
-            <span class="bi"><x-icon name="headset"/></span>
-            <b>전문 상담</b><em>의료소모품 전담</em>
-        </a>
-        <a href="{{ route('community.inquiry', ['type' => 'quote']) }}" class="benefit">
-            <span class="bi"><x-icon name="doc"/></span>
-            <b>견적문의</b><em>대량 납품 견적</em>
-        </a>
-        <a href="{{ route('community.notices') }}" class="benefit">
-            <span class="bi"><x-icon name="fire"/></span>
-            <b>이벤트·공지</b><em>혜택 소식 확인</em>
-        </a>
-    </div>
+    {{-- 2. 탭 바 (슬라이드 하단) --}}
+    <nav class="home-tabbar">
+        <a href="{{ route('home') }}" class="on">메디셀</a>
+        <a href="{{ route('register') }}">신규회원 이벤트</a>
+        <a href="{{ route('catalog.index') }}">2시 이전 주문 당일출고</a>
+        <a href="{{ route('community.qna') }}">간편결제</a>
+    </nav>
 
-    {{-- 프로모 배너 3종 (가로) --}}
-    <div class="promo-row">
-        @foreach($subBanners as $b)
-            @php($pt = number_format($site['signup_point'] ?? 0))
-            @php($ttl = str_replace('{point}', $pt, $b->title))
-            @php($sub = str_replace('{point}', $pt, (string) $b->subtitle))
-            <a href="{{ $b->link ?: '#' }}" class="promo"
-               style="{{ $b->image ? "background-image:linear-gradient(135deg,rgba(6,37,107,.74),rgba(6,37,107,.34)),url('{$b->image}');background-size:cover;background-position:center" : 'background:'.($b->bg_color ?: '#c0392b') }}">
-                @if($sub)<small>{{ $sub }}</small>@endif
-                <strong>{{ $ttl }}</strong>
+    {{-- 3. 3단 정보: 고객센터 | 배너 | 달력 --}}
+    <div class="info-3col">
+        {{-- 좌: 고객센터 --}}
+        <div class="ic-cs">
+            <span class="cs-label">고객 만족 센터</span>
+            <a href="tel:{{ $site['cs_tel'] }}" class="cs-tel"><x-icon name="headset"/> {{ $site['cs_tel'] }}</a>
+            <p class="cs-hours">{{ $site['cs_hours'] }}</p>
+            <div class="cs-icons">
+                <a href="{{ route('community.inquiry', ['type' => 'qna']) }}"><x-icon name="headset"/><span>1:1 문의</span></a>
+                <a href="{{ route('community.faq') }}"><x-icon name="question"/><span>자주묻는질문</span></a>
+                <a href="{{ route('community.notices') }}"><x-icon name="doc"/><span>공지사항</span></a>
+            </div>
+        </div>
+        {{-- 중: 배너 2개 --}}
+        <div class="ic-banners">
+            <a href="{{ route('register') }}" class="ic-banner ic-banner-dark">
+                <div><strong>사업자 회원이신가요?</strong><span>승인 후 사업자 전용가로 구매하세요</span></div>
+                <x-icon name="building" :size="40"/>
             </a>
-        @endforeach
+            <a href="{{ route('community.inquiry', ['type' => 'quote']) }}" class="ic-banner ic-banner-soft">
+                <div><strong>장바구니에서 빠른 견적 받으세요</strong><span>담아둔 상품으로 대량 견적 요청</span></div>
+                <x-icon name="cart" :size="40"/>
+            </a>
+        </div>
+        {{-- 우: 달력 --}}
+        @php($today = now())
+        <div class="ic-cal">
+            <div class="cal-head">{{ $today->year }}년 {{ $today->month }}월</div>
+            <div class="cal-grid">
+                @foreach(['일','월','화','수','목','금','토'] as $dow)<span class="cal-dow">{{ $dow }}</span>@endforeach
+                @for($i = 0; $i < $today->copy()->startOfMonth()->dayOfWeek; $i++)<span></span>@endfor
+                @for($d = 1; $d <= $today->daysInMonth; $d++)
+                    <span class="{{ $d === $today->day ? 'cal-today' : '' }}">{{ $d }}</span>
+                @endfor
+            </div>
+            <p class="cal-note">영업일 기준 1~3일 내 출고</p>
+        </div>
     </div>
 
-    {{-- 오늘의 특가 (타이머 + 한 줄 5개) --}}
+    {{-- 4. 오늘의 특가 (타이머 + 가로 슬라이더) --}}
     @if($dealProducts->count())
     <section class="section deal-section">
         <div class="section-head">
@@ -82,29 +90,42 @@
                 <x-icon name="clock" :size="16"/> <span id="dealCountdown">00:00:00</span> 남음
             </div>
         </div>
-        <div class="prod-grid">
-            @foreach($dealProducts->take(5) as $p)
-                <x-product-card :product="$p"/>
+        <div class="deal-slider">
+            @foreach($dealProducts as $p)
+                <div class="deal-item"><x-product-card :product="$p"/></div>
             @endforeach
         </div>
     </section>
     @endif
 
-    {{-- 카테고리별 베스트 (5탭 + 한 줄 4개) --}}
+    {{-- 5. 대형 프로모 배너 (풀와이드) --}}
+    @php($wide = $bestProducts->first())
+    @if($wide)
+    <a href="{{ route('catalog.show', $wide->slug) }}" class="wide-promo">
+        <div class="wp-text">
+            <small>BEST ITEM</small>
+            <h3>병의원이 신뢰하는 의료소모품</h3>
+            <p>메디셀 인기 상품을 사업자 전용가로 만나보세요</p>
+            <span class="wp-btn">구매하러 가기 <x-icon name="arrow-right" :size="15"/></span>
+        </div>
+        @if($wide->thumbnail)<img src="{{ $wide->thumbnail }}" alt="" class="wp-img" loading="lazy">@endif
+    </a>
+    @endif
+
+    {{-- 6. 카테고리별 베스트 (탭 + 그리드) --}}
     @if($categoryTabs->count())
     <section class="section">
         <div class="section-head">
             <h3><x-icon name="grid"/> 카테고리별 베스트</h3>
-            <a href="{{ route('catalog.index', ['sort' => 'popular']) }}" class="more">전체보기 <x-icon name="chevron-right" :size="14"/></a>
-        </div>
-        <div class="cat-tabs">
-            @foreach($categoryTabs as $i => $t)
-                <button type="button" class="cat-tab {{ $i === 0 ? 'on' : '' }}" data-idx="{{ $i }}">{{ $t['category']->name }}</button>
-            @endforeach
+            <div class="cat-tabs">
+                @foreach($categoryTabs as $i => $t)
+                    <button type="button" class="cat-tab {{ $i === 0 ? 'on' : '' }}" data-idx="{{ $i }}">{{ $t['category']->name }}</button>
+                @endforeach
+            </div>
         </div>
         @foreach($categoryTabs as $i => $t)
-            <div class="cat-panel prod-grid cols4 {{ $i === 0 ? 'on' : '' }}" id="cat-panel-{{ $i }}">
-                @foreach($t['products']->take(4) as $p)
+            <div class="cat-panel prod-grid {{ $i === 0 ? 'on' : '' }}" id="cat-panel-{{ $i }}">
+                @foreach($t['products']->take(5) as $p)
                     <x-product-card :product="$p"/>
                 @endforeach
             </div>
@@ -112,58 +133,28 @@
     </section>
     @endif
 
-    {{-- 추천 브랜드 --}}
+    {{-- 7. 추천 브랜드 --}}
     @if($brands->count())
     <section class="section">
         <div class="section-head">
             <h3><x-icon name="handshake"/> 추천 브랜드</h3>
             <a href="{{ route('catalog.index') }}" class="more">전체보기 <x-icon name="chevron-right" :size="14"/></a>
         </div>
-        <div class="brand-grid">
-            @foreach($brands as $br)
-                <a href="{{ route('catalog.index', ['brand' => $br->id]) }}" class="brand-cell"><x-icon name="package" :size="28"/>{{ $br->name }}</a>
+        <div class="brand-grid brand-grid-card">
+            @foreach($brands->take(10) as $br)
+                <a href="{{ route('catalog.index', ['brand' => $br->id]) }}" class="brand-cell">
+                    <span class="br-star"><x-icon name="star" :size="13"/></span>
+                    <x-icon name="package" :size="30"/>
+                    <b>{{ $br->name }}</b>
+                    <em>의료소모품 브랜드</em>
+                </a>
             @endforeach
+        </div>
+        <div style="text-align:center;margin-top:20px">
+            <a href="{{ route('catalog.index') }}" class="btn btn-primary">모든 브랜드 보기 <x-icon name="arrow-right" :size="15"/></a>
         </div>
     </section>
     @endif
-
-    {{-- 공지 + 고객센터 + 입금계좌 (3단) --}}
-    <div class="home-foot cols3">
-        <div class="box">
-            <h4><x-icon name="doc"/> 공지사항</h4>
-            <ul class="notice-list">
-                @forelse($notices as $n)
-                    <li>
-                        @if($n->is_pinned)<span class="pin">[공지]</span>@endif
-                        <a href="{{ route('community.notice', $n) }}">{{ $n->title }}</a>
-                        <span class="date">{{ optional($n->published_at)->format('Y.m.d') }}</span>
-                    </li>
-                @empty
-                    <li><span class="muted">등록된 공지가 없습니다.</span></li>
-                @endforelse
-            </ul>
-        </div>
-        <div class="box">
-            <h4><x-icon name="headset"/> 고객센터</h4>
-            <div class="cs-box">
-                <strong>{{ $site['cs_tel'] }}</strong>
-                <p>{{ $site['cs_hours'] }}</p>
-                <p class="muted">{{ $site['email'] }}</p>
-                <div class="cs-links">
-                    <a href="{{ route('community.inquiry', ['type' => 'qna']) }}">1:1 문의</a>
-                    <a href="{{ route('community.faq') }}">자주묻는질문</a>
-                </div>
-            </div>
-        </div>
-        <div class="box">
-            <h4><x-icon name="coin"/> 무통장 입금계좌</h4>
-            <ul class="bank-list">
-                @foreach($site['banks'] as $b)
-                    <li><span class="bk">{{ $b['bank'] }}</span><span class="ac">{{ $b['account'] }}</span><span class="hd">{{ $b['holder'] }}</span></li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
 
 </div>
 @endsection
