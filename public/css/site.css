@@ -101,8 +101,8 @@ button{font-family:inherit}
 /* ===== 카테고리 내비 바 ===== */
 .cat-bar{background:#fff;border-bottom:2px solid var(--navy-800)}
 .cat-bar .container{display:flex;align-items:stretch;gap:0}
-.all-cat{display:flex;align-items:center;gap:9px;background:var(--navy-800);color:#fff;font-weight:700;font-size:15px;
-  padding:0 24px;cursor:pointer;flex:none;min-width:210px}
+.all-cat{display:flex;align-items:center;gap:9px;background:#fff;color:var(--navy-800);font-weight:700;font-size:15px;
+  padding:0 24px;cursor:pointer;flex:none;min-width:210px;border-right:1px solid var(--line)}
 .all-cat .icon{width:20px;height:20px}
 .gnb{display:flex}
 .gnb>li>a{display:flex;align-items:center;height:52px;padding:0 22px;font-weight:600;font-size:15.5px;color:var(--ink);transition:var(--t)}
@@ -583,12 +583,14 @@ main{min-height:60vh}
 .cs-icons a:hover{border-color:var(--navy-800);color:var(--navy-800)}
 .cs-icons a .icon{width:20px;height:20px;color:var(--navy-800)}
 .ic-banners{display:flex;flex-direction:column;gap:16px}
-.ic-banner{flex:1;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:22px 26px;border-radius:var(--radius);color:#fff;overflow:hidden}
-.ic-banner .icon{opacity:.85;flex:none}
-.ic-banner strong{display:block;font-size:18px;font-weight:700}
-.ic-banner span{display:block;font-size:13px;opacity:.9;margin-top:4px}
-.ic-banner-dark{background:linear-gradient(120deg,#0b3d91,#06255b)}
-.ic-banner-soft{background:linear-gradient(120deg,#127a8a,#0b3d91)}
+.ic-banner{flex:1;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:22px 26px;border-radius:var(--radius);color:var(--ink);background:#fff;border:1px solid var(--line);overflow:hidden;transition:var(--t)}
+.ic-banner:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.ic-banner .icon{flex:none;color:var(--navy-800)}
+.ic-banner strong{display:block;font-size:18px;font-weight:700;color:var(--navy-800)}
+.ic-banner span{display:block;font-size:13px;color:var(--slate-500);margin-top:4px}
+.ic-banner-dark{border-left:4px solid var(--navy-800)}
+.ic-banner-soft{border-left:4px solid #127a8a}
+.ic-banner-soft .icon{color:#127a8a}
 .ic-cal .cal-head{text-align:center;font-weight:700;color:var(--navy-800);font-size:15px;margin-bottom:12px}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
 .cal-grid span{font-size:12.5px;padding:5px 0;color:var(--slate-600);border-radius:6px}
