@@ -9,12 +9,12 @@
         <div class="hero">
             @foreach($mainBanners as $i => $b)
                 <div class="slide {{ $i === 0 ? 'on' : '' }}"
-                     style="{{ $b->image ? "background-image:linear-gradient(100deg,rgba(6,37,107,.82),rgba(6,37,107,.3)),url('{$b->image}');background-size:cover;background-position:center" : 'background:'.($b->bg_color ?? '#0b3d91') }}">
+                     style="{{ $b->image ? "background-image:linear-gradient(100deg,rgba(247,249,253,.78),rgba(247,249,253,.2)),url('{$b->image}');background-size:cover;background-position:center" : '' }}">
                     <div class="slide-text">
                         <small>MEDISELL</small>
                         <h2>{{ $b->title }}</h2>
                         @if($b->subtitle)<p>{{ $b->subtitle }}</p>@endif
-                        <a href="{{ $b->link ?: route('catalog.index') }}" class="btn btn-white" style="background:#fff;color:var(--navy-800)">상품 보러가기 <x-icon name="arrow-right"/></a>
+                        <a href="{{ $b->link ?: route('catalog.index') }}" class="btn" style="background:var(--navy-800);color:#fff">상품 보러가기 <x-icon name="arrow-right"/></a>
                     </div>
                     @if(! $b->image && $heroPics->count())
                         <div class="slide-visual" aria-hidden="true">
