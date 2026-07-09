@@ -6,6 +6,31 @@
     {{-- 히어로 + 사이드 프로모 --}}
     @php($heroPics = $bestProducts->pluck('thumbnail')->filter()->values())
     <div class="home-top">
+        {{-- 좌측 전체 카테고리 (슬라이드와 같은 높이) --}}
+        <aside class="home-cats">
+            <div class="hc-head"><x-icon name="grid"/> 전체 카테고리</div>
+            <ul class="hc-list">
+                @foreach($navCategories as $cat)
+                    <li>
+                        <a href="{{ route('catalog.category', $cat->slug) }}">
+                            <x-icon :name="$cat->icon ?? 'box'"/><span>{{ $cat->name }}</span>
+                            @if($cat->children->count())<x-icon name="chevron-right" :size="14" class="hc-arr"/>@endif
+                        </a>
+                        @if($cat->children->count())
+                            <div class="hc-fly">
+                                <strong>{{ $cat->name }}</strong>
+                                @foreach($cat->children as $sub)
+                                    <a href="{{ route('catalog.category', $sub->slug) }}">{{ $sub->name }}</a>
+                                @endforeach
+                            </div>
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
+            <a href="{{ route('community.inquiry', ['type' => 'quote']) }}" class="hc-cta">대량구매 견적문의 <x-icon name="arrow-right" :size="14"/></a>
+        </aside>
+
+        {{-- 히어로 슬라이드 --}}
         <div class="hero">
             @foreach($mainBanners as $i => $b)
                 <div class="slide {{ $i === 0 ? 'on' : '' }}"
@@ -32,18 +57,20 @@
                 </div>
             @endif
         </div>
-        <div class="side-promos">
-            @foreach($subBanners as $b)
-                @php($pt = number_format($site['signup_point'] ?? 0))
-                @php($ttl = str_replace('{point}', $pt, $b->title))
-                @php($sub = str_replace('{point}', $pt, (string) $b->subtitle))
-                <a href="{{ $b->link ?: '#' }}" class="promo"
-                   style="{{ $b->image ? "background-image:linear-gradient(135deg,rgba(6,37,107,.74),rgba(6,37,107,.34)),url('{$b->image}');background-size:cover;background-position:center" : 'background:'.($b->bg_color ?: '#c0392b') }}">
-                    @if($sub)<small>{{ $sub }}</small>@endif
-                    <strong>{{ $ttl }}</strong>
-                </a>
-            @endforeach
-        </div>
+    </div>
+
+    {{-- 프로모 3종 (슬라이드 아래 가로) --}}
+    <div class="promo-row">
+        @foreach($subBanners as $b)
+            @php($pt = number_format($site['signup_point'] ?? 0))
+            @php($ttl = str_replace('{point}', $pt, $b->title))
+            @php($sub = str_replace('{point}', $pt, (string) $b->subtitle))
+            <a href="{{ $b->link ?: '#' }}" class="promo"
+               style="{{ $b->image ? "background-image:linear-gradient(135deg,rgba(6,37,107,.74),rgba(6,37,107,.34)),url('{$b->image}');background-size:cover;background-position:center" : 'background:'.($b->bg_color ?: '#c0392b') }}">
+                @if($sub)<small>{{ $sub }}</small>@endif
+                <strong>{{ $ttl }}</strong>
+            </a>
+        @endforeach
     </div>
 
     {{-- 혜택 서비스 스트립 --}}

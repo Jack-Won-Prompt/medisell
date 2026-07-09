@@ -143,8 +143,32 @@ main{min-height:60vh}
 /* =========================================================
    HOME
    ========================================================= */
-.home-top{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-bottom:30px}
-.hero{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:360px;color:#fff}
+.home-top{display:grid;grid-template-columns:230px 1fr;gap:18px;margin-bottom:18px}
+.hero{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:392px;color:#fff}
+
+/* 좌측 전체 카테고리 패널 */
+.home-cats{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);display:flex;flex-direction:column;overflow:visible}
+.home-cats .hc-head{background:var(--navy-800);color:#fff;font-weight:700;font-size:15px;padding:14px 16px;display:flex;align-items:center;gap:8px;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+.home-cats .hc-head .icon{width:19px;height:19px}
+.hc-list{flex:1}
+.hc-list>li{position:relative}
+.hc-list>li:not(:last-child){border-bottom:1px solid var(--slate-50)}
+.hc-list>li>a{display:flex;align-items:center;gap:9px;padding:11px 15px;font-size:14px;font-weight:600;color:var(--ink);transition:var(--t)}
+.hc-list>li>a>.icon{width:18px;height:18px;color:var(--navy-800);flex:none}
+.hc-list>li>a>span{flex:1}
+.hc-list>li>a .hc-arr{width:13px;height:13px;color:var(--slate-400)}
+.hc-list>li:hover>a{background:var(--navy-50);color:var(--navy-800)}
+.hc-fly{display:none;position:absolute;left:100%;top:-1px;min-height:calc(100% + 2px);width:210px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:0 10px 10px 0;padding:14px;z-index:30;flex-direction:column;gap:2px}
+.hc-list>li:hover .hc-fly{display:flex}
+.hc-fly strong{font-size:13px;color:var(--navy-800);padding:2px 8px 8px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.hc-fly a{padding:7px 8px;font-size:13.5px;color:var(--slate-600);border-radius:6px}
+.hc-fly a:hover{background:var(--navy-50);color:var(--navy-800)}
+.hc-cta{display:flex;align-items:center;justify-content:center;gap:6px;margin:0;padding:13px 12px;background:var(--navy-50);color:var(--navy-800);font-size:13px;font-weight:700;border-top:1px solid var(--line);border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.hc-cta:hover{background:var(--navy-100,#e6ecfa)}
+
+/* 프로모 3종 가로 행 */
+.promo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:30px}
+.promo-row .promo{min-height:92px;padding:18px 22px}
 .hero .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:54px;opacity:0;transition:opacity .6s;background-size:cover;background-position:center}
 .hero .slide.on{opacity:1}
 .hero .slide::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
@@ -539,6 +563,7 @@ main{min-height:60vh}
   .detail{gap:24px}
   .hero .slide .slide-text{max-width:100%}
   .slide-visual{display:none}
+  .home-cats{display:none}          /* 모바일: 좌측 카테고리 → 햄버거 드로어 사용 */
   .benefit-strip{grid-template-columns:repeat(3,1fr)}
   .benefit em{display:none}
 }
@@ -555,6 +580,7 @@ main{min-height:60vh}
   .hero .slide{padding:30px}
   .hero .slide h2{font-size:24px}
   .page-head h1{font-size:21px}
+  .promo-row{grid-template-columns:1fr}
   /* 혜택 스트립: 가로 스크롤 */
   .benefit-strip{display:flex;overflow-x:auto;gap:10px;-webkit-overflow-scrolling:touch}
   .benefit{flex:0 0 60%}
