@@ -36,6 +36,13 @@ class ColsImportSeeder extends Seeder
 
     public function run(): void
     {
+        // 재실행 안전: 상품이 이미 있으면 재임포트하지 않는다.
+        // (서버 등 colscare 'cols' 연결이 없는 환경에서도 여기서 안전하게 스킵)
+        if (Product::query()->exists()) {
+            $this->command?->warn('ColsImport: 상품이 이미 존재 → colscare 임포트 스킵');
+            return;
+        }
+
         $cols = DB::connection('cols');
 
         $catMap = $this->importCategories($cols);

@@ -40,38 +40,43 @@ class DatabaseSeeder extends Seeder
         // 정가의 78~85% 수준의 병원별 계약가 (기본 병원가 90%보다 더 저렴 → 전용가 우선 적용 확인)
         foreach (Product::orderBy('id')->take(12)->get() as $idx => $p) {
             $rate = [0.78, 0.80, 0.82, 0.85][$idx % 4];
-            HospitalPrice::create([
-                'user_id'    => $clinic->id,
-                'product_id' => $p->id,
-                'price'      => (int) (floor($p->price * $rate / 10) * 10),
-            ]);
+            HospitalPrice::firstOrCreate(
+                ['user_id' => $clinic->id, 'product_id' => $p->id],
+                ['price' => (int) (floor($p->price * $rate / 10) * 10)],
+            );
         }
     }
 
     private function users(): void
     {
-        User::create([
-            'name' => '관리자', 'email' => 'admin@medisell.co.kr',
-            'password' => Hash::make('medisell!2026'),
-            'is_admin' => true, 'member_type' => 'general',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@medisell.co.kr'],
+            [
+                'name' => '관리자', 'password' => Hash::make('medisell!2026'),
+                'is_admin' => true, 'member_type' => 'general',
+            ],
+        );
 
         // 승인된 사업자(병의원) 샘플 — 사업자 회원가 적용 대상
-        User::create([
-            'name' => '김원장', 'email' => 'clinic@test.com',
-            'password' => Hash::make('test1234'),
-            'member_type' => 'business', 'biz_status' => 'approved', 'grade' => 'gold',
-            'company_name' => '튼튼정형외과의원', 'biz_no' => '111-22-33333',
-            'biz_type' => '의원', 'phone' => '02-1234-5678', 'point' => 3000,
-            'postcode' => '06000', 'address1' => '서울 강남구 테헤란로 123', 'address2' => '2층',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'clinic@test.com'],
+            [
+                'name' => '김원장', 'password' => Hash::make('test1234'),
+                'member_type' => 'business', 'biz_status' => 'approved', 'grade' => 'gold',
+                'company_name' => '튼튼정형외과의원', 'biz_no' => '111-22-33333',
+                'biz_type' => '의원', 'phone' => '02-1234-5678', 'point' => 3000,
+                'postcode' => '06000', 'address1' => '서울 강남구 테헤란로 123', 'address2' => '2층',
+            ],
+        );
 
         // 일반 회원 샘플
-        User::create([
-            'name' => '홍길동', 'email' => 'user@test.com',
-            'password' => Hash::make('test1234'),
-            'member_type' => 'general', 'phone' => '010-1111-2222', 'point' => 3000,
-        ]);
+        User::firstOrCreate(
+            ['email' => 'user@test.com'],
+            [
+                'name' => '홍길동', 'password' => Hash::make('test1234'),
+                'member_type' => 'general', 'phone' => '010-1111-2222', 'point' => 3000,
+            ],
+        );
     }
 
     private function banners(): void
@@ -82,7 +87,10 @@ class DatabaseSeeder extends Seeder
             ['title' => '대량구매 견적 문의 환영', 'subtitle' => '병원·의원 대량 납품 전용 견적을 받아보세요', 'bg_color' => '#1f6f3f'],
         ];
         foreach ($main as $i => $b) {
-            Banner::create($b + ['position' => 'main', 'sort_order' => $i, 'link' => '#']);
+            Banner::firstOrCreate(
+                ['position' => 'main', 'title' => $b['title']],
+                $b + ['sort_order' => $i, 'link' => '#'],
+            );
         }
         $sub = [
             ['title' => '오늘의 특가', 'subtitle' => '한정수량 기획전', 'bg_color' => '#c0392b'],
@@ -92,7 +100,10 @@ class DatabaseSeeder extends Seeder
                 'bg_color' => 'linear-gradient(135deg,#0f8a8a,#0b3d91)', 'link' => url('/register')],
         ];
         foreach ($sub as $i => $b) {
-            Banner::create($b + ['position' => 'sub', 'sort_order' => $i, 'link' => '#']);
+            Banner::firstOrCreate(
+                ['position' => 'sub', 'title' => $b['title']],
+                $b + ['sort_order' => $i, 'link' => '#'],
+            );
         }
     }
 
@@ -105,10 +116,13 @@ class DatabaseSeeder extends Seeder
             ['배송비 정책 변경 안내', '5만원 이상 구매 시 무료배송으로 변경되었습니다.', false],
         ];
         foreach ($items as $i => [$t, $b, $pin]) {
-            Notice::create([
-                'title' => $t, 'body' => $b, 'is_pinned' => $pin,
-                'views' => mt_rand(10, 500), 'published_at' => now()->subDays($i),
-            ]);
+            Notice::firstOrCreate(
+                ['title' => $t],
+                [
+                    'body' => $b, 'is_pinned' => $pin,
+                    'views' => mt_rand(10, 500), 'published_at' => now()->subDays($i),
+                ],
+            );
         }
     }
 
@@ -122,22 +136,30 @@ class DatabaseSeeder extends Seeder
             ['취소/환불', '주문 취소는 어떻게 하나요?', '상품 준비 전(입금대기/입금확인) 단계에서는 마이페이지 또는 1:1문의로 취소 요청이 가능합니다.'],
         ];
         foreach ($items as $i => [$c, $q, $a]) {
-            Faq::create(['category' => $c, 'question' => $q, 'answer' => $a, 'sort_order' => $i]);
+            Faq::firstOrCreate(
+                ['question' => $q],
+                ['category' => $c, 'answer' => $a, 'sort_order' => $i],
+            );
         }
     }
 
     private function inquiries(): void
     {
-        Inquiry::create([
-            'type' => 'quote', 'name' => '이실장', 'phone' => '02-555-1234',
-            'email' => 'buy@hospital.com', 'subject' => '니트릴 장갑 대량 견적 요청',
-            'body' => '니트릴 장갑 M 사이즈 월 100박스 정기 납품 견적 부탁드립니다.',
-            'status' => 'pending',
-        ]);
-        Inquiry::create([
-            'type' => 'qna', 'name' => '홍길동', 'subject' => '무통장 입금 확인 문의',
-            'body' => '입금했는데 아직 입금확인이 안 됩니다.', 'status' => 'answered',
-            'answer' => '확인되어 입금확인 처리되었습니다. 감사합니다.', 'answered_at' => now(),
-        ]);
+        Inquiry::firstOrCreate(
+            ['type' => 'quote', 'subject' => '니트릴 장갑 대량 견적 요청'],
+            [
+                'name' => '이실장', 'phone' => '02-555-1234', 'email' => 'buy@hospital.com',
+                'body' => '니트릴 장갑 M 사이즈 월 100박스 정기 납품 견적 부탁드립니다.',
+                'status' => 'pending',
+            ],
+        );
+        Inquiry::firstOrCreate(
+            ['type' => 'qna', 'subject' => '무통장 입금 확인 문의'],
+            [
+                'name' => '홍길동', 'body' => '입금했는데 아직 입금확인이 안 됩니다.',
+                'status' => 'answered', 'answer' => '확인되어 입금확인 처리되었습니다. 감사합니다.',
+                'answered_at' => now(),
+            ],
+        );
     }
 }
