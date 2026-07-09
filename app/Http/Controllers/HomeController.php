@@ -19,8 +19,9 @@ class HomeController extends Controller
             ->take(12)->get();
 
         // 카테고리 탭형 베스트: 대분류별 인기 상품 (상품 있는 카테고리만)
+        // 하위 트리를 한 번에 eager-load 하여 descendantIds() 반복 쿼리를 제거
         $categoryTabs = Category::whereNull('parent_id')->where('is_active', true)
-            ->orderBy('sort_order')->get()
+            ->orderBy('sort_order')->with('children.children.children')->get()
             ->map(fn ($c) => [
                 'category' => $c,
                 'products' => Product::active()->whereIn('category_id', $c->descendantIds())
