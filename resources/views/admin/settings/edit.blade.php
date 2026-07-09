@@ -23,7 +23,10 @@
                 <div class="afield"><label>사업자등록번호</label><input type="text" name="biz_no" class="ainput" value="{{ old('biz_no', $site['biz_no'] ?? '') }}"></div>
                 <div class="afield"><label>통신판매업신고</label><input type="text" name="mailorder" class="ainput" value="{{ old('mailorder', $site['mailorder'] ?? '') }}"></div>
             </div>
-            <div class="afield"><label>주소</label><input type="text" name="address" class="ainput" value="{{ old('address', $site['address'] ?? '') }}"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+                <div class="afield"><label>의료기기판매업신고</label><input type="text" name="med_device" class="ainput" value="{{ old('med_device', $site['med_device'] ?? '') }}"></div>
+                <div class="afield"><label>주소</label><input type="text" name="address" class="ainput" value="{{ old('address', $site['address'] ?? '') }}"></div>
+            </div>
         </div>
     </div>
 

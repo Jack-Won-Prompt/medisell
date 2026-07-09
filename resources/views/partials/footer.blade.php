@@ -48,7 +48,7 @@
                     <a href="#">이용안내</a>
                 </div>
                 <div class="copy">
-                    {{ $site['company'] }} · 대표 {{ $site['ceo'] }} · 사업자등록번호 {{ $site['biz_no'] }}@if(!empty($site['mailorder'])) · 통신판매업 {{ $site['mailorder'] }}@endif<br>
+                    {{ $site['company'] }} · 대표 {{ $site['ceo'] }} · 사업자등록번호 {{ $site['biz_no'] }}@if(!empty($site['mailorder'])) · 통신판매업 {{ $site['mailorder'] }}@endif @if(!empty($site['med_device'])) · 의료기기판매업 {{ $site['med_device'] }}@endif<br>
                     {{ $site['address'] }} · 고객센터 {{ $site['cs_tel'] }}<br>
                     Copyright © {{ date('Y') }} {{ $site['name_en'] }}. All rights reserved.
                 </div>
