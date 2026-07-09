@@ -46,6 +46,30 @@
         </div>
     </div>
 
+    {{-- 혜택 서비스 스트립 --}}
+    <div class="benefit-strip">
+        <a href="{{ route('catalog.index') }}" class="benefit">
+            <span class="bi"><x-icon name="truck"/></span>
+            <b>당일배송</b><em>오후 2시 이전 주문</em>
+        </a>
+        <a href="{{ route('community.qna') }}" class="benefit">
+            <span class="bi"><x-icon name="tag"/></span>
+            <b>대량구매 할인</b><em>병의원 최대 30%</em>
+        </a>
+        <a href="{{ route('community.qna') }}" class="benefit">
+            <span class="bi"><x-icon name="headset"/></span>
+            <b>전문 상담</b><em>의료소모품 전담</em>
+        </a>
+        <a href="{{ route('community.inquiry', ['type' => 'quote']) }}" class="benefit">
+            <span class="bi"><x-icon name="doc"/></span>
+            <b>견적문의</b><em>대량 납품 견적</em>
+        </a>
+        <a href="{{ route('community.notices') }}" class="benefit">
+            <span class="bi"><x-icon name="fire"/></span>
+            <b>이벤트·공지</b><em>혜택 소식 확인</em>
+        </a>
+    </div>
+
     {{-- 빠른 카테고리 --}}
     <div class="quick-cats">
         @foreach($navCategories as $cat)
@@ -56,18 +80,42 @@
         @endforeach
     </div>
 
-    {{-- 베스트 상품 --}}
-    @if($bestProducts->count())
-    <section class="section">
+    {{-- 오늘의 특가 + 카운트다운 --}}
+    @if($dealProducts->count())
+    <section class="section deal-section">
         <div class="section-head">
-            <h3><x-icon name="fire"/> 베스트 상품</h3>
-            <a href="{{ route('catalog.index', ['sort' => 'popular']) }}" class="more">더보기 <x-icon name="chevron-right" :size="14"/></a>
+            <h3><x-icon name="fire"/> 오늘의 특가</h3>
+            <div class="deal-timer" aria-label="마감까지 남은 시간">
+                <x-icon name="clock" :size="16"/> <span id="dealCountdown">00:00:00</span> 남음
+            </div>
         </div>
-        <div class="prod-grid">
-            @foreach($bestProducts->take(5) as $p)
-                <x-product-card :product="$p"/>
+        <div class="deal-slider">
+            @foreach($dealProducts as $p)
+                <div class="deal-item"><x-product-card :product="$p"/></div>
             @endforeach
         </div>
+    </section>
+    @endif
+
+    {{-- 카테고리 탭형 베스트 --}}
+    @if($categoryTabs->count())
+    <section class="section">
+        <div class="section-head">
+            <h3><x-icon name="grid"/> 카테고리 베스트</h3>
+            <a href="{{ route('catalog.index', ['sort' => 'popular']) }}" class="more">전체보기 <x-icon name="chevron-right" :size="14"/></a>
+        </div>
+        <div class="cat-tabs">
+            @foreach($categoryTabs as $i => $t)
+                <button type="button" class="cat-tab {{ $i === 0 ? 'on' : '' }}" data-idx="{{ $i }}">{{ $t['category']->name }}</button>
+            @endforeach
+        </div>
+        @foreach($categoryTabs as $i => $t)
+            <div class="cat-panel prod-grid {{ $i === 0 ? 'on' : '' }}" id="cat-panel-{{ $i }}">
+                @foreach($t['products']->take(5) as $p)
+                    <x-product-card :product="$p"/>
+                @endforeach
+            </div>
+        @endforeach
     </section>
     @endif
 
@@ -101,13 +149,16 @@
     </section>
     @endif
 
-    {{-- 브랜드 --}}
+    {{-- 추천 브랜드 --}}
     @if($brands->count())
     <section class="section">
-        <div class="section-head"><h3><x-icon name="handshake"/> 총판·대리점 브랜드</h3></div>
+        <div class="section-head">
+            <h3><x-icon name="handshake"/> 추천 브랜드</h3>
+            <a href="{{ route('catalog.index') }}" class="more">전체보기 <x-icon name="chevron-right" :size="14"/></a>
+        </div>
         <div class="brand-grid">
             @foreach($brands as $br)
-                <div class="brand-cell"><x-icon name="package" :size="28"/>{{ $br->name }}</div>
+                <a href="{{ route('catalog.index', ['brand' => $br->id]) }}" class="brand-cell"><x-icon name="package" :size="28"/>{{ $br->name }}</a>
             @endforeach
         </div>
     </section>
@@ -141,3 +192,33 @@
 
 </div>
 @endsection
+
+@push('scripts')
+<script>
+(function () {
+    // 오늘의 특가 카운트다운 (매일 자정 리셋)
+    var cd = document.getElementById('dealCountdown');
+    if (cd) {
+        var pad = function (n) { return String(n).padStart(2, '0'); };
+        var tick = function () {
+            var now = new Date();
+            var end = new Date(now); end.setHours(24, 0, 0, 0);
+            var s = Math.max(0, Math.floor((end - now) / 1000));
+            cd.textContent = pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s % 3600 / 60)) + ':' + pad(s % 60);
+        };
+        tick(); setInterval(tick, 1000);
+    }
+
+    // 카테고리 베스트 탭 전환
+    document.querySelectorAll('.cat-tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.cat-tab').forEach(function (b) { b.classList.remove('on'); });
+            document.querySelectorAll('.cat-panel').forEach(function (p) { p.classList.remove('on'); });
+            btn.classList.add('on');
+            var panel = document.getElementById('cat-panel-' + btn.dataset.idx);
+            if (panel) panel.classList.add('on');
+        });
+    });
+})();
+</script>
+@endpush

@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
     <link rel="icon" href="{{ asset('images/logo-mark.svg') }}">
-    <link rel="stylesheet" href="{{ asset('css/site.css') }}?v=9">
+    <link rel="stylesheet" href="{{ asset('css/site.css') }}?v=10">
     @stack('head')
 </head>
 <body>
@@ -30,6 +30,16 @@
     </main>
 
     @include('partials.footer')
+
+    {{-- 모바일 하단 고정 네비 (모바일에서만 노출) --}}
+    @php($__nav = request()->path())
+    <nav class="mobile-nav" aria-label="모바일 하단 메뉴">
+        <a href="{{ url('/') }}" class="{{ $__nav === '/' || $__nav === '' ? 'on' : '' }}"><x-icon name="home"/><span>홈</span></a>
+        <a href="{{ route('catalog.index') }}" class="{{ str_starts_with($__nav, 'products') || str_contains($__nav, 'category') ? 'on' : '' }}"><x-icon name="grid"/><span>카테고리</span></a>
+        <a href="{{ route('cart.index') }}" class="{{ str_contains($__nav, 'cart') ? 'on' : '' }}"><x-icon name="cart"/>@if(($cartCount ?? 0) > 0)<span class="m-badge">{{ $cartCount }}</span>@endif<span>장바구니</span></a>
+        <a href="{{ route('mypage.wishlist') }}" class="{{ str_contains($__nav, 'wishlist') ? 'on' : '' }}"><x-icon name="heart"/><span>관심상품</span></a>
+        <a href="{{ route('mypage.index') }}" class="{{ str_starts_with($__nav, 'mypage') ? 'on' : '' }}"><x-icon name="user"/><span>마이페이지</span></a>
+    </nav>
 
     @include('partials.recent')
     @include('partials.chat')
