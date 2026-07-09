@@ -171,8 +171,8 @@ main{min-height:60vh}
 .promo strong{font-size:20px;font-weight:700;margin-top:6px}
 
 /* 빠른 카테고리 아이콘 */
-.quick-cats{display:grid;grid-template-columns:repeat(8,1fr);gap:12px;margin-bottom:34px}
-.quick-cat{display:flex;flex-direction:column;align-items:center;gap:9px;padding:18px 8px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);transition:var(--t);text-align:center}
+.quick-cats{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+.quick-cat{flex:1 1 150px;display:flex;flex-direction:column;align-items:center;gap:9px;padding:18px 8px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);transition:var(--t);text-align:center}
 .quick-cat:hover{border-color:var(--navy-800);box-shadow:var(--shadow);transform:translateY(-2px)}
 .quick-cat .ic{width:50px;height:50px;border-radius:50%;background:var(--navy-50);display:flex;align-items:center;justify-content:center;color:var(--navy-800)}
 .quick-cat .ic .icon{width:26px;height:26px}
@@ -497,7 +497,7 @@ main{min-height:60vh}
    ========================================================= */
 @media(max-width:1100px){
   .prod-grid{grid-template-columns:repeat(4,1fr)}
-  .quick-cats{grid-template-columns:repeat(4,1fr)}
+  .quick-cat{flex-basis:132px}
   .brand-grid{grid-template-columns:repeat(4,1fr)}
 }
 @media(max-width:960px){
@@ -515,7 +515,7 @@ main{min-height:60vh}
   .cat-bar .gnb,.all-cat{display:none}
   .nav-toggle{display:block}
   .prod-grid,.prod-grid.cols4{grid-template-columns:repeat(2,1fr)}
-  .quick-cats{grid-template-columns:repeat(4,1fr)}
+  .quick-cat{flex-basis:96px}
   .brand-grid{grid-template-columns:repeat(3,1fr)}
   .foot-top .container{flex-direction:column;gap:24px}
   .hero .slide{padding:30px}
