@@ -87,6 +87,9 @@ class DatabaseSeeder extends Seeder
         $sub = [
             ['title' => '오늘의 특가', 'subtitle' => '한정수량 기획전', 'bg_color' => '#c0392b'],
             ['title' => '신상품 모음', 'subtitle' => '새로 입고된 의료소모품', 'bg_color' => '#2c3e7a'],
+            // {point} = 사이트설정 신규가입 적립금으로 화면에서 자동 치환
+            ['title' => '가입 즉시 {point}원 적립', 'subtitle' => '신규회원 혜택',
+                'bg_color' => 'linear-gradient(135deg,#0f8a8a,#0b3d91)', 'link' => url('/register')],
         ];
         foreach ($sub as $i => $b) {
             Banner::create($b + ['position' => 'sub', 'sort_order' => $i, 'link' => '#']);
