@@ -86,6 +86,11 @@ Route::prefix('community')->name('community.')->controller(CommunityController::
     Route::post('/inquiry', 'inquiryStore')->name('inquiry.store');
 });
 
+// ===== 안내 페이지 (메인 탭바 연결) =====
+Route::view('/event/signup', 'guide.event')->name('guide.event');       // 신규회원 이벤트
+Route::view('/guide/delivery', 'guide.delivery')->name('guide.delivery'); // 당일출고 안내
+Route::view('/guide/payment', 'guide.payment')->name('guide.payment');   // 간편결제 안내
+
 // ===== 관리자 =====
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
