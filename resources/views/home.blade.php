@@ -37,9 +37,9 @@
     {{-- 2. 탭 바 (슬라이드 하단) --}}
     <nav class="home-tabbar">
         <a href="{{ route('home') }}" class="on">메디셀</a>
-        <a href="{{ route('register') }}">신규회원 이벤트</a>
-        <a href="{{ route('catalog.index') }}">2시 이전 주문 당일출고</a>
-        <a href="{{ route('community.qna') }}">간편결제</a>
+        <a href="{{ route('guide.event') }}">신규회원 이벤트</a>
+        <a href="{{ route('guide.delivery') }}">2시 이전 주문 당일출고</a>
+        <a href="{{ route('guide.payment') }}">간편결제</a>
     </nav>
 
     {{-- 3. 3단 정보: 고객센터 | 배너 | 달력 --}}
