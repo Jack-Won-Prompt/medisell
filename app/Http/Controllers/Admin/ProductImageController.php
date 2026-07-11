@@ -75,8 +75,41 @@ class ProductImageController extends Controller
     public function fetch(Request $request, Product $product)
     {
         $data = $request->validate(['url' => ['required', 'url', 'max:2000']]);
-        $ref = $this->refererFor($data['url']);
-        $img = $this->download($data['url'], $ref);
+        $img = $this->download($data['url'], $this->refererFor($data['url']));
+
+        return $this->saveThumb($product, $img);
+    }
+
+    /** 이미지 URL 또는 상품페이지 URL을 붙여넣으면 이미지 추출·다운로드해 썸네일 지정 */
+    public function importUrl(Request $request, Product $product)
+    {
+        $data = $request->validate(['url' => ['required', 'url', 'max:2000']]);
+        $url = $data['url'];
+        $host = parse_url($url, PHP_URL_HOST);
+        $ref = $this->refererFor($url) ?: (parse_url($url, PHP_URL_SCHEME).'://'.$host.'/');
+        $body = $this->download($url, $ref);
+        if (! $body) {
+            return response()->json(['error' => 'URL을 가져오지 못했습니다.'], 422);
+        }
+        $mime = (string) finfo_buffer(finfo_open(FILEINFO_MIME_TYPE), $body);
+        if (! str_starts_with($mime, 'image/')) {
+            // HTML 상품페이지 → 대표 이미지 추출 (og:image → product/big → 첫 상품이미지)
+            $imgUrl = null;
+            if (preg_match('/<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']/i', $body, $m)) $imgUrl = $m[1];
+            elseif (preg_match('#(?:https?:)?//[^"\']*?product/big/[^"\']+?\.(?:jpg|png)#i', $body, $m)) $imgUrl = $m[0];
+            elseif (preg_match('#(?:https?:)?//[^"\']*?/(?:product|goods|data)/[^"\']+?\.(?:jpg|png)#i', $body, $m)) $imgUrl = $m[0];
+            if (! $imgUrl) {
+                return response()->json(['error' => '페이지에서 상품 이미지를 찾지 못했습니다.'], 422);
+            }
+            if (str_starts_with($imgUrl, '//')) $imgUrl = 'https:'.$imgUrl;
+            $body = $this->download($imgUrl, $ref);
+        }
+        return $this->saveThumb($product, $body);
+    }
+
+    /** 이미지 바이트 검증·저장·썸네일 지정 + 유사 전파 */
+    private function saveThumb(Product $product, string $img)
+    {
         if (! $img || strlen($img) < 1500) {
             return response()->json(['error' => '이미지를 내려받지 못했습니다.'], 422);
         }
@@ -89,8 +122,6 @@ class ProductImageController extends Controller
         file_put_contents($dir.'/'.$file, $img);
         $url = asset('product/picked/'.$file);
         $product->update(['thumbnail' => $url]);
-
-        // 유사 판단(같은 기본상품, 규격만 다른) 이미지 없는 상품에도 동일 적용
         $propagated = $this->propagate($product, $url);
 
         return response()->json(['thumbnail' => $product->thumbnail, 'propagated' => $propagated]);
