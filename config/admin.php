@@ -52,7 +52,7 @@ return [
     'products' => [
         'label' => '상품', 'model' => Product::class, 'icon' => 'box', 'group' => '상품관리',
         'order' => ['id', 'desc'], 'with' => ['category', 'brand'],
-        'columns' => ['name' => '상품명', 'category.name' => '카테고리', 'price' => '정가', 'member_price' => '회원가', 'stock' => '재고', 'is_active' => '판매'],
+        'columns' => ['thumbnail' => '이미지', 'name' => '상품명', 'category.name' => '카테고리', 'price' => '정가', 'member_price' => '회원가', 'stock' => '재고', 'is_active' => '판매'],
         'fields' => [
             ['name' => 'category_id', 'label' => '카테고리', 'type' => 'select', 'required' => true,
                 'options_from' => ['model' => Category::class, 'key' => 'id', 'label' => 'name', 'order' => 'sort_order']],

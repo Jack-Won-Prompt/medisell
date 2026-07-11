@@ -32,7 +32,13 @@
                             <span style="display:inline-block;color:#c7cedd">{!! str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item->_depth) !!}└</span>
                         @endif
                         @php($val = data_get($item, $col))
-                        @if(is_bool($val))
+                        @if(in_array($col, ['thumbnail', 'image']))
+                            @if($val)
+                                <img src="{{ $val }}" alt="" loading="lazy" style="width:46px;height:46px;object-fit:contain;border:1px solid var(--a-line);border-radius:6px;background:#fff">
+                            @else
+                                <span style="display:inline-flex;width:46px;height:46px;align-items:center;justify-content:center;border:1px solid var(--a-line);border-radius:6px;background:#f6f8fc;color:#c7cedd"><x-icon name="box" :size="18"/></span>
+                            @endif
+                        @elseif(is_bool($val))
                             @if($val)<span class="tick">●</span>@else<span class="cross">○</span>@endif
                         @elseif(in_array($col, ['price','member_price']) && is_numeric($val))
                             {{ number_format($val) }}원
