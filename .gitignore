@@ -27,3 +27,6 @@ yarn-error.log
 
 # Claude Code 로컬 설정/메모리
 .claude/
+
+# 관리자 이미지 자동검색으로 받은 로컬 이미지
+public/product/picked/
