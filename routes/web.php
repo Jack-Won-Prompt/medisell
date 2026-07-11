@@ -98,6 +98,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // 상품 이미지 자동검색(의료몰+네이버) + 확인 후 다운로드
     Route::get('/products/{product}/image-search', [\App\Http\Controllers\Admin\ProductImageController::class, 'search'])->name('products.imagesearch');
     Route::post('/products/{product}/image-fetch', [\App\Http\Controllers\Admin\ProductImageController::class, 'fetch'])->name('products.imagefetch');
+    Route::post('/products/{product}/image-url', [\App\Http\Controllers\Admin\ProductImageController::class, 'importUrl'])->name('products.imageurl');
 
     // 주문 관리
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');

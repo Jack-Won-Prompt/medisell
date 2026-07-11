@@ -48,7 +48,12 @@
                                         data-fetch="{{ route('admin.products.imagefetch', $item->id) }}">🔍 이미지 자동검색 (의료몰·네이버)</button>
                                 <span id="imgAutoStatus" class="ahint" style="margin-left:8px"></span>
                                 <div id="imgCandidates" style="margin-top:10px;grid-template-columns:repeat(6,1fr);gap:8px;display:none"></div>
-                                <div class="ahint" style="margin-top:6px">상품명으로 후보를 검색합니다. 맞는 이미지를 클릭하면 서버가 내려받아 썸네일로 지정합니다.</div>
+                                <div style="margin-top:10px;display:flex;gap:6px">
+                                    <input type="url" id="imgUrlInput" class="ainput" placeholder="또는 이미지 URL·상품페이지 URL 붙여넣기 (쿠팡/의료몰 등)"
+                                           data-url="{{ route('admin.products.imageurl', $item->id) }}" style="flex:1;padding:8px">
+                                    <button type="button" class="abtn abtn-ghost abtn-sm" id="imgUrlBtn">가져오기</button>
+                                </div>
+                                <div class="ahint" style="margin-top:6px">상품명으로 후보를 검색하거나, 정확한 이미지/상품페이지 URL을 붙여넣어 가져올 수 있습니다.</div>
                             </div>
                         @endif
                     @else
@@ -114,6 +119,29 @@
                   status.textContent = '✓ 썸네일 지정됨' + (res.d.propagated ? ' · 유사 상품 ' + res.d.propagated + '개에도 자동 적용됨' : '') + ' (즉시 반영)';
               } else { status.textContent = '실패: ' + (res.d.error || ''); }
           }).catch(function () { status.textContent = '다운로드 실패'; });
+    }
+
+    var urlBtn = document.getElementById('imgUrlBtn');
+    if (urlBtn) {
+        urlBtn.addEventListener('click', function () {
+            var input = document.getElementById('imgUrlInput');
+            var u = input.value.trim();
+            if (!u) { input.focus(); return; }
+            status.textContent = '가져오는 중…';
+            fetch(input.dataset.url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrf, 'X-Requested-With': 'XMLHttpRequest' },
+                body: JSON.stringify({ url: u })
+            }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+              .then(function (res) {
+                  if (res.ok && res.d.thumbnail) {
+                      var prev = document.getElementById('thumbPreview_thumbnail');
+                      prev.src = res.d.thumbnail + '?t=' + Date.now(); prev.style.display = '';
+                      status.textContent = '✓ 썸네일 지정됨' + (res.d.propagated ? ' · 유사 상품 ' + res.d.propagated + '개에도 자동 적용됨' : '') + ' (즉시 반영)';
+                      input.value = '';
+                  } else { status.textContent = '실패: ' + (res.d.error || ''); }
+              }).catch(function () { status.textContent = '가져오기 실패'; });
+        });
     }
 })();
 </script>
