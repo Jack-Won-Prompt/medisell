@@ -87,9 +87,52 @@ class ProductImageController extends Controller
         if (! is_dir($dir)) @mkdir($dir, 0775, true);
         $file = preg_replace('/[^A-Za-z0-9_-]/', '', (string) ($product->code ?: $product->id)).'-'.time().'.jpg';
         file_put_contents($dir.'/'.$file, $img);
-        $product->update(['thumbnail' => asset('product/picked/'.$file)]);
+        $url = asset('product/picked/'.$file);
+        $product->update(['thumbnail' => $url]);
 
-        return response()->json(['thumbnail' => $product->thumbnail]);
+        // 유사 판단(같은 기본상품, 규격만 다른) 이미지 없는 상품에도 동일 적용
+        $propagated = $this->propagate($product, $url);
+
+        return response()->json(['thumbnail' => $product->thumbnail, 'propagated' => $propagated]);
+    }
+
+    /** 같은 기본상품(제조사+정규화명) 중 이미지 없는 형제에 동일 썸네일 전파 */
+    private function propagate(Product $product, string $url): int
+    {
+        $key = $this->baseKey($product->name, $product->maker);
+        if ($key === '' || count(explode(' ', $key)) < 2) return 0;
+        $count = 0;
+        Product::whereNull('thumbnail')->where('id', '!=', $product->id)
+            ->where('maker', $product->maker)
+            ->select('id', 'name', 'maker')->chunkById(500, function ($rows) use ($key, $url, &$count) {
+                foreach ($rows as $p) {
+                    if ($this->baseKey($p->name, $p->maker) === $key) {
+                        Product::where('id', $p->id)->update(['thumbnail' => $url]);
+                        $count++;
+                    }
+                }
+            });
+        return $count;
+    }
+
+    private function baseKey(string $name, ?string $maker): string
+    {
+        $s = preg_replace('/\[[^\]]*\]|\([^)]*\)/u', ' ', $name);
+        $s = mb_strtolower($s, 'UTF-8');
+        $s = preg_replace('/\b\d+(\.\d+)?\s*(fr|f|g|cc|ml|mm|cm|inch|way|매|개입|호|인치)\b/u', ' ', $s);
+        $s = preg_replace('#\b\d+\s*[/x]\s*\d+\b#u', ' ', $s);
+        $s = preg_replace('/\b(xxxl|xxl|xl|[smlx])\b/u', ' ', $s);
+        $s = preg_replace('/[0-9]+/u', ' ', $s);
+        $s = preg_replace('/[^a-z가-힣]+/u', ' ', $s);
+        $stop = ['no', 'size', 'type', 'set', 'kit', 'the', 'for', 'and', 'with', 'plus', 'new'];
+        $words = [];
+        foreach (explode(' ', $s) as $w) {
+            if (mb_strlen($w) >= 2 && ! in_array($w, $stop, true)) $words[$w] = true;
+        }
+        $words = array_keys($words);
+        sort($words);
+        $mk = $maker ? preg_replace('/[^a-z가-힣]+/u', '', mb_strtolower(mb_substr($maker, 0, 10))) : '';
+        return trim($mk.'|'.implode(' ', $words));
     }
 
     /** 상품명 → [한글변환 쿼리, 원문 정리 쿼리] */
