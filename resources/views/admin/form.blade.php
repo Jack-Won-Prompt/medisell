@@ -111,7 +111,7 @@
               if (res.ok && res.d.thumbnail) {
                   var prev = document.getElementById('thumbPreview_thumbnail');
                   prev.src = res.d.thumbnail + '?t=' + Date.now(); prev.style.display = '';
-                  status.textContent = '✓ 썸네일로 지정되었습니다. (저장 없이 즉시 반영됨)';
+                  status.textContent = '✓ 썸네일 지정됨' + (res.d.propagated ? ' · 유사 상품 ' + res.d.propagated + '개에도 자동 적용됨' : '') + ' (즉시 반영)';
               } else { status.textContent = '실패: ' + (res.d.error || ''); }
           }).catch(function () { status.textContent = '다운로드 실패'; });
     }
