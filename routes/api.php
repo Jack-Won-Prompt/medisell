@@ -27,6 +27,9 @@ Route::prefix('v1')->group(function () {
     Route::get('/settings', [SettingController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index']);
 
+    // 푸시 토큰 해제(로그아웃 후에도 호출 가능하도록 공개)
+    Route::post('/push/unregister', [\App\Http\Controllers\Api\PushController::class, 'unregister']);
+
     Route::get('/categories', [CatalogController::class, 'categories']);
     Route::get('/products', [CatalogController::class, 'index']);
     Route::get('/products/search', [CatalogController::class, 'search']);
@@ -77,5 +80,8 @@ Route::prefix('v1')->group(function () {
         Route::get('/chat/open', [ChatController::class, 'open']);
         Route::post('/chat/start', [ChatController::class, 'start']);
         Route::post('/chat/send', [ChatController::class, 'send']);
+
+        // 푸시 알림 토큰 등록 (로그인 회원과 연결)
+        Route::post('/push/register', [\App\Http\Controllers\Api\PushController::class, 'register']);
     });
 });

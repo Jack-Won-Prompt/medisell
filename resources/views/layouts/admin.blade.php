@@ -35,6 +35,7 @@
                 <a href="{{ route('admin.inquiries.index') }}" class="{{ request()->routeIs('admin.inquiries.*') ? 'on' : '' }}"><x-icon name="question"/> 문의관리</a>
                 <a href="{{ route('admin.reviews.index') }}" class="{{ request()->routeIs('admin.reviews.*') ? 'on' : '' }}"><x-icon name="star"/> 후기관리</a>
                 <a href="{{ route('admin.coupang.index') }}" class="{{ request()->routeIs('admin.coupang.*') ? 'on' : '' }}"><x-icon name="tag"/> 쿠팡 경쟁가</a>
+                <a href="{{ route('admin.push.index') }}" class="{{ request()->routeIs('admin.push.*') ? 'on' : '' }}"><x-icon name="headset"/> 푸시 알림</a>
 
                 @foreach($groups as $gname => $items)
                     <div class="grp">{{ $gname }}</div>

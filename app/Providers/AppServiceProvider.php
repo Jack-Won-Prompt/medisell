@@ -3,8 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\ChatMessage;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Observers\ChatMessageObserver;
+use App\Observers\OrderObserver;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // FCM 푸시 트리거 — 주문 상태 변경 / 관리자 상담 답변
+        Order::observe(OrderObserver::class);
+        ChatMessage::observe(ChatMessageObserver::class);
+
         // DB 사이트설정으로 config('site') 런타임 오버라이드 (관리자 수정 즉시 반영)
         try {
             if (Schema::hasTable('settings')) {
