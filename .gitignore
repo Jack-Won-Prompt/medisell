@@ -50,3 +50,8 @@ medisell_products.sql
 
 # 원본 엑셀 데이터 (공급사 단가 등 민감 정보)
 *.xlsx
+
+# 리포트/배포 아티팩트/스트레이 로그
+*_report.csv
+medisell_*.tar.gz
+/laravel.log
