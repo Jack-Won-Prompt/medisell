@@ -30,3 +30,23 @@ yarn-error.log
 
 # 관리자 이미지 자동검색으로 받은 로컬 이미지
 public/product/picked/
+# 의료몰 정밀검색으로 받은 로컬 이미지 (삼에스 제품)
+public/product/sames/
+# 의료몰/navimro/danawa 스크래핑 로컬 이미지 (물품명) — 저작권상 로컬 전용
+public/product/mulpum/
+
+# 스크래핑/작업용 임시 스크립트·로그·리포트 (로컬 전용)
+scratchpad_*.py
+scratchpad_*.log
+__pycache__/
+d.tmp.html
+*.tmp.html
+mulpum_report.csv
+navimro_report.csv
+
+# 배포 아티팩트 (수동 전송용)
+medisell_images.tar.gz
+medisell_products.sql
+
+# 원본 엑셀 데이터 (공급사 단가 등 민감 정보)
+*.xlsx

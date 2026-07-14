@@ -184,6 +184,15 @@ Route::post('/chat/send', [ChatController::class, 'send'])->name('chat.send');
 Route::post('/payment/toss/webhook', [PaymentController::class, 'webhook'])->name('payment.webhook');
 Route::post('/payment/portone/webhook', [PaymentController::class, 'portoneWebhook'])->name('payment.portone.webhook');
 
+// ===== 모바일 앱 인앱 웹뷰 결제 (세션 없이 signed URL 진입) =====
+Route::get('/pay/app/{order}', [\App\Http\Controllers\MobilePaymentController::class, 'pay'])
+    ->middleware('signed')->name('pay.app');
+Route::get('/pay/app-toss/success', [\App\Http\Controllers\MobilePaymentController::class, 'tossSuccess'])->name('pay.app.toss.success');
+Route::get('/pay/app-toss/fail', [\App\Http\Controllers\MobilePaymentController::class, 'tossFail'])->name('pay.app.toss.fail');
+Route::post('/pay/app-portone/verify', [\App\Http\Controllers\MobilePaymentController::class, 'portoneVerify'])->name('pay.app.portone.verify');
+Route::post('/pay/app-portone/simulate/{order}', [\App\Http\Controllers\MobilePaymentController::class, 'portoneSimulate'])->name('pay.app.portone.simulate');
+Route::get('/pay/app-result', [\App\Http\Controllers\MobilePaymentController::class, 'result'])->name('pay.app.result');
+
 // ===== 인증 =====
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
