@@ -19,23 +19,39 @@ use Illuminate\Http\Request;
  */
 class ApiSerializer
 {
-    /** 저장된 이미지 URL의 host를 현재 요청 host로 교체 */
+    /**
+     * 저장된 절대 이미지 URL을 현재 요청 서버에 맞게 재작성한다.
+     * - host 는 요청 host(에뮬레이터 10.0.2.2 / 운영 도메인 등)로 교체
+     * - 서브폴더는 요청 경로에서 자동 감지 (로컬=/medisell, 운영 루트=빈값)
+     *   → 시드 데이터의 고정 `/medisell` prefix 를 현재 배포 prefix 로 치환
+     */
     public static function image(?string $stored, Request $request): ?string
     {
         if (! $stored) {
             return null;
         }
-        $host = rtrim($request->getSchemeAndHttpHost(), '/');
 
-        if (preg_match('#^https?://#', $stored)) {
-            // http://localhost/medisell/product/x.png -> /medisell/product/x.png
-            $path = preg_replace('#^https?://[^/]+#', '', $stored);
+        $root = rtrim($request->getSchemeAndHttpHost(), '/');
+        $prefix = self::basePrefix($request); // '' (운영 루트) 또는 '/medisell' (로컬)
 
-            return $host.$path;
-        }
+        // 절대 URL → host 제거
+        $path = preg_match('#^https?://#', $stored)
+            ? preg_replace('#^https?://[^/]+#', '', $stored)   // /medisell/product/x.png
+            : '/'.ltrim($stored, '/');
 
-        // 상대경로 저장분 대비
-        return $host.'/medisell/'.ltrim($stored, '/');
+        // 시드 시점의 고정 서브폴더(/medisell) 제거 후 현재 prefix 로 재구성
+        $path = preg_replace('#^/medisell(?=/)#', '', $path);  // /product/x.png
+
+        return $root.$prefix.$path;
+    }
+
+    /** 현재 API 요청이 서비스되는 서브폴더 prefix (/api/... 앞 부분) */
+    protected static function basePrefix(Request $request): string
+    {
+        $uri = $request->getRequestUri();               // /medisell/api/v1/home  또는  /api/v1/home
+        $prefix = preg_replace('#/api/.*$#', '', $uri);  // /medisell            또는  ''
+
+        return rtrim($prefix ?? '', '/');
     }
 
     public static function images(?array $stored, Request $request): array
@@ -87,10 +103,10 @@ class ApiSerializer
             ->map(fn ($u) => self::image($u, $request))
             ->values()->all();
 
-        // description 내 이미지 host 재작성
+        // description 내 이미지(절대 URL) 를 현재 서버에 맞게 재작성
         $description = $p->description
-            ? preg_replace_callback('#https?://[^/"\'\s]+/medisell/#', function () use ($request) {
-                return rtrim($request->getSchemeAndHttpHost(), '/').'/medisell/';
+            ? preg_replace_callback('#https?://[^"\'\s)]+\.(?:png|jpe?g|gif|webp)#i', function ($m) use ($request) {
+                return self::image($m[0], $request) ?? $m[0];
             }, $p->description)
             : null;
 
