@@ -132,6 +132,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // 매출 리포트
     Route::get('/reports/sales', [AdminReportController::class, 'sales'])->name('reports.sales');
 
+    // 푸시 알림 발송 (FCM)
+    Route::get('/push', [\App\Http\Controllers\Admin\PushController::class, 'index'])->name('push.index');
+    Route::post('/push', [\App\Http\Controllers\Admin\PushController::class, 'send'])->name('push.send');
+
     // 쿠팡 경쟁가 조회
     Route::get('/coupang', [AdminCoupangProductController::class, 'index'])->name('coupang.index');
 
