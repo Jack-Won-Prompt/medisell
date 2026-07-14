@@ -546,10 +546,8 @@ main{min-height:60vh}
 /* 오늘의 특가 + 카운트다운 */
 .deal-timer{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px}
 .deal-timer #dealCountdown{font-variant-numeric:tabular-nums;letter-spacing:.02em}
-.deal-slider{display:flex;gap:16px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-.deal-slider::-webkit-scrollbar{height:6px}
-.deal-slider::-webkit-scrollbar-thumb{background:var(--line);border-radius:999px}
-.deal-item{flex:0 0 208px;scroll-snap-align:start}
+.deal-slider{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;padding:4px 2px 12px}
+.deal-item{min-width:0}
 .deal-item .card{height:100%}
 
 /* 카테고리 탭 베스트 */
@@ -667,7 +665,7 @@ main{min-height:60vh}
   .benefit-strip{display:flex;overflow-x:auto;gap:10px;-webkit-overflow-scrolling:touch}
   .benefit{flex:0 0 60%}
   .benefit em{display:block}
-  .deal-item{flex-basis:158px}
+  .deal-slider{grid-template-columns:repeat(2,minmax(0,1fr))}
   /* 모바일 하단 고정 네비 */
   .mobile-nav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid var(--line);box-shadow:0 -2px 12px rgba(3,18,54,.08)}
   .mobile-nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0 9px;font-size:11px;color:var(--slate-600);position:relative}
