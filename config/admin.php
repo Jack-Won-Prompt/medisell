@@ -64,6 +64,7 @@ return [
             ['name' => 'unit', 'label' => '판매단위', 'type' => 'text', 'hint' => '예: EA, BOX, SET'],
             ['name' => 'maker', 'label' => '제조사', 'type' => 'text'],
             ['name' => 'price', 'label' => '정가(원)', 'type' => 'number', 'required' => true],
+            ['name' => 'cost', 'label' => '매입단가(원, 참고용·비노출)', 'type' => 'number', 'hint' => '마진 참고용. 고객 화면에는 표시되지 않습니다.'],
             ['name' => 'member_price', 'label' => '기본 병원가(원, 전용가 미설정 시 적용)', 'type' => 'number'],
             ['name' => 'tax_type', 'label' => '과세구분', 'type' => 'select', 'required' => true,
                 'options' => ['taxable' => '과세', 'exempt' => '면세']],

@@ -117,11 +117,11 @@
     <section class="section">
         <div class="section-head">
             <h3><x-icon name="grid"/> 카테고리별 베스트</h3>
-            <div class="cat-tabs">
-                @foreach($categoryTabs as $i => $t)
-                    <button type="button" class="cat-tab {{ $i === 0 ? 'on' : '' }}" data-idx="{{ $i }}">{{ $t['category']->name }}</button>
-                @endforeach
-            </div>
+        </div>
+        <div class="cat-tabs">
+            @foreach($categoryTabs as $i => $t)
+                <button type="button" class="cat-tab {{ $i === 0 ? 'on' : '' }}" data-idx="{{ $i }}">{{ $t['category']->name }}</button>
+            @endforeach
         </div>
         @foreach($categoryTabs as $i => $t)
             <div class="cat-panel prod-grid {{ $i === 0 ? 'on' : '' }}" id="cat-panel-{{ $i }}">

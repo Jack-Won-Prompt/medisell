@@ -7,6 +7,7 @@
     $isHospital = $user && $user->isApprovedBusiness();
     $special = $isHospital && $sell < $product->price;     // 병원 전용가 적용
     $rate = $special ? $product->discountRateFor($sell) : 0;
+    $inquiry = $sell <= 0;                                 // 판매가 미설정 → 가격문의
     $soldout = $product->stock <= 0;
 @endphp
 
@@ -55,6 +56,13 @@
             <div class="maker">제조사 {{ $product->maker ?? '-' }} · 상품코드 {{ $product->code ?? '-' }} · 판매단위 {{ $product->unit }}</div>
 
             <div class="price-panel">
+                @if($inquiry)
+                    <div class="row" style="align-items:flex-end">
+                        <span class="lbl">판매가</span>
+                        <span class="big-price" style="color:var(--navy-700)">가격문의</span>
+                    </div>
+                    <div style="font-size:12.5px;color:var(--slate-500);margin-top:4px">※ 이 제품은 견적문의 상품입니다. 전화 또는 견적문의로 가격을 안내해 드립니다.</div>
+                @else
                 @if($special)
                     <div class="row"><span class="lbl">정가</span><span class="o-price" style="text-decoration:line-through;color:var(--slate-400)">{{ number_format($product->price) }}원</span></div>
                 @endif
@@ -69,10 +77,17 @@
                 @else
                     <div style="font-size:12.5px;color:var(--slate-500);margin-top:4px">※ 병원 회원으로 로그인하면 병원별 전용가가 적용됩니다.</div>
                 @endif
+                @endif
                 <div class="row"><span class="lbl">배송비</span><span>{{ $sell >= $site['free_ship_over'] ? '무료배송' : number_format($site['shipping_fee']).'원 (5만원 이상 무료)' }}</span></div>
                 <div class="row"><span class="lbl">재고</span><span>{{ $soldout ? '품절' : number_format($product->stock).$product->unit }}</span></div>
             </div>
 
+            @if($inquiry)
+                <div class="buy-actions">
+                    <a href="{{ route('community.inquiry', ['type' => 'quote', 'product' => $product->id]) }}" class="btn btn-red btn-lg btn-block"><x-icon name="phone"/> 견적문의하기</a>
+                </div>
+                <p class="muted" style="font-size:13px;margin-top:10px;text-align:center">가격은 견적문의로 안내해 드립니다. 품목·수량을 남겨주세요.</p>
+            @else
             @auth
                 @if($soldout)
                     <button class="btn btn-dark btn-lg btn-block" disabled>품절된 상품입니다</button>
@@ -106,6 +121,7 @@
                 </div>
                 <p class="muted" style="font-size:13px;margin-top:10px;text-align:center">회원 로그인 후 장바구니·구매가 가능합니다.</p>
             @endauth
+            @endif
         </div>
     </div>
 

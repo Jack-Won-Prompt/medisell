@@ -2,6 +2,17 @@
     RewriteEngine On
     RewriteBase /medisell/
 
+    # Authorization 헤더 전달 (모바일 API Bearer 토큰용)
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # 상품/배너 이미지 CORS 허용 (웹 빌드 미리보기용, 모바일엔 무관)
+    <IfModule mod_headers.c>
+        <FilesMatch "\.(png|jpe?g|gif|webp|svg)$">
+            Header set Access-Control-Allow-Origin "*"
+        </FilesMatch>
+    </IfModule>
+
     # 1) public/ 에 실제로 존재하는 정적 파일(이미지, css, build 등)은 그대로 서빙
     #    단, index.php 는 제외 (제외 안 하면 2)에서 넘어온 요청이 public/index.php 로
     #    다시 잡혀 base 경로(/medisell)가 어긋남)

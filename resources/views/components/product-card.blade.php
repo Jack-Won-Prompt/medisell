@@ -5,6 +5,7 @@
     $isHospital = $user && $user->isApprovedBusiness();
     $special = $isHospital && $sell < $product->price;     // 병원 전용가(정가보다 낮음)
     $rate = $special ? $product->discountRateFor($sell) : $product->discountRate();
+    $inquiry = $sell <= 0;                                 // 판매가 미설정 → 가격문의
     $soldout = $product->stock <= 0;
     $inWish = in_array($product->id, $wishlistIds ?? []);
 @endphp
@@ -35,7 +36,9 @@
         <div class="maker">{{ $product->maker ?? $product->brand?->name }}</div>
         <a href="{{ route('catalog.show', $product->slug) }}" class="name">{{ $product->name }}</a>
         <div class="price-row">
-            @if($special)
+            @if($inquiry)
+                <span class="price price-inquiry">가격문의</span>
+            @elseif($special)
                 <span class="rate">{{ $rate }}%</span>
                 <span class="price">{{ number_format($sell) }}<span class="won">원</span></span>
                 <span class="o-price">{{ number_format($product->price) }}원</span>
@@ -43,7 +46,9 @@
                 <span class="price">{{ number_format($sell) }}<span class="won">원</span></span>
             @endif
         </div>
-        @if($special)
+        @if($inquiry)
+            <div><span class="mprice">전화·견적문의 가능</span></div>
+        @elseif($special)
             <div><span class="mprice">병원 전용가 적용중</span></div>
         @elseif(!$isHospital && ($product->member_price || true))
             <div><span class="mprice">병원 회원 전용가 별도</span></div>
@@ -52,6 +57,8 @@
     <div class="cart-row">
         @if($soldout)
             <button class="btn btn-ghost btn-sm btn-block" disabled>품절</button>
+        @elseif($inquiry)
+            <a href="{{ route('community.inquiry', ['type' => 'quote', 'product' => $product->id]) }}" class="btn btn-ghost btn-sm btn-block"><x-icon name="phone"/>견적문의</a>
         @else
             <form method="POST" action="{{ route('cart.add', $product) }}" style="flex:1">
                 @csrf
