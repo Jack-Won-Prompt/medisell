@@ -675,3 +675,19 @@ main{min-height:60vh}
   body{padding-bottom:60px}
   .chat-fab,.to-top{bottom:72px}
 }
+
+/* =========================================================
+   아이콘 통일: 회색 윤곽선 + 무색(fill none 라인 아이콘)
+   문맥별 red/navy 강조색을 회색으로 일괄 통일.
+   단, 유색 배경(버튼·뱃지·타이머 등)은 대비 유지 위해 예외.
+   ========================================================= */
+.icon{color:var(--slate-400)!important}
+.btn .icon,
+.badge .icon,
+.chip .icon,
+.deal-timer .icon,
+.util .count,
+.mobile-nav a.on .icon,
+.brand .icon,
+.card .thumb .ph .icon{color:inherit!important}
+
