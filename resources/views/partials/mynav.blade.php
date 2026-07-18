@@ -5,6 +5,7 @@
     <a href="{{ route('mypage.wishlist') }}" class="{{ $r==='mypage.wishlist' ? 'on' : '' }}"><x-icon name="heart"/> 관심상품</a>
     <a href="{{ route('mypage.points') }}" class="{{ $r==='mypage.points' ? 'on' : '' }}"><x-icon name="coin"/> 적립금</a>
     <a href="{{ route('mypage.coupons') }}" class="{{ $r==='mypage.coupons' ? 'on' : '' }}"><x-icon name="tag"/> 쿠폰함</a>
+    <a href="{{ route('mypage.addresses') }}" class="{{ str_starts_with($r,'mypage.address') ? 'on' : '' }}"><x-icon name="pin"/> 배송지 관리</a>
     <a href="{{ route('mypage.profile') }}" class="{{ $r==='mypage.profile' ? 'on' : '' }}"><x-icon name="tools"/> 회원정보수정</a>
     <a href="{{ route('cart.index') }}"><x-icon name="cart"/> 장바구니</a>
 </nav>

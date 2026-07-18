@@ -24,9 +24,14 @@
                 @endif
 
                 <h3 style="margin-top:24px"><x-icon name="pin"/> 기본 배송지</h3>
-                <div class="field" style="max-width:200px"><label>우편번호</label><input type="text" name="postcode" class="input" value="{{ old('postcode', $user->postcode) }}"></div>
-                <div class="field"><label>주소</label><input type="text" name="address1" class="input" value="{{ old('address1', $user->address1) }}"></div>
-                <div class="field"><label>상세주소</label><input type="text" name="address2" class="input" value="{{ old('address2', $user->address2) }}"></div>
+                <div class="field" style="max-width:360px"><label>우편번호</label>
+                    <div style="display:flex;gap:8px">
+                        <input type="text" name="postcode" id="postcode" class="input" value="{{ old('postcode', $user->postcode) }}" readonly placeholder="주소 찾기 클릭">
+                        <button type="button" class="btn btn-ghost" onclick="findAddr()" style="flex:none;white-space:nowrap">주소 찾기</button>
+                    </div>
+                </div>
+                <div class="field"><label>주소</label><input type="text" name="address1" id="address1" class="input" value="{{ old('address1', $user->address1) }}" placeholder="주소 찾기로 입력" readonly></div>
+                <div class="field"><label>상세주소</label><input type="text" name="address2" id="address2" class="input" value="{{ old('address2', $user->address2) }}" placeholder="상세 주소 (동/호수 등)"></div>
 
                 <h3 style="margin-top:24px"><x-icon name="shield"/> 비밀번호 변경 (선택)</h3>
                 <div class="row2">
@@ -40,3 +45,18 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function findAddr() {
+    new daum.Postcode({
+        oncomplete: function (d) {
+            document.getElementById('postcode').value = d.zonecode;
+            document.getElementById('address1').value = d.roadAddress || d.jibunAddress;
+            document.getElementById('address2').focus();
+        }
+    }).open();
+}
+</script>
+@endpush
