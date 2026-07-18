@@ -73,6 +73,13 @@ Route::prefix('v1')->group(function () {
         Route::get('/mypage/coupons', [MypageController::class, 'coupons']);
         Route::put('/mypage/profile', [MypageController::class, 'updateProfile']);
 
+        // 배송지 주소록
+        Route::get('/mypage/addresses', [MypageController::class, 'addresses']);
+        Route::post('/mypage/addresses', [MypageController::class, 'storeAddress']);
+        Route::put('/mypage/addresses/{address}', [MypageController::class, 'updateAddress']);
+        Route::delete('/mypage/addresses/{address}', [MypageController::class, 'deleteAddress']);
+        Route::post('/mypage/addresses/{address}/default', [MypageController::class, 'setDefaultAddress']);
+
         // 커뮤니티(작성)
         Route::post('/community/inquiry', [CommunityController::class, 'inquiryStore']);
 

@@ -50,6 +50,9 @@ class OrderController extends Controller
             'coupon_error'    => $couponError,
             'available_coupons' => $available,
             'point'           => (int) $user->point,
+            // 저장된 배송지 주소록 + 기본배송지
+            'addresses'       => $user->addresses->map(fn ($a) => S::address($a)),
+            'default_address' => ($def = $user->defaultAddress()) ? S::address($def) : null,
             'address' => [
                 'receiver_name'  => $user->name,
                 'receiver_phone' => $user->phone,

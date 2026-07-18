@@ -40,13 +40,36 @@ function msApplyCoupon(code){var i=document.querySelector('input[name=code][form
             {{-- 배송지 --}}
             <div class="form-card">
                 <h3><x-icon name="pin"/> 배송지 정보</h3>
+                @php($defaultAddr = $addresses->firstWhere('is_default', true) ?? $addresses->first())
+                @if($addresses->count())
+                    <div class="field"><label>저장된 배송지</label>
+                        <select id="addrSelect" class="input" onchange="pickAddr(this)">
+                            @foreach($addresses as $a)
+                                <option value="{{ $a->id }}"
+                                    data-name="{{ $a->receiver_name }}" data-phone="{{ $a->receiver_phone }}"
+                                    data-post="{{ $a->postcode }}" data-a1="{{ $a->address1 }}" data-a2="{{ $a->address2 }}"
+                                    {{ optional($defaultAddr)->id === $a->id ? 'selected' : '' }}>
+                                    {{ $a->label ?: '배송지' }} — {{ $a->receiver_name }} ({{ $a->address1 }})
+                                </option>
+                            @endforeach
+                            <option value="">+ 새 주소 직접 입력</option>
+                        </select>
+                        <div class="ahint" style="margin-top:4px"><a href="{{ route('mypage.addresses') }}" style="color:var(--navy-700)">배송지 관리 →</a></div>
+                    </div>
+                @endif
                 <div class="row2">
-                    <div class="field"><label>받는분 <span class="req">*</span></label><input type="text" name="receiver_name" class="input" value="{{ old('receiver_name', $user->name) }}" required></div>
-                    <div class="field"><label>연락처 <span class="req">*</span></label><input type="text" name="receiver_phone" class="input" value="{{ old('receiver_phone', $user->phone) }}" required></div>
+                    <div class="field"><label>받는분 <span class="req">*</span></label><input type="text" name="receiver_name" class="input" value="{{ old('receiver_name', optional($defaultAddr)->receiver_name ?? $user->name) }}" required></div>
+                    <div class="field"><label>연락처 <span class="req">*</span></label><input type="text" name="receiver_phone" class="input" value="{{ old('receiver_phone', optional($defaultAddr)->receiver_phone ?? $user->phone) }}" required></div>
                 </div>
-                <div class="field" style="max-width:200px"><label>우편번호</label><input type="text" name="postcode" class="input" value="{{ old('postcode', $user->postcode) }}"></div>
-                <div class="field"><label>주소 <span class="req">*</span></label><input type="text" name="address1" class="input" value="{{ old('address1', $user->address1) }}" placeholder="기본 주소" required></div>
-                <div class="field"><label>상세주소</label><input type="text" name="address2" class="input" value="{{ old('address2', $user->address2) }}" placeholder="상세 주소"></div>
+                <div class="field" style="max-width:360px"><label>우편번호</label>
+                    <div style="display:flex;gap:8px">
+                        <input type="text" name="postcode" id="postcode" class="input" value="{{ old('postcode', optional($defaultAddr)->postcode ?? $user->postcode) }}" readonly placeholder="주소 찾기 클릭">
+                        <button type="button" class="btn btn-ghost" onclick="findAddr()" style="flex:none;white-space:nowrap">주소 찾기</button>
+                    </div>
+                </div>
+                <div class="field"><label>주소 <span class="req">*</span></label><input type="text" name="address1" id="address1" class="input" value="{{ old('address1', optional($defaultAddr)->address1 ?? $user->address1) }}" placeholder="주소 찾기로 입력" required readonly></div>
+                <div class="field"><label>상세주소</label><input type="text" name="address2" id="address2" class="input" value="{{ old('address2', optional($defaultAddr)->address2 ?? $user->address2) }}" placeholder="상세 주소 (동/호수 등)"></div>
+                <label class="acheck" style="display:flex;align-items:center;gap:6px;margin-top:2px"><input type="checkbox" name="save_address" value="1"> 이 배송지를 주소록에 저장</label>
                 <div class="field"><label>배송 메모</label><input type="text" name="memo" class="input" value="{{ old('memo') }}" placeholder="예) 부재 시 진료실 앞에 놓아주세요"></div>
             </div>
 
@@ -133,3 +156,26 @@ function msApplyCoupon(code){var i=document.querySelector('input[name=code][form
 </form>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function findAddr() {
+    new daum.Postcode({
+        oncomplete: function (d) {
+            document.getElementById('postcode').value = d.zonecode;
+            document.getElementById('address1').value = d.roadAddress || d.jibunAddress;
+            document.getElementById('address2').focus();
+        }
+    }).open();
+}
+function pickAddr(sel) {
+    var o = sel.options[sel.selectedIndex];
+    document.querySelector('[name=receiver_name]').value = o.dataset.name || '';
+    document.querySelector('[name=receiver_phone]').value = o.dataset.phone || '';
+    document.getElementById('postcode').value = o.dataset.post || '';
+    document.getElementById('address1').value = o.dataset.a1 || '';
+    document.getElementById('address2').value = o.dataset.a2 || '';
+}
+</script>
+@endpush

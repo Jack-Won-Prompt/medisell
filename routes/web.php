@@ -71,6 +71,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/coupons', 'coupons')->name('coupons');
         Route::get('/profile', 'profile')->name('profile');
         Route::put('/profile', 'updateProfile')->name('profile.update');
+        // 배송지 주소록
+        Route::get('/addresses', 'addresses')->name('addresses');
+        Route::post('/addresses', 'storeAddress')->name('address.store');
+        Route::put('/addresses/{address}', 'updateAddress')->name('address.update');
+        Route::delete('/addresses/{address}', 'deleteAddress')->name('address.delete');
+        Route::post('/addresses/{address}/default', 'setDefaultAddress')->name('address.default');
     });
     Route::get('/mypage/wishlist', [WishlistController::class, 'index'])->name('mypage.wishlist');
 });

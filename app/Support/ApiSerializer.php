@@ -274,6 +274,20 @@ class ApiSerializer
         return $data;
     }
 
+    public static function address($a): array
+    {
+        return [
+            'id'             => $a->id,
+            'label'          => $a->label,
+            'receiver_name'  => $a->receiver_name,
+            'receiver_phone' => $a->receiver_phone,
+            'postcode'       => $a->postcode,
+            'address1'       => $a->address1,
+            'address2'       => $a->address2,
+            'is_default'     => (bool) $a->is_default,
+        ];
+    }
+
     public static function coupon($coupon, int $subtotal = 0): array
     {
         return [

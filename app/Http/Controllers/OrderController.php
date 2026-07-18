@@ -31,6 +31,7 @@ class OrderController extends Controller
             'items' => $items, 'summary' => $summary, 'user' => $user,
             'coupon' => $coupon, 'couponDiscount' => $couponDiscount, 'couponError' => $couponError,
             'availableCoupons' => $availableCoupons,
+            'addresses' => $user->addresses,
         ]);
     }
 
@@ -79,6 +80,7 @@ class OrderController extends Controller
             'depositor'      => ['required_if:payment_method,bank', 'nullable', 'string', 'max:50'],
             'bank'           => ['required_if:payment_method,bank', 'nullable', 'string', 'max:50'],
             'point_used'     => ['nullable', 'integer', 'min:0'],
+            'save_address'   => ['nullable', 'boolean'],
         ]);
 
         $isPg = $data['payment_method'] !== 'bank';
@@ -160,6 +162,27 @@ class OrderController extends Controller
         });
 
         $request->session()->forget('coupon_code');
+
+        // 배송지 주소록 저장 (체크 시, 동일 주소 없을 때만)
+        if ($request->boolean('save_address')) {
+            $exists = $user->addresses()
+                ->where('postcode', $data['postcode'] ?? null)
+                ->where('address1', $data['address1'])
+                ->where('address2', $data['address2'] ?? null)
+                ->exists();
+            if (! $exists) {
+                $makeDefault = $user->addresses()->count() === 0;
+                $user->addresses()->create([
+                    'label'          => null,
+                    'receiver_name'  => $data['receiver_name'],
+                    'receiver_phone' => $data['receiver_phone'],
+                    'postcode'       => $data['postcode'] ?? null,
+                    'address1'       => $data['address1'],
+                    'address2'       => $data['address2'] ?? null,
+                    'is_default'     => $makeDefault,
+                ]);
+            }
+        }
 
         if ($isPg) {
             return redirect()->route('order.pay', $order);
