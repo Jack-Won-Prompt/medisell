@@ -7,8 +7,12 @@ use App\Models\ChatMessage;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Models\LoginLog;
 use App\Observers\ChatMessageObserver;
 use App\Observers\OrderObserver;
+use Illuminate\Auth\Events\Failed;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +29,14 @@ class AppServiceProvider extends ServiceProvider
         // FCM 푸시 트리거 — 주문 상태 변경 / 관리자 상담 답변
         Order::observe(OrderObserver::class);
         ChatMessage::observe(ChatMessageObserver::class);
+
+        // 로그인 이력 기록 (성공/실패) — 웹·API 모든 경로
+        Event::listen(Login::class, function (Login $e) {
+            $this->recordLogin(true, $e->user->email ?? null, $e->guard ?? null, $e->user->id ?? null);
+        });
+        Event::listen(Failed::class, function (Failed $e) {
+            $this->recordLogin(false, $e->credentials['email'] ?? null, $e->guard ?? null, $e->user->id ?? null);
+        });
 
         // DB 사이트설정으로 config('site') 런타임 오버라이드 (관리자 수정 즉시 반영)
         try {
@@ -73,5 +85,27 @@ class AppServiceProvider extends ServiceProvider
             }
             $view->with($data);
         });
+    }
+
+    /** 로그인 이력 1건 기록 (테이블 없거나 오류 시 조용히 무시) */
+    protected function recordLogin(bool $success, ?string $email, ?string $guard, ?int $userId): void
+    {
+        try {
+            if (! Schema::hasTable('login_logs')) {
+                return;
+            }
+            $req = request();
+            LoginLog::create([
+                'user_id'    => $userId,
+                'email'      => $email,
+                'success'    => $success,
+                'ip'         => $req?->ip(),
+                'user_agent' => mb_substr((string) $req?->userAgent(), 0, 512),
+                'guard'      => $guard,
+                'created_at' => now(),
+            ]);
+        } catch (\Throwable $e) {
+            // 로깅 실패가 로그인 자체를 막지 않도록 무시
+        }
     }
 }
