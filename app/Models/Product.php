@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'category_id', 'brand_id', 'name', 'slug', 'code', 'unit', 'maker',
+        'category_id', 'brand_id', 'name', 'slug', 'code', 'group_key', 'unit', 'maker',
         'summary', 'description', 'spec', 'price', 'cost', 'member_price', 'tax_type', 'stock',
         'thumbnail', 'images', 'is_active', 'is_featured', 'is_best', 'is_new',
         'badge', 'view_count', 'sort_order',
@@ -39,6 +39,20 @@ class Product extends Model
     public function scopeActive($q)
     {
         return $q->where('is_active', true);
+    }
+
+    /** 규격/사이즈 변형(같은 group_key) 활성 상품들 — 자기 자신 우선 */
+    public function variants()
+    {
+        if (empty($this->group_key)) {
+            return collect([$this]);
+        }
+
+        return static::where('group_key', $this->group_key)
+            ->where('is_active', true)
+            ->orderByRaw('CASE WHEN id = ? THEN 0 ELSE 1 END', [$this->id])
+            ->orderBy('price')->orderBy('name')
+            ->get();
     }
 
     public function hospitalPrices()

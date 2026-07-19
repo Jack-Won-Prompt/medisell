@@ -55,6 +55,21 @@
             <h1>{{ $product->name }}</h1>
             <div class="maker">제조사 {{ $product->maker ?? '-' }} · 상품코드 {{ $product->code ?? '-' }} · 판매단위 {{ $product->unit }}</div>
 
+            @if($variants->count() > 1)
+                <div class="field" style="margin:16px 0 4px">
+                    <label style="font-weight:600;display:block;margin-bottom:6px">규격 / 사이즈 선택 ({{ $variants->count() }}종)</label>
+                    <select class="input" onchange="if(this.value){location.href=this.value}">
+                        @foreach($variants as $v)
+                            @php($vsell = $v->priceFor($user))
+                            <option value="{{ route('catalog.show', $v->slug) }}" {{ $v->id === $product->id ? 'selected' : '' }}>
+                                {{ \Illuminate\Support\Str::limit(preg_replace('/^\s*\[[^\]]*\]\s*/u', '', $v->name), 40) }}
+                                — {{ $vsell > 0 ? number_format($vsell).'원' : '가격문의' }}{{ $v->stock <= 0 ? ' · 품절' : '' }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
+
             <div class="price-panel">
                 @if($inquiry)
                     <div class="row" style="align-items:flex-end">

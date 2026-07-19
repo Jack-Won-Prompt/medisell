@@ -13,7 +13,7 @@ use Illuminate\Console\Command;
  */
 class ApplyBoxPrice extends Command
 {
-    protected $signature = 'mulpum:box-price {--dry : 미리보기(변경 안 함)} {--max=1000 : 이 낱개가 이하만 변환(0=무제한). 고가=이미 박스가일 수 있어 제외}';
+    protected $signature = 'mulpum:box-price {--dry : 미리보기(변경 안 함)} {--max=1000 : 이 낱개가 이하만 변환(0=무제한). 고가=이미 박스가일 수 있어 제외} {--min=10 : 이 낱개가 미만은 건너뜀(1원 등 미입력 placeholder 방지)}';
     protected $description = '낱개 단가 제품을 박스 단가(단가×입수, 단위 BOX)로 변환';
 
     private array $pieceUnits = ['EA', 'PCS', '개', 'T', ''];
@@ -37,7 +37,8 @@ class ApplyBoxPrice extends Command
         foreach (Product::whereIn('code', array_keys($qtyMap))->cursor() as $p) {
             $qty = (int) $qtyMap[$p->code];
             if ($qty < 2) { continue; }
-            if ((int) $p->price <= 0) { $skipNoprice++; continue; }
+            $min = (int) $this->option('min');
+            if ((int) $p->price < max(1, $min)) { $skipNoprice++; continue; }   // 1원 등 placeholder 방지
             $curUnit = strtoupper(trim((string) $p->unit));
             if (! in_array($curUnit, $this->pieceUnits, true)) { $skipUnit++; continue; }
             if ($max > 0 && (int) $p->price > $max) { $skipHigh++; continue; }
