@@ -77,6 +77,13 @@ Route::middleware('auth')->group(function () {
         Route::put('/addresses/{address}', 'updateAddress')->name('address.update');
         Route::delete('/addresses/{address}', 'deleteAddress')->name('address.delete');
         Route::post('/addresses/{address}/default', 'setDefaultAddress')->name('address.default');
+
+        // 구매 대행자 — 담당 구매자 관리 + 캐쉬백 내역
+        Route::get('/agent/buyers', 'agentBuyers')->name('agent.buyers');
+        Route::post('/agent/buyers', 'storeAgentBuyer')->name('agent.buyer.store');
+        Route::put('/agent/buyers/{buyer}', 'updateAgentBuyer')->name('agent.buyer.update');
+        Route::delete('/agent/buyers/{buyer}', 'deleteAgentBuyer')->name('agent.buyer.delete');
+        Route::get('/agent/cashbacks', 'agentCashbacks')->name('agent.cashbacks');
     });
     Route::get('/mypage/wishlist', [WishlistController::class, 'index'])->name('mypage.wishlist');
 });
@@ -160,6 +167,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('/bank-deposits/collect', [AdminBankDepositController::class, 'collect'])->name('bank.collect');
     Route::post('/bank-deposits/auto-match', [AdminBankDepositController::class, 'autoMatch'])->name('bank.automatch');
     Route::post('/bank-deposits/{deposit}/match', [AdminBankDepositController::class, 'match'])->name('bank.match');
+
+    // 구매 대행자 캐쉬백 정산
+    Route::get('/cashbacks', [\App\Http\Controllers\Admin\AgentCashbackController::class, 'index'])->name('cashbacks.index');
+    Route::post('/cashbacks/{cashback}/settle', [\App\Http\Controllers\Admin\AgentCashbackController::class, 'settle'])->name('cashbacks.settle');
+    Route::post('/cashbacks/agent/{user}/settle', [\App\Http\Controllers\Admin\AgentCashbackController::class, 'settleAgent'])->name('cashbacks.settle.agent');
 
     // 사이트 설정
     Route::get('/settings', [AdminSettingController::class, 'edit'])->name('settings.edit');
