@@ -25,7 +25,7 @@ class HomeController extends Controller
             ->map(fn ($c) => [
                 'category' => $c,
                 'products' => Product::active()->whereIn('category_id', $c->descendantIds())
-                    ->latest('view_count')->take(8)->get(),
+                    ->latest('view_count')->take(10)->get(),
             ])
             ->filter(fn ($t) => $t['products']->isNotEmpty())->values();
 

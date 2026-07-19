@@ -60,3 +60,4 @@ mulpum_todo_*.csv
 # FCM 서비스계정 키(비밀) — 절대 커밋 금지
 storage/app/fcm-service-account.json
 fcm-service-account*.json
+medisell_*.sql
