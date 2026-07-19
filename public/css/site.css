@@ -556,7 +556,7 @@ main{min-height:60vh}
 .cat-tab:hover{border-color:var(--navy-800);color:var(--navy-800)}
 .cat-tab.on{background:var(--navy-800);border-color:var(--navy-800);color:#fff}
 .cat-panel{display:none}
-.cat-panel.on{display:grid}
+.cat-panel.on{display:block}
 
 /* 모바일 하단 고정 네비 (모바일에서만 노출) */
 .mobile-nav{display:none}

@@ -124,10 +124,15 @@
             @endforeach
         </div>
         @foreach($categoryTabs as $i => $t)
-            <div class="cat-panel prod-grid {{ $i === 0 ? 'on' : '' }}" id="cat-panel-{{ $i }}">
-                @foreach($t['products']->take(5) as $p)
-                    <x-product-card :product="$p"/>
-                @endforeach
+            <div class="cat-panel {{ $i === 0 ? 'on' : '' }}" id="cat-panel-{{ $i }}">
+                <div class="prod-grid">
+                    @foreach($t['products']->take(10) as $p)
+                        <x-product-card :product="$p"/>
+                    @endforeach
+                </div>
+                <div style="text-align:center;margin-top:20px">
+                    <a href="{{ route('catalog.category', $t['category']->slug) }}" class="btn btn-ghost btn-lg">{{ $t['category']->name }} 전체 보기 <x-icon name="arrow-right" :size="16"/></a>
+                </div>
             </div>
         @endforeach
     </section>
