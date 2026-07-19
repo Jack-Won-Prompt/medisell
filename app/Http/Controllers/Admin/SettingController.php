@@ -30,6 +30,7 @@ class SettingController extends Controller
             'cs_hours'    => ['nullable', 'string', 'max:150'],
             'email'       => ['nullable', 'string', 'max:100'],
             'payment_pg'     => ['required', 'in:toss,portone'],
+            'deal_mode'      => ['required', 'in:random,discount,best'],
             'free_ship_over' => ['required', 'integer', 'min:0'],
             'shipping_fee'   => ['required', 'integer', 'min:0'],
             'signup_point'   => ['required', 'integer', 'min:0'],

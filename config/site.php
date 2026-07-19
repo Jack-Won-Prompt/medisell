@@ -32,6 +32,9 @@ return [
     // 결제 PG (관리자 사이트설정에서 선택): toss | portone
     'payment_pg' => env('PAYMENT_PG', 'toss'),
 
+    // 오늘의 특가 구성 (관리자 사이트설정): random(랜덤) | discount(할인율순) | best(베스트)
+    'deal_mode' => 'random',
+
     // 배송비 정책
     'free_ship_over' => 50000,  // 5만원 이상 무료배송
     'shipping_fee'   => 3000,

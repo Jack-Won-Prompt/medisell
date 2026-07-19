@@ -77,6 +77,15 @@
                 </select>
                 <div class="ahint">체크아웃의 카드/간편결제가 선택한 PG로 진행됩니다. (무통장입금은 항상 제공)</div>
             </div>
+            <div class="afield" style="max-width:320px;margin:16px 0 0">
+                <label>오늘의 특가 구성</label>
+                <select name="deal_mode" class="aselect">
+                    <option value="random" {{ ($site['deal_mode'] ?? 'random')==='random' ? 'selected' : '' }}>랜덤 (전체 상품 무작위)</option>
+                    <option value="discount" {{ ($site['deal_mode'] ?? '')==='discount' ? 'selected' : '' }}>할인율순 (회원가 할인 큰 순)</option>
+                    <option value="best" {{ ($site['deal_mode'] ?? '')==='best' ? 'selected' : '' }}>베스트 (인기상품)</option>
+                </select>
+                <div class="ahint">메인 "오늘의 특가" 영역에 노출할 상품 구성 방식입니다. (기본: 랜덤)</div>
+            </div>
         </div>
     </div>
 

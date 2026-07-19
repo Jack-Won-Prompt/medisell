@@ -51,6 +51,14 @@ class CatalogController extends Controller
 
         $query = $base->with('brand');
         $this->applyFilters($query, $request);
+
+        // 규격/사이즈 변형은 대표 1개만 노출 (group_key당 최소 id)
+        $query->whereIn('products.id', function ($sub) {
+            $sub->from('products')->selectRaw('MIN(id)')
+                ->where('is_active', true)
+                ->groupByRaw('COALESCE(group_key, CONCAT("id:", id))');
+        });
+
         $products = $this->sorted($query, $request)->paginate(20)->withQueryString();
 
         return view('catalog.list', array_merge([
@@ -97,7 +105,10 @@ class CatalogController extends Controller
             ->where('id', '!=', $product->id)
             ->take(4)->get();
 
-        return view('catalog.show', compact('product', 'related'));
+        // 규격/사이즈 변형 (같은 group_key)
+        $variants = $product->variants();
+
+        return view('catalog.show', compact('product', 'related', 'variants'));
     }
 
     public function storeReview(Request $request, Product $product)
