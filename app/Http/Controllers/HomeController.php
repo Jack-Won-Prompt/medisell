@@ -17,9 +17,9 @@ class HomeController extends Controller
         $dealProducts = match (config('site.deal_mode', 'random')) {
             'discount' => (clone $dealBase)
                 ->whereColumn('member_price', '<', 'price')->where('member_price', '>', 0)
-                ->orderByRaw('(price - member_price) / price DESC')->take(12)->get(),
-            'best' => (clone $dealBase)->where('is_best', true)->latest('view_count')->take(12)->get(),
-            default => (clone $dealBase)->inRandomOrder()->take(12)->get(),   // random
+                ->orderByRaw('(price - member_price) / price DESC')->take(10)->get(),
+            'best' => (clone $dealBase)->where('is_best', true)->latest('view_count')->take(10)->get(),
+            default => (clone $dealBase)->inRandomOrder()->take(10)->get(),   // random
         };
 
         // 카테고리 탭형 베스트: 대분류별 인기 상품 (상품 있는 카테고리만)
