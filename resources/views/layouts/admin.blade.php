@@ -32,6 +32,7 @@
                 <a href="{{ route('admin.bank.index') }}" class="{{ request()->routeIs('admin.bank.*') ? 'on' : '' }}"><x-icon name="coin"/> 입금확인</a>
                 <a href="{{ route('admin.cashbacks.index') }}" class="{{ request()->routeIs('admin.cashbacks.*') ? 'on' : '' }}"><x-icon name="coin"/> 대행 캐쉬백</a>
                 <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'on' : '' }}"><x-icon name="user"/> 회원관리</a>
+                <a href="{{ route('admin.login-logs.index') }}" class="{{ request()->routeIs('admin.login-logs.*') ? 'on' : '' }}"><x-icon name="shield"/> 로그인 이력</a>
                 <a href="{{ route('admin.chat.index') }}" class="{{ request()->routeIs('admin.chat.*') ? 'on' : '' }}"><x-icon name="headset"/> 실시간 상담</a>
                 <a href="{{ route('admin.inquiries.index') }}" class="{{ request()->routeIs('admin.inquiries.*') ? 'on' : '' }}"><x-icon name="question"/> 문의관리</a>
                 <a href="{{ route('admin.reviews.index') }}" class="{{ request()->routeIs('admin.reviews.*') ? 'on' : '' }}"><x-icon name="star"/> 후기관리</a>

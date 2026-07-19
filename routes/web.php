@@ -168,6 +168,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('/bank-deposits/auto-match', [AdminBankDepositController::class, 'autoMatch'])->name('bank.automatch');
     Route::post('/bank-deposits/{deposit}/match', [AdminBankDepositController::class, 'match'])->name('bank.match');
 
+    // 로그인 이력
+    Route::get('/login-logs', [\App\Http\Controllers\Admin\LoginLogController::class, 'index'])->name('login-logs.index');
+
     // 구매 대행자 캐쉬백 정산
     Route::get('/cashbacks', [\App\Http\Controllers\Admin\AgentCashbackController::class, 'index'])->name('cashbacks.index');
     Route::post('/cashbacks/{cashback}/settle', [\App\Http\Controllers\Admin\AgentCashbackController::class, 'settle'])->name('cashbacks.settle');
