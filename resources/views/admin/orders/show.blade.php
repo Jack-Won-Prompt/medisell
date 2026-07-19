@@ -27,6 +27,14 @@
         <div class="adm-card">
             <div class="h">배송 / 결제 정보</div>
             <div style="padding:18px 20px;font-size:14px;line-height:2">
+                @if($order->agent_id)
+                    <div style="background:#eef4ff;border-radius:8px;padding:8px 12px;margin-bottom:8px;line-height:1.7">
+                        <b>🛒 대행 구매</b> — 대행자 {{ $order->agent?->name }}<br>
+                        <b>구매자</b> {{ $order->buyer_hospital }} · {{ $order->buyer_name }} · {{ $order->buyer_phone }}<br>
+                        <b>캐쉬백</b> {{ number_format($order->cashback_amount) }}원
+                        @if($order->cashback)<span class="status-pill st-{{ $order->cashback->status==='paid'?'done':($order->cashback->status==='cancelled'?'cancelled':'pending') }}" style="margin-left:4px">{{ $order->cashback->statusLabel() }}</span>@endif
+                    </div>
+                @endif
                 <b>받는분</b> {{ $order->receiver_name }} · {{ $order->receiver_phone }}<br>
                 <b>주소</b> ({{ $order->postcode }}) {{ $order->address1 }} {{ $order->address2 }}<br>
                 @if($order->memo)<b>메모</b> {{ $order->memo }}<br>@endif

@@ -17,6 +17,7 @@ class User extends Authenticatable
         'member_type', 'phone', 'postcode', 'address1', 'address2',
         'company_name', 'biz_no', 'biz_type', 'biz_status', 'grade',
         'point', 'is_admin',
+        'is_agent', 'cashback_rate',
     ];
 
     protected $hidden = ['password', 'remember_token'];
@@ -27,6 +28,8 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password'          => 'hashed',
             'is_admin'          => 'boolean',
+            'is_agent'          => 'boolean',
+            'cashback_rate'     => 'decimal:2',
         ];
     }
 
@@ -49,6 +52,31 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    /** 대행자가 담당하는 구매자 목록 */
+    public function agentBuyers()
+    {
+        return $this->hasMany(AgentBuyer::class, 'agent_id')
+            ->orderByDesc('is_active')->orderBy('hospital_name');
+    }
+
+    /** 대행자 캐쉬백 원장 */
+    public function agentCashbacks()
+    {
+        return $this->hasMany(AgentCashback::class, 'agent_id')->latest();
+    }
+
+    /** 구매 대행자 여부 */
+    public function isAgent(): bool
+    {
+        return (bool) $this->is_agent;
+    }
+
+    /** 미정산(적립대기) 캐쉬백 합계 */
+    public function pendingCashback(): int
+    {
+        return (int) $this->agentCashbacks()->where('status', 'pending')->sum('amount');
     }
 
     public function pointLogs()

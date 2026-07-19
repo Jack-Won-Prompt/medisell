@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AgentBuyer;
 use App\Models\Order;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
@@ -155,6 +156,79 @@ class MypageController extends Controller
         $address->update(['is_default' => true]);
 
         return back()->with('ok', '기본 배송지로 설정되었습니다.');
+    }
+
+    // ===== 구매 대행자 =====
+
+    /** 대행자만 접근 가능 보장 */
+    private function ensureAgent(Request $request): void
+    {
+        abort_unless($request->user()->isAgent(), 403, '구매 대행자 전용 메뉴입니다.');
+    }
+
+    /** 담당 구매자 목록 + 캐쉬백 요약 */
+    public function agentBuyers(Request $request)
+    {
+        $this->ensureAgent($request);
+        $user = $request->user();
+
+        return view('mypage.agent-buyers', [
+            'user'    => $user,
+            'buyers'  => $user->agentBuyers()->get(),
+            'pending' => $user->pendingCashback(),
+            'paid'    => (int) $user->agentCashbacks()->where('status', 'paid')->sum('amount'),
+        ]);
+    }
+
+    public function storeAgentBuyer(Request $request)
+    {
+        $this->ensureAgent($request);
+        $data = $this->validateBuyer($request);
+        $request->user()->agentBuyers()->create($data + ['is_active' => true]);
+
+        return back()->with('ok', '구매자가 등록되었습니다.');
+    }
+
+    public function updateAgentBuyer(Request $request, AgentBuyer $buyer)
+    {
+        $this->ensureAgent($request);
+        abort_unless($buyer->agent_id === $request->user()->id, 403);
+        $data = $this->validateBuyer($request);
+        $buyer->update($data + ['is_active' => $request->boolean('is_active')]);
+
+        return back()->with('ok', '구매자 정보가 수정되었습니다.');
+    }
+
+    public function deleteAgentBuyer(Request $request, AgentBuyer $buyer)
+    {
+        $this->ensureAgent($request);
+        abort_unless($buyer->agent_id === $request->user()->id, 403);
+        $buyer->delete();
+
+        return back()->with('ok', '구매자가 삭제되었습니다.');
+    }
+
+    /** 캐쉬백 적립 내역 */
+    public function agentCashbacks(Request $request)
+    {
+        $this->ensureAgent($request);
+        $user = $request->user();
+
+        return view('mypage.agent-cashbacks', [
+            'user'      => $user,
+            'cashbacks' => $user->agentCashbacks()->with('order')->paginate(20),
+            'pending'   => $user->pendingCashback(),
+            'paid'      => (int) $user->agentCashbacks()->where('status', 'paid')->sum('amount'),
+        ]);
+    }
+
+    private function validateBuyer(Request $request): array
+    {
+        return $request->validate([
+            'hospital_name' => ['required', 'string', 'max:100'],
+            'buyer_name'    => ['required', 'string', 'max:50'],
+            'buyer_phone'   => ['required', 'string', 'max:30'],
+        ]);
     }
 
     private function validateAddress(Request $request): array

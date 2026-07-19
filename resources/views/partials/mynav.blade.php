@@ -7,5 +7,9 @@
     <a href="{{ route('mypage.coupons') }}" class="{{ $r==='mypage.coupons' ? 'on' : '' }}"><x-icon name="tag"/> 쿠폰함</a>
     <a href="{{ route('mypage.addresses') }}" class="{{ str_starts_with($r,'mypage.address') ? 'on' : '' }}"><x-icon name="pin"/> 배송지 관리</a>
     <a href="{{ route('mypage.profile') }}" class="{{ $r==='mypage.profile' ? 'on' : '' }}"><x-icon name="tools"/> 회원정보수정</a>
+    @if(auth()->user()?->isAgent())
+        <a href="{{ route('mypage.agent.buyers') }}" class="{{ str_starts_with($r,'mypage.agent.buyer') ? 'on' : '' }}"><x-icon name="user"/> 대행 구매자</a>
+        <a href="{{ route('mypage.agent.cashbacks') }}" class="{{ $r==='mypage.agent.cashbacks' ? 'on' : '' }}"><x-icon name="coin"/> 캐쉬백 내역</a>
+    @endif
     <a href="{{ route('cart.index') }}"><x-icon name="cart"/> 장바구니</a>
 </nav>

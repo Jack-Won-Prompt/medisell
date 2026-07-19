@@ -37,6 +37,31 @@ function msApplyCoupon(code){var i=document.querySelector('input[name=code][form
                 </table>
             </div>
 
+            {{-- 구매 대행: 대신 구매할 구매자(병원) 선택 --}}
+            @if($user->isAgent())
+                <div class="form-card">
+                    <h3><x-icon name="user"/> 대행 구매자 선택</h3>
+                    @if($agentBuyers->count())
+                        <div class="field"><label>어느 병원을 대신해 구매하나요?</label>
+                            <select name="agent_buyer_id" class="input">
+                                <option value="">— 대행 없음 (본인 구매) —</option>
+                                @foreach($agentBuyers as $b)
+                                    <option value="{{ $b->id }}" {{ (string) old('agent_buyer_id') === (string) $b->id ? 'selected' : '' }}>
+                                        {{ $b->hospital_name }} · {{ $b->buyer_name }} ({{ $b->buyer_phone }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            <div class="ahint" style="margin-top:4px">
+                                선택 시 주문 총액의 <b>{{ rtrim(rtrim(number_format($user->cashback_rate, 2), '0'), '.') }}%</b>가 캐쉬백으로 적립됩니다.
+                                <a href="{{ route('mypage.agent.buyers') }}" style="color:var(--navy-700)">구매자 관리 →</a>
+                            </div>
+                        </div>
+                    @else
+                        <p class="muted" style="margin:0">등록된 구매자가 없습니다. <a href="{{ route('mypage.agent.buyers') }}" style="color:var(--navy-700)">구매자 등록 →</a></p>
+                    @endif
+                </div>
+            @endif
+
             {{-- 배송지 --}}
             <div class="form-card">
                 <h3><x-icon name="pin"/> 배송지 정보</h3>

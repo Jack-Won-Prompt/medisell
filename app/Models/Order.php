@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'order_no', 'user_id', 'status', 'payment_method',
+        'order_no', 'user_id', 'agent_id', 'status', 'payment_method',
         'pay_provider', 'payment_key', 'pay_status', 'pay_method',
         'receiver_name', 'receiver_phone', 'postcode', 'address1', 'address2', 'memo',
+        'buyer_hospital', 'buyer_name', 'buyer_phone', 'cashback_amount',
         'subtotal', 'shipping_fee', 'discount', 'coupon_id', 'coupon_code', 'point_used', 'total',
         'bank', 'depositor', 'paid_at',
         'va_bank', 'va_account', 'va_holder', 'va_due_at',
@@ -35,6 +36,17 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /** 대신 결제한 구매 대행자 (있을 때만) */
+    public function agent()
+    {
+        return $this->belongsTo(User::class, 'agent_id');
+    }
+
+    public function cashback()
+    {
+        return $this->hasOne(AgentCashback::class);
     }
 
     public function items()
@@ -98,6 +110,10 @@ class Order extends Model
             UserCoupon::where('order_id', $this->id)->update(['used_at' => null, 'order_id' => null]);
         }
 
+        // 대행자 캐쉬백 무효화 (아직 정산 전인 건만)
+        AgentCashback::where('order_id', $this->id)->where('status', 'pending')
+            ->update(['status' => 'cancelled']);
+
         $this->update([
             'status'        => 'cancelled',
             'cancelled_at'  => now(),
@@ -122,6 +138,36 @@ class Order extends Model
             if ($point > 0) {
                 $this->user->adjustPoint($point, "구매 적립 ({$this->order_no})", $this->id);
             }
+        }
+
+        $this->accrueAgentCashback();
+    }
+
+    /**
+     * 대행자 캐쉬백 적립 — 대행 주문이고 대행자 비율이 있을 때 원장에 1건 기록(중복 방지).
+     * 금액 = 주문 총액 × 대행자 캐쉬백 비율(%).
+     */
+    protected function accrueAgentCashback(): void
+    {
+        if (! $this->agent_id) {
+            return;
+        }
+        $agent = $this->agent()->first();
+        $rate = $agent ? (float) $agent->cashback_rate : 0;
+        if ($rate <= 0) {
+            return;
+        }
+        $amount = (int) floor($this->total * $rate / 100);
+        if ($amount <= 0) {
+            return;
+        }
+
+        $cb = AgentCashback::firstOrCreate(
+            ['order_id' => $this->id],
+            ['agent_id' => $this->agent_id, 'amount' => $amount, 'rate' => $rate, 'status' => 'pending'],
+        );
+        if ($cb->wasRecentlyCreated) {
+            $this->update(['cashback_amount' => $amount]);
         }
     }
 }

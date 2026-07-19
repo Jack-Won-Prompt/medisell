@@ -163,7 +163,11 @@ class UserController extends Controller
             'biz_no'       => ['nullable', 'string', 'max:20'],
             'biz_type'     => ['nullable', 'string', 'max:50'],
             'biz_ceo'      => ['nullable', 'string', 'max:50'],
+            'is_agent'     => ['nullable', 'boolean'],
+            'cashback_rate' => ['nullable', 'numeric', 'min:0', 'max:100'],
         ]);
+        $data['is_agent'] = $request->boolean('is_agent');
+        $data['cashback_rate'] = $data['is_agent'] ? (float) ($data['cashback_rate'] ?? 0) : 0;
         $user->update($data);
 
         return back()->with('ok', '회원 정보가 수정되었습니다.');
