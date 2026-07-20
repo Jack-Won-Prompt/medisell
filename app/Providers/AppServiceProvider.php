@@ -54,34 +54,35 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             static $data = null;
             if ($data === null) {
-                $rootCats = Category::with(['children' => fn ($q) => $q->where('is_active', true)])
-                    ->whereNull('parent_id')
-                    ->where('is_active', true)
-                    ->orderBy('sort_order')
-                    ->get();
-
-                $cartCount = 0;
-                $wishlistIds = [];
-                if (auth()->check()) {
-                    $cartCount = auth()->user()->cartItems()->count();
-                    $wishlistIds = auth()->user()->wishlists()->pluck('product_id')->all();
-                }
-
-                // 최근 본 상품 (세션 순서 유지)
-                $rvIds = session('recently_viewed', []);
-                $recentProducts = collect();
-                if ($rvIds) {
-                    $recentProducts = Product::active()->whereIn('id', $rvIds)->get()
-                        ->sortBy(fn ($p) => array_search($p->id, $rvIds))->values();
-                }
-
+                // DB 오류(예: 연결 끊김) 시에도 에러 페이지가 렌더되도록 안전 기본값으로 폴백
                 $data = [
-                    'navCategories'   => $rootCats,
-                    'cartCount'       => $cartCount,
-                    'wishlistIds'     => $wishlistIds,
-                    'recentProducts'  => $recentProducts,
+                    'navCategories'   => collect(),
+                    'cartCount'       => 0,
+                    'wishlistIds'     => [],
+                    'recentProducts'  => collect(),
                     'site'            => config('site'),
                 ];
+                try {
+                    $data['navCategories'] = Category::with(['children' => fn ($q) => $q->where('is_active', true)])
+                        ->whereNull('parent_id')
+                        ->where('is_active', true)
+                        ->orderBy('sort_order')
+                        ->get();
+
+                    if (auth()->check()) {
+                        $data['cartCount'] = auth()->user()->cartItems()->count();
+                        $data['wishlistIds'] = auth()->user()->wishlists()->pluck('product_id')->all();
+                    }
+
+                    // 최근 본 상품 (세션 순서 유지)
+                    $rvIds = session('recently_viewed', []);
+                    if ($rvIds) {
+                        $data['recentProducts'] = Product::active()->whereIn('id', $rvIds)->get()
+                            ->sortBy(fn ($p) => array_search($p->id, $rvIds))->values();
+                    }
+                } catch (\Throwable $e) {
+                    // 기본값 유지 — 헤더/사이드바가 비어도 페이지는 표시
+                }
             }
             $view->with($data);
         });
