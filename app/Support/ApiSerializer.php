@@ -81,6 +81,7 @@ class ApiSerializer
             'list_price'  => (int) $p->price,              // 정가
             'discount_rate' => $p->discountRateFor($price),
             'has_special' => $p->hasSpecialPriceFor($user),
+            'is_quote'    => $price <= 0,                  // 견적(가격문의) 상품
             'stock'       => (int) $p->stock,
             'is_best'     => (bool) $p->is_best,
             'is_new'      => (bool) $p->is_new,
@@ -110,12 +111,32 @@ class ApiSerializer
             }, $p->description)
             : null;
 
+        // 규격/사이즈 변형 (같은 group_key 상품들)
+        $variants = [];
+        $siblings = $p->variants();
+        if ($siblings instanceof \Illuminate\Support\Collection && $siblings->count() > 1) {
+            $variants = $siblings->map(function ($v) use ($user, $p) {
+                $vp = $v->priceFor($user);
+
+                return [
+                    'id'         => $v->id,
+                    'name'       => trim(preg_replace('/^\s*\[[^\]]*\]\s*/u', '', $v->name)),
+                    'slug'       => $v->slug,
+                    'price'      => $vp,
+                    'is_quote'   => $vp <= 0,
+                    'soldout'    => $v->stock <= 0,
+                    'is_current' => $v->id === $p->id,
+                ];
+            })->values()->all();
+        }
+
         return array_merge(self::productCard($p, $request), [
             'description' => $description,
             'spec'        => $p->spec,
             'tax_type'    => $p->tax_type,
             'view_count'  => (int) $p->view_count,
             'gallery'     => $gallery,
+            'variants'    => $variants,
             'category'    => $p->relationLoaded('category') && $p->category
                 ? self::categoryBrief($p->category)
                 : null,
