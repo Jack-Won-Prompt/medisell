@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
@@ -92,5 +94,55 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('home');
+    }
+
+    // ===== 비밀번호 찾기(재설정) =====
+
+    /** 비밀번호 찾기 — 이메일 입력 폼 */
+    public function showForgotPassword()
+    {
+        return view('auth.forgot-password');
+    }
+
+    /** 재설정 링크 메일 발송 */
+    public function sendResetLink(Request $request)
+    {
+        $request->validate(['email' => ['required', 'email']]);
+
+        $status = Password::sendResetLink($request->only('email'));
+
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with('ok', '비밀번호 재설정 링크를 이메일로 보냈습니다. 메일함(스팸함 포함)을 확인해 주세요.')
+            : back()->withInput($request->only('email'))
+                ->withErrors(['email' => '해당 이메일로 가입된 계정을 찾을 수 없습니다.']);
+    }
+
+    /** 재설정 폼 (메일 링크의 토큰) */
+    public function showResetPassword(Request $request, string $token)
+    {
+        return view('auth.reset-password', ['token' => $token, 'email' => $request->email]);
+    }
+
+    /** 새 비밀번호 저장 */
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'token'    => ['required'],
+            'email'    => ['required', 'email'],
+            'password' => ['required', 'confirmed', 'min:8'],
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user, string $password) {
+                $user->forceFill(['password' => Hash::make($password)])->save();
+                event(new PasswordReset($user));
+            }
+        );
+
+        return $status === Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('ok', '비밀번호가 변경되었습니다. 새 비밀번호로 로그인해 주세요.')
+            : back()->withInput($request->only('email'))
+                ->withErrors(['email' => '재설정 링크가 만료되었거나 올바르지 않습니다. 다시 시도해 주세요.']);
     }
 }

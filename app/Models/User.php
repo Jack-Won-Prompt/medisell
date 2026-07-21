@@ -138,6 +138,12 @@ class User extends Authenticatable
         return $this->priceMapCache;
     }
 
+    /** 비밀번호 재설정 메일을 한글·메디셀 브랜드로 발송 */
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new \App\Notifications\ResetPasswordKo($token));
+    }
+
     /** 적립금 변동 + 로그 기록 */
     public function adjustPoint(int $amount, string $reason, ?int $orderId = null): void
     {
