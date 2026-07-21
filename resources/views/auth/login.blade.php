@@ -25,6 +25,8 @@
         <div class="auth-links">
             <a href="{{ route('register') }}">회원가입</a>
             <span>·</span>
+            <a href="{{ route('password.request') }}">비밀번호 찾기</a>
+            <span>·</span>
             <a href="{{ route('community.qna') }}">고객센터 문의</a>
         </div>
     </div>
