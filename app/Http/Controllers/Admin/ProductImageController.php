@@ -80,10 +80,16 @@ class ProductImageController extends Controller
         if (! preg_match('#^https?://#i', $url) && ! str_starts_with($url, 'data:image/')) {
             return response()->json(['error' => '올바른 이미지 주소가 아닙니다.'], 422);
         }
-        $ref = str_starts_with($url, 'data:') ? null : $this->refererFor($url);
-        $img = $this->download($url, $ref);
+        try {
+            $ref = str_starts_with($url, 'data:') ? null : $this->refererFor($url);
+            $img = $this->download($url, $ref);
 
-        return $this->saveThumb($product, $img);
+            return $this->saveThumb($product, $img);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return response()->json(['error' => '이미지 처리 중 오류가 발생했습니다.'], 422);
+        }
     }
 
     /** 이미지 URL 또는 상품페이지 URL을 붙여넣으면 이미지 추출·다운로드해 썸네일 지정 */
@@ -94,30 +100,37 @@ class ProductImageController extends Controller
         if (! preg_match('#^https?://#i', $url) && ! str_starts_with($url, 'data:image/')) {
             return response()->json(['error' => '올바른 이미지 주소가 아닙니다.'], 422);
         }
-        if (str_starts_with($url, 'data:')) {
-            // data URI는 바로 디코드해 저장
-            return $this->saveThumb($product, $this->download($url, null));
-        }
-        $host = parse_url($url, PHP_URL_HOST);
-        $ref = $this->refererFor($url) ?: (parse_url($url, PHP_URL_SCHEME).'://'.$host.'/');
-        $body = $this->download($url, $ref);
-        if (! $body) {
-            return response()->json(['error' => 'URL을 가져오지 못했습니다.'], 422);
-        }
-        $mime = (string) finfo_buffer(finfo_open(FILEINFO_MIME_TYPE), $body);
-        if (! str_starts_with($mime, 'image/')) {
-            // HTML 상품페이지 → 대표 이미지 추출 (og:image → product/big → 첫 상품이미지)
-            $imgUrl = null;
-            if (preg_match('/<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']/i', $body, $m)) $imgUrl = $m[1];
-            elseif (preg_match('#(?:https?:)?//[^"\']*?product/big/[^"\']+?\.(?:jpg|png)#i', $body, $m)) $imgUrl = $m[0];
-            elseif (preg_match('#(?:https?:)?//[^"\']*?/(?:product|goods|data)/[^"\']+?\.(?:jpg|png)#i', $body, $m)) $imgUrl = $m[0];
-            if (! $imgUrl) {
-                return response()->json(['error' => '페이지에서 상품 이미지를 찾지 못했습니다.'], 422);
+        try {
+            if (str_starts_with($url, 'data:')) {
+                // data URI는 바로 디코드해 저장
+                return $this->saveThumb($product, $this->download($url, null));
             }
-            if (str_starts_with($imgUrl, '//')) $imgUrl = 'https:'.$imgUrl;
-            $body = $this->download($imgUrl, $ref);
+            $host = parse_url($url, PHP_URL_HOST);
+            $ref = $this->refererFor($url) ?: (parse_url($url, PHP_URL_SCHEME).'://'.$host.'/');
+            $body = $this->download($url, $ref);
+            if (! $body) {
+                return response()->json(['error' => 'URL을 가져오지 못했습니다.'], 422);
+            }
+            $mime = $this->imageMime($body);
+            if (! str_starts_with($mime, 'image/')) {
+                // HTML 상품페이지 → 대표 이미지 추출 (og:image → product/big → 첫 상품이미지)
+                $imgUrl = null;
+                if (preg_match('/<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']/i', $body, $m)) $imgUrl = $m[1];
+                elseif (preg_match('#(?:https?:)?//[^"\']*?product/big/[^"\']+?\.(?:jpg|png)#i', $body, $m)) $imgUrl = $m[0];
+                elseif (preg_match('#(?:https?:)?//[^"\']*?/(?:product|goods|data)/[^"\']+?\.(?:jpg|png)#i', $body, $m)) $imgUrl = $m[0];
+                if (! $imgUrl) {
+                    return response()->json(['error' => '페이지에서 상품 이미지를 찾지 못했습니다.'], 422);
+                }
+                if (str_starts_with($imgUrl, '//')) $imgUrl = 'https:'.$imgUrl;
+                $body = $this->download($imgUrl, $ref);
+            }
+
+            return $this->saveThumb($product, $body);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return response()->json(['error' => '이미지 처리 중 오류가 발생했습니다.'], 422);
         }
-        return $this->saveThumb($product, $body);
     }
 
     /** 이미지 바이트 검증·저장·썸네일 지정 + 유사 전파 */
@@ -126,7 +139,7 @@ class ProductImageController extends Controller
         if (! $img || strlen($img) < 1500) {
             return response()->json(['error' => '이미지를 내려받지 못했습니다.'], 422);
         }
-        if (! str_starts_with((string) finfo_buffer(finfo_open(FILEINFO_MIME_TYPE), $img), 'image/')) {
+        if (! str_starts_with($this->imageMime($img), 'image/')) {
             return response()->json(['error' => '이미지 파일이 아닙니다.'], 422);
         }
         $dir = public_path('product/picked');
@@ -261,6 +274,18 @@ class ProductImageController extends Controller
         } catch (\Throwable $e) {
             return '';
         }
+    }
+
+    /** 이미지 MIME 판별 — fileinfo 확장이 없어도 동작(getimagesizefromstring 폴백) */
+    private function imageMime(string $bytes): string
+    {
+        if ($bytes === '') return '';
+        if (function_exists('finfo_open') && ($f = @finfo_open(FILEINFO_MIME_TYPE))) {
+            $m = @finfo_buffer($f, $bytes);
+            if (is_string($m) && $m !== '') return $m;
+        }
+        $info = @getimagesizefromstring($bytes);
+        return $info['mime'] ?? '';
     }
 
     /** data URI(base64 또는 url-encoded)를 원본 바이트로 디코드 */
