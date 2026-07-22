@@ -144,8 +144,14 @@ class ProductImageController extends Controller
         }
         $dir = public_path('product/picked');
         if (! is_dir($dir)) @mkdir($dir, 0775, true);
+        // 저장 폴더 쓰기 권한 확인 → 권한 문제를 명확히 안내 (운영 www-data 권한 등)
+        if (! is_writable($dir)) {
+            return response()->json(['error' => '이미지 저장 폴더에 쓰기 권한이 없습니다. (public/product/picked)'], 422);
+        }
         $file = preg_replace('/[^A-Za-z0-9_-]/', '', (string) ($product->code ?: $product->id)).'-'.time().'.jpg';
-        file_put_contents($dir.'/'.$file, $img);
+        if (@file_put_contents($dir.'/'.$file, $img) === false) {
+            return response()->json(['error' => '이미지 저장에 실패했습니다. 폴더 권한을 확인해 주세요.'], 422);
+        }
         $url = asset('product/picked/'.$file);
         $product->update(['thumbnail' => $url]);
         $propagated = $this->propagate($product, $url);
