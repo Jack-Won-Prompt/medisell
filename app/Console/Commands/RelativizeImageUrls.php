@@ -18,7 +18,7 @@ use Illuminate\Console\Command;
 class RelativizeImageUrls extends Command
 {
     protected $signature = 'images:relativize
-        {--from= : 제거할 절대경로 접두사 (기본: http://localhost/medisell/public)}
+        {--from= : 제거할 절대경로 접두사 (기본: http://localhost/medisell)}
         {--to= : 대체 문자열 (기본: 빈 문자열 → /product/... 형태)}
         {--dry : 실제 변경 없이 대상 건수만 표시}';
 
@@ -26,7 +26,8 @@ class RelativizeImageUrls extends Command
 
     public function handle(): int
     {
-        $from = rtrim($this->option('from') ?: 'http://localhost/medisell/public', '/');
+        // 저장 형식이 http://localhost/medisell/product/... (하위폴더, /public 없음)
+        $from = rtrim($this->option('from') ?: 'http://localhost/medisell', '/');
         $to = (string) ($this->option('to') ?? '');
         $dry = (bool) $this->option('dry');
 
