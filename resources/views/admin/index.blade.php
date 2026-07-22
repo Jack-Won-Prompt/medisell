@@ -26,7 +26,7 @@
         <thead>
             <tr>
                 @foreach($cfg['columns'] as $col => $label)<th>{{ $label }}</th>@endforeach
-                <th style="width:120px">관리</th>
+                <th style="width:1%;white-space:nowrap">관리</th>
             </tr>
         </thead>
         <tbody>
@@ -57,15 +57,17 @@
                         @endif
                     </td>
                 @endforeach
-                <td>
-                    @if($cfg['key'] === 'coupons')
-                        <a href="{{ route('admin.coupons.issue', $item->id) }}" class="abtn abtn-pri abtn-sm">발행</a>
-                    @endif
-                    <a href="{{ route('admin.edit', [$cfg['key'], $item->id]) }}" class="abtn abtn-ghost abtn-sm">수정</a>
-                    <form method="POST" action="{{ route('admin.destroy', [$cfg['key'], $item->id]) }}" style="display:inline" onsubmit="return confirm('삭제하시겠습니까?')">
-                        @csrf @method('DELETE')
-                        <button class="abtn abtn-red abtn-sm">삭제</button>
-                    </form>
+                <td style="white-space:nowrap">
+                    <div style="display:flex;gap:6px;align-items:center;flex-wrap:nowrap">
+                        @if($cfg['key'] === 'coupons')
+                            <a href="{{ route('admin.coupons.issue', $item->id) }}" class="abtn abtn-pri abtn-sm">발행</a>
+                        @endif
+                        <a href="{{ route('admin.edit', [$cfg['key'], $item->id]) }}" class="abtn abtn-ghost abtn-sm">수정</a>
+                        <form method="POST" action="{{ route('admin.destroy', [$cfg['key'], $item->id]) }}" style="margin:0" onsubmit="return confirm('삭제하시겠습니까?')">
+                            @csrf @method('DELETE')
+                            <button class="abtn abtn-red abtn-sm">삭제</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         @empty
