@@ -59,6 +59,14 @@ class ResourceController extends Controller
                 }
             });
         }
+
+        // 이미지 없는 상품만 (thumbnail 컬럼이 있는 리소스 한정)
+        if (request()->boolean('no_image')
+            && \Illuminate\Support\Facades\Schema::hasColumn((new $cfg['model'])->getTable(), 'thumbnail')) {
+            $query->where(function ($w) {
+                $w->whereNull('thumbnail')->orWhere('thumbnail', '');
+            });
+        }
         [$col, $dir] = $cfg['order'] ?? ['id', 'desc'];
 
         // 트리형(카테고리 등): 검색이 없으면 계층 정렬로 전체 표시

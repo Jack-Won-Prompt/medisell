@@ -4,9 +4,15 @@
 
 @section('content')
 <div class="toolbar">
-    <form method="GET" class="search-mini">
+    <form method="GET" class="search-mini" style="display:flex;align-items:center;gap:10px">
         <input type="text" name="q" value="{{ request('q') }}" placeholder="{{ $cfg['label'] }} 검색">
         <button type="submit"><x-icon name="search" :size="16"/></button>
+        @if($cfg['key'] === 'products')
+            <label style="display:inline-flex;align-items:center;gap:5px;font-size:13px;color:var(--a-navy,#12459e);white-space:nowrap;cursor:pointer">
+                <input type="checkbox" name="no_image" value="1" onchange="this.form.submit()" {{ request()->boolean('no_image') ? 'checked' : '' }}>
+                이미지 없는 상품
+            </label>
+        @endif
     </form>
     <div class="spacer"></div>
     @if($cfg['key'] === 'products')
