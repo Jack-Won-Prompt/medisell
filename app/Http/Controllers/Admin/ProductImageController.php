@@ -74,8 +74,14 @@ class ProductImageController extends Controller
     /** 선택한 후보 이미지를 내려받아 썸네일로 지정 */
     public function fetch(Request $request, Product $product)
     {
-        $data = $request->validate(['url' => ['required', 'url', 'max:2000']]);
-        $img = $this->download($data['url'], $this->refererFor($data['url']));
+        // data:image URI는 매우 길고 url 규칙에 안 맞으므로 별도 허용
+        $data = $request->validate(['url' => ['required', 'string', 'max:12000000']]);
+        $url = $data['url'];
+        if (! preg_match('#^https?://#i', $url) && ! str_starts_with($url, 'data:image/')) {
+            return response()->json(['error' => '올바른 이미지 주소가 아닙니다.'], 422);
+        }
+        $ref = str_starts_with($url, 'data:') ? null : $this->refererFor($url);
+        $img = $this->download($url, $ref);
 
         return $this->saveThumb($product, $img);
     }
@@ -83,8 +89,15 @@ class ProductImageController extends Controller
     /** 이미지 URL 또는 상품페이지 URL을 붙여넣으면 이미지 추출·다운로드해 썸네일 지정 */
     public function importUrl(Request $request, Product $product)
     {
-        $data = $request->validate(['url' => ['required', 'url', 'max:2000']]);
+        $data = $request->validate(['url' => ['required', 'string', 'max:12000000']]);
         $url = $data['url'];
+        if (! preg_match('#^https?://#i', $url) && ! str_starts_with($url, 'data:image/')) {
+            return response()->json(['error' => '올바른 이미지 주소가 아닙니다.'], 422);
+        }
+        if (str_starts_with($url, 'data:')) {
+            // data URI는 바로 디코드해 저장
+            return $this->saveThumb($product, $this->download($url, null));
+        }
         $host = parse_url($url, PHP_URL_HOST);
         $ref = $this->refererFor($url) ?: (parse_url($url, PHP_URL_SCHEME).'://'.$host.'/');
         $body = $this->download($url, $ref);
@@ -236,6 +249,10 @@ class ProductImageController extends Controller
 
     private function download(string $url, ?string $ref): string
     {
+        // data:image/...;base64,.... → HTTP 요청 없이 직접 디코드
+        if (str_starts_with($url, 'data:')) {
+            return $this->decodeDataUri($url);
+        }
         try {
             $req = Http::withHeaders(['User-Agent' => 'Mozilla/5.0'])->timeout(12);
             if ($ref) $req = $req->withHeaders(['Referer' => $ref]);
@@ -244,5 +261,18 @@ class ProductImageController extends Controller
         } catch (\Throwable $e) {
             return '';
         }
+    }
+
+    /** data URI(base64 또는 url-encoded)를 원본 바이트로 디코드 */
+    private function decodeDataUri(string $uri): string
+    {
+        $comma = strpos($uri, ',');
+        if ($comma === false) return '';
+        $meta = substr($uri, 5, $comma - 5);      // "image/jpeg;base64" 등
+        $data = substr($uri, $comma + 1);
+        if (stripos($meta, 'base64') !== false) {
+            return base64_decode($data, true) ?: '';
+        }
+        return rawurldecode($data);
     }
 }
