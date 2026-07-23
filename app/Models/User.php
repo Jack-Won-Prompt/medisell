@@ -18,6 +18,7 @@ class User extends Authenticatable
         'company_name', 'biz_no', 'biz_type', 'biz_status', 'grade',
         'point', 'is_admin',
         'is_agent', 'cashback_rate',
+        'account_id',
     ];
 
     protected $hidden = ['password', 'remember_token'];
@@ -124,7 +125,13 @@ class User extends Authenticatable
         return $this->isApprovedBusiness();
     }
 
-    /** 병원 전용 단가 맵 [product_id => price] (요청당 1회 조회) */
+    /** 소속 거래처 (여러 계정이 하나의 거래처 공유) */
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
+
+    /** 회원 개별 전용 단가 맵 [product_id => price] (요청당 1회 조회) */
     protected ?array $priceMapCache = null;
 
     public function priceMap(): array
@@ -136,6 +143,43 @@ class User extends Authenticatable
         }
 
         return $this->priceMapCache;
+    }
+
+    /** 소속 거래처의 전용 단가 맵 [product_id => price] (요청당 1회 조회) */
+    protected ?array $accountPriceMapCache = null;
+
+    public function accountPriceMap(): array
+    {
+        if ($this->accountPriceMapCache === null) {
+            $acc = $this->activeAccount();
+            $this->accountPriceMapCache = $acc ? $acc->priceMap() : [];
+        }
+
+        return $this->accountPriceMapCache;
+    }
+
+    /** 활성 거래처 (승인 회원 + 활성 거래처일 때만 단가 적용) */
+    protected bool $accountLoaded = false;
+    protected ?Account $activeAccountCache = null;
+
+    public function activeAccount(): ?Account
+    {
+        if (! $this->accountLoaded) {
+            $this->accountLoaded = true;
+            $this->activeAccountCache = ($this->isApprovedBusiness() && $this->account_id)
+                ? $this->account()->where('is_active', true)->first()
+                : null;
+        }
+
+        return $this->activeAccountCache;
+    }
+
+    /** 거래처 등급별 일괄 할인율(%) — 없으면 0 */
+    public function accountDiscountRate(): float
+    {
+        $acc = $this->activeAccount();
+
+        return $acc ? (float) $acc->discount_rate : 0;
     }
 
     /** 비밀번호 재설정 메일을 한글·메디셀 브랜드로 발송 */

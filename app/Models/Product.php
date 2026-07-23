@@ -67,10 +67,22 @@ class Product extends Model
     public function priceFor(?User $user): int
     {
         if ($user && $user->isApprovedBusiness()) {
+            // 1) 회원 개별 전용가 (가장 우선)
             $map = $user->priceMap();
             if (isset($map[$this->id])) {
                 return (int) $map[$this->id];
             }
+            // 2) 소속 거래처 전용가 (거래처 그룹 공유)
+            $accMap = $user->accountPriceMap();
+            if (isset($accMap[$this->id])) {
+                return (int) $accMap[$this->id];
+            }
+            // 3) 거래처 등급별 일괄 할인율
+            $rate = $user->accountDiscountRate();
+            if ($rate > 0 && $this->price > 0) {
+                return (int) round($this->price * (1 - $rate / 100));
+            }
+            // 4) 공통 회원가
             if ($this->member_price) {
                 return $this->member_price;
             }
