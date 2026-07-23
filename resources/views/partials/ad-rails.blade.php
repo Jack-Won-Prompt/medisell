@@ -1,8 +1,8 @@
-@php($__ads = $sideAds ?? collect())
+@php($__ads = ($sideAds ?? collect())->shuffle())
 @if($__ads->isNotEmpty())
+    {{-- 페이지마다 랜덤 · 좌/우 레일 간 중복 없이 노출 --}}
     @php($__left = $__ads->filter(fn ($a) => in_array($a->position, ['left', 'both']))->take(3))
-    @php($__right = $__ads->filter(fn ($a) => in_array($a->position, ['right', 'both']))->reject(fn ($a) => $__left->contains('id', $a->id))->take(3))
-    @php($__right = $__right->isEmpty() ? $__ads->filter(fn ($a) => in_array($a->position, ['right', 'both']))->take(3) : $__right)
+    @php($__right = $__ads->filter(fn ($a) => in_array($a->position, ['right', 'both']) && ! $__left->contains('id', $a->id))->take(3))
 
     @foreach(['left' => $__left, 'right' => $__right] as $__side => $__list)
         @if($__list->isNotEmpty())
