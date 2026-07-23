@@ -101,6 +101,26 @@ return [
         'defaults' => ['is_active' => true, 'position' => 'main'],
     ],
 
+    'ads' => [
+        'label' => '사이드 광고', 'model' => App\Models\Ad::class, 'icon' => 'monitor', 'group' => '전시관리',
+        'order' => ['sort_order', 'asc'],
+        'columns' => ['image' => '이미지', 'title' => '제목', 'price' => '광고가', 'position' => '위치', 'sort_order' => '순서', 'is_active' => '활성'],
+        'fields' => [
+            ['name' => 'title', 'label' => '제목', 'type' => 'text', 'required' => true],
+            ['name' => 'subtitle', 'label' => '부제(한 줄 설명)', 'type' => 'text'],
+            ['name' => 'image', 'label' => '광고 이미지', 'type' => 'image', 'hint' => '없으면 아래 배경색으로 카드 표시'],
+            ['name' => 'bg_color', 'label' => '배경색(이미지 없을 때)', 'type' => 'text', 'hint' => '예: linear-gradient(135deg,#1857c4,#06256b)'],
+            ['name' => 'price', 'label' => '광고가(원, 선택)', 'type' => 'number'],
+            ['name' => 'badge', 'label' => '뱃지', 'type' => 'text', 'hint' => '예: AD, 특가, 신제품'],
+            ['name' => 'link', 'label' => '클릭 이동 URL(외부 가능)', 'type' => 'text'],
+            ['name' => 'position', 'label' => '노출 위치', 'type' => 'select', 'required' => true,
+                'options' => ['both' => '양쪽', 'left' => '좌측만', 'right' => '우측만']],
+            ['name' => 'sort_order', 'label' => '정렬 순서', 'type' => 'number'],
+            ['name' => 'is_active', 'label' => '노출', 'type' => 'checkbox'],
+        ],
+        'defaults' => ['is_active' => true, 'position' => 'both'],
+    ],
+
     'coupons' => [
         'label' => '쿠폰', 'model' => Coupon::class, 'icon' => 'tag', 'group' => '프로모션',
         'order' => ['id', 'desc'],

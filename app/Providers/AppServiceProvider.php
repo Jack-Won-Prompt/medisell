@@ -61,7 +61,15 @@ class AppServiceProvider extends ServiceProvider
                     'wishlistIds'     => [],
                     'recentProducts'  => collect(),
                     'site'            => config('site'),
+                    'sideAds'         => collect(),
                 ];
+                try {
+                    if (Schema::hasTable('ads')) {
+                        $data['sideAds'] = \App\Models\Ad::active()->orderBy('sort_order')->orderBy('id')->get();
+                    }
+                } catch (\Throwable $e) {
+                    // ads 테이블 이전 등 — 광고 없이 진행
+                }
                 try {
                     $data['navCategories'] = Category::with(['children' => fn ($q) => $q->where('is_active', true)])
                         ->whereNull('parent_id')

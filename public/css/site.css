@@ -691,3 +691,29 @@ main{min-height:60vh}
 .brand .icon,
 .card .thumb .ph .icon{color:inherit!important}
 
+
+/* ===== 사이드 광고 레일 (넓은 화면 좌/우 여백에만 노출) ===== */
+.ad-rail{position:fixed;top:118px;width:168px;z-index:35;display:flex;flex-direction:column;gap:12px}
+.ad-rail-left{left:14px}
+.ad-rail-right{right:14px}
+.ad-rail-label{font-size:11px;font-weight:700;color:var(--slate-400);letter-spacing:.04em;text-align:center}
+.ad-rail-foot{font-size:10.5px;color:var(--slate-300);text-align:center;margin-top:2px}
+.ad-card{display:flex;flex-direction:column;border:1px solid var(--slate-200);border-radius:14px;overflow:hidden;background:#fff;text-decoration:none;box-shadow:0 4px 14px rgba(6,37,107,.06);transition:transform .15s,box-shadow .15s;position:relative;min-height:150px}
+.ad-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(6,37,107,.14)}
+.ad-card-bg{color:#fff;justify-content:flex-end;padding:14px 13px}
+.ad-card-bg .ad-title{color:#fff}
+.ad-card-bg .ad-sub{color:rgba(255,255,255,.85)}
+.ad-card-bg .ad-price{color:#fff}
+.ad-card-bg .ad-cta{color:rgba(255,255,255,.9)}
+.ad-badge{position:absolute;top:9px;left:9px;background:#e0322d;color:#fff;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:20px;z-index:2;letter-spacing:.02em}
+.ad-thumb{display:block;height:112px;background:#f6f8fc}
+.ad-thumb img{width:100%;height:100%;object-fit:contain}
+.ad-body{display:flex;flex-direction:column;gap:2px;padding:11px 12px}
+.ad-card-bg .ad-body{padding:0}
+.ad-title{font-size:13px;font-weight:700;color:var(--navy-900);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ad-sub{font-size:11.5px;color:var(--slate-500);line-height:1.3;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.ad-price{font-size:15px;font-weight:800;color:var(--navy-700);margin-top:3px}
+.ad-price em{font-size:11px;font-weight:600;font-style:normal;color:var(--slate-400)}
+.ad-cta{font-size:11px;font-weight:700;color:var(--navy-600);margin-top:5px}
+/* 여백이 충분한 넓은 화면에서만 노출 (컨테이너 1400 + 레일 양쪽) */
+@media (max-width:1779px){.ad-rail{display:none}}
