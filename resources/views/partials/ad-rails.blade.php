@@ -9,12 +9,13 @@
             <aside class="ad-rail ad-rail-{{ $__side }}" aria-label="추천 광고">
                 <div class="ad-rail-label">AD · 추천상품</div>
                 @foreach($__list as $ad)
-                    <a class="ad-card {{ $ad->image ? '' : 'ad-card-bg' }}"
-                       @if($ad->link) href="{{ $ad->link }}" target="_blank" rel="noopener nofollow sponsored" @else href="javascript:void(0)" @endif
-                       @unless($ad->image) style="background:{{ $ad->bg_color ?: 'linear-gradient(150deg,#1857c4,#06256b)' }}" @endunless>
+                    <a class="ad-card"
+                       @if($ad->link) href="{{ $ad->link }}" target="_blank" rel="noopener nofollow sponsored" @else href="javascript:void(0)" @endif>
                         @if($ad->badge)<span class="ad-badge">{{ $ad->badge }}</span>@endif
                         @if($ad->image)
                             <span class="ad-thumb"><img src="{{ $ad->image }}" alt="{{ $ad->title }}" loading="lazy"></span>
+                        @else
+                            <span class="ad-thumb ad-thumb-empty" @if($ad->bg_color) style="background:{{ $ad->bg_color }}" @endif><x-icon name="box" :size="36"/></span>
                         @endif
                         <span class="ad-body">
                             <span class="ad-title">{{ $ad->title }}</span>
