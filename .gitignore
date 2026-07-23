@@ -62,3 +62,4 @@ storage/app/fcm-service-account.json
 fcm-service-account*.json
 medisell_*.sql
 public/product/*.zip
+medisell_ads_20/

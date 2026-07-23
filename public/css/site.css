@@ -702,6 +702,9 @@ main{min-height:60vh}
 .ad-rail-foot{font-size:10.5px;color:var(--slate-300);text-align:center;margin-top:2px}
 .ad-card{display:flex;flex-direction:column;border:1px solid var(--slate-200);border-radius:14px;overflow:hidden;background:#fff;text-decoration:none;box-shadow:0 4px 14px rgba(6,37,107,.06);transition:transform .15s,box-shadow .15s;position:relative}
 .ad-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(6,37,107,.14)}
+.ad-card-banner{background:#fff}
+.ad-banner-img{display:block;line-height:0}
+.ad-banner-img img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
 .ad-badge{position:absolute;top:10px;left:10px;background:#e0322d;color:#fff;font-size:10.5px;font-weight:800;padding:2px 9px;border-radius:20px;z-index:2;letter-spacing:.02em}
 .ad-thumb{display:block;height:138px;background:#f6f8fc}
 .ad-thumb img{width:100%;height:100%;object-fit:cover}
