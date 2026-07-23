@@ -15,11 +15,11 @@ class SeedSampleAds extends Command
     protected $signature = 'ads:seed-samples {--fresh : 기존 샘플 삭제 후 재생성}';
     protected $description = '샘플 사이드 광고(외부 제품 20종, 이미지 포함) 등록';
 
-    /** 색상 팔레트 [accent, bg] */
+    /** 그라디언트 팔레트 [밝은색, 어두운색] — 광고 크리에이티브 배경용 */
     private array $palette = [
-        ['#0f8a8a', '#e7f5f4'], ['#e0322d', '#fdecea'], ['#1857c4', '#e9f0fd'], ['#12805c', '#e7f3ee'],
-        ['#2563eb', '#e9f0fd'], ['#6b4bb8', '#efeaf9'], ['#d97706', '#fdf1e3'], ['#db2777', '#fce7f0'],
-        ['#0891b2', '#e5f6fb'], ['#475569', '#eef2f7'],
+        ['#14b8b8', '#0a5c5c'], ['#f04438', '#a01008'], ['#3b82f6', '#1e40af'], ['#16a34a', '#0a5c30'],
+        ['#4f6ef7', '#1e3a8a'], ['#8b5cf6', '#4c1d95'], ['#f59e0b', '#b45309'], ['#ec4899', '#9d174d'],
+        ['#06b6d4', '#0e7490'], ['#64748b', '#334155'],
     ];
 
     /** key => [제목, 부제, 가격, 뱃지, icon(inner svg)] */
@@ -64,8 +64,8 @@ class SeedSampleAds extends Command
 
         $created = 0; $updated = 0; $i = 0;
         foreach ($samples as $key => [$title, $sub, $price, $badge, $icon]) {
-            [$accent, $bg] = $this->palette[$i % count($this->palette)];
-            file_put_contents($dir.'/'.$key.'.svg', $this->svg($bg, $accent, $icon));
+            [$c1, $c2] = $this->palette[$i % count($this->palette)];
+            file_put_contents($dir.'/'.$key.'.svg', $this->svg($c1, $c2, $icon, $badge));
             $i++;
 
             $ad = Ad::updateOrCreate(
@@ -90,11 +90,24 @@ class SeedSampleAds extends Command
         return 0;
     }
 
-    private function svg(string $bg, string $accent, string $icon): string
+    /** 광고 크리에이티브 SVG — 대각 그라디언트 배경 + 스포트라이트 + 흰색 제품 실루엣 */
+    private function svg(string $c1, string $c2, string $icon, string $badge): string
     {
+        $gid = 'g'.substr(md5($c1.$c2), 0, 6);
+        // 흰 배경 채움 → 반투명(그라디언트 위 글래스 느낌, 흰 라인 디테일 유지)
+        $icon = str_replace('fill="#fff"', 'fill="rgba(255,255,255,0.16)"', $icon);
+
         return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="320" height="220">'
-            .'<rect width="320" height="220" fill="'.$bg.'"/>'
-            .'<g stroke="'.$accent.'" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">'.$icon.'</g>'
+            .'<defs>'
+            .'<linearGradient id="'.$gid.'" x1="0" y1="0" x2="1" y2="1">'
+            .'<stop offset="0" stop-color="'.$c1.'"/><stop offset="1" stop-color="'.$c2.'"/></linearGradient>'
+            .'<radialGradient id="s'.$gid.'" cx="0.5" cy="0.42" r="0.6">'
+            .'<stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>'
+            .'</defs>'
+            .'<rect width="320" height="220" fill="url(#'.$gid.')"/>'
+            .'<rect width="320" height="220" fill="url(#s'.$gid.')"/>'
+            .'<ellipse cx="160" cy="188" rx="86" ry="12" fill="#000000" opacity="0.10"/>'
+            .'<g stroke="#ffffff" stroke-width="6.5" fill="none" stroke-linecap="round" stroke-linejoin="round">'.$icon.'</g>'
             .'</svg>';
     }
 }

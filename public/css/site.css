@@ -694,8 +694,9 @@ main{min-height:60vh}
 
 /* ===== 사이드 광고 레일 (넓은 화면 좌/우 여백에만 노출) ===== */
 .ad-rail{position:fixed;top:118px;width:200px;z-index:35;display:flex;flex-direction:column;gap:14px}
-.ad-rail-left{left:16px}
-.ad-rail-right{right:16px}
+/* 컨테이너(1400) 바깥 여백의 '가운데'에 배치: (여백폭 - 레일폭)/2 */
+.ad-rail-left{left:calc((100vw - 1400px)/4 - 100px)}
+.ad-rail-right{right:calc((100vw - 1400px)/4 - 100px)}
 .ad-rail-label{font-size:11px;font-weight:700;color:var(--slate-400);letter-spacing:.04em;text-align:center}
 .ad-rail-foot{font-size:10.5px;color:var(--slate-300);text-align:center;margin-top:2px}
 .ad-card{display:flex;flex-direction:column;border:1px solid var(--slate-200);border-radius:14px;overflow:hidden;background:#fff;text-decoration:none;box-shadow:0 4px 14px rgba(6,37,107,.06);transition:transform .15s,box-shadow .15s;position:relative}
