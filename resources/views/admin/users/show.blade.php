@@ -30,7 +30,7 @@
     </div>
 
     <div class="adm-card">
-        <div class="h">병원 승인 / 등급</div>
+        <div class="h">거래처(병원·기업) 승인 / 등급</div>
         <div style="padding:20px">
             @if($user->member_type==='business')
                 <div style="background:#f7f9fc;border-radius:10px;padding:14px;margin-bottom:16px;font-size:13.5px;line-height:1.9">
@@ -39,13 +39,13 @@
                     <b>종별</b> {{ $user->biz_type ?? '-' }}
                 </div>
             @else
-                <p class="muted" style="margin-bottom:16px;font-size:13.5px">일반 회원입니다. 병원 승인 및 전용가는 병원 회원에만 적용됩니다.</p>
+                <p class="muted" style="margin-bottom:16px;font-size:13.5px">일반 회원입니다. 승인 및 전용가는 병원·기업(사업자) 회원에만 적용됩니다.</p>
             @endif
 
             <form method="POST" action="{{ route('admin.users.approve', $user) }}">
                 @csrf @method('PUT')
                 <div class="afield">
-                    <label>병원 승인상태</label>
+                    <label>거래처 승인상태</label>
                     <select name="biz_status" class="aselect">
                         @foreach(['pending'=>'승인대기','approved'=>'승인','rejected'=>'거절'] as $k=>$v)
                             <option value="{{ $k }}" {{ $user->biz_status===$k ? 'selected' : '' }}>{{ $v }}</option>
@@ -59,7 +59,7 @@
                             <option value="{{ $k }}" {{ $user->grade===$k ? 'selected' : '' }}>{{ $v }}</option>
                         @endforeach
                     </select>
-                    <div class="ahint">'승인' 병원 회원에게 아래 병원 전용가가 적용됩니다.</div>
+                    <div class="ahint">'승인' 병원·기업 회원에게 적용. 거래처 단가보다 우선합니다.</div>
                 </div>
                 <button class="abtn abtn-pri" style="width:100%;justify-content:center">저장</button>
             </form>
@@ -95,6 +95,19 @@
                     <div class="afield" style="margin:0"><label>대표자명(계산서용)</label><input type="text" name="biz_ceo" class="ainput" value="{{ old('biz_ceo', $user->biz_ceo) }}"></div>
                     <div class="afield" style="margin:0"><label>종별</label><input type="text" name="biz_type" class="ainput" value="{{ old('biz_type', $user->biz_type) }}"></div>
                 </div>
+                {{-- 소속 거래처 (전용가/할인 그룹) --}}
+                <div style="border-top:1px solid var(--line,#e5e7eb);margin-top:14px;padding-top:12px">
+                    <div class="afield" style="margin:0"><label>소속 거래처 (전용가·할인 그룹)</label>
+                        <select name="account_id" class="aselect">
+                            <option value="">— 없음 —</option>
+                            @foreach($accounts as $acc)
+                                <option value="{{ $acc->id }}" {{ (string) old('account_id', $user->account_id) === (string) $acc->id ? 'selected' : '' }}>{{ $acc->name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="ahint" style="margin-top:4px">거래처에 배정하면 <a href="{{ route('admin.accounts.index') }}" style="color:var(--a-navy)">거래처 단가</a>가 이 회원에게 적용됩니다.</div>
+                    </div>
+                </div>
+
                 {{-- 구매 대행자 --}}
                 <div style="border-top:1px solid var(--line,#e5e7eb);margin-top:14px;padding-top:12px">
                     <label class="acheck" style="display:flex;align-items:center;gap:6px;margin-bottom:10px">
@@ -146,11 +159,11 @@
     </div>
 </div>
 
-{{-- 병원 전용가 매핑 (병원 회원만) --}}
+{{-- 회원 개별 전용가 (병원 회원만) --}}
 @if($user->member_type==='business')
 <div class="adm-card" style="margin-top:20px">
     <div class="h">
-        <span>병원 전용가 매핑 <span class="pill pill-b">{{ $prices->count() }}개 제품</span></span>
+        <span>회원 개별 전용가 <span class="pill pill-b">{{ $prices->count() }}개 제품</span></span>
         <span style="display:flex;gap:8px;align-items:center">
             @unless($user->biz_status==='approved')<span class="pill pill-w">승인 후 적용됨</span>@endunless
             <a href="{{ route('admin.users.prices.export', $user) }}" class="abtn abtn-ghost abtn-sm"><x-icon name="doc" :size="14"/> 양식 다운로드</a>
@@ -180,7 +193,7 @@
                 </select>
             </div>
             <div class="afield" style="width:160px;margin:0">
-                <label>병원 전용가(원)</label>
+                <label>회원 개별 전용가(원)</label>
                 <input type="number" name="price" class="ainput" min="0" required>
             </div>
             <button class="abtn abtn-pri">전용가 등록/수정</button>
@@ -189,7 +202,7 @@
 
         {{-- 목록 --}}
         <table class="atable">
-            <thead><tr><th>제품</th><th>상품코드</th><th style="text-align:right">정가</th><th style="text-align:right">병원 전용가</th><th style="text-align:right">할인율</th><th></th></tr></thead>
+            <thead><tr><th>제품</th><th>상품코드</th><th style="text-align:right">정가</th><th style="text-align:right">개별 전용가</th><th style="text-align:right">할인율</th><th></th></tr></thead>
             <tbody>
             @forelse($prices as $hp)
                 @php($rate = $hp->product->price > 0 ? round(($hp->product->price - $hp->price)/$hp->product->price*100) : 0)
@@ -207,7 +220,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="6" style="text-align:center;color:#97a0b8;padding:30px">등록된 병원 전용가가 없습니다.</td></tr>
+                <tr><td colspan="6" style="text-align:center;color:#97a0b8;padding:30px">등록된 회원 개별 전용가가 없습니다.</td></tr>
             @endforelse
             </tbody>
         </table>

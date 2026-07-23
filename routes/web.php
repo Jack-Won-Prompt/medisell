@@ -168,6 +168,20 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('/bank-deposits/auto-match', [AdminBankDepositController::class, 'autoMatch'])->name('bank.automatch');
     Route::post('/bank-deposits/{deposit}/match', [AdminBankDepositController::class, 'match'])->name('bank.match');
 
+    // 거래처(병원·기업) 관리
+    Route::get('/accounts', [\App\Http\Controllers\Admin\AccountController::class, 'index'])->name('accounts.index');
+    Route::get('/accounts/create', [\App\Http\Controllers\Admin\AccountController::class, 'create'])->name('accounts.create');
+    Route::post('/accounts', [\App\Http\Controllers\Admin\AccountController::class, 'store'])->name('accounts.store');
+    Route::get('/accounts/{account}', [\App\Http\Controllers\Admin\AccountController::class, 'edit'])->name('accounts.edit');
+    Route::put('/accounts/{account}', [\App\Http\Controllers\Admin\AccountController::class, 'update'])->name('accounts.update');
+    Route::delete('/accounts/{account}', [\App\Http\Controllers\Admin\AccountController::class, 'destroy'])->name('accounts.destroy');
+    Route::post('/accounts/{account}/prices', [\App\Http\Controllers\Admin\AccountController::class, 'storePrice'])->name('accounts.prices.store');
+    Route::delete('/accounts/{account}/prices/{price}', [\App\Http\Controllers\Admin\AccountController::class, 'destroyPrice'])->name('accounts.prices.destroy');
+    Route::get('/accounts/{account}/prices/export', [\App\Http\Controllers\Admin\AccountController::class, 'exportPrices'])->name('accounts.prices.export');
+    Route::post('/accounts/{account}/prices/import', [\App\Http\Controllers\Admin\AccountController::class, 'importPrices'])->name('accounts.prices.import');
+    Route::post('/accounts/{account}/members', [\App\Http\Controllers\Admin\AccountController::class, 'attachMember'])->name('accounts.members.attach');
+    Route::delete('/accounts/{account}/members/{user}', [\App\Http\Controllers\Admin\AccountController::class, 'detachMember'])->name('accounts.members.detach');
+
     // 로그인 이력
     Route::get('/login-logs', [\App\Http\Controllers\Admin\LoginLogController::class, 'index'])->name('login-logs.index');
 
