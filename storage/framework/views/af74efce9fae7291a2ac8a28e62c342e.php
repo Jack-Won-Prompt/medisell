@@ -6,6 +6,7 @@
     $isHospital = $user && $user->isApprovedBusiness();
     $special = $isHospital && $sell < $product->price;     // 병원 전용가 적용
     $rate = $special ? $product->discountRateFor($sell) : 0;
+    $inquiry = $sell <= 0;                                 // 판매가 미설정 → 가격문의
     $soldout = $product->stock <= 0;
 ?>
 
@@ -110,7 +111,31 @@
             <h1><?php echo e($product->name); ?></h1>
             <div class="maker">제조사 <?php echo e($product->maker ?? '-'); ?> · 상품코드 <?php echo e($product->code ?? '-'); ?> · 판매단위 <?php echo e($product->unit); ?></div>
 
+            <?php if($variants->count() > 1): ?>
+                <div class="field" style="margin:16px 0 4px">
+                    <label style="font-weight:600;display:block;margin-bottom:6px">규격 / 사이즈 선택 (<?php echo e($variants->count()); ?>종)</label>
+                    <select class="input" onchange="if(this.value){location.href=this.value}">
+                        <?php $__currentLoopData = $variants; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php ($vsell = $v->priceFor($user)); ?>
+                            <option value="<?php echo e(route('catalog.show', $v->slug)); ?>" <?php echo e($v->id === $product->id ? 'selected' : ''); ?>>
+                                <?php echo e(\Illuminate\Support\Str::limit(preg_replace('/^\s*\[[^\]]*\]\s*/u', '', $v->name), 40)); ?>
+
+                                — <?php echo e($vsell > 0 ? number_format($vsell).'원' : '가격문의'); ?><?php echo e($v->stock <= 0 ? ' · 품절' : ''); ?>
+
+                            </option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                </div>
+            <?php endif; ?>
+
             <div class="price-panel">
+                <?php if($inquiry): ?>
+                    <div class="row" style="align-items:flex-end">
+                        <span class="lbl">판매가</span>
+                        <span class="big-price" style="color:var(--navy-700)">가격문의</span>
+                    </div>
+                    <div style="font-size:12.5px;color:var(--slate-500);margin-top:4px">※ 이 제품은 견적문의 상품입니다. 전화 또는 견적문의로 가격을 안내해 드립니다.</div>
+                <?php else: ?>
                 <?php if($special): ?>
                     <div class="row"><span class="lbl">정가</span><span class="o-price" style="text-decoration:line-through;color:var(--slate-400)"><?php echo e(number_format($product->price)); ?>원</span></div>
                 <?php endif; ?>
@@ -144,10 +169,36 @@
                 <?php else: ?>
                     <div style="font-size:12.5px;color:var(--slate-500);margin-top:4px">※ 병원 회원으로 로그인하면 병원별 전용가가 적용됩니다.</div>
                 <?php endif; ?>
+                <?php endif; ?>
                 <div class="row"><span class="lbl">배송비</span><span><?php echo e($sell >= $site['free_ship_over'] ? '무료배송' : number_format($site['shipping_fee']).'원 (5만원 이상 무료)'); ?></span></div>
                 <div class="row"><span class="lbl">재고</span><span><?php echo e($soldout ? '품절' : number_format($product->stock).$product->unit); ?></span></div>
             </div>
 
+            <?php if($inquiry): ?>
+                <div class="buy-actions">
+                    <a href="<?php echo e(route('community.inquiry', ['type' => 'quote', 'product' => $product->id])); ?>" class="btn btn-red btn-lg btn-block"><?php if (isset($component)) { $__componentOriginalce262628e3a8d44dc38fd1f3965181bc = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalce262628e3a8d44dc38fd1f3965181bc = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.icon','data' => ['name' => 'phone']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['name' => 'phone']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalce262628e3a8d44dc38fd1f3965181bc)): ?>
+<?php $attributes = $__attributesOriginalce262628e3a8d44dc38fd1f3965181bc; ?>
+<?php unset($__attributesOriginalce262628e3a8d44dc38fd1f3965181bc); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalce262628e3a8d44dc38fd1f3965181bc)): ?>
+<?php $component = $__componentOriginalce262628e3a8d44dc38fd1f3965181bc; ?>
+<?php unset($__componentOriginalce262628e3a8d44dc38fd1f3965181bc); ?>
+<?php endif; ?> 견적문의하기</a>
+                </div>
+                <p class="muted" style="font-size:13px;margin-top:10px;text-align:center">가격은 견적문의로 안내해 드립니다. 품목·수량을 남겨주세요.</p>
+            <?php else: ?>
             <?php if(auth()->guard()->check()): ?>
                 <?php if($soldout): ?>
                     <button class="btn btn-dark btn-lg btn-block" disabled>품절된 상품입니다</button>
@@ -155,7 +206,7 @@
                 <form method="POST" action="<?php echo e(route('cart.add', $product)); ?>">
                     <?php echo csrf_field(); ?>
                     <div style="display:flex;align-items:center;gap:14px">
-                        <span style="font-weight:700;font-size:14px">수량</span>
+                        <span style="font-weight:600;font-size:14px">수량</span>
                         <div class="qty">
                             <button type="button" data-dec><?php if (isset($component)) { $__componentOriginalce262628e3a8d44dc38fd1f3965181bc = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalce262628e3a8d44dc38fd1f3965181bc = $attributes; } ?>
@@ -258,6 +309,7 @@
                 </div>
                 <p class="muted" style="font-size:13px;margin-top:10px;text-align:center">회원 로그인 후 장바구니·구매가 가능합니다.</p>
             <?php endif; ?>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -271,7 +323,7 @@
         <?php echo $product->description ?: '<p>등록된 상세설명이 없습니다.</p>'; ?>
 
         <?php if($product->spec): ?>
-            <h3 style="margin:24px 0 12px;font-size:18px;font-weight:800;color:var(--ink)">규격 / 사양</h3>
+            <h3 style="margin:24px 0 12px;font-size:18px;font-weight:700;color:var(--ink)">규격 / 사양</h3>
             <pre style="white-space:pre-wrap;font-family:inherit;background:var(--slate-50);border:1px solid var(--line);border-radius:10px;padding:16px"><?php echo e($product->spec); ?></pre>
         <?php endif; ?>
     </div>

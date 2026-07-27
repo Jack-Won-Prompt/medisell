@@ -34,6 +34,8 @@ public/product/picked/
 public/product/sames/
 # 의료몰/navimro/danawa 스크래핑 로컬 이미지 (물품명) — 저작권상 로컬 전용
 public/product/mulpum/
+# YK 상품 이미지 — 용량이 커 git 대신 medisell_images.tar.gz 로 수동 전송
+public/product/yk/
 
 # 스크래핑/작업용 임시 스크립트·로그·리포트 (로컬 전용)
 scratchpad_*.py
@@ -63,3 +65,18 @@ fcm-service-account*.json
 medisell_*.sql
 public/product/*.zip
 medisell_ads_20/
+
+# 로컬 전용 작업 자료 — 레포에 넣지 않음
+# 배너 전송용 압축본(원본 20장은 public/product/ads/ 에 이미 커밋됨)
+/medisell_ads_20.zip
+# 로고 원본 PNG (실제 사용본은 public/images/logo*.svg)
+/medisell_logo*.png
+# 공급사 단가 자료 (민감 정보)
+/YK병원용품단가/
+# 공급사 카탈로그 원본 (PDF·PPTX)
+/추가/
+# 운영 서버에서 내려받은 nginx 설정·에러로그 사본
+/sites-available/
+/medisell
+/sam
+*_error.log

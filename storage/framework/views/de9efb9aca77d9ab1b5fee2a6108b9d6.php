@@ -2,7 +2,7 @@
     <div class="foot-top">
         <div class="container">
             <div class="foot-cs">
-                <div style="font-size:13px;font-weight:700;color:#cdd5e6">고객센터</div>
+                <div style="font-size:13px;font-weight:600;color:#cdd5e6">고객센터</div>
                 <div class="tel"><?php echo e($site['cs_tel']); ?></div>
                 <div class="hours"><?php echo e($site['cs_hours']); ?><br>이메일 <?php echo e($site['email']); ?></div>
                 <div class="btns">
@@ -48,7 +48,7 @@
                     <a href="#">이용안내</a>
                 </div>
                 <div class="copy">
-                    <?php echo e($site['company']); ?> · 대표 <?php echo e($site['ceo']); ?> · 사업자등록번호 <?php echo e($site['biz_no']); ?> · 통신판매업 <?php echo e($site['mailorder']); ?><br>
+                    <?php echo e($site['company']); ?> · 대표 <?php echo e($site['ceo']); ?> · 사업자등록번호 <?php echo e($site['biz_no']); ?><?php if(!empty($site['mailorder'])): ?> · 통신판매업 <?php echo e($site['mailorder']); ?><?php endif; ?> <?php if(!empty($site['med_device'])): ?> · 의료기기판매업 <?php echo e($site['med_device']); ?><?php endif; ?><br>
                     <?php echo e($site['address']); ?> · 고객센터 <?php echo e($site['cs_tel']); ?><br>
                     Copyright © <?php echo e(date('Y')); ?> <?php echo e($site['name_en']); ?>. All rights reserved.
                 </div>

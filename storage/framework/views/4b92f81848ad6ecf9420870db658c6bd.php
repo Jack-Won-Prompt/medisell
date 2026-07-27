@@ -26,13 +26,14 @@ foreach ($attributes->all() as $__key => $__value) {
     if (array_key_exists($__key, $__defined_vars)) unset($$__key);
 }
 
-unset($__defined_vars); ?>
+unset($__defined_vars, $__key, $__value); ?>
 <?php
     $user = auth()->user();
     $sell = $product->priceFor($user);
     $isHospital = $user && $user->isApprovedBusiness();
     $special = $isHospital && $sell < $product->price;     // 병원 전용가(정가보다 낮음)
     $rate = $special ? $product->discountRateFor($sell) : $product->discountRate();
+    $inquiry = $sell <= 0;                                 // 판매가 미설정 → 가격문의
     $soldout = $product->stock <= 0;
     $inWish = in_array($product->id, $wishlistIds ?? []);
 ?>
@@ -120,7 +121,9 @@ unset($__defined_vars); ?>
         <div class="maker"><?php echo e($product->maker ?? $product->brand?->name); ?></div>
         <a href="<?php echo e(route('catalog.show', $product->slug)); ?>" class="name"><?php echo e($product->name); ?></a>
         <div class="price-row">
-            <?php if($special): ?>
+            <?php if($inquiry): ?>
+                <span class="price price-inquiry">가격문의</span>
+            <?php elseif($special): ?>
                 <span class="rate"><?php echo e($rate); ?>%</span>
                 <span class="price"><?php echo e(number_format($sell)); ?><span class="won">원</span></span>
                 <span class="o-price"><?php echo e(number_format($product->price)); ?>원</span>
@@ -128,7 +131,9 @@ unset($__defined_vars); ?>
                 <span class="price"><?php echo e(number_format($sell)); ?><span class="won">원</span></span>
             <?php endif; ?>
         </div>
-        <?php if($special): ?>
+        <?php if($inquiry): ?>
+            <div><span class="mprice">전화·견적문의 가능</span></div>
+        <?php elseif($special): ?>
             <div><span class="mprice">병원 전용가 적용중</span></div>
         <?php elseif(!$isHospital && ($product->member_price || true)): ?>
             <div><span class="mprice">병원 회원 전용가 별도</span></div>
@@ -137,6 +142,27 @@ unset($__defined_vars); ?>
     <div class="cart-row">
         <?php if($soldout): ?>
             <button class="btn btn-ghost btn-sm btn-block" disabled>품절</button>
+        <?php elseif($inquiry): ?>
+            <a href="<?php echo e(route('community.inquiry', ['type' => 'quote', 'product' => $product->id])); ?>" class="btn btn-ghost btn-sm btn-block"><?php if (isset($component)) { $__componentOriginalce262628e3a8d44dc38fd1f3965181bc = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalce262628e3a8d44dc38fd1f3965181bc = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.icon','data' => ['name' => 'phone']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['name' => 'phone']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalce262628e3a8d44dc38fd1f3965181bc)): ?>
+<?php $attributes = $__attributesOriginalce262628e3a8d44dc38fd1f3965181bc; ?>
+<?php unset($__attributesOriginalce262628e3a8d44dc38fd1f3965181bc); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalce262628e3a8d44dc38fd1f3965181bc)): ?>
+<?php $component = $__componentOriginalce262628e3a8d44dc38fd1f3965181bc; ?>
+<?php unset($__componentOriginalce262628e3a8d44dc38fd1f3965181bc); ?>
+<?php endif; ?>견적문의</a>
         <?php else: ?>
             <form method="POST" action="<?php echo e(route('cart.add', $product)); ?>" style="flex:1">
                 <?php echo csrf_field(); ?>

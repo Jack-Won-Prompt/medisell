@@ -26,6 +26,6 @@ foreach ($attributes->all() as $__key => $__value) {
     if (array_key_exists($__key, $__defined_vars)) unset($$__key);
 }
 
-unset($__defined_vars); ?>
+unset($__defined_vars, $__key, $__value); ?>
 <svg <?php echo e($attributes->merge(['class' => 'icon'])); ?> width="<?php echo e($size); ?>" height="<?php echo e($size); ?>" aria-hidden="true" focusable="false"><use href="#i-<?php echo e($name); ?>"/></svg>
 <?php /**PATH E:\xampp\htdocs\medisell\resources\views/components/icon.blade.php ENDPATH**/ ?>

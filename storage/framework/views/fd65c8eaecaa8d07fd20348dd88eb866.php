@@ -24,14 +24,9 @@
         <div class="auth-links">
             <a href="<?php echo e(route('register')); ?>">회원가입</a>
             <span>·</span>
+            <a href="<?php echo e(route('password.request')); ?>">비밀번호 찾기</a>
+            <span>·</span>
             <a href="<?php echo e(route('community.qna')); ?>">고객센터 문의</a>
-        </div>
-
-        <div style="margin-top:20px;padding:14px;background:var(--slate-50);border-radius:10px;font-size:12.5px;color:var(--slate-500);line-height:1.8">
-            <b>체험 계정</b><br>
-            일반회원 user@test.com / test1234<br>
-            병원(승인) clinic@test.com / test1234<br>
-            관리자 admin@medisell.co.kr / medisell!2026
         </div>
     </div>
 </div>
