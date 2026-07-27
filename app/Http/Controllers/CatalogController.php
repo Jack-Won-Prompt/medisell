@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\MarketPriceService;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
@@ -108,7 +109,11 @@ class CatalogController extends Controller
         // 규격/사이즈 변형 (같은 group_key)
         $variants = $product->variants();
 
-        return view('catalog.show', compact('product', 'related', 'variants'));
+        // 인터넷 최저가 비교 (쿠팡·네이버·의료소모품몰 채널별 최저가)
+        $compare = app(MarketPriceService::class)
+            ->compare($product, $product->priceFor($request->user()));
+
+        return view('catalog.show', compact('product', 'related', 'variants', 'compare'));
     }
 
     public function storeReview(Request $request, Product $product)

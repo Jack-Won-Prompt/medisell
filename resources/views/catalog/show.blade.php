@@ -97,6 +97,9 @@
                 <div class="row"><span class="lbl">재고</span><span>{{ $soldout ? '품절' : number_format($product->stock).$product->unit }}</span></div>
             </div>
 
+            {{-- 인터넷 최저가 비교 (쿠팡 · 네이버 · 의료소모품몰) --}}
+            @include('partials.market-compare', ['compare' => $compare ?? [], 'sell' => $sell])
+
             @if($inquiry)
                 <div class="buy-actions">
                     <a href="{{ route('community.inquiry', ['type' => 'quote', 'product' => $product->id]) }}" class="btn btn-red btn-lg btn-block"><x-icon name="phone"/> 견적문의하기</a>

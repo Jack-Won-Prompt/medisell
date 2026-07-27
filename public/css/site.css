@@ -356,6 +356,29 @@ main{min-height:60vh}
 .qty input{width:54px;height:42px;border:0;border-left:1px solid var(--slate-200);border-right:1px solid var(--slate-200);text-align:center;font-size:15px;font-weight:600;outline:0}
 .buy-actions{display:flex;gap:10px;margin-top:22px}
 .buy-actions .btn{flex:1}
+/* 인터넷 최저가 비교 (쿠팡·네이버·의료소모품몰) */
+.mkt-compare{border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin:-6px 0 20px;background:#fff}
+.mkt-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.mkt-title{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14px;color:var(--ink)}
+.mkt-date{font-size:12px;color:var(--slate-400)}
+.mkt-sample{font-size:11.5px;font-weight:700;color:var(--red);background:var(--red-50);padding:2px 7px;border-radius:5px}
+.mkt-list{list-style:none;margin:0;padding:0}
+.mkt-list li{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--slate-100);font-size:13.5px}
+.mkt-list li:first-child{border-top:0}
+.mkt-ch{flex:0 0 auto;min-width:62px;text-align:center;font-size:11.5px;font-weight:700;padding:3px 7px;border-radius:5px;background:var(--slate-100);color:var(--slate-600)}
+.mkt-ch-coupang{background:#fdecec;color:#c0392b}
+.mkt-ch-naver{background:#e6f6ea;color:#1e7f3c}
+.mkt-ch-medical{background:var(--slate-100);color:var(--navy-700)}
+.mkt-seller{flex:1;min-width:0;color:var(--slate-600);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mkt-price{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.mkt-diff{flex:0 0 auto;min-width:56px;text-align:right;font-size:12px;color:var(--slate-400);font-variant-numeric:tabular-nums}
+.mkt-diff.up{color:var(--slate-500)}
+.mkt-diff.down{color:var(--red);font-weight:700}
+.mkt-list a{flex:0 0 auto;display:inline-flex;align-items:center;gap:2px;font-size:12.5px;font-weight:600;color:var(--navy-600)}
+.mkt-foot{margin-top:9px;padding-top:9px;border-top:1px solid var(--slate-100);font-size:13px}
+.mkt-foot.best{display:flex;align-items:center;gap:6px;color:#1e7f3c;font-weight:600}
+.mkt-note{margin-top:7px;font-size:11.5px;line-height:1.55;color:var(--slate-400)}
+@media (max-width:520px){.mkt-list li{flex-wrap:wrap}.mkt-seller{flex:1 0 100%;order:3}}
 .tabs{display:flex;gap:0;border-bottom:2px solid var(--ink);margin:40px 0 24px}
 .tabs a{padding:13px 26px;font-weight:700;font-size:15px;color:var(--slate-500);border:1px solid transparent;border-bottom:0}
 .tabs a.on{color:var(--navy-800);background:#fff;border-color:var(--ink);border-bottom:2px solid #fff;margin-bottom:-2px}

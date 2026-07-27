@@ -146,7 +146,27 @@ class ApiSerializer
             'review_count' => $p->relationLoaded('reviews') ? $p->reviews->count() : 0,
             'rating_avg'   => $p->relationLoaded('reviews') && $p->reviews->count()
                 ? round($p->reviews->avg('rating'), 1) : 0,
+            // 인터넷 최저가 비교 (쿠팡·네이버·의료소모품몰 채널별 최저가)
+            'market_compare' => self::marketCompare($p, $price),
         ]);
+    }
+
+    /**
+     * 최저가 비교 블록. is_sample=true 는 실연동 키 미설정 상태의 예시값이므로
+     * 앱에서도 일반 사용자에게 노출하지 말 것(관리자·개발 확인용).
+     */
+    private static function marketCompare(Product $p, int $sell): array
+    {
+        $c = app(\App\Services\MarketPriceService::class)->compare($p, $sell);
+
+        return [
+            'rows'       => $c['rows'],
+            'is_lowest'  => (bool) $c['is_lowest'],
+            'saving'     => (int) $c['saving'],
+            'is_sample'  => (bool) $c['is_sample'],
+            'fetched_at' => $c['fetched_at'] instanceof \Illuminate\Support\Carbon
+                ? $c['fetched_at']->format('Y-m-d') : $c['fetched_at'],
+        ];
     }
 
     public static function categoryBrief(Category $c): array

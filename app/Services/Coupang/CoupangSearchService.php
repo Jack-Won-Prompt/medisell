@@ -16,7 +16,7 @@ class CoupangSearchService
 
     private const SEARCH_PATH = '/v2/providers/affiliate_open_api/apis/openapi/v1/products/search';
 
-    /** 가상 판매자(스토어) 풀 */
+    /** 가상 판매자(스토어) 풀 — 일반 의료소모품몰 */
     private array $sellers = [
         '메디마트', '헬스케어몰', '위드메디', '닥터스토어', '메디큐브', '케어플러스',
         '바이오샵', '한국의료몰', '이지메디', '프로메드', '굿닥터', '메디원',
@@ -24,7 +24,8 @@ class CoupangSearchService
 
     /**
      * 키워드로 경쟁 판매정보 조회.
-     * @return array<int,array{seller:string,title:string,price:int,delivery:string,rating:float,review:int,rocket:bool,url:string}>
+     * channel: coupang | naver | medical (일반 의료소모품몰)
+     * @return array<int,array{seller:string,channel:string,title:string,price:int,delivery:string,rating:float,review:int,rocket:bool,url:string}>
      */
     public function search(string $keyword, ?int $refPrice = null): array
     {
@@ -64,6 +65,21 @@ class CoupangSearchService
     public function isReady(): bool
     {
         return $this->engine() !== null;
+    }
+
+    /** 판매처명·링크로 채널 판별 — coupang | naver | medical */
+    public function classify(string $source, string $link = ''): string
+    {
+        $hay = mb_strtolower($source.' '.$link);
+
+        if (str_contains($hay, '쿠팡') || str_contains($hay, 'coupang')) {
+            return 'coupang';
+        }
+        if (str_contains($hay, '네이버') || str_contains($hay, 'naver') || str_contains($hay, 'smartstore')) {
+            return 'naver';
+        }
+
+        return 'medical';
     }
 
     /**
@@ -112,6 +128,7 @@ class CoupangSearchService
 
                 $rows[] = [
                     'seller'   => $source ?: '쿠팡',
+                    'channel'  => $this->classify($source, $link),
                     'title'    => $r['title'] ?? $keyword,
                     'price'    => $price,
                     'delivery' => $r['delivery'] ?? '-',
@@ -165,6 +182,7 @@ class CoupangSearchService
             foreach (($res->json('data.productData') ?? []) as $r) {
                 $rows[] = [
                     'seller'   => $r['categoryName'] ?? '쿠팡',
+                    'channel'  => 'coupang',
                     'title'    => $r['productName'] ?? $keyword,
                     'price'    => (int) ($r['productPrice'] ?? 0),
                     'delivery' => ! empty($r['isRocket']) ? '로켓배송' : (! empty($r['isFreeShipping']) ? '무료배송' : '-'),
@@ -195,21 +213,32 @@ class CoupangSearchService
         shuffle($sellers);
         $suffix = ['', ' 대용량', ' 1박스', ' 의료용', ' 낱개', ' 세트', ' 정품', ' 특가'];
 
+        // 채널 구성: 쿠팡 1 · 네이버 1 · 나머지는 일반 의료소모품몰
+        $naverStores = ['네이버 스마트스토어', '네이버쇼핑'];
+
         $rows = [];
         for ($i = 0; $i < $count; $i++) {
             // 기준가의 82% ~ 128% 분포
             $rate = mt_rand(82, 128) / 100;
             $price = (int) (round($base * $rate / 10) * 10);
             $rocket = mt_rand(0, 100) < 45;
+
+            [$channel, $seller, $url] = match ($i) {
+                0 => ['coupang', '쿠팡', 'https://www.coupang.com/np/search?q='.urlencode($keyword)],
+                1 => ['naver', $naverStores[crc32($keyword) % 2], 'https://search.shopping.naver.com/search/all?query='.urlencode($keyword)],
+                default => ['medical', $sellers[$i % count($sellers)], 'https://www.google.com/search?tbm=shop&q='.urlencode($keyword)],
+            };
+
             $rows[] = [
-                'seller'   => $sellers[$i % count($sellers)],
+                'seller'   => $seller,
+                'channel'  => $channel,
                 'title'    => $keyword.$suffix[mt_rand(0, count($suffix) - 1)],
                 'price'    => $price,
-                'delivery' => $rocket ? '로켓배송' : (mt_rand(0, 1) ? '무료배송' : '2,500원'),
+                'delivery' => $channel === 'coupang' && $rocket ? '로켓배송' : (mt_rand(0, 1) ? '무료배송' : '2,500원'),
                 'rating'   => round(mt_rand(38, 50) / 10, 1),
                 'review'   => mt_rand(0, 3200),
-                'rocket'   => $rocket,
-                'url'      => 'https://www.coupang.com/np/search?q='.urlencode($keyword),
+                'rocket'   => $channel === 'coupang' && $rocket,
+                'url'      => $url,
             ];
         }
         mt_srand();
