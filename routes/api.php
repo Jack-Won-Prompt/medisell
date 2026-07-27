@@ -80,6 +80,13 @@ Route::prefix('v1')->group(function () {
         Route::delete('/mypage/addresses/{address}', [MypageController::class, 'deleteAddress']);
         Route::post('/mypage/addresses/{address}/default', [MypageController::class, 'setDefaultAddress']);
 
+        // 구매 대행자 — 담당 구매자 + 캐쉬백
+        Route::get('/mypage/agent/buyers', [MypageController::class, 'agentBuyers']);
+        Route::post('/mypage/agent/buyers', [MypageController::class, 'storeAgentBuyer']);
+        Route::put('/mypage/agent/buyers/{buyer}', [MypageController::class, 'updateAgentBuyer']);
+        Route::delete('/mypage/agent/buyers/{buyer}', [MypageController::class, 'deleteAgentBuyer']);
+        Route::get('/mypage/agent/cashbacks', [MypageController::class, 'agentCashbacks']);
+
         // 커뮤니티(작성)
         Route::post('/community/inquiry', [CommunityController::class, 'inquiryStore']);
 

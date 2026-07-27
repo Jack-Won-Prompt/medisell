@@ -62,6 +62,12 @@ class OrderController extends Controller
             ],
             'banks'      => config('site.banks', []),
             'payment_pg' => config('site.payment_pg', 'toss'),
+            // 구매 대행자: 대신 구매할 구매자(병원) 목록 + 캐쉬백율
+            'is_agent'      => $user->isAgent(),
+            'cashback_rate' => (float) $user->cashback_rate,
+            'agent_buyers'  => $user->isAgent()
+                ? $user->agentBuyers()->where('is_active', true)->get()->map(fn ($b) => \App\Support\ApiSerializer::agentBuyer($b))
+                : [],
         ]);
     }
 
@@ -107,10 +113,18 @@ class OrderController extends Controller
             'bank'           => ['required_if:payment_method,bank', 'nullable', 'string', 'max:50'],
             'point_used'     => ['nullable', 'integer', 'min:0'],
             'coupon_code'    => ['nullable', 'string', 'max:50'],
+            'agent_buyer_id' => ['nullable', 'integer'],
         ]);
 
         $isPg = $data['payment_method'] !== 'bank';
         $user = $request->user();
+
+        // 구매 대행자가 특정 구매자(병원)를 대신해 결제하는 경우
+        $buyer = null;
+        if ($user->isAgent() && ! empty($data['agent_buyer_id'])) {
+            $buyer = $user->agentBuyers()->where('is_active', true)->find($data['agent_buyer_id']);
+        }
+
         $items = $user->cartItems()->with('product')->get()
             ->filter(fn ($i) => $i->product !== null);
 
@@ -125,10 +139,14 @@ class OrderController extends Controller
         $pointUsed = min((int) ($data['point_used'] ?? 0), $user->point, $pointCap);
         $total     = max(0, $summary['subtotal'] + $summary['shipping'] - $couponDiscount - $pointUsed);
 
-        $order = DB::transaction(function () use ($user, $items, $summary, $data, $pointUsed, $isPg, $coupon, $couponDiscount, $total) {
+        $order = DB::transaction(function () use ($user, $items, $summary, $data, $pointUsed, $isPg, $coupon, $couponDiscount, $total, $buyer) {
             $order = Order::create([
                 'order_no'       => 'MS'.now()->format('ymd').strtoupper(substr(uniqid(), -5)),
                 'user_id'        => $user->id,
+                'agent_id'       => $buyer ? $user->id : null,
+                'buyer_hospital' => $buyer?->hospital_name,
+                'buyer_name'     => $buyer?->buyer_name,
+                'buyer_phone'    => $buyer?->buyer_phone,
                 'status'         => 'pending',
                 'payment_method' => $data['payment_method'],
                 'pay_provider'   => $isPg ? $data['payment_method'] : null,

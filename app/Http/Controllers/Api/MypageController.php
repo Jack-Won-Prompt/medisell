@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\AgentBuyer;
 use App\Models\UserAddress;
 use App\Support\ApiSerializer as S;
 use Illuminate\Http\Request;
@@ -10,6 +11,79 @@ use Illuminate\Support\Facades\Hash;
 
 class MypageController extends Controller
 {
+    // ===== 구매 대행자 =====
+
+    private function ensureAgent(Request $request): void
+    {
+        abort_unless($request->user()->isAgent(), 403, '구매 대행자 전용 메뉴입니다.');
+    }
+
+    /** 담당 구매자 목록 + 캐쉬백 요약 */
+    public function agentBuyers(Request $request)
+    {
+        $this->ensureAgent($request);
+        $user = $request->user();
+
+        return response()->json([
+            'buyers'        => $user->agentBuyers()->get()->map(fn ($b) => S::agentBuyer($b)),
+            'cashback_rate' => (float) $user->cashback_rate,
+            'pending'       => $user->pendingCashback(),
+            'paid'          => (int) $user->agentCashbacks()->where('status', 'paid')->sum('amount'),
+        ]);
+    }
+
+    public function storeAgentBuyer(Request $request)
+    {
+        $this->ensureAgent($request);
+        $data = $this->validateBuyer($request);
+        $buyer = $request->user()->agentBuyers()->create($data + ['is_active' => true]);
+
+        return response()->json(['message' => '구매자가 등록되었습니다.', 'buyer' => S::agentBuyer($buyer)], 201);
+    }
+
+    public function updateAgentBuyer(Request $request, AgentBuyer $buyer)
+    {
+        $this->ensureAgent($request);
+        abort_unless($buyer->agent_id === $request->user()->id, 403);
+        $data = $this->validateBuyer($request);
+        $buyer->update($data + ['is_active' => $request->boolean('is_active', true)]);
+
+        return response()->json(['message' => '구매자 정보가 수정되었습니다.', 'buyer' => S::agentBuyer($buyer->fresh())]);
+    }
+
+    public function deleteAgentBuyer(Request $request, AgentBuyer $buyer)
+    {
+        $this->ensureAgent($request);
+        abort_unless($buyer->agent_id === $request->user()->id, 403);
+        $buyer->delete();
+
+        return response()->json(['message' => '구매자가 삭제되었습니다.']);
+    }
+
+    /** 캐쉬백 적립 내역 */
+    public function agentCashbacks(Request $request)
+    {
+        $this->ensureAgent($request);
+        $user = $request->user();
+        $page = $user->agentCashbacks()->with('order')->paginate(20);
+
+        return response()->json([
+            'cashbacks' => collect($page->items())->map(fn ($c) => S::agentCashback($c)),
+            'pending'   => $user->pendingCashback(),
+            'paid'      => (int) $user->agentCashbacks()->where('status', 'paid')->sum('amount'),
+            'meta' => ['current_page' => $page->currentPage(), 'last_page' => $page->lastPage(), 'has_more' => $page->hasMorePages()],
+        ]);
+    }
+
+    private function validateBuyer(Request $request): array
+    {
+        return $request->validate([
+            'hospital_name' => ['required', 'string', 'max:100'],
+            'buyer_name'    => ['required', 'string', 'max:50'],
+            'buyer_phone'   => ['required', 'string', 'max:30'],
+        ]);
+    }
+
     // ===== 배송지 주소록 =====
 
     public function addresses(Request $request)

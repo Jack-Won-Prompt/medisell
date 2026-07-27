@@ -237,6 +237,38 @@ class ApiSerializer
             'biz_type'     => $u->biz_type,
             'point'        => (int) $u->point,
             'is_admin'     => (bool) $u->is_admin,
+            // 구매 대행자
+            'is_agent'         => $u->isAgent(),
+            'cashback_rate'    => (float) $u->cashback_rate,
+            'pending_cashback' => $u->isAgent() ? $u->pendingCashback() : 0,
+            'paid_cashback'    => $u->isAgent()
+                ? (int) $u->agentCashbacks()->where('status', 'paid')->sum('amount') : 0,
+        ];
+    }
+
+    public static function agentBuyer($b): array
+    {
+        return [
+            'id'            => $b->id,
+            'hospital_name' => $b->hospital_name,
+            'buyer_name'    => $b->buyer_name,
+            'buyer_phone'   => $b->buyer_phone,
+            'is_active'     => (bool) $b->is_active,
+        ];
+    }
+
+    public static function agentCashback($c): array
+    {
+        return [
+            'id'           => $c->id,
+            'amount'       => (int) $c->amount,
+            'rate'         => (float) $c->rate,
+            'status'       => $c->status,
+            'status_label' => $c->statusLabel(),
+            'paid_at'      => $c->paid_at?->format('Y-m-d'),
+            'created_at'   => $c->created_at?->format('Y-m-d'),
+            'order_no'     => $c->relationLoaded('order') && $c->order ? $c->order->order_no : null,
+            'order_id'     => $c->order_id,
         ];
     }
 
@@ -274,6 +306,12 @@ class ApiSerializer
             'created_at'     => $o->created_at?->toIso8601String(),
             'item_count'     => $o->items_count ?? ($o->relationLoaded('items') ? $o->items->count() : null),
             'can_cancel'     => in_array($o->status, ['pending', 'paid']),
+            // 구매 대행 주문(대행자가 병원 대신 결제한 건)
+            'is_agent_order'  => (bool) $o->agent_id,
+            'buyer_hospital'  => $o->buyer_hospital,
+            'buyer_name'      => $o->buyer_name,
+            'buyer_phone'     => $o->buyer_phone,
+            'cashback_amount' => (int) $o->cashback_amount,
         ];
 
         if ($withItems && $o->relationLoaded('items')) {
