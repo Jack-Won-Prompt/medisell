@@ -6,7 +6,13 @@ return [
     | 쿠팡 · 네이버 · 일반 의료소모품몰 채널별 최저가 1건씩(=Top 3)을 보여준다.
     | 수집은 CoupangSearchService(모의 / SERP 구글쇼핑 / 쿠팡 파트너스)를 그대로 재사용한다.
     */
-    'enabled' => env('MARKET_COMPARE_ENABLED', true),
+    /*
+    | 기본 OFF. 수집 커버리지가 확보될 때까지 상품 상세에 노출하지 않는다.
+    | (어바웃메디 1곳만 비로그인 가격을 공개해 537개 활성상품 중 매칭이 2건뿐이었다.
+    |  네이버 검색 API 키를 넣어 커버리지가 오르면 아래를 true 로 바꾸면 된다.)
+    | 켜기: .env 에 MARKET_COMPARE_ENABLED=true
+    */
+    'enabled' => env('MARKET_COMPARE_ENABLED', false),
 
     // 저장된 최저가를 며칠까지 유효하게 볼지 (지나면 재수집 대상)
     'ttl_days' => (int) env('MARKET_COMPARE_TTL_DAYS', 7),

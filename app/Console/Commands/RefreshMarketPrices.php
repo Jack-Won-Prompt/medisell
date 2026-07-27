@@ -27,6 +27,13 @@ class RefreshMarketPrices extends Command
 
     public function handle(MarketPriceService $service): int
     {
+        // 기능이 꺼져 있으면 외부 몰에 불필요한 요청을 보내지 않는다
+        if (! config('market.enabled', false)) {
+            $this->warn('최저가 비교 기능이 꺼져 있습니다 (market.enabled=false). .env 의 MARKET_COMPARE_ENABLED=true 로 켜세요.');
+
+            return self::SUCCESS;
+        }
+
         $q = Product::active();
 
         if ($id = $this->option('product')) {
