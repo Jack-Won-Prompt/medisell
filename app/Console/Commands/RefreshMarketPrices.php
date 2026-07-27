@@ -32,10 +32,13 @@ class RefreshMarketPrices extends Command
         if ($id = $this->option('product')) {
             $q->where('id', (int) $id);
         } elseif (! $this->option('force')) {
-            // 미수집 또는 TTL 만료 상품만
+            // 미수집 · TTL 만료 · (실연동 상태에서) 모의데이터만 있는 상품
             $ttl = now()->subDays((int) config('market.ttl_days', 7));
-            $fresh = MarketPrice::where('fetched_at', '>=', $ttl)->pluck('product_id')->unique();
-            $q->whereNotIn('id', $fresh);
+            $freshQ = MarketPrice::where('fetched_at', '>=', $ttl);
+            if ($service->hasLiveProvider()) {
+                $freshQ->where('engine', '!=', 'simulate');
+            }
+            $q->whereNotIn('id', $freshQ->pluck('product_id')->unique());
         }
 
         $products = $q->orderBy('id')->limit((int) $this->option('limit'))->get();
