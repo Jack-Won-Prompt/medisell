@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUniqueSlug;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
+    use HasUniqueSlug;
+
     protected $fillable = [
         'category_id', 'brand_id', 'name', 'slug', 'code', 'group_key', 'unit', 'maker',
         'summary', 'description', 'spec', 'price', 'cost', 'member_price', 'tax_type', 'stock',
@@ -20,6 +24,22 @@ class Product extends Model
         'is_best'     => 'boolean',
         'is_new'      => 'boolean',
     ];
+
+    protected function slugPrefix(): string
+    {
+        return 'item';
+    }
+
+    /** 상품명이 한글뿐이면 상품코드를 쓴다 — 임포트 커맨드와 같은 규칙(item-{코드}) */
+    protected function slugBase(): string
+    {
+        $base = (string) Str::slug((string) $this->name);
+        if ($base === '' && filled($this->code)) {
+            $base = 'item-'.Str::lower(Str::slug((string) $this->code));
+        }
+
+        return $base;
+    }
 
     public function category()
     {

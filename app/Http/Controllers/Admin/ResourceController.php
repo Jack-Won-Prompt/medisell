@@ -135,7 +135,7 @@ class ResourceController extends Controller
     {
         $cfg = $this->cfg($resource);
         $item = $cfg['model']::findOrFail($id);
-        $item->update($this->validateData($cfg, $request));
+        $item->update($this->validateData($cfg, $request, $item));
 
         return redirect()->route('admin.index', $resource)->with('ok', "{$cfg['label']} 항목이 수정되었습니다.");
     }
@@ -148,8 +148,8 @@ class ResourceController extends Controller
         return redirect()->route('admin.index', $resource)->with('ok', "{$cfg['label']} 항목이 삭제되었습니다.");
     }
 
-    /** 필드 정의로부터 검증 + 값 추출 */
-    protected function validateData(array $cfg, Request $request): array
+    /** 필드 정의로부터 검증 + 값 추출. $item: 수정 중인 항목(unique 검증에서 자기 자신 제외) */
+    protected function validateData(array $cfg, Request $request, $item = null): array
     {
         $rules = [];
         $imageFields = [];
@@ -168,9 +168,24 @@ class ResourceController extends Controller
                 'select' => isset($f['options']) ? $r[] = Rule::in(array_keys($f['options'])) : null,
                 default => null,
             };
+            // 중복 불가 필드(슬러그 등) — 수정 시 자기 자신은 제외
+            if (! empty($f['unique'])) {
+                $r[] = Rule::unique((new $cfg['model'])->getTable(), $f['name'])->ignore($item?->getKey());
+            }
             $rules[$f['name']] = $r;
         }
-        $validated = $request->validate($rules);
+
+        // 오류 문구에 영문 컬럼명 대신 화면 라벨을 쓴다 ('슬러그(영문 URL)' → '슬러그')
+        $attributes = [];
+        foreach ($cfg['fields'] as $f) {
+            $attributes[$f['name']] = trim(preg_replace('/[(（].*$/u', '', $f['label'] ?? $f['name']));
+        }
+        $messages = [
+            'unique'   => ':attribute 값이 이미 사용 중입니다. 다른 값을 입력하거나, 비워두면 자동 생성됩니다.',
+            'required' => ':attribute 은(는) 필수 항목입니다.',
+        ];
+
+        $validated = $request->validate($rules, $messages, $attributes);
 
         // checkbox 는 boolean 으로 강제
         foreach ($cfg['fields'] as $f) {
