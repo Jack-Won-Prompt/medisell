@@ -181,7 +181,8 @@ class CoupangSearchService
             $rows = [];
             foreach (($res->json('data.productData') ?? []) as $r) {
                 $rows[] = [
-                    'seller'   => $r['categoryName'] ?? '쿠팡',
+                    // 파트너스 응답에는 판매자명이 없다(categoryName은 카테고리) → 채널명으로 표기
+                    'seller'   => '쿠팡',
                     'channel'  => 'coupang',
                     'title'    => $r['productName'] ?? $keyword,
                     'price'    => (int) ($r['productPrice'] ?? 0),

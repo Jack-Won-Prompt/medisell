@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class MarketPrice extends Model
 {
     protected $fillable = [
-        'product_id', 'channel', 'seller', 'title', 'price', 'delivery', 'url', 'fetched_at',
+        'product_id', 'channel', 'engine', 'seller', 'title', 'price', 'delivery', 'url', 'fetched_at',
     ];
 
     protected $casts = [
@@ -27,6 +27,12 @@ class MarketPrice extends Model
     public function channelLabel(): string
     {
         return config('market.channels.'.$this->channel, $this->channel);
+    }
+
+    /** 모의(simulate) 수집분인지 — 실제 시세가 아니므로 고객에게 노출 금지 */
+    public function isSample(): bool
+    {
+        return in_array($this->engine, [null, '', 'simulate'], true);
     }
 
     /** TTL(기본 7일) 지난 데이터인지 */
