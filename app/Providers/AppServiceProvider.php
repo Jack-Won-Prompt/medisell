@@ -8,7 +8,9 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\LoginLog;
+use App\Models\Notice;
 use App\Observers\ChatMessageObserver;
+use App\Observers\NoticeObserver;
 use App\Observers\OrderObserver;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Auth\Events\Login;
@@ -26,9 +28,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // FCM 푸시 트리거 — 주문 상태 변경 / 관리자 상담 답변
+        // FCM 푸시 트리거 — 주문 상태 변경 / 관리자 상담 답변 / 공지 게시
         Order::observe(OrderObserver::class);
         ChatMessage::observe(ChatMessageObserver::class);
+        Notice::observe(NoticeObserver::class);
 
         // 로그인 이력 기록 (성공/실패) — 웹·API 모든 경로
         Event::listen(Login::class, function (Login $e) {

@@ -151,12 +151,14 @@ return [
     'notices' => [
         'label' => '공지사항', 'model' => Notice::class, 'icon' => 'doc', 'group' => '고객지원',
         'order' => ['id', 'desc'],
-        'columns' => ['title' => '제목', 'is_pinned' => '고정', 'views' => '조회', 'published_at' => '게시일'],
+        'columns' => ['title' => '제목', 'is_pinned' => '고정', 'views' => '조회', 'published_at' => '게시일', 'pushed_at' => '푸시발송'],
         'fields' => [
             ['name' => 'title', 'label' => '제목', 'type' => 'text', 'required' => true],
             ['name' => 'body', 'label' => '내용', 'type' => 'textarea', 'required' => true, 'rows' => 10],
             ['name' => 'is_pinned', 'label' => '상단 고정', 'type' => 'checkbox'],
             ['name' => 'published_at', 'label' => '게시일시', 'type' => 'datetime'],
+            ['name' => 'push_send', 'label' => '앱 푸시 알림 발송', 'type' => 'checkbox',
+                'hint' => '체크하면 게시 시점에 앱 사용자 전체에게 한 번만 발송됩니다. 이미 보낸 공지는 다시 수정·저장해도 재발송되지 않습니다. (게시일시가 미래면 그 시점 이후 저장될 때 발송)'],
         ],
         'defaults' => ['published_at' => 'now'],
     ],
