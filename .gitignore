@@ -80,3 +80,5 @@ medisell_ads_20/
 /medisell
 /sam
 *_error.log
+# 매뉴얼 배포용 압축본 (docs/manual/ 원본과 중복 — 필요할 때 다시 묶어 전달)
+/docs/manual/manual.zip
