@@ -89,6 +89,25 @@
         </div>
     </div>
 
+    {{-- 로그인 테스트 계정 안내 --}}
+    <div class="adm-card">
+        <div class="h">로그인 화면 테스트 계정 안내 (PG 심사용)</div>
+        <div style="padding:20px">
+            <div class="afield" style="margin:0">
+                <label class="acheck"><input type="checkbox" name="demo_login_enabled" value="1" {{ ($site['demo_login']['enabled'] ?? false) ? 'checked' : '' }}> 로그인 페이지 하단에 계정정보 노출</label>
+                <div class="ahint" style="color:var(--red,#d64545)">누구나 볼 수 있는 공개 노출입니다. 토스페이먼츠 심사 기간에만 켜고 통과 후 바로 끄세요. 개인정보·실주문이 없는 전용 계정만 쓰세요.</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+                <div class="afield"><label>이메일</label><input type="text" name="demo_login_email" class="ainput" value="{{ old('demo_login_email', $site['demo_login']['email'] ?? '') }}" placeholder="test@medisell.co.kr"></div>
+                <div class="afield"><label>비밀번호</label><input type="text" name="demo_login_password" class="ainput" value="{{ old('demo_login_password', $site['demo_login']['password'] ?? '') }}" placeholder="평문으로 표시됩니다"></div>
+            </div>
+            <div class="afield" style="margin:0">
+                <label>안내 문구</label>
+                <input type="text" name="demo_login_note" class="ainput" value="{{ old('demo_login_note', $site['demo_login']['note'] ?? '') }}" placeholder="PG 심사용 테스트 계정입니다.">
+            </div>
+        </div>
+    </div>
+
     {{-- 배송 / 적립 정책 --}}
     <div class="adm-card">
         <div class="h">배송 / 적립 정책</div>
