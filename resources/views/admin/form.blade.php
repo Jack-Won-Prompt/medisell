@@ -83,7 +83,8 @@
 </div>
 
 @if($editorFields)
-    <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.7/quill.snow.css">
+    {{-- Quill 1.3.7 자체 호스팅 — CDN 차단·폐쇄망에서도 편집기가 뜨도록 --}}
+    <link rel="stylesheet" href="{{ asset('vendor/quill/quill.snow.css') }}">
     <style>
         .aeditor-wrap{border:1px solid var(--a-line);border-radius:8px;overflow:hidden;background:#fff}
         .aeditor-wrap:focus-within{border-color:var(--a-navy);box-shadow:0 0 0 3px rgba(11,61,145,.10)}
@@ -94,7 +95,7 @@
         .aeditor-wrap .ql-editor.ql-blank::before{color:#9aa5bd;font-style:normal}
     </style>
     @include('partials._quill-image-resize')
-    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <script src="{{ asset('vendor/quill/quill.min.js') }}"></script>
     <script>
     (function () {
         var names = @json($editorFields);
