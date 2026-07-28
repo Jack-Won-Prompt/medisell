@@ -79,7 +79,7 @@ class ImportYkMedical extends Command
             ];
             if ($thumb) {
                 $data['thumbnail'] = $thumb;
-                $data['images'] = json_encode([$thumb], JSON_UNESCAPED_UNICODE);
+                $data['images'] = [$thumb];   // array 캐스팅이 인코딩한다 — 직접 json_encode 하면 이중 인코딩
             }
 
             if ($existing) {

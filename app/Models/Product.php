@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUniqueSlug;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -24,6 +25,28 @@ class Product extends Model
         'is_best'     => 'boolean',
         'is_new'      => 'boolean',
     ];
+
+    /**
+     * 추가 이미지는 항상 문자열 배열로 돌려준다.
+     *
+     * yk 임포터가 json_encode() 한 값을 array 캐스팅 컬럼에 넣어 이중 인코딩된 행이 있었다.
+     * 그 경우 캐스팅 결과가 배열이 아니라 JSON 문자열이라, 갤러리에서
+     * collect([...])->merge($문자열) 이 문자열을 원소 하나로 감싸 <img src="[&quot;http:...&quot;]">
+     * 같은 깨진 이미지가 그려졌다. 읽기 시점에 방어해 웹·API 모두 한 번에 막는다.
+     */
+    protected function images(): Attribute
+    {
+        return Attribute::get(function ($value) {
+            $v = is_string($value) ? json_decode($value, true) : $value;
+            if (is_string($v)) {                 // 이중 인코딩
+                $v = json_decode($v, true);
+            }
+
+            return is_array($v)
+                ? array_values(array_filter($v, fn ($u) => is_string($u) && $u !== ''))
+                : [];
+        });
+    }
 
     protected function slugPrefix(): string
     {
