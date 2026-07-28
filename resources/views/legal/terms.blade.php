@@ -81,7 +81,7 @@
     <h2>제8조 (배송)</h2>
     <table>
         <tbody>
-        <tr><th style="width:150px">배송방법</th><td>택배</td></tr>
+        <tr><th style="width:150px">배송방법</th><td>택배 (CJ대한통운 · 우체국택배)</td></tr>
         <tr><th>배송비</th><td>기본 {{ number_format($site['shipping_fee'] ?? 0) }}원 / {{ number_format($site['free_ship_over'] ?? 0) }}원 이상 구매 시 무료</td></tr>
         <tr><th>배송기간</th><td>결제 확인 후 영업일 기준 1~3일 (재고 상황·지역에 따라 달라질 수 있습니다)</td></tr>
         </tbody>
