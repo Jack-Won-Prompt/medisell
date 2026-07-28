@@ -28,6 +28,34 @@
                 </div>
             </div>
 
+            @php($__android = $site['app_android_url'] ?? '')
+            @php($__ios = $site['app_ios_url'] ?? '')
+            @if(filled($__android) || filled($__ios))
+                <div class="foot-app">
+                    <h5>앱 다운로드</h5>
+                    <p>주문·배송조회를 더 빠르게. 알림으로 소식도 받아보세요.</p>
+                    @if(filled($__android))
+                        <a href="{{ $__android }}" class="store-btn" target="_blank" rel="noopener" aria-label="Google Play 에서 다운로드">
+                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                <path fill="#34a853" d="M3.6 20.5 14 12 3.6 3.5c-.4.3-.6.8-.6 1.4v14.2c0 .6.2 1.1.6 1.4z"/>
+                                <path fill="#fbbc04" d="m17.5 15.5 3.1-1.8c.9-.5.9-1.9 0-2.4l-3.1-1.8L14 12z"/>
+                                <path fill="#ea4335" d="M3.6 20.5c.5.4 1.2.4 1.9 0l12-6.9-3.5-3.5z"/>
+                                <path fill="#4285f4" d="M3.6 3.5 14 13.9l3.5-3.5-12-6.9c-.7-.4-1.4-.4-1.9 0z"/>
+                            </svg>
+                            <span><small>GET IT ON</small>Google Play</span>
+                        </a>
+                    @endif
+                    @if(filled($__ios))
+                        <a href="{{ $__ios }}" class="store-btn" target="_blank" rel="noopener" aria-label="App Store 에서 다운로드">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff" aria-hidden="true">
+                                <path d="M16.4 12.6c0-2.2 1.8-3.3 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.3.8-.7 0-1.7-.8-2.8-.8-1.5 0-2.8.8-3.5 2.1-1.5 2.6-.4 6.5 1.1 8.6.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.7.7 2.8.7c1.2 0 1.9-1 2.6-2.1.8-1.2 1.2-2.4 1.2-2.5-.1 0-2.3-.9-2.3-3.3zM14.3 5.9c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.2z"/>
+                            </svg>
+                            <span><small>Download on the</small>App Store</span>
+                        </a>
+                    @endif
+                </div>
+            @endif
+
             <div class="foot-banks">
                 <h5>무통장 입금계좌</h5>
                 @foreach($site['banks'] as $b)

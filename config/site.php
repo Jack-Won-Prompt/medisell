@@ -33,6 +33,15 @@ return [
     'payment_pg' => env('PAYMENT_PG', 'toss'),
 
     /*
+     | 모바일 앱 스토어 주소
+     |
+     | 값이 비어 있으면 화면에 앱 다운로드 영역을 아예 그리지 않는다.
+     | 관리자 > 사이트설정에서 입력하므로 심사 통과 후 배포 없이 켤 수 있다.
+     */
+    'app_android_url' => env('APP_ANDROID_URL', ''),   // https://play.google.com/store/apps/details?id=...
+    'app_ios_url'     => env('APP_IOS_URL', ''),       // https://apps.apple.com/kr/app/...
+
+    /*
      | 로그인 화면 테스트 계정 안내
      |
      | PG(토스페이먼츠 등) 심사에서 심사자가 직접 로그인해 결제까지 확인해야 하므로

@@ -89,6 +89,24 @@
         </div>
     </div>
 
+    {{-- 모바일 앱 스토어 --}}
+    <div class="adm-card">
+        <div class="h">모바일 앱 다운로드</div>
+        <div style="padding:20px">
+            <div class="afield">
+                <label>Google Play 주소</label>
+                <input type="url" name="app_android_url" class="ainput" value="{{ old('app_android_url', $site['app_android_url'] ?? '') }}"
+                       placeholder="https://play.google.com/store/apps/details?id=패키지명">
+            </div>
+            <div class="afield" style="margin-bottom:0">
+                <label>App Store 주소</label>
+                <input type="url" name="app_ios_url" class="ainput" value="{{ old('app_ios_url', $site['app_ios_url'] ?? '') }}"
+                       placeholder="https://apps.apple.com/kr/app/...">
+                <div class="ahint">입력한 스토어만 사이트 하단 “앱 다운로드”에 노출됩니다. 둘 다 비우면 영역 자체가 표시되지 않습니다.</div>
+            </div>
+        </div>
+    </div>
+
     {{-- 로그인 테스트 계정 안내 --}}
     <div class="adm-card">
         <div class="h">로그인 화면 테스트 계정 안내 (PG 심사용)</div>
