@@ -12,7 +12,8 @@ use App\Models\Product;
 |--------------------------------------------------------------------------
 | 관리자 CRUD 리소스 정의 (설정 기반 제네릭 어드민)
 |--------------------------------------------------------------------------
-| field type: text | textarea | number | checkbox | date | datetime | select
+| field type: text | textarea | editor | number | checkbox | date | datetime | select
+|             editor = 리치 에디터(Quill) — HTML 로 저장된다
 | 주문/회원/문의는 전용 컨트롤러가 별도 처리합니다.
 */
 
@@ -74,7 +75,7 @@ return [
             ['name' => 'stock', 'label' => '재고', 'type' => 'number'],
             ['name' => 'thumbnail', 'label' => '대표 이미지', 'type' => 'image'],
             ['name' => 'summary', 'label' => '짧은 설명', 'type' => 'textarea', 'rows' => 2],
-            ['name' => 'description', 'label' => '상세 설명(HTML)', 'type' => 'textarea', 'rows' => 6],
+            ['name' => 'description', 'label' => '상세 설명', 'type' => 'editor', 'hint' => '서식·이미지를 넣을 수 있습니다. 이미지는 붙여넣거나 툴바 아이콘으로 올리고, 클릭하면 크기를 조절할 수 있습니다.'],
             ['name' => 'spec', 'label' => '규격/사양', 'type' => 'textarea', 'rows' => 4],
             ['name' => 'badge', 'label' => '커스텀 뱃지', 'type' => 'text', 'hint' => '예: 기획, 세일'],
             ['name' => 'is_featured', 'label' => '추천 상품', 'type' => 'checkbox'],

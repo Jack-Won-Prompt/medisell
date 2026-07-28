@@ -3,6 +3,8 @@
 @section('heading', $cfg['label'].' '.($editing ? '수정' : '등록'))
 
 @section('content')
+@php($editorFields = collect($cfg['fields'])->where('type', 'editor')->pluck('name')->all())
+
 <div class="adm-card" style="max-width:760px">
     <div style="padding:24px">
         <form method="POST" action="{{ $editing ? route('admin.update', [$cfg['key'], $item->id]) : route('admin.store', $cfg['key']) }}" enctype="multipart/form-data">
@@ -20,6 +22,13 @@
 
                     @if($type === 'textarea')
                         <textarea name="{{ $name }}" class="atextarea" rows="{{ $f['rows'] ?? 4 }}">{{ $value }}</textarea>
+                    @elseif($type === 'editor')
+                        {{-- 리치 에디터 — 실제 값은 hidden 으로 넘기고 Quill 은 표시만 담당 --}}
+                        <div class="aeditor-wrap" id="ed_wrap_{{ $name }}">
+                            <div class="aeditor" id="ed_{{ $name }}">{!! $value !!}</div>
+                        </div>
+                        <textarea name="{{ $name }}" id="ed_val_{{ $name }}" hidden>{{ $value }}</textarea>
+                        <noscript><div class="ahint">자바스크립트가 꺼져 있어 편집기를 쓸 수 없습니다.</div></noscript>
                     @elseif($type === 'checkbox')
                         <label class="acheck"><input type="checkbox" name="{{ $name }}" value="1" {{ $value ? 'checked' : '' }}> {{ $f['label'] }}</label>
                     @elseif($type === 'select')
@@ -72,6 +81,67 @@
         </form>
     </div>
 </div>
+
+@if($editorFields)
+    <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.7/quill.snow.css">
+    <style>
+        .aeditor-wrap{border:1px solid var(--a-line);border-radius:8px;overflow:hidden;background:#fff}
+        .aeditor-wrap:focus-within{border-color:var(--a-navy);box-shadow:0 0 0 3px rgba(11,61,145,.10)}
+        .aeditor-wrap .ql-toolbar{border:0;border-bottom:1px solid var(--a-line);background:#fbfcfe}
+        .aeditor-wrap .ql-container{border:0;font-size:14px;font-family:inherit}
+        .aeditor-wrap .ql-editor{min-height:320px;line-height:1.7}
+        .aeditor-wrap .ql-editor img{max-width:100%;height:auto}
+        .aeditor-wrap .ql-editor.ql-blank::before{color:#9aa5bd;font-style:normal}
+    </style>
+    @include('partials._quill-image-resize')
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <script>
+    (function () {
+        var names = @json($editorFields);
+        var csrf  = document.querySelector('meta[name="csrf-token"]').content;
+        var url   = @json(route('admin.editor.upload'));
+        var editors = [];
+
+        names.forEach(function (n) {
+            var host = document.getElementById('ed_' + n);
+            var val  = document.getElementById('ed_val_' + n);
+            if (!host || !val || !window.Quill) return;
+
+            var q = new Quill(host, {
+                theme: 'snow',
+                placeholder: '상세 설명을 입력하세요. 이미지는 붙여넣거나 툴바에서 올릴 수 있습니다.',
+                modules: {
+                    toolbar: [
+                        [{ header: [2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ color: [] }, { background: [] }],
+                        [{ list: 'ordered' }, { list: 'bullet' }],
+                        [{ align: [] }],
+                        ['link', 'image'],
+                        ['clean'],
+                    ],
+                },
+            });
+
+            if (window.installQuillImageResize) {
+                window.installQuillImageResize(q, { uploadUrl: url, csrfToken: csrf });
+            }
+            editors.push({ q: q, val: val });
+        });
+
+        // 제출 직전 에디터 내용을 hidden 으로 옮긴다 (빈 문서는 빈 문자열로)
+        var form = document.querySelector('.adm-card form');
+        if (form) {
+            form.addEventListener('submit', function () {
+                editors.forEach(function (e) {
+                    e.val.value = e.q.getText().trim() === '' && !e.q.root.querySelector('img')
+                        ? '' : e.q.root.innerHTML;
+                });
+            });
+        }
+    })();
+    </script>
+@endif
 
 <script>
 (function () {

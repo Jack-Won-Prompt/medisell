@@ -108,6 +108,9 @@ Route::view('/guide/payment', 'guide.payment')->name('guide.payment');   // 간�
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    // 리치 에디터 본문 인라인 이미지 업로드 (툴바·붙여넣기 공용)
+    Route::post('/editor/upload-image', [\App\Http\Controllers\Admin\EditorImageController::class, 'store'])->name('editor.upload');
+
     // 상품 이미지 자동검색(의료몰+네이버) + 확인 후 다운로드
     Route::get('/products/{product}/image-search', [\App\Http\Controllers\Admin\ProductImageController::class, 'search'])->name('products.imagesearch');
     Route::post('/products/{product}/image-fetch', [\App\Http\Controllers\Admin\ProductImageController::class, 'fetch'])->name('products.imagefetch');
