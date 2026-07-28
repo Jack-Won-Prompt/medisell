@@ -45,7 +45,7 @@
                 <p class="muted" style="font-size:12px;margin:0">※ 관리자 확인 후 승인되며, 승인 시 병원 전용가가 적용됩니다.</p>
             </div>
 
-            <label class="inline" style="font-size:13px;margin-bottom:16px"><input type="checkbox" name="agree" value="1" {{ old('agree') ? 'checked' : '' }}> 이용약관 및 개인정보처리방침에 동의합니다.</label>
+            <label class="inline" style="font-size:13px;margin-bottom:16px"><input type="checkbox" name="agree" value="1" {{ old('agree') ? 'checked' : '' }}> <a href="{{ route('legal.terms') }}" target="_blank">이용약관</a> 및 <a href="{{ route('legal.privacy') }}" target="_blank">개인정보처리방침</a>에 동의합니다.</label>
             <button class="btn btn-primary btn-lg btn-block">가입하기</button>
         </form>
         <div class="auth-links"><span>이미 회원이신가요?</span><a href="{{ route('login') }}">로그인</a></div>

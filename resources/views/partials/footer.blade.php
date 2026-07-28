@@ -43,8 +43,9 @@
             <div>
                 <div class="legal">
                     <a href="#">회사소개</a>
-                    <a href="#">이용약관</a>
-                    <a href="#"><b style="color:#fff">개인정보처리방침</b></a>
+                    <a href="{{ route('legal.terms') }}">이용약관</a>
+                    <a href="{{ route('legal.privacy') }}"><b style="color:#fff">개인정보처리방침</b></a>
+                    <a href="{{ route('legal.account-deletion') }}">계정 삭제</a>
                     <a href="#">이용안내</a>
                 </div>
                 <div class="copy">

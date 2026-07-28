@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AccountDeletionRequest;
 use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Category;
@@ -169,6 +170,24 @@ return [
             ['name' => 'question', 'label' => '질문', 'type' => 'text', 'required' => true],
             ['name' => 'answer', 'label' => '답변', 'type' => 'textarea', 'required' => true, 'rows' => 6],
             ['name' => 'sort_order', 'label' => '정렬 순서', 'type' => 'number'],
+        ],
+    ],
+
+    // 구글 플레이 요구사항 — 앱 밖(웹)에서 접수된 계정 삭제 요청함
+    'account-deletions' => [
+        'label' => '계정 삭제 요청', 'model' => AccountDeletionRequest::class, 'icon' => 'user', 'group' => '고객지원',
+        'order' => ['id', 'desc'],
+        'columns' => ['created_at' => '접수일', 'name' => '이름', 'email' => '이메일', 'phone' => '연락처', 'status' => '상태'],
+        'fields' => [
+            ['name' => 'name', 'label' => '이름', 'type' => 'text', 'required' => true],
+            ['name' => 'email', 'label' => '가입 이메일', 'type' => 'text', 'required' => true],
+            ['name' => 'phone', 'label' => '연락처', 'type' => 'text'],
+            ['name' => 'reason', 'label' => '삭제 사유', 'type' => 'text'],
+            ['name' => 'status', 'label' => '처리 상태', 'type' => 'select',
+                'options' => ['pending' => '접수', 'done' => '처리완료', 'rejected' => '반려'], 'required' => true],
+            ['name' => 'note', 'label' => '처리 메모', 'type' => 'textarea', 'rows' => 3,
+                'hint' => '실제 회원 삭제는 회원관리 화면에서 진행하고, 여기에는 처리 결과를 남깁니다.'],
+            ['name' => 'processed_at', 'label' => '처리 일시', 'type' => 'datetime'],
         ],
     ],
 ];
