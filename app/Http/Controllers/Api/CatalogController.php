@@ -125,10 +125,36 @@ class CatalogController extends Controller
             $wished = $user->wishlists()->where('product_id', $product->id)->exists();
         }
 
+        // 인터넷 최저가 비교 — 모의(is_sample) 데이터는 고객에게 노출하지 않음
+        $marketCompare = null;
+        try {
+            $compare = app(\App\Services\MarketPriceService::class)
+                ->compare($product, $product->priceFor($request->user()));
+            if (! empty($compare['rows']) && empty($compare['is_sample'])) {
+                $marketCompare = [
+                    'rows' => collect($compare['rows'])->map(fn ($r) => [
+                        'channel'       => $r['channel'],
+                        'channel_label' => $r['channel_label'],
+                        'seller'        => $r['seller'],
+                        'price'         => (int) $r['price'],
+                        'diff'          => (int) $r['diff'],      // 양수=우리가 저렴
+                        'delivery'      => $r['delivery'] ?? null,
+                    ])->all(),
+                    'is_lowest'  => (bool) ($compare['is_lowest'] ?? false),
+                    'saving'     => (int) ($compare['saving'] ?? 0),
+                    'fetched_at' => $compare['fetched_at']
+                        ? \Illuminate\Support\Carbon::parse($compare['fetched_at'])->format('Y-m-d') : null,
+                ];
+            }
+        } catch (\Throwable $e) {
+            // 최저가 수집 실패해도 상세는 정상 응답
+        }
+
         return response()->json([
             'product'   => S::productDetail($product, $request),
             'related'   => $related->map(fn ($p) => S::productCard($p, $request)),
             'wished'    => $wished,
+            'market_compare' => $marketCompare,
         ]);
     }
 
