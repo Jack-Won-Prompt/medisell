@@ -71,11 +71,14 @@ class ProductImageController extends Controller
         return response()->json(['count' => count($out), 'candidates' => $out]);
     }
 
-    /** 선택한 후보 이미지를 내려받아 썸네일로 지정 */
+    /** 선택한 후보 이미지를 내려받아 대표 이미지로 지정하거나 상세 이미지로 추가 */
     public function fetch(Request $request, Product $product)
     {
         // data:image URI는 매우 길고 url 규칙에 안 맞으므로 별도 허용
-        $data = $request->validate(['url' => ['required', 'string', 'max:12000000']]);
+        $data = $request->validate([
+            'url'  => ['required', 'string', 'max:12000000'],
+            'mode' => ['nullable', 'in:thumbnail,gallery'],
+        ]);
         $url = $data['url'];
         if (! preg_match('#^https?://#i', $url) && ! str_starts_with($url, 'data:image/')) {
             return response()->json(['error' => '올바른 이미지 주소가 아닙니다.'], 422);
@@ -84,7 +87,7 @@ class ProductImageController extends Controller
             $ref = str_starts_with($url, 'data:') ? null : $this->refererFor($url);
             $img = $this->download($url, $ref);
 
-            return $this->saveThumb($product, $img);
+            return $this->saveImage($product, $img, $data['mode'] ?? 'thumbnail');
         } catch (\Throwable $e) {
             report($e);
 
@@ -92,10 +95,14 @@ class ProductImageController extends Controller
         }
     }
 
-    /** 이미지 URL 또는 상품페이지 URL을 붙여넣으면 이미지 추출·다운로드해 썸네일 지정 */
+    /** 이미지 URL 또는 상품페이지 URL을 붙여넣으면 이미지 추출·다운로드해 지정/추가 */
     public function importUrl(Request $request, Product $product)
     {
-        $data = $request->validate(['url' => ['required', 'string', 'max:12000000']]);
+        $data = $request->validate([
+            'url'  => ['required', 'string', 'max:12000000'],
+            'mode' => ['nullable', 'in:thumbnail,gallery'],
+        ]);
+        $mode = $data['mode'] ?? 'thumbnail';
         $url = $data['url'];
         if (! preg_match('#^https?://#i', $url) && ! str_starts_with($url, 'data:image/')) {
             return response()->json(['error' => '올바른 이미지 주소가 아닙니다.'], 422);
@@ -103,7 +110,7 @@ class ProductImageController extends Controller
         try {
             if (str_starts_with($url, 'data:')) {
                 // data URI는 바로 디코드해 저장
-                return $this->saveThumb($product, $this->download($url, null));
+                return $this->saveImage($product, $this->download($url, null), $mode);
             }
             $host = parse_url($url, PHP_URL_HOST);
             $ref = $this->refererFor($url) ?: (parse_url($url, PHP_URL_SCHEME).'://'.$host.'/');
@@ -125,7 +132,7 @@ class ProductImageController extends Controller
                 $body = $this->download($imgUrl, $ref);
             }
 
-            return $this->saveThumb($product, $body);
+            return $this->saveImage($product, $body, $mode);
         } catch (\Throwable $e) {
             report($e);
 
@@ -133,8 +140,13 @@ class ProductImageController extends Controller
         }
     }
 
-    /** 이미지 바이트 검증·저장·썸네일 지정 + 유사 전파 */
-    private function saveThumb(Product $product, string $img)
+    /**
+     * 이미지 바이트 검증·저장 후 용도에 따라 반영.
+     *
+     *  - thumbnail: 대표 이미지로 지정하고 이미지 없는 형제 상품에도 전파(기존 동작)
+     *  - gallery  : 대표는 그대로 두고 상세 이미지 목록에 덧붙인다
+     */
+    private function saveImage(Product $product, string $img, string $mode = 'thumbnail')
     {
         if (! $img || strlen($img) < 1500) {
             return response()->json(['error' => '이미지를 내려받지 못했습니다.'], 422);
@@ -148,15 +160,31 @@ class ProductImageController extends Controller
         if (! is_writable($dir)) {
             return response()->json(['error' => '이미지 저장 폴더에 쓰기 권한이 없습니다. (public/product/picked)'], 422);
         }
-        $file = preg_replace('/[^A-Za-z0-9_-]/', '', (string) ($product->code ?: $product->id)).'-'.time().'.jpg';
+        // 초 단위만으로는 연속 추가(상세 이미지 여러 장) 시 파일명이 겹쳐 앞 이미지를 덮어쓴다
+        $file = preg_replace('/[^A-Za-z0-9_-]/', '', (string) ($product->code ?: $product->id))
+            .'-'.time().'-'.Str::lower(Str::random(4)).'.jpg';
         if (@file_put_contents($dir.'/'.$file, $img) === false) {
             return response()->json(['error' => '이미지 저장에 실패했습니다. 폴더 권한을 확인해 주세요.'], 422);
         }
         $url = asset('product/picked/'.$file);
+
+        if ($mode === 'gallery') {
+            // 접근자가 항상 배열을 주므로 이중 인코딩 행이어도 안전하다
+            $images = $product->images;
+            if (in_array($url, $images, true)) {
+                return response()->json(['mode' => 'gallery', 'url' => $url, 'images' => $images,
+                    'message' => '이미 등록된 이미지입니다.']);
+            }
+            $images[] = $url;
+            $product->update(['images' => $images]);
+
+            return response()->json(['mode' => 'gallery', 'url' => $url, 'images' => $product->images]);
+        }
+
         $product->update(['thumbnail' => $url]);
         $propagated = $this->propagate($product, $url);
 
-        return response()->json(['thumbnail' => $product->thumbnail, 'propagated' => $propagated]);
+        return response()->json(['mode' => 'thumbnail', 'thumbnail' => $product->thumbnail, 'propagated' => $propagated]);
     }
 
     /** 같은 기본상품(제조사+정규화명) 중 이미지 없는 형제에 동일 썸네일 전파 */

@@ -57,12 +57,39 @@
                                         data-fetch="{{ route('admin.products.imagefetch', $item->id) }}">🔍 이미지 자동검색 (의료몰·네이버)</button>
                                 <span id="imgAutoStatus" class="ahint" style="margin-left:8px"></span>
                                 <div id="imgCandidates" style="margin-top:10px;grid-template-columns:repeat(6,1fr);gap:8px;display:none"></div>
+
+                                {{-- 후보를 고르면 용도를 먼저 묻는다 (대표 교체는 되돌리기 번거로우므로) --}}
+                                <div id="imgChoice" style="display:none;margin-top:10px;padding:12px;border:1px solid var(--a-line);border-radius:8px;background:var(--a-bg)">
+                                    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                                        <img id="imgChoicePrev" src="" alt="" style="width:56px;height:56px;object-fit:contain;background:#fff;border:1px solid var(--a-line);border-radius:6px">
+                                        <div style="flex:1;min-width:180px">
+                                            <div style="font-weight:700;font-size:13.5px;margin-bottom:2px">이 이미지를 어디에 쓸까요?</div>
+                                            <div class="ahint" style="margin:0">대표 이미지는 목록·검색에 나오는 사진이고, 상세 이미지는 상품 상세페이지에 함께 보이는 추가 사진입니다.</div>
+                                        </div>
+                                        <div style="display:flex;gap:6px;flex-wrap:wrap">
+                                            <button type="button" class="abtn abtn-pri abtn-sm" id="imgUseThumb">대표 이미지로 지정</button>
+                                            <button type="button" class="abtn abtn-ghost abtn-sm" id="imgUseGallery">상세 이미지로 추가</button>
+                                            <button type="button" class="abtn abtn-ghost abtn-sm" id="imgChoiceCancel">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- 현재 상세 이미지 --}}
+                                <div style="margin-top:12px">
+                                    <div class="ahint" style="margin:0 0 6px">상세 이미지 <span id="imgGalCount">{{ count($item->images ?? []) }}</span>장</div>
+                                    <div id="imgGallery" style="display:flex;gap:6px;flex-wrap:wrap">
+                                        @foreach($item->images ?? [] as $g)
+                                            <img src="{{ $g }}" alt="" style="width:56px;height:56px;object-fit:contain;background:#fff;border:1px solid var(--a-line);border-radius:6px">
+                                        @endforeach
+                                    </div>
+                                </div>
+
                                 <div style="margin-top:10px;display:flex;gap:6px">
                                     <input type="url" id="imgUrlInput" class="ainput" placeholder="또는 이미지 URL·상품페이지 URL 붙여넣기 (쿠팡/의료몰 등)"
                                            data-url="{{ route('admin.products.imageurl', $item->id) }}" style="flex:1;padding:8px">
                                     <button type="button" class="abtn abtn-ghost abtn-sm" id="imgUrlBtn">가져오기</button>
                                 </div>
-                                <div class="ahint" style="margin-top:6px">상품명으로 후보를 검색하거나, 정확한 이미지/상품페이지 URL을 붙여넣어 가져올 수 있습니다.</div>
+                                <div class="ahint" style="margin-top:6px">상품명으로 후보를 검색하거나, 정확한 이미지/상품페이지 URL을 붙여넣어 가져올 수 있습니다. 고른 뒤 대표/상세 중 어디에 쓸지 선택합니다.</div>
                             </div>
                         @endif
                     @else
@@ -167,29 +194,76 @@
                     fig.style.cssText = 'cursor:pointer;border:2px solid transparent;border-radius:8px;overflow:hidden;background:#fff';
                     fig.title = c.source + ' · ' + (c.alt || '');
                     fig.innerHTML = '<img src="' + c.thumb + '" style="width:100%;aspect-ratio:1;object-fit:contain;background:#fff"><div style="font-size:10px;color:#888;text-align:center;padding:2px">' + c.source + '</div>';
-                    fig.addEventListener('click', function () { pick(c.url, fig); });
+                    fig.addEventListener('click', function () { askUse(btn.dataset.fetch, c.url, c.thumb, fig); });
                     box.appendChild(fig);
                 });
             })
             .catch(function () { btn.disabled = false; status.textContent = '검색 실패'; });
     });
 
-    function pick(url, fig) {
+    // ── 용도 선택 ──
+    var choice = document.getElementById('imgChoice');
+    var choicePrev = document.getElementById('imgChoicePrev');
+    var gal = document.getElementById('imgGallery');
+    var galCount = document.getElementById('imgGalCount');
+    var pending = null;   // { endpoint, url }
+
+    function askUse(endpoint, url, preview, fig) {
+        pending = { endpoint: endpoint, url: url };
+        if (fig) {
+            [].forEach.call(box.children, function (n) { n.style.borderColor = 'transparent'; });
+            fig.style.borderColor = '#2f6bff';
+        }
+        choicePrev.src = preview || url;
+        choice.style.display = '';
+        status.textContent = '';
+        choice.scrollIntoView({ block: 'nearest' });
+    }
+
+    function closeChoice() {
+        pending = null;
+        choice.style.display = 'none';
+    }
+
+    document.getElementById('imgChoiceCancel').addEventListener('click', closeChoice);
+    document.getElementById('imgUseThumb').addEventListener('click', function () { send('thumbnail'); });
+    document.getElementById('imgUseGallery').addEventListener('click', function () { send('gallery'); });
+
+    function send(mode) {
+        if (!pending) return;
+        var req = pending;
+        closeChoice();
         status.textContent = '다운로드 중…';
-        [].forEach.call(box.children, function (n) { n.style.borderColor = 'transparent'; });
-        fig.style.borderColor = '#2f6bff';
-        fetch(btn.dataset.fetch, {
+        fetch(req.endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrf, 'X-Requested-With': 'XMLHttpRequest' },
-            body: JSON.stringify({ url: url })
+            body: JSON.stringify({ url: req.url, mode: mode })
         }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
           .then(function (res) {
-              if (res.ok && res.d.thumbnail) {
+              if (!res.ok) { status.textContent = '실패: ' + (res.d.error || ''); return; }
+              if (res.d.mode === 'gallery') {
+                  renderGallery(res.d.images || []);
+                  status.textContent = res.d.message
+                      ? '· ' + res.d.message
+                      : '✓ 상세 이미지로 추가됨 (대표 이미지는 그대로, 즉시 반영)';
+              } else if (res.d.thumbnail) {
                   var prev = document.getElementById('thumbPreview_thumbnail');
                   prev.src = res.d.thumbnail + '?t=' + Date.now(); prev.style.display = '';
-                  status.textContent = '✓ 썸네일 지정됨' + (res.d.propagated ? ' · 유사 상품 ' + res.d.propagated + '개에도 자동 적용됨' : '') + ' (즉시 반영)';
+                  status.textContent = '✓ 대표 이미지 지정됨' + (res.d.propagated ? ' · 유사 상품 ' + res.d.propagated + '개에도 자동 적용됨' : '') + ' (즉시 반영)';
               } else { status.textContent = '실패: ' + (res.d.error || ''); }
           }).catch(function () { status.textContent = '다운로드 실패'; });
+    }
+
+    function renderGallery(list) {
+        gal.innerHTML = '';
+        list.forEach(function (u) {
+            var im = document.createElement('img');
+            im.src = u + '?t=' + Date.now();
+            im.alt = '';
+            im.style.cssText = 'width:56px;height:56px;object-fit:contain;background:#fff;border:1px solid var(--a-line);border-radius:6px';
+            gal.appendChild(im);
+        });
+        galCount.textContent = list.length;
     }
 
     var urlBtn = document.getElementById('imgUrlBtn');
@@ -198,20 +272,9 @@
             var input = document.getElementById('imgUrlInput');
             var u = input.value.trim();
             if (!u) { input.focus(); return; }
-            status.textContent = '가져오는 중…';
-            fetch(input.dataset.url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrf, 'X-Requested-With': 'XMLHttpRequest' },
-                body: JSON.stringify({ url: u })
-            }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
-              .then(function (res) {
-                  if (res.ok && res.d.thumbnail) {
-                      var prev = document.getElementById('thumbPreview_thumbnail');
-                      prev.src = res.d.thumbnail + '?t=' + Date.now(); prev.style.display = '';
-                      status.textContent = '✓ 썸네일 지정됨' + (res.d.propagated ? ' · 유사 상품 ' + res.d.propagated + '개에도 자동 적용됨' : '') + ' (즉시 반영)';
-                      input.value = '';
-                  } else { status.textContent = '실패: ' + (res.d.error || ''); }
-              }).catch(function () { status.textContent = '가져오기 실패'; });
+            // URL 붙여넣기도 같은 선택 흐름을 탄다 (미리보기는 아직 없으므로 URL 자체를 쓴다)
+            askUse(input.dataset.url, u, /^https?:\/\//i.test(u) ? u : '', null);
+            input.value = '';
         });
     }
 })();
