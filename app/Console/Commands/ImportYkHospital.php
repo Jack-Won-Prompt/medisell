@@ -66,7 +66,7 @@ class ImportYkHospital extends Command
                 if (is_file($src)) {
                     $destRel = "product/yk/{$code}.png";
                     if (! $dry) { copy($src, public_path($destRel)); }
-                    $thumb = "http://localhost/medisell/{$destRel}";
+                    $thumb = $destRel;   // 상대경로 저장 — 출력 시 asset() 이 환경에 맞춰 조립
                     $imgOk++;
                 } else {
                     $imgMiss++;

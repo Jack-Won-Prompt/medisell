@@ -5,7 +5,7 @@
 **네이비(#0b3d91)/화이트/레드 비즈니스 테마**, 아이콘은 커스텀 SVG 스프라이트입니다.
 
 ## 접속 주소
-- XAMPP Apache: http://localhost/medisell/public/
+- XAMPP Apache: `APP_URL` 에 설정한 주소 (서브폴더 배치 시 `/public` 없이 접속)
 - 또는 `php artisan serve` 후 http://127.0.0.1:8000
 - 관리자: `/admin`
 

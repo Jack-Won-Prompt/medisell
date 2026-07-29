@@ -18,12 +18,13 @@ return [
     |
     */
 
-    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
-        '%s%s',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
+    // 하드코딩된 로컬 호스트 목록 없이 APP_URL 에서만 유도한다.
+    // (모바일 앱은 Bearer 토큰 인증이라 stateful 쿠키 도메인이 필요 없다.
+    //  SPA 를 붙일 때는 .env 의 SANCTUM_STATEFUL_DOMAINS 로 지정)
+    'stateful' => array_values(array_filter(explode(',', env(
+        'SANCTUM_STATEFUL_DOMAINS',
         Sanctum::currentApplicationUrlWithPort(),
-        // Sanctum::currentRequestHost(),
-    ))),
+    )))),
 
     /*
     |--------------------------------------------------------------------------

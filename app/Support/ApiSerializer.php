@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 
 /**
  * 모바일 API용 JSON 직렬화 헬퍼.
- * 저장된 이미지 URL은 http://localhost/medisell/... 형태의 절대경로이므로
- * 요청 호스트(에뮬레이터 10.0.2.2 / 실기기 LAN IP)에 맞춰 host 부분을 재작성한다.
+ * 이미지 경로는 DB에 상대경로로 저장되므로, 요청 호스트(에뮬레이터 10.0.2.2 / 실기기 LAN IP /
+ * 운영 도메인)와 서브폴더에 맞춰 절대 URL로 재조립한다. 과거 절대경로 데이터도 함께 정규화한다.
  */
 class ApiSerializer
 {

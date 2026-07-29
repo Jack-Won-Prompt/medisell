@@ -198,7 +198,7 @@ class ProductImageController extends Controller
             ->select('id', 'name', 'maker')->chunkById(500, function ($rows) use ($key, $url, &$count) {
                 foreach ($rows as $p) {
                     if ($this->baseKey($p->name, $p->maker) === $key) {
-                        Product::where('id', $p->id)->update(['thumbnail' => $url]);
+                        Product::where('id', $p->id)->update(['thumbnail' => Product::toRelativeImagePath($url)]);
                         $count++;
                     }
                 }

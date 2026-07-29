@@ -50,7 +50,7 @@ class ImportYkMedical extends Command
                 if (! $dry) {
                     copy($src, public_path($destRel));
                 }
-                $thumb = "http://localhost/medisell/{$destRel}";  // 로컬 하위폴더 → 절대경로 유지
+                $thumb = $destRel;   // 상대경로 저장 — 출력 시 asset() 이 환경에 맞춰 조립
                 $imgOk++;
             } else {
                 $imgMiss++;

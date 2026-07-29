@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasImagePaths;
 use App\Models\Concerns\HasUniqueSlug;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Support\Str;
 
 class Product extends Model
 {
-    use HasUniqueSlug;
+    use HasImagePaths, HasUniqueSlug;
 
     protected $fillable = [
         'category_id', 'brand_id', 'name', 'slug', 'code', 'group_key', 'unit', 'maker',
@@ -19,12 +20,27 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'images'      => 'array',
+        // images 는 아래 접근자에서 직접 인코딩/디코딩한다 (array 캐스팅과 중복되지 않게 제외)
         'is_active'   => 'boolean',
         'is_featured' => 'boolean',
         'is_best'     => 'boolean',
         'is_new'      => 'boolean',
     ];
+
+    /** 대표 이미지 — 저장은 상대경로, 출력은 현재 환경 절대 URL */
+    protected function thumbnail(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($v) => self::toImageUrl($v),
+            set: fn ($v) => self::toRelativeImagePath($v),
+        );
+    }
+
+    /** 상세설명 HTML 안의 이미지 주소도 현재 환경으로 맞춘다 */
+    protected function description(): Attribute
+    {
+        return Attribute::get(fn ($v) => self::rewriteHtmlImageUrls($v));
+    }
 
     /**
      * 추가 이미지는 항상 문자열 배열로 돌려준다.
@@ -36,16 +52,34 @@ class Product extends Model
      */
     protected function images(): Attribute
     {
-        return Attribute::get(function ($value) {
-            $v = is_string($value) ? json_decode($value, true) : $value;
-            if (is_string($v)) {                 // 이중 인코딩
-                $v = json_decode($v, true);
-            }
+        return Attribute::make(
+            get: function ($value) {
+                $v = is_string($value) ? json_decode($value, true) : $value;
+                if (is_string($v)) {                 // 이중 인코딩
+                    $v = json_decode($v, true);
+                }
+                if (! is_array($v)) {
+                    return [];
+                }
 
-            return is_array($v)
-                ? array_values(array_filter($v, fn ($u) => is_string($u) && $u !== ''))
-                : [];
-        });
+                return array_values(array_filter(array_map(
+                    fn ($u) => is_string($u) ? self::toImageUrl($u) : null,
+                    $v,
+                )));
+            },
+            set: function ($value) {
+                $v = is_string($value) ? json_decode($value, true) : $value;
+                if (is_string($v)) {
+                    $v = json_decode($v, true);
+                }
+                $list = array_values(array_filter(array_map(
+                    fn ($u) => is_string($u) ? self::toRelativeImagePath($u) : null,
+                    is_array($v) ? $v : [],
+                )));
+
+                return json_encode($list, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+            },
+        );
     }
 
     protected function slugPrefix(): string

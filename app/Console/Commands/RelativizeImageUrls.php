@@ -2,88 +2,116 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Banner;
-use App\Models\Brand;
-use App\Models\Product;
+use App\Models\Concerns\HasImagePaths;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 /**
- * DB에 저장된 이미지 절대경로(http://localhost/medisell/public/...)를
- * 상대경로(/product/...)로 일괄 변환한다. (도메인 이전/배포용)
+ * DB에 굳어 있는 이미지 절대경로를 상대경로로 정규화한다.
  *
- * 예) php artisan images:relativize
- *     php artisan images:relativize --from="http://localhost/medisell/public" --to=""
- *     php artisan images:relativize --dry   (미리보기, 변경 안 함)
+ * 저장은 상대경로(`product/...`), 출력은 모델 접근자가 asset() 으로 조립하므로
+ * 같은 DB를 로컬(서브폴더)·운영(도메인 루트)에서 그대로 쓸 수 있다.
+ * 특정 호스트에 묶이지 않으므로 도메인 이전·환경 이동 시 재작업이 필요 없다.
+ *
+ *   php artisan images:relativize            # 전 컬럼 정규화
+ *   php artisan images:relativize --dry      # 미리보기(변경 없음)
+ *
+ * 외부(제휴) 이미지 URL과 data URI 는 건드리지 않는다.
  */
 class RelativizeImageUrls extends Command
 {
-    protected $signature = 'images:relativize
-        {--from= : 제거할 절대경로 접두사 (기본: http://localhost/medisell)}
-        {--to= : 대체 문자열 (기본: 빈 문자열 → /product/... 형태)}
-        {--dry : 실제 변경 없이 대상 건수만 표시}';
+    use HasImagePaths;
 
-    protected $description = '이미지 절대경로(localhost)를 상대경로로 일괄 변환';
+    protected $signature = 'images:relativize {--dry : 실제 변경 없이 대상 건수만 표시}';
+
+    protected $description = '이미지 절대경로를 상대경로로 정규화 (환경 독립)';
+
+    /** [테이블 => [단일경로 컬럼...], json 배열 컬럼, HTML 컬럼] */
+    private const TARGETS = [
+        'products' => ['path' => ['thumbnail'], 'json' => ['images'], 'html' => ['description']],
+        'banners'  => ['path' => ['image']],
+        'ads'      => ['path' => ['image']],
+        'brands'   => ['path' => ['logo']],
+        'categories' => ['path' => []],
+    ];
 
     public function handle(): int
     {
-        // 저장 형식이 http://localhost/medisell/product/... (하위폴더, /public 없음)
-        $from = rtrim($this->option('from') ?: 'http://localhost/medisell', '/');
-        $to = (string) ($this->option('to') ?? '');
         $dry = (bool) $this->option('dry');
+        $this->info(($dry ? '[미리보기] ' : '').'이미지 경로 정규화 — 절대 URL·서브폴더 접두사 제거');
 
-        $rep = fn ($s) => is_string($s) ? str_replace($from, $to, $s) : $s;
-
-        $this->info(($dry ? '[미리보기] ' : '').'변환: "'.$from.'" → "'.($to === '' ? '(제거)' : $to).'"');
-
-        // 상품 (thumbnail, images[], description)
-        $pCount = 0;
-        foreach (Product::query()->cursor() as $p) {
-            $changed = false;
-
-            if (is_string($p->thumbnail) && str_contains($p->thumbnail, $from)) {
-                $p->thumbnail = $rep($p->thumbnail);
-                $changed = true;
+        $total = 0;
+        foreach (self::TARGETS as $table => $cols) {
+            if (! DB::getSchemaBuilder()->hasTable($table)) {
+                continue;
             }
-            if (is_string($p->description) && str_contains($p->description, $from)) {
-                $p->description = $rep($p->description);
-                $changed = true;
-            }
-            if (is_array($p->images)) {
-                $imgs = array_map($rep, $p->images);
-                if ($imgs !== $p->images) {
-                    $p->images = $imgs;
-                    $changed = true;
+            $changed = 0;
+
+            foreach (DB::table($table)->select('id')->orderBy('id')->cursor() as $row) {
+                $orig = (array) DB::table($table)->where('id', $row->id)->first();
+                $update = [];
+
+                foreach ($cols['path'] ?? [] as $c) {
+                    if (! array_key_exists($c, $orig)) {
+                        continue;
+                    }
+                    $new = self::toRelativeImagePath($orig[$c]);
+                    if ($new !== $orig[$c]) {
+                        $update[$c] = $new;
+                    }
+                }
+
+                foreach ($cols['json'] ?? [] as $c) {
+                    if (! array_key_exists($c, $orig) || ! is_string($orig[$c]) || $orig[$c] === '') {
+                        continue;
+                    }
+                    $list = json_decode($orig[$c], true);
+                    if (is_string($list)) {                       // 이중 인코딩 데이터 방어
+                        $list = json_decode($list, true);
+                    }
+                    if (! is_array($list)) {
+                        continue;
+                    }
+                    $fixed = array_values(array_filter(array_map(
+                        fn ($u) => is_string($u) ? self::toRelativeImagePath($u) : null,
+                        $list,
+                    )));
+                    $json = json_encode($fixed, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                    if ($json !== $orig[$c]) {
+                        $update[$c] = $json;
+                    }
+                }
+
+                foreach ($cols['html'] ?? [] as $c) {
+                    if (! array_key_exists($c, $orig) || ! is_string($orig[$c]) || $orig[$c] === '') {
+                        continue;
+                    }
+                    $new = preg_replace_callback(
+                        '#https?://[^"\'\s)]+\.(?:png|jpe?g|gif|webp|svg)#i',
+                        fn ($m) => self::isOwnHost($m[0]) ? (string) self::toRelativeImagePath($m[0]) : $m[0],
+                        $orig[$c],
+                    );
+                    if ($new !== $orig[$c]) {
+                        $update[$c] = $new;
+                    }
+                }
+
+                if ($update) {
+                    $changed++;
+                    if (! $dry) {
+                        DB::table($table)->where('id', $row->id)->update($update);
+                    }
                 }
             }
 
+            $total += $changed;
             if ($changed) {
-                $pCount++;
-                if (! $dry) {
-                    $p->save();
-                }
+                $this->line("  {$table}: {$changed}건 ".($dry ? '변환 예정' : '변환'));
             }
         }
 
-        // 배너, 브랜드 로고
-        $bCount = $this->fixColumn(Banner::class, 'image', $from, $rep, $dry);
-        $brCount = $this->fixColumn(Brand::class, 'logo', $from, $rep, $dry);
-
-        $this->info("상품 {$pCount}건, 배너 {$bCount}건, 브랜드 {$brCount}건 ".($dry ? '변환 예정' : '변환 완료'));
+        $this->info(($dry ? '변환 예정 ' : '변환 완료 ')."총 {$total}건");
 
         return self::SUCCESS;
-    }
-
-    private function fixColumn(string $model, string $col, string $from, callable $rep, bool $dry): int
-    {
-        $count = 0;
-        foreach ($model::query()->where($col, 'like', '%'.$from.'%')->cursor() as $row) {
-            if (! $dry) {
-                $row->{$col} = $rep($row->{$col});
-                $row->save();
-            }
-            $count++;
-        }
-
-        return $count;
     }
 }
