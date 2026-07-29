@@ -33,6 +33,8 @@ class SettingController extends Controller
             'banks'   => $site['banks'] ?? [],
             'popular_keywords' => $site['popular_keywords'] ?? [],
             'payment_pg' => $site['payment_pg'] ?? 'toss',
+            // 앱 버전(업데이트 안내용)
+            'mobile' => config('mobile'),
         ]);
     }
 }
