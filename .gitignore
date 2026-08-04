@@ -82,3 +82,7 @@ medisell_ads_20/
 *_error.log
 # 매뉴얼 배포용 압축본 (docs/manual/ 원본과 중복 — 필요할 때 다시 묶어 전달)
 /docs/manual/manual.zip
+
+# Firebase 서비스계정 비밀키 — 절대 커밋 금지 (실제 키는 storage/app/fcm-service-account.json)
+/*firebase-adminsdk*.json
+firebase-adminsdk*.json

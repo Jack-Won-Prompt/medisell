@@ -117,7 +117,7 @@
     <table>
         <thead><tr><th style="width:220px">수탁업체</th><th>위탁 업무</th></tr></thead>
         <tbody>
-        <tr><td>토스페이먼츠 주식회사 / 주식회사 코리아포트원</td><td>신용카드·계좌이체·간편결제·가상계좌 등 결제 처리 및 결제 도용 방지</td></tr>
+        <tr><td>토스페이먼츠 주식회사</td><td>신용카드·계좌이체·간편결제·가상계좌 등 결제 처리 및 결제 도용 방지</td></tr>
         <tr><td>Amazon Web Services, Inc.</td><td>서비스 운영을 위한 서버 및 데이터 보관(클라우드 인프라)</td></tr>
         <tr><td>CJ대한통운 주식회사<br>우정사업본부(우체국택배)</td><td>주문 상품의 배송 및 반품 수거</td></tr>
         </tbody>
