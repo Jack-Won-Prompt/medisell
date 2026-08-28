@@ -6,31 +6,29 @@ use App\Models\User;
 use Illuminate\Console\Command;
 
 /**
- * 로그인 화면에 안내 중인 테스트 계정을 실제로 만들어 준다.
+ * PG 심사 등에 쓸 테스트 계정을 만들어 준다.
  *
- * 관리자 > 사이트설정의 "테스트 계정 안내"는 화면에 문구를 띄울 뿐이라
- * 계정 자체는 따로 있어야 한다. 회원가입 폼은 비밀번호 8자 이상이라
- * 짧은 심사용 비밀번호를 만들 수 없어 이 명령으로 처리한다.
+ * 관리자에 회원 생성 기능이 없고 회원가입 폼은 비밀번호 8자 이상이라,
+ * 짧은 심사용 비밀번호를 가진 계정은 이 명령으로만 만들 수 있다.
  *
- * 이미 있는 계정이면 비밀번호만 안내값에 맞춰 갱신한다(주문 이력 보존).
+ * 이미 있는 계정이면 비밀번호만 갱신한다(주문 이력 보존).
  */
 class SyncDemoAccount extends Command
 {
     protected $signature = 'demo:account
-        {--email= : 사이트설정 대신 쓸 이메일}
-        {--password= : 사이트설정 대신 쓸 비밀번호}
+        {--email= : 계정 이메일 (필수)}
+        {--password= : 계정 비밀번호 (필수)}
         {--name=테스트계정 : 회원 이름}';
 
-    protected $description = '로그인 화면 안내용 테스트 계정 생성/비밀번호 갱신';
+    protected $description = 'PG 심사용 테스트 계정 생성/비밀번호 갱신';
 
     public function handle(): int
     {
-        $demo = config('site.demo_login', []);
-        $email = (string) ($this->option('email') ?: ($demo['email'] ?? ''));
-        $password = (string) ($this->option('password') ?: ($demo['password'] ?? ''));
+        $email = (string) $this->option('email');
+        $password = (string) $this->option('password');
 
         if ($email === '' || $password === '') {
-            $this->error('이메일/비밀번호가 비어 있습니다. 관리자 > 사이트설정에서 먼저 입력하거나 --email --password 로 지정하세요.');
+            $this->error('--email 과 --password 를 모두 지정해야 합니다.');
 
             return self::FAILURE;
         }
@@ -65,11 +63,6 @@ class SyncDemoAccount extends Command
         }
 
         $this->line('  비밀번호: '.$password);
-        $this->line('  로그인 화면 노출: '.(($demo['enabled'] ?? false) ? '켜짐' : '꺼짐 — 관리자 > 사이트설정에서 켜세요'));
-
-        if (($demo['email'] ?? '') !== '' && $demo['email'] !== $email) {
-            $this->warn("주의: 로그인 화면에 안내 중인 이메일({$demo['email']})과 다릅니다.");
-        }
 
         return self::SUCCESS;
     }

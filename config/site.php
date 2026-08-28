@@ -41,21 +41,6 @@ return [
     'app_android_url' => env('APP_ANDROID_URL', 'https://play.google.com/store/apps/details?id=co.kr.medisell.medisell_app'),
     'app_ios_url'     => env('APP_IOS_URL', ''),       // https://apps.apple.com/kr/app/...
 
-    /*
-     | 로그인 화면 테스트 계정 안내
-     |
-     | PG(토스페이먼츠 등) 심사에서 심사자가 직접 로그인해 결제까지 확인해야 하므로
-     | 로그인 페이지 하단에 안내 계정을 노출한다. 공개 노출이라 심사 기간에만 켜고
-     | 통과 후 즉시 끈다 — 관리자 > 사이트설정에서 토글한다.
-     | 반드시 개인정보·실주문이 없는 전용 계정을 쓸 것.
-     */
-    'demo_login' => [
-        'enabled'  => (bool) env('DEMO_LOGIN_ENABLED', false),
-        'email'    => env('DEMO_LOGIN_EMAIL', ''),
-        'password' => env('DEMO_LOGIN_PASSWORD', ''),
-        'note'     => env('DEMO_LOGIN_NOTE', 'PG 심사용 테스트 계정입니다. 심사 종료 후 비활성화됩니다.'),
-    ],
-
     // 오늘의 특가 구성 (관리자 사이트설정): random(랜덤) | discount(할인율순) | best(베스트)
     'deal_mode' => 'random',
 

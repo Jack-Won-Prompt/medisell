@@ -448,14 +448,6 @@ main{min-height:60vh}
 .auth-links{display:flex;justify-content:center;gap:14px;margin-top:18px;font-size:13.5px;color:var(--slate-500)}
 .auth-links a:hover{color:var(--navy-800)}
 
-/* 로그인 화면 테스트 계정 안내 (PG 심사 기간에만 노출) */
-.demo-login{margin-top:20px;padding:16px 16px 14px;border:1px dashed var(--line);border-radius:var(--radius);background:var(--slate-50,#f8fafc)}
-.demo-login .t{font-size:13px;font-weight:700;color:var(--slate-700);margin-bottom:10px}
-.demo-login dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:0 0 12px;font-size:13.5px}
-.demo-login dt{color:var(--slate-500)}
-.demo-login dd{margin:0;color:var(--slate-700);font-weight:600;word-break:break-all;user-select:all}
-.demo-login .n{margin:10px 0 0;font-size:12.5px;line-height:1.5;color:var(--slate-500)}
-
 /* 마이페이지 */
 .my-layout{display:grid;grid-template-columns:220px 1fr;gap:26px;align-items:start}
 .my-nav{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
