@@ -56,4 +56,9 @@ return [
         ],
     ],
 
+    'supportworks' => [
+        'error_url'   => env('SW_ERROR_URL'),
+        'error_token' => env('SW_ERROR_TOKEN'),
+    ],
+
 ];
