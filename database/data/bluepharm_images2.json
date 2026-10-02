@@ -1,0 +1,408 @@
+[
+ {
+  "query": "신창 일회용주사기",
+  "file": "ZC1375_f.jpg",
+  "alt": "[신창]일회용주사기",
+  "site": "bizpharm",
+  "sites": 2,
+  "codes": [
+   "ZC1375",
+   "ZC1376",
+   "ZC1363",
+   "ZC1360",
+   "ZC1373",
+   "ZC1377",
+   "ZC1364",
+   "ZC1361",
+   "ZC1365",
+   "ZC1379",
+   "ZC1666",
+   "ZC1362"
+  ]
+ },
+ {
+  "query": "안지오캐스",
+  "file": null,
+  "codes": [
+   "2C0146",
+   "2C0148",
+   "2C0149"
+  ]
+ },
+ {
+  "query": "바이크릴 봉합사",
+  "file": "4C0034_f.jpg",
+  "alt": "오픈메디칼에치콘 바이크릴 봉합사 W9565 (7/0) 7mm Spacut 1/2 45cm 12개",
+  "site": "openmedical",
+  "sites": 1,
+  "codes": [
+   "4C0034",
+   "4C0037",
+   "4C0009"
+  ]
+ },
+ {
+  "query": "PDS 봉합사",
+  "file": "4C0258_f.jpg",
+  "alt": "[에치콘]피디에스봉합사(PDS II) W9077H 36타 급여코드 : B0544101",
+  "site": "bizpharm",
+  "sites": 2,
+  "codes": [
+   "4C0258"
+  ]
+ },
+ {
+  "query": "경기 IV카테타",
+  "file": null,
+  "codes": [
+   "ZC0617",
+   "ZC0618",
+   "ZC0619",
+   "ZC0620"
+  ]
+ },
+ {
+  "query": "덕우 카테타",
+  "file": "ZC2004_f.jpg",
+  "alt": "[덕우]정맥카테타(IVCATHETER)",
+  "site": "bizpharm",
+  "sites": 3,
+  "codes": [
+   "ZC2004",
+   "ZC0714"
+  ]
+ },
+ {
+  "query": "매지션 나비침",
+  "file": null,
+  "codes": [
+   "2C0206",
+   "2C1202",
+   "2C1203",
+   "2C1204"
+  ]
+ },
+ {
+  "query": "테라세이프 니트릴 라벤더",
+  "file": null,
+  "codes": [
+   "ZC1249",
+   "ZC1250",
+   "ZC1251"
+  ]
+ },
+ {
+  "query": "테라세이프 멸균 장갑",
+  "file": null,
+  "codes": [
+   "ZC0528",
+   "ZC0529",
+   "ZC0530",
+   "ZC0531"
+  ]
+ },
+ {
+  "query": "아이젤 i-gel",
+  "file": "ZC0916_f.jpg",
+  "alt": "아이젤(아이겔) 후두마스크",
+  "site": "drmro",
+  "sites": 2,
+  "codes": [
+   "ZC0916",
+   "2C0581",
+   "ZC0917"
+  ]
+ },
+ {
+  "query": "대한 면탄력붕대",
+  "file": null,
+  "codes": [
+   "ZC1076",
+   "ZC1077",
+   "ZC1078"
+  ]
+ },
+ {
+  "query": "수성 고탄력붕대",
+  "file": null,
+  "codes": [
+   "DX0067",
+   "DX0068",
+   "DX0069"
+  ]
+ },
+ {
+  "query": "수성 면탄력붕대",
+  "file": null,
+  "codes": [
+   "ZC1012"
+  ]
+ },
+ {
+  "query": "문정 8자 쇄골",
+  "file": null,
+  "codes": [
+   "ZC1391",
+   "1C0100"
+  ]
+ },
+ {
+  "query": "밸포밴드",
+  "file": "ZC1401_f.jpg",
+  "alt": "[원가아하특가] D&amp;B밸포밴드(18) 소,중,대,특대",
+  "site": "bizpharm",
+  "sites": 3,
+  "codes": [
+   "ZC1401",
+   "ZC1400"
+  ],
+  "rejected": true
+ },
+ {
+  "query": "대한 알콜탈지면",
+  "file": null,
+  "codes": [
+   "0C0095",
+   "ZC2576"
+  ]
+ },
+ {
+  "query": "신창 수액세트 무침",
+  "file": "ZC2384_f.jpg",
+  "alt": "오픈메디칼신창 의료용 수액세트 무침 20Drop 50개 IV SET 수액주사",
+  "site": "openmedical",
+  "sites": 2,
+  "codes": [
+   "ZC2384"
+  ]
+ },
+ {
+  "query": "신창 수액세트 유침",
+  "file": null,
+  "codes": [
+   "ZC1366"
+  ]
+ },
+ {
+  "query": "성심 수액세트 Y",
+  "file": "2C0490_f.jpg",
+  "alt": "오픈메디칼성심 필터 수액세트 VAFR-500 (Y관+필터+3way+레귤레이터) 30개 수액주사 링거 링겔",
+  "site": "openmedical",
+  "sites": 1,
+  "codes": [
+   "2C0490"
+  ],
+  "rejected": true
+ },
+ {
+  "query": "한울 수액세트",
+  "file": null,
+  "codes": [
+   "2C1044"
+  ]
+ },
+ {
+  "query": "두원 수액연결줄",
+  "file": "2C0528_f.jpg",
+  "alt": "오픈메디칼두원 수액연결줄 90cm x 50개입 수액연결관 연장선 튜브라인",
+  "site": "openmedical",
+  "sites": 1,
+  "codes": [
+   "2C0528"
+  ]
+ },
+ {
+  "query": "신창 수액연결",
+  "file": "ZC0649_f.jpg",
+  "alt": "오픈메디칼신창 의료용 수액연결줄 145cm x 50개입 익스텐션튜브 링거 링겔",
+  "site": "openmedical",
+  "sites": 1,
+  "codes": [
+   "ZC0649"
+  ]
+ },
+ {
+  "query": "콤필 플러스 투명",
+  "file": null,
+  "codes": [
+   "05708932675161",
+   "05708932675345"
+  ]
+ },
+ {
+  "query": "스피노칸",
+  "file": null,
+  "codes": [
+   "3C0081"
+  ]
+ },
+ {
+  "query": "에피듀랄 니들",
+  "file": "3C0477_f.jpg",
+  "alt": "[태창]에피듀랄니들 18G/20G/22G",
+  "site": "bizpharm",
+  "sites": 4,
+  "codes": [
+   "3C0477"
+  ]
+ },
+ {
+  "query": "동방 MTS",
+  "file": "ZC3309_f.jpg",
+  "alt": "라르꼬발레노 MTS 더마큐 골드 더마 롤러",
+  "site": "danawa",
+  "sites": 1,
+  "codes": [
+   "ZC3309"
+  ],
+  "rejected": true
+ },
+ {
+  "query": "GMK 3way",
+  "file": "2C1118_f.jpg",
+  "alt": "지클릭커 슈퍼히어로 GMK-510X Special 키보드 마우스 세트 화이트",
+  "site": "danawa",
+  "sites": 1,
+  "codes": [
+   "2C1118"
+  ],
+  "rejected": true
+ },
+ {
+  "query": "이지큐본드",
+  "file": null,
+  "codes": [
+   "ZC2279"
+  ]
+ },
+ {
+  "query": "가주 프루브커버",
+  "file": "ZC0614_f.jpg",
+  "alt": "[가주]초음파콘돔*멸균(초음파프루브커버)144개",
+  "site": "bizpharm",
+  "sites": 1,
+  "codes": [
+   "ZC0614"
+  ],
+  "rejected": true
+ },
+ {
+  "query": "녹십자 지센스 혈당",
+  "file": null,
+  "codes": [
+   "3C0106"
+  ]
+ },
+ {
+  "query": "대한 외과용패드",
+  "file": null,
+  "codes": [
+   "ZC1069"
+  ]
+ },
+ {
+  "query": "문정 알루미늄 스프린트",
+  "file": null,
+  "codes": [
+   "1C0143"
+  ]
+ },
+ {
+  "query": "소프트넥칼라",
+  "file": null,
+  "codes": [
+   "1C0284"
+  ]
+ },
+ {
+  "query": "소노젤리",
+  "file": "1C0286_f.jpg",
+  "alt": "[승원] 소노젤리 5L",
+  "site": "bizpharm",
+  "sites": 3,
+  "codes": [
+   "1C0286"
+  ],
+  "rejected": true
+ },
+ {
+  "query": "오시스 캐스트슈즈",
+  "file": null,
+  "codes": [
+   "0C0355"
+  ]
+ },
+ {
+  "query": "유앤미 안전면도기",
+  "file": null,
+  "codes": [
+   "0C0058"
+  ]
+ },
+ {
+  "query": "석션고무관",
+  "file": "ZC2650_f.jpg",
+  "alt": "[한국라텍스]라텍스고무관(썩션고무관)",
+  "site": "bizpharm",
+  "sites": 1,
+  "codes": [
+   "ZC2650"
+  ]
+ },
+ {
+  "query": "탑매트",
+  "file": "0C0180_f.jpg",
+  "alt": "베드리움 NEW 노블아워 코어 서포트 유로탑 매트리스 Q",
+  "site": "danawa",
+  "sites": 1,
+  "codes": [
+   "0C0180"
+  ],
+  "rejected": true
+ },
+ {
+  "query": "cold snare",
+  "file": null,
+  "codes": [
+   "2C0718"
+  ]
+ },
+ {
+  "query": "펜코 플렉스밴드",
+  "file": "DX0294_f.jpg",
+  "alt": "원더스토어 펜코 빈티지 레트로 불렛 샤프 12컬러",
+  "site": "danawa",
+  "sites": 1,
+  "codes": [
+   "DX0294"
+  ],
+  "rejected": true
+ },
+ {
+  "query": "모아랩밴드",
+  "file": "0C0002_f.jpg",
+  "alt": "모아랩 모아랩 주사밴드 20mm 100매",
+  "site": "danawa",
+  "sites": 1,
+  "codes": [
+   "0C0002"
+  ]
+ },
+ {
+  "query": "사라사이드 와입스",
+  "file": null,
+  "codes": [
+   "ZC0959"
+  ]
+ },
+ {
+  "query": "윌스캔 체온계",
+  "file": "2C0265_f.jpg",
+  "alt": "윌메딕스 윌스캔 HET-R161",
+  "site": "danawa",
+  "sites": 1,
+  "codes": [
+   "2C0265"
+  ]
+ }
+]

@@ -109,7 +109,7 @@ class ImportMulpumProducts extends Command
         return 0;
     }
 
-    private function classify(string $name): string
+    public function classify(string $name): string
     {
         $n = Str::lower($name);
         foreach ($this->rules as $slug => $keywords) {

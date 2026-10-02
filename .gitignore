@@ -34,6 +34,8 @@ public/product/picked/
 public/product/sames/
 # 의료몰/navimro/danawa 스크래핑 로컬 이미지 (물품명) — 저작권상 로컬 전용
 public/product/mulpum/
+# 블루팜 품목 이미지 (같은 5개 사이트 스크래핑) — 저작권상 로컬 전용
+public/product/bluepharm/
 # YK 상품 이미지 — 용량이 커 git 대신 medisell_images.tar.gz 로 수동 전송
 public/product/yk/
 

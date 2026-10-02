@@ -1,0 +1,3354 @@
+{
+ "ZC0308": {
+  "name": "[3M] N95 Mask",
+  "spec": "1870+",
+  "unit": "EA",
+  "price": 1400.0,
+  "maker": "3M",
+  "last_sold": "2026-02-02"
+ },
+ "ZC2000": {
+  "name": "[신창] 일회용 주사기 3cc 24G 3/4 ″",
+  "spec": "[100EA/GAB] 3cc 24G 3/4 ″",
+  "unit": "EA",
+  "price": 58.3,
+  "maker": "신창",
+  "last_sold": "2026-09-02"
+ },
+ "ZC1360": {
+  "name": "SC DISPOSABLE SYRINGE 1cc 26G 0.5″",
+  "spec": "[100EA/GAB] 1cc 26G 0.5″",
+  "unit": "EA",
+  "price": 66.1,
+  "maker": "",
+  "last_sold": "2026-09-10"
+ },
+ "2C1004": {
+  "name": "[한국백신]일회용주사기 20CC 23G",
+  "spec": "20CC 23G",
+  "unit": "EA",
+  "price": 132.84,
+  "maker": "한국백신",
+  "last_sold": "2026-01-01"
+ },
+ "ZC1162": {
+  "name": "필텍 일회용주사기(D/Syringe) BOX(100EA)",
+  "spec": "10CC23G1inch",
+  "unit": "BOX",
+  "price": 8190.0,
+  "maker": "",
+  "last_sold": "2026-01-01"
+ },
+ "2C0536": {
+  "name": "[한국백신]일회용주사기 10CC 21G",
+  "spec": "10CC 21G 1¼\" (100*12PK)",
+  "unit": "EA",
+  "price": 127.4,
+  "maker": "한국백신",
+  "last_sold": "2026-09-07"
+ },
+ "ZC1361": {
+  "name": "SC DISPOSABLE SYRINGE 3cc 23G 1″",
+  "spec": "[100EA/GAB] 3cc 23G 1″",
+  "unit": "EA",
+  "price": 64.0,
+  "maker": "",
+  "last_sold": "2026-09-17"
+ },
+ "0C0169": {
+  "name": "[대한] 접은거즈",
+  "spec": "10cm*10cm(8P),BOX/200EA",
+  "unit": "BOX",
+  "price": 6850.0,
+  "maker": "대한",
+  "last_sold": "2026-09-14"
+ },
+ "2C0056": {
+  "name": "[BD] Luer lok syringe 루어락주사기[302113]",
+  "spec": "3ML LL(box`100s)",
+  "unit": "EA",
+  "price": 188.0,
+  "maker": "BD",
+  "last_sold": "2026-09-15"
+ },
+ "2C0772": {
+  "name": "[한국백신]IV Extension Tube,수액연결관",
+  "spec": "[S403]L120cm (25EA/PK)",
+  "unit": "EA",
+  "price": 352.0,
+  "maker": "한국백신",
+  "last_sold": "2026-04-01"
+ },
+ "ZC1373": {
+  "name": "SC DISPOSABLE SYRINGE 20cc 18G 1.5″",
+  "spec": "[50EA/GAB] 20cc 18G 1.5″",
+  "unit": "EA",
+  "price": 177.6,
+  "maker": "",
+  "last_sold": "2026-09-15"
+ },
+ "ZC1362": {
+  "name": "SC DISPOSABLE SYRINGE 5cc 23G 1″",
+  "spec": "[100EA/GAB] 5cc 23G 1″",
+  "unit": "EA",
+  "price": 72.8,
+  "maker": "",
+  "last_sold": "2026-09-18"
+ },
+ "ZC1075": {
+  "name": "[대한] 코튼볼 (Cotton Ball)",
+  "spec": "3호(필터형)",
+  "unit": "PK",
+  "price": 6450.0,
+  "maker": "대한",
+  "last_sold": "2026-09-07"
+ },
+ "DX0037": {
+  "name": "[수성] 접은거즈(GAUZE)",
+  "spec": "4*4(4p), 200`s",
+  "unit": "장",
+  "price": 23.5,
+  "maker": "수성",
+  "last_sold": "2026-09-15"
+ },
+ "ZC0470": {
+  "name": "[두원] 수액세트 유침(23G)",
+  "spec": "[IF-DFN] I형, 유침 23G",
+  "unit": "EA",
+  "price": 490.0,
+  "maker": "두원",
+  "last_sold": "2026-09-01"
+ },
+ "2C0866": {
+  "name": "[한국백신]일회용주사기 10CC 22G",
+  "spec": "10CC 22G 1¼\"",
+  "unit": "EA",
+  "price": 100.0,
+  "maker": "한국백신",
+  "last_sold": "2026-01-08"
+ },
+ "ZC1251": {
+  "name": "TERASAFE Exam Lavender Nitrile Glove(니트릴) L",
+  "spec": "L [100pcs/GAB]",
+  "unit": "PCS",
+  "price": 50.0,
+  "maker": "",
+  "last_sold": "2026-08-04"
+ },
+ "ZC1248": {
+  "name": "TERASAFE Exam Lavender Nitrile Glove(니트릴) XS",
+  "spec": "XS [100pcs/GAB]",
+  "unit": "PCS",
+  "price": 47.0,
+  "maker": "",
+  "last_sold": "2026-09-01"
+ },
+ "DX0294": {
+  "name": "PENKO FLEX BAND (지혈용밴드)",
+  "spec": "4*7.5cm (일반형) PK-FF0475",
+  "unit": "EA",
+  "price": 450.0,
+  "maker": "",
+  "last_sold": "2026-09-15"
+ },
+ "2C0143": {
+  "name": "[BD] ANGIOCATH PLUS [382412]",
+  "spec": "24GA X 0.75IN(box`50s)",
+  "unit": "EA",
+  "price": 338.0,
+  "maker": "BD",
+  "last_sold": "2026-09-18"
+ },
+ "ZC2460": {
+  "name": "[메디탑] 뉴클린스왑에이 400매 (부직포)",
+  "spec": "400매 부직포 (1BOX/24EA)",
+  "unit": "EA",
+  "price": 2200.0,
+  "maker": "메디탑",
+  "last_sold": "2026-09-09"
+ },
+ "0C0024": {
+  "name": "모아랩밴드",
+  "spec": "20mm, 일반용, 100EA/PAC",
+  "unit": "PACK",
+  "price": 2190.0,
+  "maker": "",
+  "last_sold": "2026-09-15"
+ },
+ "ZC1070": {
+  "name": "[대한] 접은거즈",
+  "spec": "10cm*10cm(4P),BOX/200EA",
+  "unit": "BOX",
+  "price": 4900.0,
+  "maker": "대한",
+  "last_sold": "2026-09-07"
+ },
+ "ZC2266": {
+  "name": "[메디탑] 뉴클린스왑에이 100매 (부직포)",
+  "spec": "100매 부직포 (1BOX/100EA)",
+  "unit": "EA",
+  "price": 790.0,
+  "maker": "메디탑",
+  "last_sold": "2026-09-09"
+ },
+ "2C1019": {
+  "name": "[나눔컴퍼니] Mirror Cannula (범용 카테터 캐뉼라)",
+  "spec": "23G*50mm (BOX/50ea)",
+  "unit": "EA",
+  "price": 940.0,
+  "maker": "나눔컴퍼니",
+  "last_sold": "2026-09-17"
+ },
+ "2C0761": {
+  "name": "[성심]인슐린 주사기",
+  "spec": "0.5CC 31G 8MM",
+  "unit": "EA",
+  "price": 88.0,
+  "maker": "성심",
+  "last_sold": "2026-09-15"
+ },
+ "2C0537": {
+  "name": "[한국백신]일회용주사기 1CC 26G",
+  "spec": "1CC 26G ½\" (100*30PK)",
+  "unit": "EA",
+  "price": 76.3,
+  "maker": "한국백신",
+  "last_sold": "2026-08-31"
+ },
+ "2C0837": {
+  "name": "[신창] 일회용 주사기 5cc 21G 1.25″",
+  "spec": "[100EA/GAB] 5cc 21G 1.25″",
+  "unit": "EA",
+  "price": 64.2,
+  "maker": "신창",
+  "last_sold": "2026-04-22"
+ },
+ "DX0128": {
+  "name": "[수성위재] 코튼볼",
+  "spec": "2호/필터형/450g",
+  "unit": "PACK",
+  "price": 5580.0,
+  "maker": "수성위재",
+  "last_sold": "2026-03-18"
+ },
+ "DX0061": {
+  "name": "[수성위재] 코튼볼",
+  "spec": "3호/필터형/450g",
+  "unit": "PACK",
+  "price": 6100.0,
+  "maker": "수성위재",
+  "last_sold": "2026-09-14"
+ },
+ "DX0082": {
+  "name": "[수성위재] 설압자-나무1갑(100EA)",
+  "spec": "1갑(100EA)",
+  "unit": "PK",
+  "price": 1490.0,
+  "maker": "수성위재",
+  "last_sold": "2026-09-18"
+ },
+ "ZC1164": {
+  "name": "필텍 일회용주사기(D/Syringe) BOX(100EA)",
+  "spec": "1CC26G1/2inch",
+  "unit": "BOX",
+  "price": 7540.0,
+  "maker": "",
+  "last_sold": "2026-08-31"
+ },
+ "ZC1376": {
+  "name": "SC DISPOSABLE SYRINGE 10cc 21G 1.25″",
+  "spec": "[100EA/GAB] 10cc 21G 1.25″",
+  "unit": "EA",
+  "price": 104.4,
+  "maker": "",
+  "last_sold": "2026-09-07"
+ },
+ "ZC1173": {
+  "name": "필텍 일회용주사기(D/Syringe) BX(100EA)",
+  "spec": "3cc24G(3/4inch)",
+  "unit": "BOX",
+  "price": 6700.0,
+  "maker": "",
+  "last_sold": "2026-04-29"
+ },
+ "ZC1171": {
+  "name": "필텍 일회용주사기(D/Syringe) BOX(100EA)",
+  "spec": "5CC23G1inch",
+  "unit": "BOX",
+  "price": 8300.0,
+  "maker": "",
+  "last_sold": "2026-09-15"
+ },
+ "DX0101": {
+  "name": "[밴드골드] 일회용밴드 38*38/네모형",
+  "spec": "8매(PK)x20갑(BOX)",
+  "unit": "PK",
+  "price": 250.0,
+  "maker": "밴드골드",
+  "last_sold": "2026-01-02"
+ },
+ "ZC1071": {
+  "name": "[대한] 접은거즈",
+  "spec": "5cm*5cm(8P),BOX/200EA",
+  "unit": "BOX",
+  "price": 2370.0,
+  "maker": "대한",
+  "last_sold": "2026-09-14"
+ },
+ "ZC1073": {
+  "name": "[대한] 코튼볼 (Cotton Ball)",
+  "spec": "1호(필터형)",
+  "unit": "PK",
+  "price": 6450.0,
+  "maker": "대한",
+  "last_sold": "2026-09-02"
+ },
+ "ZC1168": {
+  "name": "필텍 일회용주사기(D/Syringe) BOX(100EA)",
+  "spec": "3CC23G1inch",
+  "unit": "BOX",
+  "price": 6920.0,
+  "maker": "",
+  "last_sold": "2026-09-15"
+ },
+ "ZC1363": {
+  "name": "SC DISPOSABLE SYRINGE 10cc 23G 1″",
+  "spec": "[100EA/GAB] 10cc 23G 1″",
+  "unit": "EA",
+  "price": 109.0,
+  "maker": "",
+  "last_sold": "2026-09-15"
+ },
+ "ZC1054": {
+  "name": "[3M] 테가덤(Tegaderm)",
+  "spec": "6*7cm/1624W(BOX/100`s)",
+  "unit": "EA",
+  "price": 249.6,
+  "maker": "3M",
+  "last_sold": "2026-04-03"
+ },
+ "2C0244": {
+  "name": "[성심]일회용주사침 21G",
+  "spec": "21G 1¼\" 32mm",
+  "unit": "EA",
+  "price": 28.5,
+  "maker": "성심",
+  "last_sold": "2026-04-03"
+ },
+ "ZC1375": {
+  "name": "SC DISPOSABLE SYRINGE 10cc 18G 1.5″",
+  "spec": "[100EA/GAB] 10cc 18G 1.5″",
+  "unit": "EA",
+  "price": 113.0,
+  "maker": "",
+  "last_sold": "2026-09-14"
+ },
+ "0C0180": {
+  "name": "[한빛산업] 영세) 위생용 깔개 탑매트 10ea/pack",
+  "spec": "54*72",
+  "unit": "PACK",
+  "price": 2400.0,
+  "maker": "한빛산업",
+  "last_sold": "2026-07-27"
+ },
+ "ZC1374": {
+  "name": "SC profi Tube 10CC(채혈)",
+  "spec": "PT 10CC",
+  "unit": "EA",
+  "price": 160.0,
+  "maker": "",
+  "last_sold": "2026-09-08"
+ },
+ "0C0002": {
+  "name": "모아랩밴드",
+  "spec": "35mm, 원형, 채혈용, 200EA/PAC",
+  "unit": "PACK",
+  "price": 9200.0,
+  "maker": "",
+  "last_sold": "2026-09-07"
+ },
+ "ZC1405": {
+  "name": "[신창] 수액세트 Y형 SC profi Set A122 (1700 W/O)",
+  "spec": "A122 W/O (Y형)",
+  "unit": "EA",
+  "price": 433.0,
+  "maker": "신창",
+  "last_sold": "2026-09-15"
+ },
+ "ZC0051": {
+  "name": "[한진양행] 폴리글러브(비멸균)",
+  "spec": "중, 200EA/PAC",
+  "unit": "PACK",
+  "price": 2300.0,
+  "maker": "한진양행",
+  "last_sold": "2026-09-18"
+ },
+ "1C0316": {
+  "name": "케어센스 란셋(Caresens Lancets)",
+  "spec": "30G / 박스(100개)",
+  "unit": "BOX",
+  "price": 1600.0,
+  "maker": "",
+  "last_sold": "2026-09-17"
+ },
+ "ZC1010": {
+  "name": "[수성]수술용 덴탈 마스크(흰색)",
+  "spec": "ear-loop(50EA/PACK)",
+  "unit": "PACK",
+  "price": 3300.0,
+  "maker": "수성",
+  "last_sold": "2026-09-15"
+ },
+ "ZC3099": {
+  "name": "[수성] 인디게이터 테이프 (STEAM)",
+  "spec": "1\" (2.5cm*50m)",
+  "unit": "ROLL",
+  "price": 6600.0,
+  "maker": "수성",
+  "last_sold": "2026-04-07"
+ },
+ "1C0120": {
+  "name": "[고려양행] Poly Glove(멸균2매)",
+  "spec": "100조(Free) 1곽=100EA",
+  "unit": "BOX",
+  "price": 9300.0,
+  "maker": "고려양행",
+  "last_sold": "2026-09-02"
+ },
+ "2C0552": {
+  "name": "[한국백신]일회용주사침",
+  "spec": "23G (60MM)",
+  "unit": "EA",
+  "price": 118.8,
+  "maker": "한국백신",
+  "last_sold": "2026-04-01"
+ },
+ "1C0122": {
+  "name": "[고려양행] Poly Glove(비멸균)",
+  "spec": "100조",
+  "unit": "BOX",
+  "price": 2800.0,
+  "maker": "고려양행",
+  "last_sold": "2026-09-15"
+ },
+ "ZC2665": {
+  "name": "[진산메디칼] 링겔대 5발",
+  "spec": "5발바퀴",
+  "unit": "EA",
+  "price": 83900.0,
+  "maker": "진산메디칼",
+  "last_sold": "2026-09-18"
+ },
+ "1C0139": {
+  "name": "[문정] 설압자(목)",
+  "spec": "100`s",
+  "unit": "BOX",
+  "price": 1380.0,
+  "maker": "문정",
+  "last_sold": "2026-09-15"
+ },
+ "2C0591": {
+  "name": "[두원]수액셋트 Y (IV Set)",
+  "spec": "Y형(병용/BAG용겸용) PK(50)",
+  "unit": "PK",
+  "price": 27600.0,
+  "maker": "두원",
+  "last_sold": "2026-09-10"
+ },
+ "2C0132": {
+  "name": "[BD] Luer lok syringe 루어락주사기 [309628]",
+  "spec": "1ML LL(box`100s)",
+  "unit": "EA",
+  "price": 447.0,
+  "maker": "BD",
+  "last_sold": "2026-08-29"
+ },
+ "DX0080": {
+  "name": "[수성위재] 솜면봉(단면)",
+  "spec": "솜단면6\"",
+  "unit": "PK",
+  "price": 490.0,
+  "maker": "수성위재",
+  "last_sold": "2026-07-28"
+ },
+ "ZC1081": {
+  "name": "[대한] 탈지면 (사각, Cotton)",
+  "spec": "4cm*6cm(절단솜)",
+  "unit": "PK",
+  "price": 5020.0,
+  "maker": "대한",
+  "last_sold": "2026-09-07"
+ },
+ "0C0241": {
+  "name": "[퍼슨]루브겔(외과용젤리)",
+  "spec": "100g",
+  "unit": "EA",
+  "price": 2790.0,
+  "maker": "퍼슨",
+  "last_sold": "2026-09-14"
+ },
+ "2C0238": {
+  "name": "[한국백신]정맥카테타(I.V CATHETER)",
+  "spec": "24G",
+  "unit": "EA",
+  "price": 297.6,
+  "maker": "한국백신",
+  "last_sold": "2026-09-15"
+ },
+ "ZC1185": {
+  "name": "[협성] 헤파린캡(HeparinCap) BOX(100EA)",
+  "spec": "HS-T-05",
+  "unit": "BOX",
+  "price": 13820.0,
+  "maker": "협성",
+  "last_sold": "2026-09-15"
+ },
+ "0C0336": {
+  "name": "안티포그(ANTI-FOG)",
+  "spec": "25ml, 스포이드형",
+  "unit": "EA",
+  "price": 27000.0,
+  "maker": "",
+  "last_sold": "2026-07-31"
+ },
+ "2C0242": {
+  "name": "[성심]일회용주사기 3CC 23g",
+  "spec": "3CC 23g 1\" 25mm (BOX/100EA)",
+  "unit": "EA",
+  "price": 64.7,
+  "maker": "성심",
+  "last_sold": "2026-08-31"
+ },
+ "ZC2384": {
+  "name": "[신창] 수액세트 I자 (무침) SC Profi tube w/o",
+  "spec": "W/O , M110, pk/50ea",
+  "unit": "EA",
+  "price": 365.6,
+  "maker": "신창",
+  "last_sold": "2026-09-04"
+ },
+ "ZC1161": {
+  "name": "필텍 일회용주사기(D/Syringe) BOX(100EA)",
+  "spec": "10CC21G1-1/4inch",
+  "unit": "BOX",
+  "price": 11790.0,
+  "maker": "",
+  "last_sold": "2026-09-15"
+ },
+ "2C0565": {
+  "name": "[한국백신]일회용주사침",
+  "spec": "26G 1/2\"(13MM)",
+  "unit": "EA",
+  "price": 29.9,
+  "maker": "한국백신",
+  "last_sold": "2026-04-01"
+ },
+ "2C0592": {
+  "name": "[두원]수액셋트 무침(IV Set)",
+  "spec": "무침 일반형(병용/BAG용겸용) PK(50)",
+  "unit": "PK",
+  "price": 22400.0,
+  "maker": "두원",
+  "last_sold": "2026-09-14"
+ },
+ "2C0559": {
+  "name": "[한국백신]일회용주사기 20CC 18G",
+  "spec": "20CC 18G 1½\" (50*12PK)",
+  "unit": "EA",
+  "price": 218.8,
+  "maker": "한국백신",
+  "last_sold": "2026-09-03"
+ },
+ "2C0534": {
+  "name": "[성심]일회용주사침 25G",
+  "spec": "25G 16mm 5/8(100`s BOX)",
+  "unit": "EA",
+  "price": 25.0,
+  "maker": "성심",
+  "last_sold": "2026-04-02"
+ },
+ "0C0245": {
+  "name": "[3M] 테가덤(Tegaderm)",
+  "spec": "10*12cm/1626W(BOX/50`s)",
+  "unit": "EA",
+  "price": 501.0,
+  "maker": "3M",
+  "last_sold": "2026-09-03"
+ },
+ "ZC1080": {
+  "name": "[대한] 탈지면 (사각,절단솜, Cotton)",
+  "spec": "4cm*3(사각솜)",
+  "unit": "PK",
+  "price": 4850.0,
+  "maker": "대한",
+  "last_sold": "2026-09-16"
+ },
+ "ZC0534": {
+  "name": "TERASAFE LATEX EXAM GLOVE(비멸균) M",
+  "spec": "M [100PCS/GAB]",
+  "unit": "PCS",
+  "price": 65.0,
+  "maker": "",
+  "last_sold": "2026-09-17"
+ },
+ "ZC0533": {
+  "name": "TERASAFE LATEX EXAM GLOVE(비멸균) S",
+  "spec": "S [100PCS/GAB]",
+  "unit": "PCS",
+  "price": 65.0,
+  "maker": "",
+  "last_sold": "2026-08-31"
+ },
+ "ZC0714": {
+  "name": "I.V카테타(덕우)/ 24G (3/4)",
+  "spec": "24G(3/4inch)",
+  "unit": "EA",
+  "price": 280.0,
+  "maker": "",
+  "last_sold": "2026-01-05"
+ },
+ "2C0925": {
+  "name": "[신창] 일회용 주사기 10cc (무침)",
+  "spec": "10cc 무침 (BOX/100EA)",
+  "unit": "EA",
+  "price": 91.0,
+  "maker": "신창",
+  "last_sold": "2026-09-17"
+ },
+ "ZC1172": {
+  "name": "필텍 일회용주사기(D/Syringe) BX(50EA)",
+  "spec": "20cc18G(1-1/2inch)",
+  "unit": "BOX",
+  "price": 9680.0,
+  "maker": "",
+  "last_sold": "2026-09-17"
+ },
+ "ZC1341": {
+  "name": "필텍 일회용주사기(D/Syringe)",
+  "spec": "10CC18G 1 1/2inch",
+  "unit": "BOX",
+  "price": 11800.0,
+  "maker": "",
+  "last_sold": "2026-04-22"
+ },
+ "ZC1258": {
+  "name": "[더블세이프] Nasal cannula(산소투여용튜브)",
+  "spec": "성인(DGN-NCI-XL) GCR101176",
+  "unit": "EA",
+  "price": 1155.0,
+  "maker": "더블세이프",
+  "last_sold": "2026-08-24"
+ },
+ "0C0096": {
+  "name": "[대한] 알콜탈지면(Skin Cotton)",
+  "spec": "400매(30PACK/BOX)",
+  "unit": "PACK",
+  "price": 2330.0,
+  "maker": "대한",
+  "last_sold": "2026-09-12"
+ },
+ "0C0095": {
+  "name": "[대한] 알콜탈지면(Skin Cotton)",
+  "spec": "200매(45PACK/BOX)",
+  "unit": "PACK",
+  "price": 1340.0,
+  "maker": "대한",
+  "last_sold": "2026-09-18"
+ },
+ "ZC1365": {
+  "name": "SC DISPOSABLE SYRINGE 50cc 18G 1.5″",
+  "spec": "[25EA/GAB] 50cc 18G 1.5″",
+  "unit": "EA",
+  "price": 348.0,
+  "maker": "",
+  "last_sold": "2026-09-04"
+ },
+ "ZC0614": {
+  "name": "[가주]초음파프루브커버(144EA/BOX)",
+  "spec": "멸균",
+  "unit": "BOX",
+  "price": 20500.0,
+  "maker": "가주",
+  "last_sold": "2026-04-03"
+ },
+ "ZC0620": {
+  "name": "[경기] I.V카테타24G*3/4",
+  "spec": "24G*3/4\"",
+  "unit": "EA",
+  "price": 343.4,
+  "maker": "경기",
+  "last_sold": "2026-08-12"
+ },
+ "ZC1066": {
+  "name": "[대한]슬라이스볼 (Cotton Ball)",
+  "spec": "5호,대(볼형)",
+  "unit": "PK",
+  "price": 4500.0,
+  "maker": "대한",
+  "last_sold": "2026-01-09"
+ },
+ "DX0104": {
+  "name": "[밴드골드] 일회용밴드 일자형",
+  "spec": "(100매/BOX)",
+  "unit": "BOX",
+  "price": 1750.0,
+  "maker": "밴드골드",
+  "last_sold": "2026-07-01"
+ },
+ "0C0022": {
+  "name": "안티포그",
+  "spec": "30ml",
+  "unit": "EA",
+  "price": 31000.0,
+  "maker": "",
+  "last_sold": "2026-09-10"
+ },
+ "2C0828": {
+  "name": "[한국백신]일회용주사기 50CC 21G",
+  "spec": "50CC 21G*1 1/4``(32mm) (1BOX=25EA)",
+  "unit": "EA",
+  "price": 365.2,
+  "maker": "한국백신",
+  "last_sold": "2026-04-21"
+ },
+ "ZC1369": {
+  "name": "SC profi Tube 5CC(채혈)",
+  "spec": "PT 5CC",
+  "unit": "EA",
+  "price": 141.0,
+  "maker": "",
+  "last_sold": "2026-07-23"
+ },
+ "ZC2267": {
+  "name": "[메디탑] 뉴클린스왑에이 200매 (부직포)",
+  "spec": "200매 부직포 (1BOX/48EA)",
+  "unit": "EA",
+  "price": 1320.0,
+  "maker": "메디탑",
+  "last_sold": "2026-09-07"
+ },
+ "1C0287": {
+  "name": "[승원메디칼] 소노젤리-초음파젤(블루)",
+  "spec": "5L",
+  "unit": "EA",
+  "price": 9800.0,
+  "maker": "승원메디칼",
+  "last_sold": "2026-08-13"
+ },
+ "2C0540": {
+  "name": "[한국백신]일회용주사침",
+  "spec": "24G (60MM) (100*100PK)",
+  "unit": "EA",
+  "price": 151.8,
+  "maker": "한국백신",
+  "last_sold": "2026-03-27"
+ },
+ "2C0561": {
+  "name": "[한국백신]일회용주사침",
+  "spec": "23G 1 (25mm)",
+  "unit": "EA",
+  "price": 38.2,
+  "maker": "한국백신",
+  "last_sold": "2026-08-20"
+ },
+ "0C0293": {
+  "name": "[건강누리] Cast shoes(칼라)",
+  "spec": "중",
+  "unit": "EA",
+  "price": 4060.0,
+  "maker": "건강누리",
+  "last_sold": "2026-09-07"
+ },
+ "0C0292": {
+  "name": "[건강누리] Cast shoes(칼라)",
+  "spec": "대",
+  "unit": "EA",
+  "price": 4000.0,
+  "maker": "건강누리",
+  "last_sold": "2026-07-06"
+ },
+ "2C0749": {
+  "name": "[한국백신]일회용주사기 5cc 23G",
+  "spec": "5cc 23G 1inch",
+  "unit": "EA",
+  "price": 97.8,
+  "maker": "한국백신",
+  "last_sold": "2026-09-07"
+ },
+ "1C0310": {
+  "name": "[3M]스테리스트립 R1546",
+  "spec": "6*100mm (50ea)",
+  "unit": "EA",
+  "price": 1248.0,
+  "maker": "3M",
+  "last_sold": "2026-01-05"
+ },
+ "ZC2247": {
+  "name": "[GENEWEL] MEDIFOAM (2mm)",
+  "spec": "5*20cm",
+  "unit": "EA",
+  "price": 5100.0,
+  "maker": "GENEWEL",
+  "last_sold": "2026-01-05"
+ },
+ "2C0823": {
+  "name": "[성심]인슐린 주사기 1CC 30G",
+  "spec": "1CC 30G 8MM",
+  "unit": "EA",
+  "price": 90.0,
+  "maker": "성심",
+  "last_sold": "2026-07-24"
+ },
+ "2C0011": {
+  "name": "[BD] 인슐린 주사기[328820]",
+  "spec": "1cc, 31G, 8mm, PP",
+  "unit": "EA",
+  "price": 171.8,
+  "maker": "BD",
+  "last_sold": "2026-04-03"
+ },
+ "ZC0601": {
+  "name": "TERASAFE AP gown L (AP가운)",
+  "spec": "L [30EA/Box]",
+  "unit": "EA",
+  "price": 310.0,
+  "maker": "",
+  "last_sold": "2026-09-04"
+ },
+ "DX0183": {
+  "name": "[메디탑]뉴클린스왑(지퍼팩) 160G",
+  "spec": "10PK/BOX",
+  "unit": "PK",
+  "price": 6700.0,
+  "maker": "메디탑",
+  "last_sold": "2026-09-15"
+ },
+ "ZC1364": {
+  "name": "SC DISPOSABLE SYRINGE 20cc 23G 1″",
+  "spec": "[50EA/GAB] 20cc 23G 1″",
+  "unit": "EA",
+  "price": 150.0,
+  "maker": "",
+  "last_sold": "2026-04-01"
+ },
+ "DX0068": {
+  "name": "[수성] 고탄력붕대(신축성)S",
+  "spec": "4\"",
+  "unit": "PACK",
+  "price": 5300.0,
+  "maker": "수성",
+  "last_sold": "2026-03-30"
+ },
+ "ZC1074": {
+  "name": "[대한] 코튼볼 (Cotton Ball)",
+  "spec": "2호(필터형)",
+  "unit": "PK",
+  "price": 6450.0,
+  "maker": "대한",
+  "last_sold": "2026-09-05"
+ },
+ "4C0034": {
+  "name": "[ETHICON] VICRYL",
+  "spec": "4/0(W9113)",
+  "unit": "EA",
+  "price": 3630.0,
+  "maker": "ETHICON",
+  "last_sold": "2026-02-13"
+ },
+ "ZC0600": {
+  "name": "TERASAFE AP gown M (AP가운)",
+  "spec": "M [30EA/Box]",
+  "unit": "EA",
+  "price": 310.0,
+  "maker": "",
+  "last_sold": "2026-08-05"
+ },
+ "ZC1366": {
+  "name": "[신창] 수액세트 유침 23G 1인치 SC profi Set A111 (1700 23G 1″)",
+  "spec": "A 1700 23G 1\"",
+  "unit": "EA",
+  "price": 410.0,
+  "maker": "신창",
+  "last_sold": "2026-09-17"
+ },
+ "0C0057": {
+  "name": "[건강누리] Cast shoes(칼라)",
+  "spec": "특대",
+  "unit": "EA",
+  "price": 4040.0,
+  "maker": "건강누리",
+  "last_sold": "2026-02-23"
+ },
+ "2C0539": {
+  "name": "[한국백신]일회용주사기 5CC 21G",
+  "spec": "5CC 21G 1¼\" (100*12PK)",
+  "unit": "EA",
+  "price": 91.9,
+  "maker": "한국백신",
+  "last_sold": "2026-03-26"
+ },
+ "ZC1384": {
+  "name": "[협성] Air Way(GREEN)",
+  "spec": "HS-AW-400(80MM)",
+  "unit": "EA",
+  "price": 770.0,
+  "maker": "협성",
+  "last_sold": "2026-08-22"
+ },
+ "ZC0637": {
+  "name": "[성심]일회용주사침 30G",
+  "spec": "30G*1/2 (13mm)(100`s BOX)",
+  "unit": "EA",
+  "price": 39.0,
+  "maker": "성심",
+  "last_sold": "2026-08-29"
+ },
+ "ZC1174": {
+  "name": "필텍 일회용주사기(D/Syringe) BX(100EA)",
+  "spec": "5cc21G(1-1/4inch)",
+  "unit": "BOX",
+  "price": 6600.0,
+  "maker": "",
+  "last_sold": "2026-04-25"
+ },
+ "2C0726": {
+  "name": "[성심]일회용주사침 30G",
+  "spec": "30G 1\"(25MM)(100`s BOX)",
+  "unit": "EA",
+  "price": 42.0,
+  "maker": "성심",
+  "last_sold": "2026-04-06"
+ },
+ "3C0106": {
+  "name": "[녹십자] 혈당스틱(세라딘),G-Sense",
+  "spec": "G-Sense",
+  "unit": "EA",
+  "price": 12500.0,
+  "maker": "녹십자",
+  "last_sold": "2026-06-02"
+ },
+ "ZC1388": {
+  "name": "[유니더스]Angel Surgical Glove(수술실)",
+  "spec": "8",
+  "unit": "PAIR",
+  "price": 600.0,
+  "maker": "유니더스",
+  "last_sold": "2026-01-06"
+ },
+ "ZC0306": {
+  "name": "메디룩스 하이크로에스(HYCRO-S) 4L",
+  "spec": "",
+  "unit": "BTL",
+  "price": 17990.0,
+  "maker": "",
+  "last_sold": "2026-05-05"
+ },
+ "2C0830": {
+  "name": "[한국백신]일회용주사기 5CC 22G",
+  "spec": "5CC 22G*1 1/4`` (32mm)",
+  "unit": "EA",
+  "price": 94.3,
+  "maker": "한국백신",
+  "last_sold": "2026-04-21"
+ },
+ "DX0023": {
+  "name": "[수성] 접은거즈(GAUZE)",
+  "spec": "2*2(8p), 200`s",
+  "unit": "장",
+  "price": 12.15,
+  "maker": "수성",
+  "last_sold": "2026-09-15"
+ },
+ "2C0826": {
+  "name": "[한국백신]일회용주사기 20CC 21G",
+  "spec": "20CC 21G*1 1/4 (50EA/BOX)",
+  "unit": "EA",
+  "price": 173.6,
+  "maker": "한국백신",
+  "last_sold": "2026-01-27"
+ },
+ "2C0538": {
+  "name": "[한국백신]일회용주사기 3CC 23G",
+  "spec": "3CC 23G 1\"",
+  "unit": "EA",
+  "price": 76.3,
+  "maker": "한국백신",
+  "last_sold": "2026-09-16"
+ },
+ "ZC0649": {
+  "name": "SC 수액연결세트",
+  "spec": "90CM,50개입",
+  "unit": "EA",
+  "price": 246.0,
+  "maker": "",
+  "last_sold": "2026-04-03"
+ },
+ "2C0145": {
+  "name": "[BD] ANGIOCATH PLUS [382434]",
+  "spec": "20GA X 1.16IN(box`50s)",
+  "unit": "EA",
+  "price": 355.8,
+  "maker": "BD",
+  "last_sold": "2026-09-10"
+ },
+ "2C0581": {
+  "name": "[인성] I-Gel",
+  "spec": "4",
+  "unit": "EA",
+  "price": 59380.0,
+  "maker": "인성",
+  "last_sold": "2026-09-12"
+ },
+ "2C0133": {
+  "name": "[BD] Luer lok syringe 루어락주사기 [309653]",
+  "spec": "50ml LL Tip 1ml(box`40s)",
+  "unit": "EA",
+  "price": 850.0,
+  "maker": "BD",
+  "last_sold": "2026-06-25"
+ },
+ "DX0035": {
+  "name": "[수성] 접은거즈(GAUZE)",
+  "spec": "4*4(8p), 200`s",
+  "unit": "장",
+  "price": 33.75,
+  "maker": "수성",
+  "last_sold": "2026-08-21"
+ },
+ "3C0386": {
+  "name": "케어센스 프로 혈당스트립 (100T)",
+  "spec": "케어센스 프로 / 100T(박스)",
+  "unit": "BOX",
+  "price": 17880.0,
+  "maker": "",
+  "last_sold": "2026-09-07"
+ },
+ "DX0094": {
+  "name": "[3M]살색 종이반창고(1533-1)",
+  "spec": "1 IN*10YD,(12EA/BOX)",
+  "unit": "EA",
+  "price": 1250.0,
+  "maker": "3M",
+  "last_sold": "2026-09-07"
+ },
+ "2C0147": {
+  "name": "[BD] ANGIOCATH PLUS [382444]",
+  "spec": "18GA X 1.16IN(box`50s)",
+  "unit": "EA",
+  "price": 355.8,
+  "maker": "BD",
+  "last_sold": "2026-09-07"
+ },
+ "2C0210": {
+  "name": "[두원메디텍] 나비침(100EA/BOX)",
+  "spec": "23G",
+  "unit": "EA",
+  "price": 227.0,
+  "maker": "두원메디텍",
+  "last_sold": "2026-04-04"
+ },
+ "0C0070": {
+  "name": "Medizyme(메디자임)",
+  "spec": "1L",
+  "unit": "BTL",
+  "price": 19250.0,
+  "maker": "",
+  "last_sold": "2026-09-15"
+ },
+ "DX0103": {
+  "name": "[3M]TRANSPORE(트랜스포어)",
+  "spec": "1IN*10YD 1527-1 (12롤/BOX)",
+  "unit": "EA",
+  "price": 1166.6666666667,
+  "maker": "3M",
+  "last_sold": "2026-09-18"
+ },
+ "ZC1061": {
+  "name": "[대한] 멸균설압자 (Tongue Depressor) Wood (15cm)-sterile",
+  "spec": "Wood (15cm)-sterile",
+  "unit": "BOX",
+  "price": 1610.0,
+  "maker": "대한",
+  "last_sold": "2026-09-18"
+ },
+ "2C0542": {
+  "name": "[성심]일회용주사침 18G",
+  "spec": "18G 1½\" 38mm(100`s BOX)",
+  "unit": "EA",
+  "price": 30.6,
+  "maker": "성심",
+  "last_sold": "2026-04-03"
+ },
+ "ZC1179": {
+  "name": "[협성] 쓰리웨이 (3-Way Stopcock) BOX(50EA)",
+  "spec": "일회용 (HS-T-01N)",
+  "unit": "BOX",
+  "price": 13500.0,
+  "maker": "협성",
+  "last_sold": "2026-09-16"
+ },
+ "2C0531": {
+  "name": "[성심]일회용주사기 5CC 23G",
+  "spec": "5CC 23G 1\" (BOX/100EA)",
+  "unit": "EA",
+  "price": 80.0,
+  "maker": "성심",
+  "last_sold": "2026-09-07"
+ },
+ "DX0058": {
+  "name": "에이덤 롤(방수롤)10cm*10M",
+  "spec": "10cm*10M",
+  "unit": "ROL",
+  "price": 32200.0,
+  "maker": "",
+  "last_sold": "2026-07-28"
+ },
+ "2C0237": {
+  "name": "[한국백신]정맥카테타(I.V CATHETER)",
+  "spec": "22G",
+  "unit": "EA",
+  "price": 309.0,
+  "maker": "한국백신",
+  "last_sold": "2026-06-30"
+ },
+ "ZC0292": {
+  "name": "[더블세이프] E.O GAS Bag",
+  "spec": "30CM*100M",
+  "unit": "ROL",
+  "price": 38000.0,
+  "maker": "더블세이프",
+  "last_sold": "2026-08-11"
+ },
+ "ZC2897": {
+  "name": "[신창] 일회용 주사기 30cc 21G 1.25″",
+  "spec": "[50EA/GAB] 30cc 21G 1.25″",
+  "unit": "EA",
+  "price": 284.0,
+  "maker": "신창",
+  "last_sold": "2026-04-22"
+ },
+ "ZC0605": {
+  "name": "[3M]부직반창고",
+  "spec": "5CM*10M / 2762",
+  "unit": "EA",
+  "price": 3300.0,
+  "maker": "3M",
+  "last_sold": "2026-02-26"
+ },
+ "ZC1067": {
+  "name": "[대한]슬라이스볼 (Cotton Ball)",
+  "spec": "1호,소(볼형)",
+  "unit": "PK",
+  "price": 4700.0,
+  "maker": "대한",
+  "last_sold": "2026-09-07"
+ },
+ "DX0013": {
+  "name": "[3M]흰색 종이반창고-24EA/CAS",
+  "spec": "0.5 IN*10YD(1530-0)",
+  "unit": "EA",
+  "price": 541.6666666667,
+  "maker": "3M",
+  "last_sold": "2026-01-09"
+ },
+ "ZC1012": {
+  "name": "[수성] 면탄력붕대 [2인치 12EAl/타]",
+  "spec": "2\"",
+  "unit": "PACK",
+  "price": 4420.0,
+  "maker": "수성",
+  "last_sold": "2026-02-04"
+ },
+ "2C0095": {
+  "name": "ENDO TRACHEAL TUBE-TUOREN-10EA/CAS",
+  "spec": "6.0 CUFF",
+  "unit": "EA",
+  "price": 2770.0,
+  "maker": "",
+  "last_sold": "2026-01-09"
+ },
+ "2C0127": {
+  "name": "[BD] PosiFlush SYRINGE 생리식염수 주사기[306575]",
+  "spec": "10ML SALINE FILL CE(box`30s)",
+  "unit": "EA",
+  "price": 416.6666666667,
+  "maker": "BD",
+  "last_sold": "2026-09-10"
+ },
+ "2C0126": {
+  "name": "[BD] PosiFlush SYRINGE 생리식염수 주사기[306574]",
+  "spec": "5ML SALINE FILL CE(box`30s)",
+  "unit": "EA",
+  "price": 422.0,
+  "maker": "BD",
+  "last_sold": "2026-04-06"
+ },
+ "2C0125": {
+  "name": "[BD] PosiFlush SYRINGE 생리식염수 주사기[306573]",
+  "spec": "3ML SALINE FILL CE(box`30s)",
+  "unit": "EA",
+  "price": 422.0,
+  "maker": "BD",
+  "last_sold": "2026-04-17"
+ },
+ "ZC1078": {
+  "name": "[대한]면탄력붕대S (Elastic Bandage)",
+  "spec": "4inch(10*215)(PK/12EA)",
+  "unit": "PK",
+  "price": 8800.0,
+  "maker": "대한",
+  "last_sold": "2026-02-12"
+ },
+ "ZC2826": {
+  "name": "[밴드골드] 슈퍼픽스 아쿠아 WATERPROOF (10*10)",
+  "spec": "10*10 (BOX/40EA)",
+  "unit": "EA",
+  "price": 23000.0,
+  "maker": "밴드골드",
+  "last_sold": "2026-06-13"
+ },
+ "2C0827": {
+  "name": "[한국백신]일회용주사기 30CC 18G",
+  "spec": "30CC 18G*1 1/2`` (50*12PK)",
+  "unit": "EA",
+  "price": 245.8,
+  "maker": "한국백신",
+  "last_sold": "2026-01-27"
+ },
+ "ZC0532": {
+  "name": "TERASAFE LATEX EXAM GLOVE(비멸균) XS",
+  "spec": "XS [100PCS/GAB]",
+  "unit": "PCS",
+  "price": 58.0,
+  "maker": "",
+  "last_sold": "2026-09-14"
+ },
+ "2C0544": {
+  "name": "[성심]일회용주사기 20CC 18G",
+  "spec": "20CC 18G 1½\" 38mm (BOX/50EA)",
+  "unit": "EA",
+  "price": 189.6,
+  "maker": "성심",
+  "last_sold": "2026-09-17"
+ },
+ "ZC1249": {
+  "name": "TERASAFE Exam Lavender Nitrile Glove(니트릴) S",
+  "spec": "S [100pcs/GAB]",
+  "unit": "PCS",
+  "price": 59.0,
+  "maker": "",
+  "last_sold": "2026-09-16"
+ },
+ "3C0081": {
+  "name": "[B.B] SPINOCAN SPINAL NEEDLE 26G 3.5″",
+  "spec": "＃450 2906",
+  "unit": "EA",
+  "price": 2600.0,
+  "maker": "B.B",
+  "last_sold": "2026-02-05"
+ },
+ "ZC2304": {
+  "name": "[더블세이프]소독테이프 (1/2인치)",
+  "spec": "[1/2인치 / STEAM TAPE]",
+  "unit": "ROLL",
+  "price": 3000.0,
+  "maker": "더블세이프",
+  "last_sold": "2026-02-06"
+ },
+ "0C0308": {
+  "name": "[3M] RED DOT ELECTRODE 성인용 [＃2239]",
+  "spec": "6cm, E2239 (PK/50EA)",
+  "unit": "EA",
+  "price": 247.0,
+  "maker": "3M",
+  "last_sold": "2026-07-27"
+ },
+ "ZC0959": {
+  "name": "사라사이드 와입스 (알콜티슈)",
+  "spec": "80매",
+  "unit": "EA",
+  "price": 6600.0,
+  "maker": "",
+  "last_sold": "2026-08-31"
+ },
+ "2C0485": {
+  "name": "[성심]일회용주사침 25G",
+  "spec": "25G 1½\"(38mm)(100`s BOX)",
+  "unit": "EA",
+  "price": 30.5,
+  "maker": "성심",
+  "last_sold": "2026-04-02"
+ },
+ "DX0059": {
+  "name": "[수성위재] 코튼볼",
+  "spec": "1호/필터형/450g",
+  "unit": "PACK",
+  "price": 6100.0,
+  "maker": "수성위재",
+  "last_sold": "2026-09-07"
+ },
+ "1C0582": {
+  "name": "TERASAFE Suction Catheter 14Fr",
+  "spec": "14Fr [100EA/box]",
+  "unit": "EA",
+  "price": 300.0,
+  "maker": "",
+  "last_sold": "2026-04-23"
+ },
+ "1C0583": {
+  "name": "TERASAFE Suction Catheter 16Fr",
+  "spec": "16Fr [100EA/box]",
+  "unit": "EA",
+  "price": 250.0,
+  "maker": "",
+  "last_sold": "2026-04-13"
+ },
+ "ZC0636": {
+  "name": "[성심]일회용주사침 22G",
+  "spec": "22G*1+1/4\"(32mm)",
+  "unit": "EA",
+  "price": 31.2,
+  "maker": "성심",
+  "last_sold": "2026-03-13"
+ },
+ "ZC1077": {
+  "name": "[대한]면탄력붕대S (Elastic Bandage)",
+  "spec": "3inch(7.5*215)(PK/12EA)",
+  "unit": "PK",
+  "price": 6480.0,
+  "maker": "대한",
+  "last_sold": "2026-03-05"
+ },
+ "2C0149": {
+  "name": "[BD] ANGIOCATH PLUS [382457]",
+  "spec": "16GA X 1.77IN(box`50s)",
+  "unit": "EA",
+  "price": 340.0,
+  "maker": "BD",
+  "last_sold": "2026-03-30"
+ },
+ "2C0560": {
+  "name": "[한국백신]일회용주사침",
+  "spec": "25G 1½\"",
+  "unit": "EA",
+  "price": 47.5,
+  "maker": "한국백신",
+  "last_sold": "2026-01-26"
+ },
+ "2C0178": {
+  "name": "[GENEWEL] MEDIFOAM (5mm)",
+  "spec": "10*10Cm (BOX/10EA)",
+  "unit": "EA",
+  "price": 5200.0,
+  "maker": "GENEWEL",
+  "last_sold": "2026-09-14"
+ },
+ "2C0177": {
+  "name": "[GENEWEL] MEDIFOAM (2mm)",
+  "spec": "10*10Cm",
+  "unit": "EA",
+  "price": 4800.0,
+  "maker": "GENEWEL",
+  "last_sold": "2026-08-16"
+ },
+ "1C0121": {
+  "name": "[고려양행] Poly Glove(멸균 1매)",
+  "spec": "200매",
+  "unit": "BOX",
+  "price": 9600.0,
+  "maker": "고려양행",
+  "last_sold": "2026-03-28"
+ },
+ "2C0034": {
+  "name": "[BD] NEEDLE [301805]",
+  "spec": "25G 5/8IN(box`100s)",
+  "unit": "EA",
+  "price": 10.0,
+  "maker": "BD",
+  "last_sold": "2026-04-06"
+ },
+ "ZC0909": {
+  "name": "[FA이올] 알콜스왑",
+  "spec": "400매 (24EA/BOX)",
+  "unit": "EA",
+  "price": 2200.0,
+  "maker": "FA이올",
+  "last_sold": "2026-09-08"
+ },
+ "ZC0642": {
+  "name": "[수성위재] 코튼볼(슬라이스)",
+  "spec": "1호, BALL형",
+  "unit": "PACK",
+  "price": 4840.0,
+  "maker": "수성위재",
+  "last_sold": "2026-09-14"
+ },
+ "3C0477": {
+  "name": "경추마취니들 (Epidural Needle) 에피듀랄니들 천자침",
+  "spec": "25G*80mm (일회용)/BOX(50EA)",
+  "unit": "BOX",
+  "price": 96000.0,
+  "maker": "",
+  "last_sold": "2026-08-20"
+ },
+ "ZC1246": {
+  "name": "TERASAFE Exam Nitrile Glove(니트릴) L",
+  "spec": "L [100pcs/GAB]",
+  "unit": "PCS",
+  "price": 50.0,
+  "maker": "",
+  "last_sold": "2026-09-10"
+ },
+ "ZC1250": {
+  "name": "TERASAFE Exam Lavender Nitrile Glove(니트릴) M",
+  "spec": "M [100pcs/GAB]",
+  "unit": "PCS",
+  "price": 45.0,
+  "maker": "",
+  "last_sold": "2026-04-10"
+ },
+ "2C0835": {
+  "name": "[성심]일회용주사침 24G",
+  "spec": "24G, 3/4인치(19mm)(100`s BOX)",
+  "unit": "EA",
+  "price": 28.7,
+  "maker": "성심",
+  "last_sold": "2026-02-02"
+ },
+ "2C0841": {
+  "name": "[세운] BAROVAC SS200M+",
+  "spec": "SS200M+",
+  "unit": "EA",
+  "price": 14032.0,
+  "maker": "세운",
+  "last_sold": "2026-01-15"
+ },
+ "ZC1666": {
+  "name": "SC DISPOSABLE SYRINGE 5cc 22G X 1 1/2",
+  "spec": "[100EA/GAB] 5cc 22G 1 1/2 ″",
+  "unit": "EA",
+  "price": 64.5,
+  "maker": "",
+  "last_sold": "2026-04-22"
+ },
+ "DX0032": {
+  "name": "[수성] 목면봉",
+  "spec": "200`s",
+  "unit": "PACK",
+  "price": 800.0,
+  "maker": "수성",
+  "last_sold": "2026-08-31"
+ },
+ "0C0003": {
+  "name": "[우창] 모아랩밴드",
+  "spec": "20mm, 키즈용(흰색), 100EA/PAC",
+  "unit": "PACK",
+  "price": 1950.0,
+  "maker": "우창",
+  "last_sold": "2026-09-17"
+ },
+ "DX0136": {
+  "name": "[수성위재] 코튼볼",
+  "spec": "4호/필터형/450g",
+  "unit": "PACK",
+  "price": 5580.0,
+  "maker": "수성위재",
+  "last_sold": "2026-02-27"
+ },
+ "2C0488": {
+  "name": "[성심]일회용주사침 30G",
+  "spec": "30G 1+1/2\"(38mm)(100`s BOX)",
+  "unit": "EA",
+  "price": 41.6,
+  "maker": "성심",
+  "last_sold": "2026-04-30"
+ },
+ "2C0246": {
+  "name": "[성심]일회용주사침 26G",
+  "spec": "26G 1½\" 38mm (100`s BOX)",
+  "unit": "EA",
+  "price": 37.5,
+  "maker": "성심",
+  "last_sold": "2026-08-25"
+ },
+ "2C0834": {
+  "name": "[한국백신]일회용주사기 10CC 18G",
+  "spec": "10CC 18G 1½\"",
+  "unit": "EA",
+  "price": 129.5,
+  "maker": "한국백신",
+  "last_sold": "2026-02-23"
+ },
+ "2C0058": {
+  "name": "[BD] Luer lok syringe 루어락주사기[302135]",
+  "spec": "5ML LL(box`100s)",
+  "unit": "EA",
+  "price": 211.2,
+  "maker": "BD",
+  "last_sold": "2026-09-18"
+ },
+ "ZC0634": {
+  "name": "[성심]일회용주사침 25G",
+  "spec": "25G*1\"(25mm)",
+  "unit": "EA",
+  "price": 25.1,
+  "maker": "성심",
+  "last_sold": "2026-04-03"
+ },
+ "ZC0618": {
+  "name": "[경기] I.V카테타20G*1+1/4",
+  "spec": "20G*1+1/4\"",
+  "unit": "EA",
+  "price": 308.0,
+  "maker": "경기",
+  "last_sold": "2026-01-16"
+ },
+ "2C0762": {
+  "name": "[성심]인슐린 주사기",
+  "spec": "1CC 31G 8MM",
+  "unit": "EA",
+  "price": 98.0,
+  "maker": "성심",
+  "last_sold": "2026-05-07"
+ },
+ "ZC0917": {
+  "name": "[인성] I-Gel",
+  "spec": "5",
+  "unit": "EA",
+  "price": 52180.0,
+  "maker": "인성",
+  "last_sold": "2026-04-06"
+ },
+ "ZC0956": {
+  "name": "사니사라 Gel",
+  "spec": "500ml",
+  "unit": "EA",
+  "price": 6800.0,
+  "maker": "",
+  "last_sold": "2026-08-19"
+ },
+ "3C0172": {
+  "name": "태창 스파이날니들 (Spinal Needle)",
+  "spec": "24G 90mm (일회용)/BOX(50EA)",
+  "unit": "BOX",
+  "price": 45000.0,
+  "maker": "",
+  "last_sold": "2026-02-03"
+ },
+ "2C0239": {
+  "name": "[한국백신]정맥카테타(I.V CATHETER)",
+  "spec": "20G",
+  "unit": "EA",
+  "price": 308.0,
+  "maker": "한국백신",
+  "last_sold": "2026-08-03"
+ },
+ "ZC1244": {
+  "name": "TERASAFE Exam Nitrile Glove(니트릴) S",
+  "spec": "S [100pcs/GAB]",
+  "unit": "PCS",
+  "price": 59.0,
+  "maker": "",
+  "last_sold": "2026-07-31"
+ },
+ "ZC2371": {
+  "name": "[성심]일회용주사침 29G, 1/2인치(13mm)",
+  "spec": "29G, 1/2인치(13mm)(100`s BOX)",
+  "unit": "EA",
+  "price": 47.0,
+  "maker": "성심",
+  "last_sold": "2026-05-18"
+ },
+ "ZC0641": {
+  "name": "[세운]NELATON CATHETER(넬라톤카테타)",
+  "spec": "# 8",
+  "unit": "EA",
+  "price": 375.0,
+  "maker": "세운",
+  "last_sold": "2026-08-03"
+ },
+ "ZC1377": {
+  "name": "SC DISPOSABLE SYRINGE 20cc 21G 1.25″",
+  "spec": "[50EA/GAB] 20cc 21G 1.25″",
+  "unit": "EA",
+  "price": 192.0,
+  "maker": "",
+  "last_sold": "2026-09-02"
+ },
+ "2C0207": {
+  "name": "IV SET [59012933]",
+  "spec": "AN120 W/O BP(box`25s)",
+  "unit": "EA",
+  "price": 408.0,
+  "maker": "",
+  "last_sold": "2026-04-02"
+ },
+ "DX0014": {
+  "name": "[3M]살색 종이반창고-24EA/CAS",
+  "spec": "0.5 IN*10YD(1533-0)",
+  "unit": "EA",
+  "price": 666.6666666667,
+  "maker": "3M",
+  "last_sold": "2026-01-19"
+ },
+ "ZC2576": {
+  "name": "[대한] 알콜탈지면(Skin Cotton)",
+  "spec": "100매(60PACK/BOX)",
+  "unit": "PACK",
+  "price": 950.0,
+  "maker": "대한",
+  "last_sold": "2026-08-16"
+ },
+ "2C0259": {
+  "name": "[세운]레빈튜브 16FR",
+  "spec": "＃2207-016",
+  "unit": "EA",
+  "price": 3820.0,
+  "maker": "세운",
+  "last_sold": "2026-09-01"
+ },
+ "2C0543": {
+  "name": "[성심]일회용주사침 23G",
+  "spec": "23G 1\" 25mm(100`s BOX)",
+  "unit": "EA",
+  "price": 24.1,
+  "maker": "성심",
+  "last_sold": "2026-04-03"
+ },
+ "1C0141": {
+  "name": "[문정] 솜면봉(비멸균단면)",
+  "spec": "32.5cm*7.3cm*18.5cm/6inch",
+  "unit": "PK",
+  "price": 640.0,
+  "maker": "문정",
+  "last_sold": "2026-07-20"
+ },
+ "2C0829": {
+  "name": "[한국백신]일회용주사기 50CC 18G",
+  "spec": "50CC 18G*1 1/2``(1BOX=25EA)",
+  "unit": "EA",
+  "price": 417.2,
+  "maker": "한국백신",
+  "last_sold": "2026-09-04"
+ },
+ "0C0290": {
+  "name": "[대한] 코튼볼 (Cotton Ball)",
+  "spec": "5호(필터형)",
+  "unit": "PK",
+  "price": 6600.0,
+  "maker": "대한",
+  "last_sold": "2026-05-06"
+ },
+ "DX0097": {
+  "name": "[밴드골드]슈퍼포아 9*12",
+  "spec": "9*12(4호) (50EA/BOX)",
+  "unit": "EA",
+  "price": 233.0,
+  "maker": "밴드골드",
+  "last_sold": "2026-01-20"
+ },
+ "DX0111": {
+  "name": "[밴드골드]슈퍼포아 9*9",
+  "spec": "9*9(3호) (50EA/BOX)",
+  "unit": "EA",
+  "price": 165.0,
+  "maker": "밴드골드",
+  "last_sold": "2026-01-20"
+ },
+ "ZC3133": {
+  "name": "[수성] 인디게이터 테이프 (STEAM)",
+  "spec": "1/2\" (1.2cm*50m)",
+  "unit": "ROLL",
+  "price": 5500.0,
+  "maker": "수성",
+  "last_sold": "2026-03-31"
+ },
+ "2C0236": {
+  "name": "[한국백신]정맥카테타(I.V CATHETER)",
+  "spec": "18G",
+  "unit": "EA",
+  "price": 300.0,
+  "maker": "한국백신",
+  "last_sold": "2026-03-09"
+ },
+ "2C0736": {
+  "name": "[한국백신]일회용주사침",
+  "spec": "21G 1-1/4inch (BOX/100EA)",
+  "unit": "EA",
+  "price": 33.9,
+  "maker": "한국백신",
+  "last_sold": "2026-08-19"
+ },
+ "1C0284": {
+  "name": "[수성위재] 소프트넥칼라(토마스칼라)M",
+  "spec": "M",
+  "unit": "EA",
+  "price": 1440.0,
+  "maker": "수성위재",
+  "last_sold": "2026-03-16"
+ },
+ "2C0148": {
+  "name": "[BD] ANGIOCATH PLUS [382447]",
+  "spec": "18GA X 1.88IN(box`50s)",
+  "unit": "EA",
+  "price": 378.0,
+  "maker": "BD",
+  "last_sold": "2026-06-05"
+ },
+ "ZC1385": {
+  "name": "[협성] Air Way(ORANGE)",
+  "spec": "HS-AW-500(90MM)",
+  "unit": "EA",
+  "price": 770.0,
+  "maker": "협성",
+  "last_sold": "2026-08-07"
+ },
+ "ZC0274": {
+  "name": "[협성] Air Way(RED)",
+  "spec": "HS-AW-600(100MM)",
+  "unit": "EA",
+  "price": 770.0,
+  "maker": "협성",
+  "last_sold": "2026-06-27"
+ },
+ "ZC2276": {
+  "name": "[유니더스]Angel Surgical Glove(수술실)",
+  "spec": "6",
+  "unit": "PR",
+  "price": 400.0,
+  "maker": "유니더스",
+  "last_sold": "2026-03-31"
+ },
+ "3C0110": {
+  "name": "[아이리] BLACK SILK(6/0)",
+  "spec": "SK617",
+  "unit": "EA",
+  "price": 2565.8333333333,
+  "maker": "아이리",
+  "last_sold": "2026-01-21"
+ },
+ "ZC2898": {
+  "name": "[신창] 일회용 주사기 3cc 22G 1.25″",
+  "spec": "[100EA/GAB] 3cc 22G 1.25″",
+  "unit": "EA",
+  "price": 52.3,
+  "maker": "신창",
+  "last_sold": "2026-04-22"
+ },
+ "ZC2396": {
+  "name": "[메디탑] 뉴클린스왑에이 1매 (부직포)",
+  "spec": "1매(60/Inbox)",
+  "unit": "BOX",
+  "price": 1590.0,
+  "maker": "메디탑",
+  "last_sold": "2026-09-10"
+ },
+ "ZC1245": {
+  "name": "TERASAFE Exam Nitrile Glove(니트릴) M",
+  "spec": "M [100pcs/GAB]",
+  "unit": "PCS",
+  "price": 59.0,
+  "maker": "",
+  "last_sold": "2026-08-28"
+ },
+ "1C0118": {
+  "name": "[협성] O2 Mask",
+  "spec": "성인용(HS-OM-100)",
+  "unit": "EA",
+  "price": 1690.0,
+  "maker": "협성",
+  "last_sold": "2026-08-05"
+ },
+ "ZC0313": {
+  "name": "[협성] O2 Mask (W/Bag)",
+  "spec": "성인/HS-OM-101",
+  "unit": "EA",
+  "price": 1700.0,
+  "maker": "협성",
+  "last_sold": "2026-08-05"
+ },
+ "ZC1076": {
+  "name": "[대한]면탄력붕대S (Elastic Bandage)",
+  "spec": "2inch(5*215)(PK/12EA)",
+  "unit": "PK",
+  "price": 5800.0,
+  "maker": "대한",
+  "last_sold": "2026-02-02"
+ },
+ "2C0144": {
+  "name": "[BD] ANGIOCATH PLUS [382423]",
+  "spec": "22GA X 1IN(box`50s)",
+  "unit": "EA",
+  "price": 354.0,
+  "maker": "BD",
+  "last_sold": "2026-09-16"
+ },
+ "ZC2449": {
+  "name": "[세종]멸균 소독포, BLUE 60*60CM (JSWT06) 500`S/BX",
+  "spec": "60CM X 60CM",
+  "unit": "EA",
+  "price": 180.0,
+  "maker": "세종",
+  "last_sold": "2026-05-02"
+ },
+ "DX0067": {
+  "name": "[수성] 고탄력붕대(신축성)S",
+  "spec": "3\"",
+  "unit": "PACK",
+  "price": 4250.0,
+  "maker": "수성",
+  "last_sold": "2026-09-07"
+ },
+ "ZC0848": {
+  "name": "[한국백신]일회용주사침",
+  "spec": "23G (100MM)",
+  "unit": "EA",
+  "price": 145.0,
+  "maker": "한국백신",
+  "last_sold": "2026-03-04"
+ },
+ "1C0136": {
+  "name": "[문정] 복대 - abdominal",
+  "spec": "9인치(L 42인치,블루)",
+  "unit": "EA",
+  "price": 1590.0,
+  "maker": "문정",
+  "last_sold": "2026-04-05"
+ },
+ "2C0325": {
+  "name": "수술용장갑-GAMMEX(ANSELL)",
+  "spec": "6\"/PF/LATEX",
+  "unit": "PAIR",
+  "price": 1348.0,
+  "maker": "",
+  "last_sold": "2026-02-07"
+ },
+ "0C0193": {
+  "name": "[협성]접은거즈",
+  "spec": "4*4*8P",
+  "unit": "EA",
+  "price": 35.5,
+  "maker": "협성",
+  "last_sold": "2026-09-08"
+ },
+ "2C0994": {
+  "name": "[퍼슨] 루브에스겔(외과용젤리)",
+  "spec": "15G (BOX/10EA)",
+  "unit": "EA",
+  "price": 900.0,
+  "maker": "퍼슨",
+  "last_sold": "2026-03-24"
+ },
+ "ZC0910": {
+  "name": "[FA이올] 알콜스왑",
+  "spec": "200매 (48EA/BOX)",
+  "unit": "EA",
+  "price": 1340.0,
+  "maker": "FA이올",
+  "last_sold": "2026-09-08"
+ },
+ "2C0532": {
+  "name": "[성심]일회용주사침 23G",
+  "spec": "23G 90MM(200`s BOX)",
+  "unit": "EA",
+  "price": 150.0,
+  "maker": "성심",
+  "last_sold": "2026-04-03"
+ },
+ "ZC2437": {
+  "name": "[퍼슨] 핸드크린겔(H) 500ML",
+  "spec": "500ML (에탄올 80%)",
+  "unit": "BTL",
+  "price": 3000.0,
+  "maker": "퍼슨",
+  "last_sold": "2026-02-11"
+ },
+ "2C0059": {
+  "name": "[BD] Luer lok syringe 루어락주사기[302149]",
+  "spec": "10ML LL(box`100s)",
+  "unit": "EA",
+  "price": 295.0,
+  "maker": "BD",
+  "last_sold": "2026-09-01"
+ },
+ "0C0201": {
+  "name": "[한국백신]헤파린캡",
+  "spec": "",
+  "unit": "EA",
+  "price": 144.8,
+  "maker": "한국백신",
+  "last_sold": "2026-09-05"
+ },
+ "ZC0856": {
+  "name": "[세운]NELATON CATHETER(넬라톤카테타)",
+  "spec": "＃7",
+  "unit": "EA",
+  "price": 375.0,
+  "maker": "세운",
+  "last_sold": "2026-09-03"
+ },
+ "ZC0374": {
+  "name": "[에버레이드]네오드레싱",
+  "spec": "9*25(BOX/30매)",
+  "unit": "EA",
+  "price": 440.6666666667,
+  "maker": "에버레이드",
+  "last_sold": "2026-01-27"
+ },
+ "DX0140": {
+  "name": "[에버레이드]네오드레싱",
+  "spec": "9*15(BOX/50매)",
+  "unit": "EA",
+  "price": 262.8,
+  "maker": "에버레이드",
+  "last_sold": "2026-01-27"
+ },
+ "ZC2279": {
+  "name": "[Theramx]EG-Q BOND N,이지큐본드 N",
+  "spec": "0.35g",
+  "unit": "EA",
+  "price": 36000.0,
+  "maker": "Theramx",
+  "last_sold": "2026-01-27"
+ },
+ "ZC0845": {
+  "name": "[세운]NELATON CATHETER(넬라톤카테타)",
+  "spec": "＃6 (100EA/BOX)",
+  "unit": "EA",
+  "price": 350.0,
+  "maker": "세운",
+  "last_sold": "2026-01-27"
+ },
+ "ZC0718": {
+  "name": "[밴드골드] 면반창고/병원용/7.5CM*330/EA",
+  "spec": "7.5cm * 330cm",
+  "unit": "EA",
+  "price": 1900.0,
+  "maker": "밴드골드",
+  "last_sold": "2026-01-28"
+ },
+ "2C0213": {
+  "name": "[아이리] 메스",
+  "spec": "11번(100`S)",
+  "unit": "BOX",
+  "price": 21850.0,
+  "maker": "아이리",
+  "last_sold": "2026-09-04"
+ },
+ "DX0060": {
+  "name": "[수성] 접은거즈(GAUZE)",
+  "spec": "7.5㎝×7.5㎝ 8P/200매",
+  "unit": "PACK",
+  "price": 4900.0,
+  "maker": "수성",
+  "last_sold": "2026-04-21"
+ },
+ "DX0057": {
+  "name": "[3M]부직반창고",
+  "spec": "10CM*10M / 2764",
+  "unit": "ROL",
+  "price": 7280.0,
+  "maker": "3M",
+  "last_sold": "2026-06-16"
+ },
+ "3C0419": {
+  "name": "[아이리] BLUE NYLON(나일론) -24EA/CASE-",
+  "spec": "[NB447]4/0, 75cm, 25mm, 1/2Circle, Blue, 24EA/PAC",
+  "unit": "EA",
+  "price": 1291.6666666667,
+  "maker": "아이리",
+  "last_sold": "2026-03-09"
+ },
+ "ZC3079": {
+  "name": "[더블세이프] 소독테이프 (스팀)",
+  "spec": "1\" Steam",
+  "unit": "EA",
+  "price": 7950.0,
+  "maker": "더블세이프",
+  "last_sold": "2026-03-12"
+ },
+ "ZC0531": {
+  "name": "TERASAFE EXAMINATION GLOVE(멸균) S",
+  "spec": "S [50PAIRS/GAB]",
+  "unit": "PAIRS",
+  "price": 360.0,
+  "maker": "",
+  "last_sold": "2026-09-09"
+ },
+ "0C0355": {
+  "name": "[오시스] Cast shoes(칼라)",
+  "spec": "중",
+  "unit": "EA",
+  "price": 2900.0,
+  "maker": "오시스",
+  "last_sold": "2026-01-30"
+ },
+ "2C0533": {
+  "name": "[성심]일회용주사침 25G",
+  "spec": "25G 60MM(200`s BOX)",
+  "unit": "EA",
+  "price": 94.0,
+  "maker": "성심",
+  "last_sold": "2026-04-03"
+ },
+ "ZC3094": {
+  "name": "[수성] 인디게이터 테이프 (E.O)",
+  "spec": "1\" (2.5cm*50m)",
+  "unit": "ROL",
+  "price": 7700.0,
+  "maker": "수성",
+  "last_sold": "2026-03-03"
+ },
+ "DX0102": {
+  "name": "[3M]부직반창고",
+  "spec": "15CM*10M / 2766",
+  "unit": "ROL",
+  "price": 9300.0,
+  "maker": "3M",
+  "last_sold": "2026-03-24"
+ },
+ "DX0009": {
+  "name": "[신신] 면 반창고(7.5CM)",
+  "spec": "대, 7.5cmx330cm, 면",
+  "unit": "EA",
+  "price": 1900.0,
+  "maker": "신신",
+  "last_sold": "2026-04-03"
+ },
+ "0C0254": {
+  "name": "[협성]탄력붕대(R) 신축성",
+  "spec": "2 inch",
+  "unit": "ROL",
+  "price": 285.0,
+  "maker": "협성",
+  "last_sold": "2026-05-21"
+ },
+ "2C0563": {
+  "name": "[성심]일회용주사침 26G",
+  "spec": "26G 1\" 25mm(100`s BOX)",
+  "unit": "EA",
+  "price": 25.0,
+  "maker": "성심",
+  "last_sold": "2026-03-26"
+ },
+ "2C0528": {
+  "name": "[두원]수액연결줄",
+  "spec": "90CM (50EA/PK)",
+  "unit": "EA",
+  "price": 264.0,
+  "maker": "두원",
+  "last_sold": "2026-02-02"
+ },
+ "ZC2004": {
+  "name": "I.V카테타(덕우)/ 18G (1-1/4)",
+  "spec": "18G(1-1/4)",
+  "unit": "EA",
+  "price": 220.0,
+  "maker": "",
+  "last_sold": "2026-06-21"
+ },
+ "ZC1009": {
+  "name": "[성심]일회용주사침 26G",
+  "spec": "26G,60MM(200`s BOX)",
+  "unit": "EA",
+  "price": 82.0,
+  "maker": "성심",
+  "last_sold": "2026-04-03"
+ },
+ "2C0328": {
+  "name": "수술용장갑-GAMMEX(ANSELL)",
+  "spec": "7½\"/PF/LATEX",
+  "unit": "PAIR",
+  "price": 1348.0,
+  "maker": "",
+  "last_sold": "2026-04-15"
+ },
+ "ZC1150": {
+  "name": "[정림] 일회용주사침(롱니들) BOX(100EA)",
+  "spec": "26G, 9cm",
+  "unit": "BOX",
+  "price": 21000.0,
+  "maker": "정림",
+  "last_sold": "2026-04-27"
+ },
+ "2C0595": {
+  "name": "[한국백신]일회용주사침",
+  "spec": "18G 1½ (38MM)",
+  "unit": "EA",
+  "price": 36.6,
+  "maker": "한국백신",
+  "last_sold": "2026-09-11"
+ },
+ "2C0601": {
+  "name": "[아이리] 메스",
+  "spec": "15번(100`s)",
+  "unit": "BOX",
+  "price": 21860.0,
+  "maker": "아이리",
+  "last_sold": "2026-07-24"
+ },
+ "ZC2650": {
+  "name": "[한국라텍스]석션고무관 (LATEX TUBING)",
+  "spec": "N6 (일반형) (BOX/ROL)",
+  "unit": "EA",
+  "price": 32400.0,
+  "maker": "한국라텍스",
+  "last_sold": "2026-02-26"
+ },
+ "2C0241": {
+  "name": "[성심]일회용주사기 10CC 21G",
+  "spec": "10CC 21G 1¼\" 32mm (BOX/100EA)",
+  "unit": "EA",
+  "price": 107.4,
+  "maker": "성심",
+  "last_sold": "2026-09-04"
+ },
+ "2C0564": {
+  "name": "[한국백신]일회용주사침",
+  "spec": "25G 5/8 인치",
+  "unit": "EA",
+  "price": 36.6,
+  "maker": "한국백신",
+  "last_sold": "2026-09-01"
+ },
+ "2C0326": {
+  "name": "수술용장갑-GAMMEX(ANSELL)",
+  "spec": "6½\"/PF/LATEX",
+  "unit": "PAIR",
+  "price": 1348.0,
+  "maker": "",
+  "last_sold": "2026-04-17"
+ },
+ "DX0095": {
+  "name": "[3M]흰색 종이반창고(1530-1)",
+  "spec": "1 IN*10YD (12EA/CAS)",
+  "unit": "EA",
+  "price": 991.6666666667,
+  "maker": "3M",
+  "last_sold": "2026-08-22"
+ },
+ "1C0143": {
+  "name": "[문정] 알미늄스프린터(al splint)",
+  "spec": "소",
+  "unit": "EA",
+  "price": 251.0,
+  "maker": "문정",
+  "last_sold": "2026-02-09"
+ },
+ "DX0062": {
+  "name": "[수성위재] 탈지면(절단솜)",
+  "spec": "4*3cm/450g",
+  "unit": "PACK",
+  "price": 5100.0,
+  "maker": "수성위재",
+  "last_sold": "2026-09-03"
+ },
+ "2C0545": {
+  "name": "[성심]일회용주사기 1CC 26g",
+  "spec": "1CC 26g ½\" 13mm (BOX/100EA)",
+  "unit": "EA",
+  "price": 78.0,
+  "maker": "성심",
+  "last_sold": "2026-09-08"
+ },
+ "DX0093": {
+  "name": "[밴드골드]슈퍼포아 9*15",
+  "spec": "9*15(4L호) (50EA/BOX)",
+  "unit": "EA",
+  "price": 257.2,
+  "maker": "밴드골드",
+  "last_sold": "2026-02-11"
+ },
+ "0C0294": {
+  "name": "[건강누리] Cast shoes(칼라)",
+  "spec": "소",
+  "unit": "EA",
+  "price": 4030.0,
+  "maker": "건강누리",
+  "last_sold": "2026-07-21"
+ },
+ "DX0069": {
+  "name": "[수성] 고탄력붕대(신축성)S",
+  "spec": "6\"",
+  "unit": "PACK",
+  "price": 8000.0,
+  "maker": "수성",
+  "last_sold": "2026-03-03"
+ },
+ "3C0176": {
+  "name": "태창 스파이날니들 (Spinal Needle)",
+  "spec": "26G 90mm (일회용)/BOX(50EA)",
+  "unit": "BOX",
+  "price": 49500.0,
+  "maker": "",
+  "last_sold": "2026-05-30"
+ },
+ "ZC1166": {
+  "name": "필텍 일회용주사기(D/Syringe) BOX(50EA)",
+  "spec": "20CC23G1inch",
+  "unit": "BOX",
+  "price": 6000.0,
+  "maker": "",
+  "last_sold": "2026-03-04"
+ },
+ "2C0489": {
+  "name": "[성심]일회용주사침 26G",
+  "spec": "26G ½\" (13mm)(100`s BOX)",
+  "unit": "EA",
+  "price": 30.0,
+  "maker": "성심",
+  "last_sold": "2026-09-07"
+ },
+ "ZC1349": {
+  "name": "[3M]부직반창고",
+  "spec": "7.5CM*10M / 2763",
+  "unit": "ROLL",
+  "price": 4870.0,
+  "maker": "3M",
+  "last_sold": "2026-07-13"
+ },
+ "ZC0908": {
+  "name": "[FA이올] 알콜스왑",
+  "spec": "100매",
+  "unit": "EA",
+  "price": 850.0,
+  "maker": "FA이올",
+  "last_sold": "2026-06-16"
+ },
+ "DX0040": {
+  "name": "[수성]수술용 덴탈 마스크(청색) , 낱개단위",
+  "spec": "ear-loop(50EA/PACK)",
+  "unit": "EA",
+  "price": 70.0,
+  "maker": "수성",
+  "last_sold": "2026-03-19"
+ },
+ "ZC1243": {
+  "name": "TERASAFE Exam Nitrile Glove(니트릴) XS",
+  "spec": "XS [100pcs/GAB]",
+  "unit": "PCS",
+  "price": 50.0,
+  "maker": "",
+  "last_sold": "2026-07-31"
+ },
+ "2C0549": {
+  "name": "[성심]일회용주사침 23G",
+  "spec": "23G, 60MM(200`s BOX)",
+  "unit": "EA",
+  "price": 80.0,
+  "maker": "성심",
+  "last_sold": "2026-02-20"
+ },
+ "ZC1144": {
+  "name": "[정림] 일회용주사침 (D/Needles) BOX(100EA)",
+  "spec": "31G, 1/2인치(12.7mm)",
+  "unit": "BOX",
+  "price": 4990.0,
+  "maker": "정림",
+  "last_sold": "2026-02-23"
+ },
+ "1C0100": {
+  "name": "[문정] 8자쇄골고정보조기",
+  "spec": "대",
+  "unit": "EA",
+  "price": 2540.0,
+  "maker": "문정",
+  "last_sold": "2026-02-23"
+ },
+ "0C0058": {
+  "name": "[유앤미] SAFE D RAZOR (안전면도기)",
+  "spec": "BOX/100EA",
+  "unit": "EA",
+  "price": 660.0,
+  "maker": "유앤미",
+  "last_sold": "2026-06-23"
+ },
+ "2C0321": {
+  "name": "멸균글러브 7.5 (NATHIS LATEX PF SURGICAL GLOVE)",
+  "spec": "7.5 -BOX/50PAIR",
+  "unit": "BOX",
+  "price": 32000.0,
+  "maker": "",
+  "last_sold": "2026-02-26"
+ },
+ "ZC0469": {
+  "name": "[세운] 3-WAY STOPCOCK(50EA/BOX)",
+  "spec": "4300-000",
+  "unit": "EA",
+  "price": 265.2,
+  "maker": "세운",
+  "last_sold": "2026-09-16"
+ },
+ "1C0370": {
+  "name": "[수성] 팔걸이",
+  "spec": "대(성인) / 레자",
+  "unit": "EA",
+  "price": 1050.0,
+  "maker": "수성",
+  "last_sold": "2026-06-19"
+ },
+ "ZC0530": {
+  "name": "TERASAFE EXAMINATION GLOVE(멸균) M",
+  "spec": "M [50PAIRS/GAB]",
+  "unit": "PAIRS",
+  "price": 356.0,
+  "maker": "",
+  "last_sold": "2026-09-16"
+ },
+ "2C1202": {
+  "name": "[매지션] MagiNabee 나비침 23G",
+  "spec": "23G (BOX/100EA)",
+  "unit": "EA",
+  "price": 198.0,
+  "maker": "매지션",
+  "last_sold": "2026-09-18"
+ },
+ "ZC0689": {
+  "name": "[세운] 드레인튜브(panrose) 50EA/CAS [8MM]",
+  "spec": "8MM",
+  "unit": "EA",
+  "price": 1377.5,
+  "maker": "세운",
+  "last_sold": "2026-02-28"
+ },
+ "DX0083": {
+  "name": "[수성위재] 코튼볼(슬라이스)",
+  "spec": "5호, BALL형",
+  "unit": "PACK",
+  "price": 4940.0,
+  "maker": "수성위재",
+  "last_sold": "2026-08-31"
+ },
+ "0C0176": {
+  "name": "[승원메디칼] 파라핀왁스",
+  "spec": "6EA/BOX",
+  "unit": "BOX",
+  "price": 19650.0,
+  "maker": "승원메디칼",
+  "last_sold": "2026-03-04"
+ },
+ "ZC0067": {
+  "name": "[현대]소변기",
+  "spec": "남성용, 1100cc, PVC",
+  "unit": "EA",
+  "price": 1670.0,
+  "maker": "현대",
+  "last_sold": "2026-03-04"
+ },
+ "ZC1368": {
+  "name": "SC ENEMA SYRINGE 50cc",
+  "spec": "[25EA/GAB] 50cc Enema",
+  "unit": "EA",
+  "price": 328.0,
+  "maker": "",
+  "last_sold": "2026-05-26"
+ },
+ "1C0581": {
+  "name": "TERASAFE Suction Catheter 12Fr",
+  "spec": "12Fr [100EA/box]",
+  "unit": "EA",
+  "price": 300.0,
+  "maker": "",
+  "last_sold": "2026-03-10"
+ },
+ "1C0580": {
+  "name": "TERASAFE Suction Catheter 10Fr",
+  "spec": "10Fr [100EA/box]",
+  "unit": "EA",
+  "price": 300.0,
+  "maker": "",
+  "last_sold": "2026-03-10"
+ },
+ "1C0579": {
+  "name": "TERASAFE Suction Catheter 8Fr",
+  "spec": "8Fr [100EA/box]",
+  "unit": "EA",
+  "price": 300.0,
+  "maker": "",
+  "last_sold": "2026-03-10"
+ },
+ "2C0041": {
+  "name": "[BD] NEEDLE [302002]",
+  "spec": "26G 1/2IN BROWN(box`100s)",
+  "unit": "EA",
+  "price": 20.0,
+  "maker": "BD",
+  "last_sold": "2026-03-10"
+ },
+ "ZC0298": {
+  "name": "[협성] Feeding Bag",
+  "spec": "HS-900/FB-900 (50EA/BOX)",
+  "unit": "EA",
+  "price": 4880.0,
+  "maker": "협성",
+  "last_sold": "2026-03-11"
+ },
+ "ZC2869": {
+  "name": "[수성] 멸균 접은거즈",
+  "spec": "2*2*8p(5매)",
+  "unit": "BOX",
+  "price": 3750.0,
+  "maker": "수성",
+  "last_sold": "2026-03-11"
+ },
+ "ZC0617": {
+  "name": "[경기] I.V카테타18G*1+1/4",
+  "spec": "18G*1+1/4\"",
+  "unit": "EA",
+  "price": 296.2,
+  "maker": "경기",
+  "last_sold": "2026-03-11"
+ },
+ "4C0037": {
+  "name": "[ETHICON] VICRYL",
+  "spec": "6/0(W9981)",
+  "unit": "EA",
+  "price": 3625.0,
+  "maker": "ETHICON",
+  "last_sold": "2026-09-05"
+ },
+ "2C0490": {
+  "name": "[성심] 수액SET Y타입",
+  "spec": "Y타입,VY1000",
+  "unit": "EA",
+  "price": 520.0,
+  "maker": "성심",
+  "last_sold": "2026-03-12"
+ },
+ "ZC2272": {
+  "name": "[에버레이드]에이덤플러스",
+  "spec": "6cmX7cm (BOX/50EA)",
+  "unit": "EA",
+  "price": 360.62,
+  "maker": "에버레이드",
+  "last_sold": "2026-03-13"
+ },
+ "2C0097": {
+  "name": "ENDO TRACHEAL TUBE-TUOREN-10EA/CAS",
+  "spec": "7.5 CUFF",
+  "unit": "EA",
+  "price": 2480.0,
+  "maker": "",
+  "last_sold": "2026-07-27"
+ },
+ "0C0314": {
+  "name": "[3M]펜라이트",
+  "spec": "PL-330",
+  "unit": "EA",
+  "price": 8300.0,
+  "maker": "3M",
+  "last_sold": "2026-07-21"
+ },
+ "ZC1400": {
+  "name": "[문정] 밸포밴드",
+  "spec": "중",
+  "unit": "EA",
+  "price": 3090.0,
+  "maker": "문정",
+  "last_sold": "2026-03-16"
+ },
+ "2C0265": {
+  "name": "윌스캔 귀,이마겸용 체온계",
+  "spec": "#HET-R161",
+  "unit": "EA",
+  "price": 36000.0,
+  "maker": "",
+  "last_sold": "2026-09-14"
+ },
+ "ZC1014": {
+  "name": "[수성] 면탄력붕대 [4인치 12EAl/타]",
+  "spec": "4\"",
+  "unit": "PACK",
+  "price": 7330.0,
+  "maker": "수성",
+  "last_sold": "2026-09-05"
+ },
+ "ZC0619": {
+  "name": "[경기] I.V카테타22G*1",
+  "spec": "22G*1",
+  "unit": "EA",
+  "price": 316.2,
+  "maker": "경기",
+  "last_sold": "2026-04-06"
+ },
+ "2C0482": {
+  "name": "[BD] 인슐린주사기 1CC,29G [320320]",
+  "spec": "1CC,29G, 12.7mm",
+  "unit": "EA",
+  "price": 171.8,
+  "maker": "BD",
+  "last_sold": "2026-04-24"
+ },
+ "ZC0690": {
+  "name": "[세운] 드레인튜브(panrose) 50EA/CAS [6MM]",
+  "spec": "6MM",
+  "unit": "EA",
+  "price": 1377.5,
+  "maker": "세운",
+  "last_sold": "2026-03-19"
+ },
+ "DX0138": {
+  "name": "[에버레이드]네오드레싱",
+  "spec": "9*7(BOX/50매)",
+  "unit": "EA",
+  "price": 122.0,
+  "maker": "에버레이드",
+  "last_sold": "2026-03-20"
+ },
+ "3C0535": {
+  "name": "[한국백신]일회용주사기 30CC 21G",
+  "spec": "30CC 21G (50*12PK)",
+  "unit": "EA",
+  "price": 300.0,
+  "maker": "한국백신",
+  "last_sold": "2026-04-18"
+ },
+ "ZC1394": {
+  "name": "[문정] Cast shoes",
+  "spec": "대",
+  "unit": "EA",
+  "price": 1260.0,
+  "maker": "문정",
+  "last_sold": "2026-09-11"
+ },
+ "ZC1395": {
+  "name": "[문정] Cast shoes",
+  "spec": "중",
+  "unit": "EA",
+  "price": 1260.0,
+  "maker": "문정",
+  "last_sold": "2026-05-12"
+ },
+ "DX0114": {
+  "name": "[영케미칼] 트라우마밴드(ROLL 밴드)",
+  "spec": "25*25mm(사각) / 100PCS",
+  "unit": "ROL",
+  "price": 3215.0,
+  "maker": "영케미칼",
+  "last_sold": "2026-09-04"
+ },
+ "3C0174": {
+  "name": "태창 스파이날니들 (Spinal Needle)",
+  "spec": "25G 90mm (일회용)/BOX(50EA)",
+  "unit": "BOX",
+  "price": 48900.0,
+  "maker": "",
+  "last_sold": "2026-07-31"
+ },
+ "0C0084": {
+  "name": "[FA이올] 알콜스왑",
+  "spec": "25매*4(63/box)/25매*2(126/box)",
+  "unit": "EA",
+  "price": null,
+  "maker": "FA이올",
+  "last_sold": "2026-04-07"
+ },
+ "ZC1072": {
+  "name": "[대한] 접은거즈",
+  "spec": "7.5cm*7.5cm(8P),BOX/200EA",
+  "unit": "BOX",
+  "price": 4888.0,
+  "maker": "대한",
+  "last_sold": "2026-09-02"
+ },
+ "ZC2531": {
+  "name": "[세종]멸균 소독포, BLUE 40*40CM (JSWT04) 500`S/BX",
+  "spec": "40CM X 40CM",
+  "unit": "EA",
+  "price": 118.8,
+  "maker": "세종",
+  "last_sold": "2026-05-18"
+ },
+ "2C0487": {
+  "name": "[성심]일회용주사침 26G",
+  "spec": "26G,90mm(200`s BOX)",
+  "unit": "EA",
+  "price": 331.36,
+  "maker": "성심",
+  "last_sold": "2026-04-01"
+ },
+ "2C0096": {
+  "name": "ENDO TRACHEAL TUBE-TUOREN-10EA/CAS",
+  "spec": "7.0 CUFF",
+  "unit": "EA",
+  "price": 2490.0,
+  "maker": "",
+  "last_sold": "2026-08-18"
+ },
+ "2C1044": {
+  "name": "[한울] 수액셋트 무침",
+  "spec": "무침 (PK/50EA)",
+  "unit": "PK",
+  "price": 22500.0,
+  "maker": "한울",
+  "last_sold": "2026-05-07"
+ },
+ "ZC0535": {
+  "name": "TERASAFE LATEX EXAM GLOVE(비멸균) L",
+  "spec": "L [100PCS/GAB]",
+  "unit": "PCS",
+  "price": 65.0,
+  "maker": "",
+  "last_sold": "2026-09-16"
+ },
+ "2C0557": {
+  "name": "[세운] BAROVAC SS200M",
+  "spec": "200ml(ID1.6mm,OD3.2mm)",
+  "unit": "EA",
+  "price": 14032.0,
+  "maker": "세운",
+  "last_sold": "2026-04-04"
+ },
+ "ZC2282": {
+  "name": "[문정] 일회용질경",
+  "spec": "소 (BOX/100EA)",
+  "unit": "EA",
+  "price": 500.0,
+  "maker": "문정",
+  "last_sold": "2026-04-07"
+ },
+ "0C0073": {
+  "name": "[유니더스] OB/GYN Friend",
+  "spec": "산부인과텍스 (BOX/100EA)",
+  "unit": "EA",
+  "price": 260.0,
+  "maker": "유니더스",
+  "last_sold": "2026-04-05"
+ },
+ "2C9999": {
+  "name": "[한울] 수액세트 Y타입 50EA",
+  "spec": "Y (PK/50EA)",
+  "unit": "PK",
+  "price": 22000.0,
+  "maker": "한울",
+  "last_sold": "2026-08-31"
+ },
+ "2C0320": {
+  "name": "멸균글러브 6.5 (NATHIS LATEX PF SURGICAL GLOVE)",
+  "spec": "6.5 -BOX/50PAIR",
+  "unit": "BOX",
+  "price": 32000.0,
+  "maker": "",
+  "last_sold": "2026-04-04"
+ },
+ "ZC0647": {
+  "name": "[승원메디칼] 소노젤리-초음파젤(투명)",
+  "spec": "5L",
+  "unit": "EA",
+  "price": 10500.0,
+  "maker": "승원메디칼",
+  "last_sold": "2026-06-19"
+ },
+ "ZC1068": {
+  "name": "[대한]슬라이스볼 (Cotton Ball)",
+  "spec": "3호,중(볼형)",
+  "unit": "PK",
+  "price": 4300.0,
+  "maker": "대한",
+  "last_sold": "2026-04-20"
+ },
+ "ZC0528": {
+  "name": "TERASAFE EXAMINATION GLOVE(멸균) XS",
+  "spec": "XS [50PAIRS/GAB]",
+  "unit": "PAIRS",
+  "price": 324.0,
+  "maker": "",
+  "last_sold": "2026-04-06"
+ },
+ "2C1203": {
+  "name": "[매지션] MagiNabee 나비침 24G",
+  "spec": "24G (BOX/100EA)",
+  "unit": "EA",
+  "price": 201.7,
+  "maker": "매지션",
+  "last_sold": "2026-09-18"
+ },
+ "2C0942": {
+  "name": "[세운] IV SET(수액셋트) Vented",
+  "spec": "Y형, 1950MM (PK/25EA)",
+  "unit": "EA",
+  "price": 540.0,
+  "maker": "세운",
+  "last_sold": "2026-04-07"
+ },
+ "2C0860": {
+  "name": "[세운] IV SET(수액셋트) Vented",
+  "spec": "I형, 1700MM(무침 25EA/PK)",
+  "unit": "EA",
+  "price": 440.0,
+  "maker": "세운",
+  "last_sold": "2026-04-07"
+ },
+ "3C0169": {
+  "name": "태창 스파이날니들 (Spinal Needle)",
+  "spec": "22G 90mm (일회용)/BOX(50EA)",
+  "unit": "BOX",
+  "price": 49500.0,
+  "maker": "",
+  "last_sold": "2026-05-22"
+ },
+ "3C0171": {
+  "name": "태창 스파이날니들 (Spinal Needle)",
+  "spec": "23G 90mm (일회용)/BOX(50EA)",
+  "unit": "BOX",
+  "price": 49500.0,
+  "maker": "",
+  "last_sold": "2026-04-09"
+ },
+ "ZC2399": {
+  "name": "[신창] 일회용 주사침 23G X 1",
+  "spec": "23G X 1\"",
+  "unit": "EA",
+  "price": 33.0,
+  "maker": "신창",
+  "last_sold": "2026-09-15"
+ },
+ "ZC2105": {
+  "name": "[신창] 일회용 주사침 18G X 1 1/2",
+  "spec": "18G X 1 1/2\"",
+  "unit": "EA",
+  "price": 33.0,
+  "maker": "신창",
+  "last_sold": "2026-09-17"
+ },
+ "2C0527": {
+  "name": "수술용장갑-GAMMEX(ANSELL)",
+  "spec": "8\"/PF/LATEX",
+  "unit": "PAIR",
+  "price": 1348.0,
+  "maker": "",
+  "last_sold": "2026-04-17"
+ },
+ "DX0105": {
+  "name": "[3M]실크반창고-12EA/CAS",
+  "spec": "1IN*10YD (1538-1)",
+  "unit": "EA",
+  "price": 2025.0,
+  "maker": "3M",
+  "last_sold": "2026-09-09"
+ },
+ "ZC2431": {
+  "name": "[성심] 수액SET 유침",
+  "spec": "유침,V1001(23g*1\")(BOX/50EA)",
+  "unit": "EA",
+  "price": 898.0,
+  "maker": "성심",
+  "last_sold": "2026-04-21"
+ },
+ "ZC1169": {
+  "name": "필텍 일회용주사기(D/Syringe) BOX(25EA)",
+  "spec": "50CC18G1-1/2inch",
+  "unit": "BOX",
+  "price": 9480.0,
+  "maker": "",
+  "last_sold": "2026-09-14"
+ },
+ "0C0289": {
+  "name": "[대한] 코튼볼 (Cotton Ball)",
+  "spec": "4호(필터형)",
+  "unit": "PK",
+  "price": 6600.0,
+  "maker": "대한",
+  "last_sold": "2026-05-07"
+ },
+ "ZC0529": {
+  "name": "TERASAFE EXAMINATION GLOVE(멸균) L",
+  "spec": "L [50PAIRS/GAB]",
+  "unit": "PAIRS",
+  "price": 338.4,
+  "maker": "",
+  "last_sold": "2026-09-03"
+ },
+ "0C0189": {
+  "name": "[3M]일렉트로이드 2223H(3M)",
+  "spec": "성인용(PK/50EA)",
+  "unit": "EA",
+  "price": 157.2,
+  "maker": "3M",
+  "last_sold": "2026-04-22"
+ },
+ "ZC1611": {
+  "name": "[수성] 접은거즈(GAUZE)",
+  "spec": "4*8*4P(160매/BOX)",
+  "unit": "BOX",
+  "price": 7900.0,
+  "maker": "수성",
+  "last_sold": "2026-04-23"
+ },
+ "ZC1158": {
+  "name": "필텍 인슐린주사기(D/InsulineSyringe) BOX(100EA)",
+  "spec": "1CC30G8mm",
+  "unit": "BOX",
+  "price": 9000.0,
+  "maker": "",
+  "last_sold": "2026-04-28"
+ },
+ "2C0243": {
+  "name": "[성심]일회용주사기 50CC 21G",
+  "spec": "50CC 21G 1¼\" 32mm (BOX/25EA)",
+  "unit": "EA",
+  "price": 355.2,
+  "maker": "성심",
+  "last_sold": "2026-04-24"
+ },
+ "3C0120": {
+  "name": "[HAKKO]스파이날니들",
+  "spec": "18G 3½\"/M TYPE / (100EA/BOX)",
+  "unit": "EA",
+  "price": 3800.0,
+  "maker": "HAKKO",
+  "last_sold": "2026-04-27"
+ },
+ "ZC2656": {
+  "name": "[정림] 일회용주사침(롱니들) BOX(100EA)",
+  "spec": "25G, 9cm",
+  "unit": "BOX",
+  "price": 23800.0,
+  "maker": "정림",
+  "last_sold": "2026-04-28"
+ },
+ "2C1207": {
+  "name": "[나눔컴퍼니] Mirror Cannula (범용 카테터 캐뉼라)",
+  "spec": "25G*50mm (BOX/50ea)",
+  "unit": "EA",
+  "price": 926.0,
+  "maker": "나눔컴퍼니",
+  "last_sold": "2026-09-17"
+ },
+ "2C1206": {
+  "name": "[나눔컴퍼니] Mirror Cannula (범용 카테터 캐뉼라)",
+  "spec": "25G*40mm (BOX/50ea)",
+  "unit": "EA",
+  "price": 1001.0,
+  "maker": "나눔컴퍼니",
+  "last_sold": "2026-06-10"
+ },
+ "2C1208": {
+  "name": "[나눔컴퍼니] Mirror Cannula (범용 카테터 캐뉼라)",
+  "spec": "27G*40mm (BOX/50ea)",
+  "unit": "EA",
+  "price": 1001.0,
+  "maker": "나눔컴퍼니",
+  "last_sold": "2026-05-06"
+ },
+ "2C0567": {
+  "name": "[성심]일회용주사침 29G",
+  "spec": "29G,60MM(200`s BOX)",
+  "unit": "EA",
+  "price": 125.0,
+  "maker": "성심",
+  "last_sold": "2026-04-30"
+ },
+ "2C0787": {
+  "name": "[성심]일회용주사침 26G",
+  "spec": "26G,50MM(200`s BOX)",
+  "unit": "EA",
+  "price": 100.0,
+  "maker": "성심",
+  "last_sold": "2026-04-30"
+ },
+ "ZC1379": {
+  "name": "SC DISPOSABLE SYRINGE 5cc 21G 1.25″",
+  "spec": "[100EA/GAB] 5cc 21G 1.25″",
+  "unit": "EA",
+  "price": 74.0,
+  "maker": "",
+  "last_sold": "2026-09-07"
+ },
+ "DX0151": {
+  "name": "[메디탑] 소독용 에탄올",
+  "spec": "4L(83%)",
+  "unit": "BTL",
+  "price": 12420.0,
+  "maker": "메디탑",
+  "last_sold": "2026-09-07"
+ },
+ "2C0757": {
+  "name": "[세운] Injection Port Cap(헤파린캡)",
+  "spec": "",
+  "unit": "EA",
+  "price": 143.0,
+  "maker": "세운",
+  "last_sold": "2026-08-10"
+ },
+ "2C0260": {
+  "name": "[세운]레빈튜브 18FR",
+  "spec": "＃2207-018",
+  "unit": "EA",
+  "price": 3620.0,
+  "maker": "세운",
+  "last_sold": "2026-05-12"
+ },
+ "ZC1112": {
+  "name": "[정림] 일회용주사기 3CC 23G (D/Syringe) BOX(100EA)",
+  "spec": "3CC23G1inch",
+  "unit": "BOX",
+  "price": 8000.0,
+  "maker": "정림",
+  "last_sold": "2026-05-15"
+ },
+ "ZC1254": {
+  "name": "[수성]팩거즈",
+  "spec": "10*30*8P",
+  "unit": "PACK",
+  "price": 23876.0,
+  "maker": "수성",
+  "last_sold": "2026-09-08"
+ },
+ "0C0077": {
+  "name": "검진용위생방수지(Z Type)",
+  "spec": "H-60,S,45*37*(100`s)",
+  "unit": "PACK",
+  "price": 5690.0,
+  "maker": "",
+  "last_sold": "2026-06-16"
+ },
+ "ZC0612": {
+  "name": "[가주헬스케어] Levin tube 16fr",
+  "spec": "16fr",
+  "unit": "EA",
+  "price": 3620.0,
+  "maker": "가주헬스케어",
+  "last_sold": "2026-05-29"
+ },
+ "0C0251": {
+  "name": "[OMRON] 오므론 전자혈압계",
+  "spec": "HEM-7155",
+  "unit": "SET",
+  "price": 99100.0,
+  "maker": "OMRON",
+  "last_sold": "2026-07-09"
+ },
+ "0C0317": {
+  "name": "[밴드골드] 밴드랩 20",
+  "spec": "100매*20EA",
+  "unit": "EA",
+  "price": 2000.0,
+  "maker": "밴드골드",
+  "last_sold": "2026-06-01"
+ },
+ "ZC2111": {
+  "name": "[신창] 일회용 주사침 26G X 1/2",
+  "spec": "26G X 1/2\"",
+  "unit": "EA",
+  "price": 33.0,
+  "maker": "신창",
+  "last_sold": "2026-09-09"
+ },
+ "2C0206": {
+  "name": "[매지션] MagiNabee 나비침 21G",
+  "spec": "21G (BOX/100EA)",
+  "unit": "EA",
+  "price": 242.0,
+  "maker": "매지션",
+  "last_sold": "2026-06-01"
+ },
+ "ZC0291": {
+  "name": "[더블세이프] E.O GAS Bag",
+  "spec": "25CM*100M",
+  "unit": "ROL",
+  "price": 28800.0,
+  "maker": "더블세이프",
+  "last_sold": "2026-06-04"
+ },
+ "2C0146": {
+  "name": "[BD] ANGIOCATH PLUS [382437]",
+  "spec": "20GA X 1.88IN(box`50s)",
+  "unit": "EA",
+  "price": 378.0,
+  "maker": "BD",
+  "last_sold": "2026-06-05"
+ },
+ "3C0188": {
+  "name": "[아이리] BLUE NYLON(나일론) -24EA/CASE-",
+  "spec": "3/0(NB319)",
+  "unit": "EA",
+  "price": 1480.0,
+  "maker": "아이리",
+  "last_sold": "2026-06-29"
+ },
+ "ZC1183": {
+  "name": "[협성] 유린백(URINE BAG)",
+  "spec": "2000cc, (U-2000)",
+  "unit": "EA",
+  "price": 1872.0,
+  "maker": "협성",
+  "last_sold": "2026-07-14"
+ },
+ "ZC2188": {
+  "name": "보비플레이트-Disposable Dual Cable Plate (BOX/20EA)",
+  "spec": "PL04-04D / Dual / 성인 / 150x160mm / (BOX/20EA)",
+  "unit": "EA",
+  "price": 4300.0,
+  "maker": "",
+  "last_sold": "2026-06-18"
+ },
+ "DX0008": {
+  "name": "[신신] 플라스틱 반창고(Plaster)",
+  "spec": "W7.5cm, L330cm, Plastic",
+  "unit": "EA",
+  "price": 1920.0,
+  "maker": "신신",
+  "last_sold": "2026-06-26"
+ },
+ "0C0170": {
+  "name": "[대한] 접은거즈",
+  "spec": "10cm*20cm(8P),BOX/100EA",
+  "unit": "BOX",
+  "price": 8450.0,
+  "maker": "대한",
+  "last_sold": "2026-08-04"
+ },
+ "1C0280": {
+  "name": "[3M] 스테리스트립 R1547",
+  "spec": "12*100mm (50ea)",
+  "unit": "PACK",
+  "price": 55000.0,
+  "maker": "3M",
+  "last_sold": "2026-06-20"
+ },
+ "0C0319": {
+  "name": "[밴드골드] 밴드랩 35mm",
+  "spec": "180매*10EA",
+  "unit": "EA",
+  "price": 7500.0,
+  "maker": "밴드골드",
+  "last_sold": "2026-06-22"
+ },
+ "DX0026": {
+  "name": "HYPAFIX",
+  "spec": "10CMX10M",
+  "unit": "EA",
+  "price": 8800.0,
+  "maker": "",
+  "last_sold": "2026-06-22"
+ },
+ "2C0099": {
+  "name": "[세운] 드레인튜브(panrose) 50EA/CAS [10MM]",
+  "spec": "10MM",
+  "unit": "EA",
+  "price": 1450.0,
+  "maker": "세운",
+  "last_sold": "2026-06-30"
+ },
+ "1C0286": {
+  "name": "[승원메디칼] 소노젤리 250ML",
+  "spec": "250ML(블루)",
+  "unit": "EA",
+  "price": 4000.0,
+  "maker": "승원메디칼",
+  "last_sold": "2026-06-25"
+ },
+ "DX0001": {
+  "name": "[유한] 덴탈마스크",
+  "spec": "50EA/BOX",
+  "unit": "BOX",
+  "price": 7000.0,
+  "maker": "유한",
+  "last_sold": "2026-07-08"
+ },
+ "ZC0643": {
+  "name": "[수성위재] 코튼볼(슬라이스)",
+  "spec": "3호, BALL형",
+  "unit": "PACK",
+  "price": 4950.0,
+  "maker": "수성위재",
+  "last_sold": "2026-06-24"
+ },
+ "2C0257": {
+  "name": "[세운]에어웨이(Air Way) # Green",
+  "spec": "3호 / 6390-103",
+  "unit": "EA",
+  "price": 1420.0,
+  "maker": "세운",
+  "last_sold": "2026-07-15"
+ },
+ "2C0258": {
+  "name": "[세운]에어웨이(Air Way) # Orange",
+  "spec": "4호 / 6390-104",
+  "unit": "EA",
+  "price": 1230.0,
+  "maker": "세운",
+  "last_sold": "2026-07-15"
+ },
+ "4C0009": {
+  "name": "VICRYL PLUS -ETHICON- 36EA/CAS",
+  "spec": "4/0 VCP304H",
+  "unit": "EA",
+  "price": 3888.8888888889,
+  "maker": "",
+  "last_sold": "2026-06-29"
+ },
+ "2C0599": {
+  "name": "[아이리] 메스",
+  "spec": "10번(100`S)",
+  "unit": "BOX",
+  "price": 20780.0,
+  "maker": "아이리",
+  "last_sold": "2026-09-15"
+ },
+ "2C0606": {
+  "name": "ENDO TRACHEAL TUBE-TUOREN-10EA/CAS",
+  "spec": "8.0 CUFF",
+  "unit": "EA",
+  "price": 2480.0,
+  "maker": "",
+  "last_sold": "2026-07-02"
+ },
+ "DX0137": {
+  "name": "[에버레이드]네오드레싱",
+  "spec": "6*7(BOX/50매)",
+  "unit": "EA",
+  "price": 98.7,
+  "maker": "에버레이드",
+  "last_sold": "2026-09-07"
+ },
+ "2C1205": {
+  "name": "[나눔컴퍼니] Mirror Cannula (범용 카테터 캐뉼라)",
+  "spec": "21G*50mm (BOX/50ea)",
+  "unit": "EA",
+  "price": 963.8,
+  "maker": "나눔컴퍼니",
+  "last_sold": "2026-07-06"
+ },
+ "2C0718": {
+  "name": "COLD SNARE (JP119)",
+  "spec": "BM1523024-R27 15mm",
+  "unit": "EA",
+  "price": 18000.0,
+  "maker": "",
+  "last_sold": "2026-07-10"
+ },
+ "1C0415": {
+  "name": "[문정] 팔걸이",
+  "spec": "소(소아)",
+  "unit": "EA",
+  "price": 1140.0,
+  "maker": "문정",
+  "last_sold": "2026-07-08"
+ },
+ "ZC2535": {
+  "name": "[신창] 일회용 주사침 30G X 0.5",
+  "spec": "30G X 0.5\"",
+  "unit": "EA",
+  "price": 59.0,
+  "maker": "신창",
+  "last_sold": "2026-07-07"
+ },
+ "1C0149": {
+  "name": "[문정] 팔걸이",
+  "spec": "대(성인,면,블루)",
+  "unit": "EA",
+  "price": 1140.0,
+  "maker": "문정",
+  "last_sold": "2026-08-12"
+ },
+ "ZC0916": {
+  "name": "[인성] I-Gel",
+  "spec": "3",
+  "unit": "EA",
+  "price": 59380.0,
+  "maker": "인성",
+  "last_sold": "2026-09-05"
+ },
+ "2C1118": {
+  "name": "[GMK] 3WAY EXTENSION 30CM",
+  "spec": "3W-5M-EX-SL30 (BOX/100EA, 1CT/4BOX)",
+  "unit": "EA",
+  "price": 2700.0,
+  "maker": "GMK",
+  "last_sold": "2026-07-11"
+ },
+ "0C0093": {
+  "name": "[대한] 스타키넷(Stokinet)",
+  "spec": "4인치",
+  "unit": "ROL",
+  "price": 7280.0,
+  "maker": "대한",
+  "last_sold": "2026-07-13"
+ },
+ "2C0600": {
+  "name": "[아이리] 메스",
+  "spec": "12번(100`S)",
+  "unit": "BOX",
+  "price": 15000.0,
+  "maker": "아이리",
+  "last_sold": "2026-09-10"
+ },
+ "2C0494": {
+  "name": "[세운]에어웨이(Air Way)#5-빨강 106mm",
+  "spec": "#5 106mm / 6390-105",
+  "unit": "EA",
+  "price": 1420.0,
+  "maker": "세운",
+  "last_sold": "2026-07-15"
+ },
+ "ZC2190": {
+  "name": "[밴드골드] 일회용밴드 38*73/대형",
+  "spec": "8매/PK-20PK",
+  "unit": "PK",
+  "price": 10000.0,
+  "maker": "밴드골드",
+  "last_sold": "2026-07-15"
+ },
+ "2C0322": {
+  "name": "멸균글러브 7.0 (NATHIS LATEX PF SURGICAL GLOVE)",
+  "spec": "7.0 -BOX/50PAIR",
+  "unit": "BOX",
+  "price": 34400.0,
+  "maker": "",
+  "last_sold": "2026-07-15"
+ },
+ "ZC1391": {
+  "name": "[문정] 8자쇄골고정보조기",
+  "spec": "중",
+  "unit": "EA",
+  "price": 2540.0,
+  "maker": "문정",
+  "last_sold": "2026-07-22"
+ },
+ "4C0258": {
+  "name": "[ETHICON] PDS",
+  "spec": "W9116H, 3-0",
+  "unit": "EA",
+  "price": 2222.2222222222,
+  "maker": "ETHICON",
+  "last_sold": "2026-07-27"
+ },
+ "2C0831": {
+  "name": "[나눔컴퍼니] Mirror Cannula (범용 카테터 캐뉼라)",
+  "spec": "18G*50mm (BOX/50ea)",
+  "unit": "EA",
+  "price": 1300.0,
+  "maker": "나눔컴퍼니",
+  "last_sold": "2026-07-29"
+ },
+ "2C0249": {
+  "name": "Skin Stapler Remover(WECK)",
+  "spec": "Skin Stapler Remover (12EA/BOX)",
+  "unit": "EA",
+  "price": 6200.0,
+  "maker": "",
+  "last_sold": "2026-08-04"
+ },
+ "2C0248": {
+  "name": "Skin Stapler 35R (WECK)",
+  "spec": "35R",
+  "unit": "EA",
+  "price": 12700.0,
+  "maker": "",
+  "last_sold": "2026-08-16"
+ },
+ "4C0196": {
+  "name": "[아이리]Surgifit,써지피트",
+  "spec": "[AV521]5/0, L45cm, 0.45mm, 13mm, 3/8 Circle, Cutting Edge",
+  "unit": "EA",
+  "price": 2083.3333333333,
+  "maker": "아이리",
+  "last_sold": "2026-08-24"
+ },
+ "ZC1401": {
+  "name": "[문정] 밸포밴드",
+  "spec": "소",
+  "unit": "EA",
+  "price": 3080.0,
+  "maker": "문정",
+  "last_sold": "2026-08-07"
+ },
+ "ZC0212": {
+  "name": "[대한]솜면봉 6",
+  "spec": "단면 (100S/PK-10PK/CAS)",
+  "unit": "PK",
+  "price": 590.0,
+  "maker": "대한",
+  "last_sold": "2026-08-16"
+ },
+ "2C0594": {
+  "name": "[성심]일회용주사기 10CC 18G",
+  "spec": "10CC 18G (BOX/100EA)",
+  "unit": "EA",
+  "price": 116.0,
+  "maker": "성심",
+  "last_sold": "2026-09-07"
+ },
+ "2C0529": {
+  "name": "[성심]일회용주사기 50CC 18g",
+  "spec": "50CC 18g 1½\" 38mm (BOX/25EA)",
+  "unit": "EA",
+  "price": 363.2,
+  "maker": "성심",
+  "last_sold": "2026-09-07"
+ },
+ "ZC0477": {
+  "name": "[세운]폴리카테타(SILICONE FOLEY CATHETER)",
+  "spec": "16FR/2WAY",
+  "unit": "EA",
+  "price": 3400.0,
+  "maker": "세운",
+  "last_sold": "2026-09-07"
+ },
+ "2C0836": {
+  "name": "[성심]일회용주사기 3CC 24g",
+  "spec": "3CC 24g 3/4\" (BOX/100EA)",
+  "unit": "EA",
+  "price": 66.5,
+  "maker": "성심",
+  "last_sold": "2026-09-14"
+ },
+ "ZC1069": {
+  "name": "[대한] 외과용패드 (Surgical pad)",
+  "spec": "18cm*18cm",
+  "unit": "PK",
+  "price": 6400.0,
+  "maker": "대한",
+  "last_sold": "2026-08-22"
+ },
+ "2C0741": {
+  "name": "[성심]일회용주사기 30CC 18G",
+  "spec": "30CC 18G (BOX/50EA)",
+  "unit": "EA",
+  "price": 294.0,
+  "maker": "성심",
+  "last_sold": "2026-09-08"
+ },
+ "ZC2877": {
+  "name": "[수성] 멸균 면봉",
+  "spec": "6\" (10pcs/50s/PK)",
+  "unit": "PK",
+  "price": 9500.0,
+  "maker": "수성",
+  "last_sold": "2026-09-03"
+ },
+ "2C1204": {
+  "name": "[매지션] MagiNabee 나비침 25G",
+  "spec": "25G (BOX/100EA)",
+  "unit": "EA",
+  "price": 201.7,
+  "maker": "매지션",
+  "last_sold": "2026-09-01"
+ },
+ "2C0541": {
+  "name": "[성심]일회용주사기 10CC 23G",
+  "spec": "10CC 23G 1\" (BOX/100EA)",
+  "unit": "EA",
+  "price": 111.3,
+  "maker": "성심",
+  "last_sold": "2026-09-04"
+ },
+ "ZC3309": {
+  "name": "[동방]MTS 니들 2.0MM (30EA,BOX)",
+  "spec": "30EA/BOX",
+  "unit": "BOX",
+  "price": 132000.0,
+  "maker": "동방",
+  "last_sold": "2026-09-09"
+ },
+ "2C0547": {
+  "name": "[성심]일회용주사기 20CC 21G",
+  "spec": "20CC 21G 1¼\" 32mm (BOX/50EA)",
+  "unit": "EA",
+  "price": 188.0,
+  "maker": "성심",
+  "last_sold": "2026-09-05"
+ }
+}

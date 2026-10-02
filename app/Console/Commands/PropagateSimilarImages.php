@@ -33,7 +33,8 @@ class PropagateSimilarImages extends Command
             $withImg = array_values(array_filter($items, fn ($p) => $p->thumbnail));
             $without = array_values(array_filter($items, fn ($p) => ! $p->thumbnail));
             if (! $withImg || ! $without) continue;
-            $src = $withImg[0]->thumbnail;
+            // 접근자는 절대 URL 을 돌려주고 아래 update() 는 뮤테이터를 안 타므로 DB 원본(상대경로)을 복사한다
+            $src = $withImg[0]->getRawOriginal('thumbnail');
             $groupsUsed++;
             if (count($samples) < 12) {
                 $samples[] = "[{$key}] +".count($without)."개  ⟵ ".mb_substr($withImg[0]->name, 0, 30);
