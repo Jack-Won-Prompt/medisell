@@ -88,3 +88,6 @@ medisell_ads_20/
 # Firebase 서비스계정 비밀키 — 절대 커밋 금지 (실제 키는 storage/app/fcm-service-account.json)
 /*firebase-adminsdk*.json
 firebase-adminsdk*.json
+
+# dompdf 글꼴 캐시 (실행 시 생성, 웹서버 계정이 쓸 수 있어야 함)
+/storage/fonts/

@@ -36,7 +36,35 @@
                 <div style="background:#f7f9fc;border-radius:10px;padding:14px;margin-bottom:16px;font-size:13.5px;line-height:1.9">
                     <b>병원/상호</b> {{ $user->company_name }}<br>
                     <b>사업자번호</b> {{ $user->biz_no }}<br>
-                    <b>종별</b> {{ $user->biz_type ?? '-' }}
+                    <b>종별</b> {{ $user->biz_type ?? '-' }}<br>
+                    <b>요양기관기호</b> {{ $user->care_code ?: '-' }}
+                    @if($user->company_name)
+                        <a href="https://www.hira.or.kr" target="_blank" rel="noopener" style="font-size:12px;margin-left:6px">심평원(병원찾기) ↗</a>
+                    @endif
+                </div>
+
+                {{-- 사업자등록증 (승인 근거) --}}
+                <div style="border:1px solid #e5e9f2;border-radius:10px;padding:12px;margin-bottom:16px">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                        <b style="font-size:13.5px">사업자등록증</b>
+                        @if($user->biz_cert_path)
+                            <a href="{{ route('admin.users.biz-cert', $user) }}" target="_blank" class="abtn abtn-ghost" style="padding:4px 10px;font-size:12px">새 창으로 크게 보기</a>
+                        @endif
+                    </div>
+                    @if($user->biz_cert_path)
+                        @if(str_ends_with(strtolower($user->biz_cert_path), '.pdf'))
+                            <iframe src="{{ route('admin.users.biz-cert', $user) }}" style="width:100%;height:420px;border:1px solid #eef1f6;border-radius:6px" title="사업자등록증"></iframe>
+                        @else
+                            <a href="{{ route('admin.users.biz-cert', $user) }}" target="_blank"><img src="{{ route('admin.users.biz-cert', $user) }}" alt="사업자등록증" style="width:100%;max-height:420px;object-fit:contain;background:#f7f9fc;border-radius:6px"></a>
+                        @endif
+                    @else
+                        <p class="muted" style="font-size:13px;margin:0 0 8px">첨부된 사업자등록증이 없습니다. (앱 가입 등) 서류를 받으셨다면 아래에서 올려 주세요.</p>
+                    @endif
+                    <form method="POST" action="{{ route('admin.users.biz-cert.upload', $user) }}" enctype="multipart/form-data" style="display:flex;gap:8px;margin-top:10px">
+                        @csrf
+                        <input type="file" name="biz_cert" class="ainput" accept="image/jpeg,image/png,image/webp,application/pdf" required style="flex:1">
+                        <button class="abtn abtn-ghost">{{ $user->biz_cert_path ? '교체' : '올리기' }}</button>
+                    </form>
                 </div>
             @else
                 <p class="muted" style="margin-bottom:16px;font-size:13.5px">일반 회원입니다. 승인 및 전용가는 병원·기업(사업자) 회원에만 적용됩니다.</p>
@@ -95,6 +123,7 @@
                     <div class="afield" style="margin:0"><label>대표자명(계산서용)</label><input type="text" name="biz_ceo" class="ainput" value="{{ old('biz_ceo', $user->biz_ceo) }}"></div>
                     <div class="afield" style="margin:0"><label>종별</label><input type="text" name="biz_type" class="ainput" value="{{ old('biz_type', $user->biz_type) }}"></div>
                 </div>
+                <div class="afield" style="margin-top:12px"><label>요양기관기호</label><input type="text" name="care_code" class="ainput" value="{{ old('care_code', $user->care_code) }}" maxlength="20"></div>
                 {{-- 소속 거래처 (전용가/할인 그룹) --}}
                 <div style="border-top:1px solid var(--line,#e5e7eb);margin-top:14px;padding-top:12px">
                     <div class="afield" style="margin:0"><label>소속 거래처 (전용가·할인 그룹)</label>

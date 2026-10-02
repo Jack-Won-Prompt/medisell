@@ -32,6 +32,7 @@
                     @elseif($u->biz_status==='approved')<span class="pill pill-y">승인</span>
                     @elseif($u->biz_status==='pending')<span class="pill pill-w">대기</span>
                     @else<span class="pill pill-n">거절</span>@endif
+                    @if($u->member_type==='business' && ! $u->biz_cert_path)<span style="color:#d97706;font-size:11.5px;margin-left:4px">서류 없음</span>@endif
                 </td>
                 <td>{{ number_format($u->point) }}원</td>
                 <td>{{ $u->created_at->format('Y.m.d') }}</td>

@@ -8,7 +8,7 @@
         <h2>회원가입</h2>
         <p class="sub">가입 즉시 {{ number_format($site['signup_point']) }}원 적립금 지급</p>
 
-        <form method="POST" action="{{ route('register.attempt') }}">
+        <form method="POST" action="{{ route('register.attempt') }}" enctype="multipart/form-data">
             @csrf
             <div class="field" data-radio-cards>
                 <label>회원 구분</label>
@@ -41,6 +41,15 @@
                 <div class="row2">
                     <div class="field"><label>사업자등록번호</label><input type="text" name="biz_no" class="input" value="{{ old('biz_no') }}" placeholder="000-00-00000"></div>
                     <div class="field"><label>업태/종별</label><input type="text" name="biz_type" class="input" value="{{ old('biz_type') }}" placeholder="예: 의원"></div>
+                </div>
+                <div class="field">
+                    <label>사업자등록증 <span class="req">*</span></label>
+                    <input type="file" name="biz_cert" class="input" accept="image/jpeg,image/png,image/webp,application/pdf">
+                    <small class="muted" style="font-size:12px">이미지(JPG·PNG) 또는 PDF · 10MB 이하</small>
+                </div>
+                <div class="field">
+                    <label>요양기관기호 <span class="muted" style="font-weight:400">(선택)</span></label>
+                    <input type="text" name="care_code" class="input" value="{{ old('care_code') }}" placeholder="8자리 숫자 · 요양기관이 아니면 비워 두세요" maxlength="20">
                 </div>
                 <p class="muted" style="font-size:12px;margin:0">※ 관리자 확인 후 승인되며, 승인 시 병원 전용가가 적용됩니다.</p>
             </div>

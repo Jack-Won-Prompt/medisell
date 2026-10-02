@@ -139,6 +139,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::put('/users/{user}', [AdminUserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
     Route::put('/users/{user}/approve', [AdminUserController::class, 'approve'])->name('users.approve');
+    Route::get('/users/{user}/biz-cert', [AdminUserController::class, 'bizCert'])->name('users.biz-cert');
+    Route::post('/users/{user}/biz-cert', [AdminUserController::class, 'uploadBizCert'])->name('users.biz-cert.upload');
     Route::post('/users/{user}/reset-password', [AdminUserController::class, 'resetPassword'])->name('users.reset');
     Route::put('/users/{user}/admin', [AdminUserController::class, 'toggleAdmin'])->name('users.admin');
     Route::post('/users/{user}/prices', [AdminUserController::class, 'storePrice'])->name('users.prices.store');

@@ -141,6 +141,9 @@ class Order extends Model
         }
 
         $this->accrueAgentCashback();
+
+        // 결제 확인된 모든 주문 → 주문서 PDF 메일 (응답을 보낸 뒤 발송, 실패해도 결제 처리와 무관)
+        \App\Jobs\SendOrderPdfMail::dispatchAfterResponse($this->id);
     }
 
     /**

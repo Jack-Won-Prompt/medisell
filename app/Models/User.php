@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -15,13 +17,37 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
         'member_type', 'phone', 'postcode', 'address1', 'address2',
-        'company_name', 'biz_no', 'biz_type', 'biz_status', 'grade',
+        'company_name', 'biz_no', 'biz_type', 'biz_ceo', 'biz_cert_path', 'care_code', 'biz_status', 'grade',
         'point', 'is_admin',
         'is_agent', 'cashback_rate',
         'account_id',
     ];
 
     protected $hidden = ['password', 'remember_token'];
+
+    /** 사업자등록증 업로드 검증 규칙 (웹·앱·관리자 공통) */
+    public const BIZ_CERT_RULE = ['file', 'mimes:jpg,jpeg,png,webp,pdf', 'max:10240'];
+
+    protected static function booted(): void
+    {
+        // 회원이 지워지면 승인 서류도 남기지 않는다
+        static::deleted(function (User $user) {
+            if ($user->biz_cert_path) {
+                Storage::disk('local')->delete($user->biz_cert_path);
+            }
+        });
+    }
+
+    /** 사업자등록증을 비공개 디스크(storage/app/private/biz-certs)에 저장 — 이전 파일은 지운다 */
+    public function storeBizCert(UploadedFile $file): void
+    {
+        $old = $this->biz_cert_path;
+        $this->biz_cert_path = $file->store('biz-certs', 'local');
+        $this->save();
+        if ($old && $old !== $this->biz_cert_path) {
+            Storage::disk('local')->delete($old);
+        }
+    }
 
     protected function casts(): array
     {

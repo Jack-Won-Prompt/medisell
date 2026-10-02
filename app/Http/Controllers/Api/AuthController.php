@@ -22,6 +22,9 @@ class AuthController extends Controller
             'company_name' => ['required_if:member_type,business', 'nullable', 'string', 'max:100'],
             'biz_no'       => ['required_if:member_type,business', 'nullable', 'string', 'max:20'],
             'biz_type'     => ['nullable', 'string', 'max:50'],
+            // 앱은 아직 파일 첨부 화면이 없어 선택 — 없으면 관리자가 승인 전에 받아서 올린다 (웹 가입은 필수)
+            'biz_cert'     => ['nullable', ...User::BIZ_CERT_RULE],
+            'care_code'    => ['nullable', 'string', 'max:20'],
         ]);
 
         $isBusiness = $data['member_type'] === 'business';
@@ -35,9 +38,13 @@ class AuthController extends Controller
             'company_name' => $isBusiness ? ($data['company_name'] ?? null) : null,
             'biz_no'       => $isBusiness ? ($data['biz_no'] ?? null) : null,
             'biz_type'     => $isBusiness ? ($data['biz_type'] ?? null) : null,
+            'care_code'    => $isBusiness ? ($data['care_code'] ?? null) : null,
             'biz_status'   => $isBusiness ? 'pending' : 'none',
             'point'        => (int) config('site.signup_point', 0),
         ]);
+        if ($isBusiness && $request->hasFile('biz_cert')) {
+            $user->storeBizCert($request->file('biz_cert'));
+        }
 
         if ($user->point > 0) {
             $user->pointLogs()->create([

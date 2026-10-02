@@ -52,7 +52,13 @@ class AuthController extends Controller
             'company_name' => ['required_if:member_type,business', 'nullable', 'string', 'max:100'],
             'biz_no'       => ['required_if:member_type,business', 'nullable', 'string', 'max:20'],
             'biz_type'     => ['nullable', 'string', 'max:50'],
+            'biz_cert'     => ['required_if:member_type,business', 'nullable', ...User::BIZ_CERT_RULE],
+            'care_code'    => ['nullable', 'string', 'max:20'],
             'agree'        => ['accepted'],
+        ], [
+            'biz_cert.required_if' => '병원 회원은 사업자등록증을 첨부해 주세요.',
+            'biz_cert.mimes'       => '사업자등록증은 이미지(JPG·PNG) 또는 PDF 파일만 올릴 수 있습니다.',
+            'biz_cert.max'         => '사업자등록증 파일은 10MB 이하로 올려 주세요.',
         ]);
 
         $isBusiness = $data['member_type'] === 'business';
@@ -67,9 +73,13 @@ class AuthController extends Controller
             'company_name' => $isBusiness ? $data['company_name'] : null,
             'biz_no'       => $isBusiness ? $data['biz_no'] : null,
             'biz_type'     => $isBusiness ? ($data['biz_type'] ?? null) : null,
+            'care_code'    => $isBusiness ? ($data['care_code'] ?? null) : null,
             'biz_status'   => $isBusiness ? 'pending' : 'none',
             'point'        => $signupPoint,
         ]);
+        if ($isBusiness && $request->hasFile('biz_cert')) {
+            $user->storeBizCert($request->file('biz_cert'));
+        }
 
         // 가입 적립금 로그
         if ($signupPoint > 0) {

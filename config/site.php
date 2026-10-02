@@ -21,6 +21,9 @@ return [
     'cs_hours'    => '평일 09:00 ~ 18:00 (점심 12:00~13:00) / 주말·공휴일 휴무',
     'email'       => 'help@medisell.co.kr',
 
+    // 결제가 확인된 모든 주문의 주문서(PDF) 수신처
+    'order_mail_to' => ['3shub@naver.com', 'adm@linkthelab.co.kr'],
+
     // 무통장 입금계좌
     'banks' => [
         ['bank' => '국민은행', 'account' => '000000-00-000000', 'holder' => '메디셀'],

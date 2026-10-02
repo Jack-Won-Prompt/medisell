@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -152,6 +153,28 @@ class UserController extends Controller
         return back()->with('ok', "전용가 일괄 적용 완료: {$applied}건 등록/수정, {$cleared}건 해제.");
     }
 
+    /** 사업자등록증 보기 — 비공개 디스크 파일을 관리자에게만 브라우저 안에서 연다 */
+    public function bizCert(User $user)
+    {
+        $disk = Storage::disk('local');
+        abort_unless($user->biz_cert_path && $disk->exists($user->biz_cert_path), 404);
+
+        return $disk->response($user->biz_cert_path, '사업자등록증_'.($user->company_name ?: $user->id).'.'.pathinfo($user->biz_cert_path, PATHINFO_EXTENSION), [
+            'Cache-Control' => 'private, no-store',
+        ], 'inline');
+    }
+
+    /** 사업자등록증 올리기/교체 — 앱 가입 등으로 서류를 따로 받은 경우 */
+    public function uploadBizCert(Request $request, User $user)
+    {
+        $request->validate(['biz_cert' => ['required', ...User::BIZ_CERT_RULE]], [
+            'biz_cert.mimes' => '이미지(JPG·PNG) 또는 PDF 파일만 올릴 수 있습니다.',
+        ]);
+        $user->storeBizCert($request->file('biz_cert'));
+
+        return back()->with('ok', '사업자등록증을 저장했습니다.');
+    }
+
     /** 회원 정보 수정 */
     public function update(Request $request, User $user)
     {
@@ -164,6 +187,7 @@ class UserController extends Controller
             'biz_no'       => ['nullable', 'string', 'max:20'],
             'biz_type'     => ['nullable', 'string', 'max:50'],
             'biz_ceo'      => ['nullable', 'string', 'max:50'],
+            'care_code'    => ['nullable', 'string', 'max:20'],
             'is_agent'     => ['nullable', 'boolean'],
             'cashback_rate' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'account_id'   => ['nullable', 'exists:accounts,id'],
