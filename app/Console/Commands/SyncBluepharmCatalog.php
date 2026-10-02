@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
  *     코드 => {name, spec, unit, price(블루팜 판매단가, 최근 90일 최빈가), maker, last_sold}
  * - 블루팜 품목: 이름·규격·단위를 블루팜 기준으로 교체, 없으면 신규 등록
  *     정가(price) = 블루팜 단가, 병·의원 회원가(member_price) = 블루팜 단가 × 0.9 (원 단위 반올림)
+ *     box_qty 가 있는 품목(블루팜이 낱개가로 적었지만 박스로 팔던 것)은 단가×입수 = 박스가, 단위 BOX/PK
  * - 콜로플라스트(maker=콜로플라스트) 는 그대로 둔다
  * - 그 외 상품은 삭제 (찜·최저가 등은 FK cascade, 주문 품목은 product_id 만 null)
  * - 전 상품 과세(taxable)
@@ -40,7 +41,7 @@ class SyncBluepharmCatalog extends Command
         $catId = Category::whereNull('parent_id')->pluck('id', 'slug');
         $classifier = app(ImportMulpumProducts::class);
 
-        $stat = ['created' => 0, 'updated' => 0, 'unit' => 0, 'noprice' => [], 'deleted' => 0];
+        $stat = ['created' => 0, 'updated' => 0, 'unit' => 0, 'box' => 0, 'noprice' => [], 'deleted' => 0];
         $unitSamples = [];
         $contractWarn = [];
 
@@ -61,27 +62,37 @@ class SyncBluepharmCatalog extends Command
             // 2) 블루팜 품목 교체·등록
             foreach ($map as $code => $r) {
                 $code = (string) $code;
-                $unit = $r['unit'] ?: 'EA';
+                $pieceUnit = $r['unit'] ?: 'EA';
+                // 블루팜이 낱개 단가로 기록했지만 박스로 팔던 품목은 박스 단가·박스 단위로 판다
+                $qty = max(1, (int) ($r['box_qty'] ?? 1));
+                $unit = $qty > 1 ? ($r['box_unit'] ?? 'BOX') : $pieceUnit;
+                $spec = $r['spec'];
+                if ($qty > 1 && ! preg_match('/(?<!\d)'.$qty.'(?!\d)/', $spec)) {
+                    $spec = trim($spec.' (1'.$unit.'='.$qty.$pieceUnit.')');
+                }
                 $p = Product::where('code', $code)->first();
 
                 $attrs = [
                     'name'      => mb_substr($r['name'], 0, 250),
-                    'spec'      => $r['spec'] !== '' ? $r['spec'] : null,
+                    'spec'      => $spec !== '' ? $spec : null,
                     'unit'      => $unit,
                     'tax_type'  => 'taxable',
                     // 블루팜에서 0원(사은품)으로만 나간 품목은 팔 가격이 없으니 숨긴다
                     'is_active' => $r['price'] !== null,
                 ];
                 if ($r['price'] !== null) {
-                    $attrs['price'] = (int) round($r['price']);
-                    $attrs['member_price'] = (int) round($r['price'] * self::MEMBER_RATE);
+                    $attrs['price'] = (int) round($r['price'] * $qty);
+                    $attrs['member_price'] = (int) round($r['price'] * $qty * self::MEMBER_RATE);
                 } else {
                     $stat['noprice'][] = $code;
                 }
+                if ($qty > 1) {
+                    $stat['box']++;
+                }
 
-                // 매입가: 삼에스 매입단가의 단위가 블루팜 단위와 같을 때만 쓴다
-                $buyCost = (isset($buy[$code]) && strtoupper((string) $buy[$code][0]) === $unit && (int) $buy[$code][1] > 0)
-                    ? (int) $buy[$code][1] : null;
+                // 매입가: 삼에스 매입단가의 단위가 블루팜 단위(박스 전 낱개 단위)와 같을 때만, 박스면 입수만큼 곱한다
+                $buyCost = (isset($buy[$code]) && strtoupper((string) $buy[$code][0]) === $pieceUnit && (int) $buy[$code][1] > 0)
+                    ? (int) $buy[$code][1] * $qty : null;
 
                 if ($p) {
                     $unitChanged = strtoupper((string) $p->unit) !== $unit;
@@ -131,7 +142,7 @@ class SyncBluepharmCatalog extends Command
             throw $e;
         }
 
-        $this->info("삭제 {$stat['deleted']} · 신규 {$stat['created']} · 교체 {$stat['updated']} · 단위 변경 {$stat['unit']} · 과세 전환 {$taxFixed}");
+        $this->info("삭제 {$stat['deleted']} · 신규 {$stat['created']} · 교체 {$stat['updated']} · 단위 변경 {$stat['unit']} · 박스단가 {$stat['box']} · 과세 전환 {$taxFixed}");
         foreach ($unitSamples as $s) {
             $this->line("  {$s}");
         }

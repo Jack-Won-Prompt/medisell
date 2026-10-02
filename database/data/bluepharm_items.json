@@ -13,7 +13,9 @@
   "unit": "EA",
   "price": 58.3,
   "maker": "신창",
-  "last_sold": "2026-09-02"
+  "last_sold": "2026-09-02",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1360": {
   "name": "SC DISPOSABLE SYRINGE 1cc 26G 0.5″",
@@ -21,7 +23,9 @@
   "unit": "EA",
   "price": 66.1,
   "maker": "",
-  "last_sold": "2026-09-10"
+  "last_sold": "2026-09-10",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C1004": {
   "name": "[한국백신]일회용주사기 20CC 23G",
@@ -29,7 +33,9 @@
   "unit": "EA",
   "price": 132.84,
   "maker": "한국백신",
-  "last_sold": "2026-01-01"
+  "last_sold": "2026-01-01",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1162": {
   "name": "필텍 일회용주사기(D/Syringe) BOX(100EA)",
@@ -45,7 +51,9 @@
   "unit": "EA",
   "price": 127.4,
   "maker": "한국백신",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 100,
+  "box_unit": "PK"
  },
  "ZC1361": {
   "name": "SC DISPOSABLE SYRINGE 3cc 23G 1″",
@@ -53,7 +61,9 @@
   "unit": "EA",
   "price": 64.0,
   "maker": "",
-  "last_sold": "2026-09-17"
+  "last_sold": "2026-09-17",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "0C0169": {
   "name": "[대한] 접은거즈",
@@ -69,7 +79,9 @@
   "unit": "EA",
   "price": 188.0,
   "maker": "BD",
-  "last_sold": "2026-09-15"
+  "last_sold": "2026-09-15",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0772": {
   "name": "[한국백신]IV Extension Tube,수액연결관",
@@ -77,7 +89,9 @@
   "unit": "EA",
   "price": 352.0,
   "maker": "한국백신",
-  "last_sold": "2026-04-01"
+  "last_sold": "2026-04-01",
+  "box_qty": 25,
+  "box_unit": "PK"
  },
  "ZC1373": {
   "name": "SC DISPOSABLE SYRINGE 20cc 18G 1.5″",
@@ -85,7 +99,9 @@
   "unit": "EA",
   "price": 177.6,
   "maker": "",
-  "last_sold": "2026-09-15"
+  "last_sold": "2026-09-15",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1362": {
   "name": "SC DISPOSABLE SYRINGE 5cc 23G 1″",
@@ -93,7 +109,9 @@
   "unit": "EA",
   "price": 72.8,
   "maker": "",
-  "last_sold": "2026-09-18"
+  "last_sold": "2026-09-18",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1075": {
   "name": "[대한] 코튼볼 (Cotton Ball)",
@@ -109,7 +127,9 @@
   "unit": "장",
   "price": 23.5,
   "maker": "수성",
-  "last_sold": "2026-09-15"
+  "last_sold": "2026-09-15",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "ZC0470": {
   "name": "[두원] 수액세트 유침(23G)",
@@ -117,7 +137,9 @@
   "unit": "EA",
   "price": 490.0,
   "maker": "두원",
-  "last_sold": "2026-09-01"
+  "last_sold": "2026-09-01",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0866": {
   "name": "[한국백신]일회용주사기 10CC 22G",
@@ -125,7 +147,9 @@
   "unit": "EA",
   "price": 100.0,
   "maker": "한국백신",
-  "last_sold": "2026-01-08"
+  "last_sold": "2026-01-08",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1251": {
   "name": "TERASAFE Exam Lavender Nitrile Glove(니트릴) L",
@@ -133,7 +157,9 @@
   "unit": "PCS",
   "price": 50.0,
   "maker": "",
-  "last_sold": "2026-08-04"
+  "last_sold": "2026-08-04",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1248": {
   "name": "TERASAFE Exam Lavender Nitrile Glove(니트릴) XS",
@@ -141,7 +167,9 @@
   "unit": "PCS",
   "price": 47.0,
   "maker": "",
-  "last_sold": "2026-09-01"
+  "last_sold": "2026-09-01",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "DX0294": {
   "name": "PENKO FLEX BAND (지혈용밴드)",
@@ -149,7 +177,9 @@
   "unit": "EA",
   "price": 450.0,
   "maker": "",
-  "last_sold": "2026-09-15"
+  "last_sold": "2026-09-15",
+  "box_qty": 50,
+  "box_unit": "PK"
  },
  "2C0143": {
   "name": "[BD] ANGIOCATH PLUS [382412]",
@@ -157,7 +187,9 @@
   "unit": "EA",
   "price": 338.0,
   "maker": "BD",
-  "last_sold": "2026-09-18"
+  "last_sold": "2026-09-18",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC2460": {
   "name": "[메디탑] 뉴클린스왑에이 400매 (부직포)",
@@ -197,7 +229,9 @@
   "unit": "EA",
   "price": 940.0,
   "maker": "나눔컴퍼니",
-  "last_sold": "2026-09-17"
+  "last_sold": "2026-09-17",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0761": {
   "name": "[성심]인슐린 주사기",
@@ -205,7 +239,9 @@
   "unit": "EA",
   "price": 88.0,
   "maker": "성심",
-  "last_sold": "2026-09-15"
+  "last_sold": "2026-09-15",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0537": {
   "name": "[한국백신]일회용주사기 1CC 26G",
@@ -213,7 +249,9 @@
   "unit": "EA",
   "price": 76.3,
   "maker": "한국백신",
-  "last_sold": "2026-08-31"
+  "last_sold": "2026-08-31",
+  "box_qty": 100,
+  "box_unit": "PK"
  },
  "2C0837": {
   "name": "[신창] 일회용 주사기 5cc 21G 1.25″",
@@ -221,7 +259,9 @@
   "unit": "EA",
   "price": 64.2,
   "maker": "신창",
-  "last_sold": "2026-04-22"
+  "last_sold": "2026-04-22",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "DX0128": {
   "name": "[수성위재] 코튼볼",
@@ -261,7 +301,9 @@
   "unit": "EA",
   "price": 104.4,
   "maker": "",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1173": {
   "name": "필텍 일회용주사기(D/Syringe) BX(100EA)",
@@ -317,7 +359,9 @@
   "unit": "EA",
   "price": 109.0,
   "maker": "",
-  "last_sold": "2026-09-15"
+  "last_sold": "2026-09-15",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1054": {
   "name": "[3M] 테가덤(Tegaderm)",
@@ -325,7 +369,9 @@
   "unit": "EA",
   "price": 249.6,
   "maker": "3M",
-  "last_sold": "2026-04-03"
+  "last_sold": "2026-04-03",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0244": {
   "name": "[성심]일회용주사침 21G",
@@ -333,7 +379,9 @@
   "unit": "EA",
   "price": 28.5,
   "maker": "성심",
-  "last_sold": "2026-04-03"
+  "last_sold": "2026-04-03",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1375": {
   "name": "SC DISPOSABLE SYRINGE 10cc 18G 1.5″",
@@ -341,7 +389,9 @@
   "unit": "EA",
   "price": 113.0,
   "maker": "",
-  "last_sold": "2026-09-14"
+  "last_sold": "2026-09-14",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "0C0180": {
   "name": "[한빛산업] 영세) 위생용 깔개 탑매트 10ea/pack",
@@ -357,7 +407,9 @@
   "unit": "EA",
   "price": 160.0,
   "maker": "",
-  "last_sold": "2026-09-08"
+  "last_sold": "2026-09-08",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "0C0002": {
   "name": "모아랩밴드",
@@ -373,7 +425,9 @@
   "unit": "EA",
   "price": 433.0,
   "maker": "신창",
-  "last_sold": "2026-09-15"
+  "last_sold": "2026-09-15",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC0051": {
   "name": "[한진양행] 폴리글러브(비멸균)",
@@ -421,7 +475,9 @@
   "unit": "EA",
   "price": 118.8,
   "maker": "한국백신",
-  "last_sold": "2026-04-01"
+  "last_sold": "2026-04-01",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "1C0122": {
   "name": "[고려양행] Poly Glove(비멸균)",
@@ -461,7 +517,9 @@
   "unit": "EA",
   "price": 447.0,
   "maker": "BD",
-  "last_sold": "2026-08-29"
+  "last_sold": "2026-08-29",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "DX0080": {
   "name": "[수성위재] 솜면봉(단면)",
@@ -493,7 +551,9 @@
   "unit": "EA",
   "price": 297.6,
   "maker": "한국백신",
-  "last_sold": "2026-09-15"
+  "last_sold": "2026-09-15",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1185": {
   "name": "[협성] 헤파린캡(HeparinCap) BOX(100EA)",
@@ -517,7 +577,9 @@
   "unit": "EA",
   "price": 64.7,
   "maker": "성심",
-  "last_sold": "2026-08-31"
+  "last_sold": "2026-08-31",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC2384": {
   "name": "[신창] 수액세트 I자 (무침) SC Profi tube w/o",
@@ -525,7 +587,9 @@
   "unit": "EA",
   "price": 365.6,
   "maker": "신창",
-  "last_sold": "2026-09-04"
+  "last_sold": "2026-09-04",
+  "box_qty": 50,
+  "box_unit": "PK"
  },
  "ZC1161": {
   "name": "필텍 일회용주사기(D/Syringe) BOX(100EA)",
@@ -541,7 +605,9 @@
   "unit": "EA",
   "price": 29.9,
   "maker": "한국백신",
-  "last_sold": "2026-04-01"
+  "last_sold": "2026-04-01",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0592": {
   "name": "[두원]수액셋트 무침(IV Set)",
@@ -557,7 +623,9 @@
   "unit": "EA",
   "price": 218.8,
   "maker": "한국백신",
-  "last_sold": "2026-09-03"
+  "last_sold": "2026-09-03",
+  "box_qty": 50,
+  "box_unit": "PK"
  },
  "2C0534": {
   "name": "[성심]일회용주사침 25G",
@@ -565,7 +633,9 @@
   "unit": "EA",
   "price": 25.0,
   "maker": "성심",
-  "last_sold": "2026-04-02"
+  "last_sold": "2026-04-02",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "0C0245": {
   "name": "[3M] 테가덤(Tegaderm)",
@@ -573,7 +643,9 @@
   "unit": "EA",
   "price": 501.0,
   "maker": "3M",
-  "last_sold": "2026-09-03"
+  "last_sold": "2026-09-03",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1080": {
   "name": "[대한] 탈지면 (사각,절단솜, Cotton)",
@@ -589,7 +661,9 @@
   "unit": "PCS",
   "price": 65.0,
   "maker": "",
-  "last_sold": "2026-09-17"
+  "last_sold": "2026-09-17",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0533": {
   "name": "TERASAFE LATEX EXAM GLOVE(비멸균) S",
@@ -597,7 +671,9 @@
   "unit": "PCS",
   "price": 65.0,
   "maker": "",
-  "last_sold": "2026-08-31"
+  "last_sold": "2026-08-31",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0714": {
   "name": "I.V카테타(덕우)/ 24G (3/4)",
@@ -605,7 +681,9 @@
   "unit": "EA",
   "price": 280.0,
   "maker": "",
-  "last_sold": "2026-01-05"
+  "last_sold": "2026-01-05",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0925": {
   "name": "[신창] 일회용 주사기 10cc (무침)",
@@ -613,7 +691,9 @@
   "unit": "EA",
   "price": 91.0,
   "maker": "신창",
-  "last_sold": "2026-09-17"
+  "last_sold": "2026-09-17",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1172": {
   "name": "필텍 일회용주사기(D/Syringe) BX(50EA)",
@@ -661,7 +741,9 @@
   "unit": "EA",
   "price": 348.0,
   "maker": "",
-  "last_sold": "2026-09-04"
+  "last_sold": "2026-09-04",
+  "box_qty": 25,
+  "box_unit": "BOX"
  },
  "ZC0614": {
   "name": "[가주]초음파프루브커버(144EA/BOX)",
@@ -677,7 +759,9 @@
   "unit": "EA",
   "price": 343.4,
   "maker": "경기",
-  "last_sold": "2026-08-12"
+  "last_sold": "2026-08-12",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1066": {
   "name": "[대한]슬라이스볼 (Cotton Ball)",
@@ -709,7 +793,9 @@
   "unit": "EA",
   "price": 365.2,
   "maker": "한국백신",
-  "last_sold": "2026-04-21"
+  "last_sold": "2026-04-21",
+  "box_qty": 25,
+  "box_unit": "BOX"
  },
  "ZC1369": {
   "name": "SC profi Tube 5CC(채혈)",
@@ -717,7 +803,9 @@
   "unit": "EA",
   "price": 141.0,
   "maker": "",
-  "last_sold": "2026-07-23"
+  "last_sold": "2026-07-23",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC2267": {
   "name": "[메디탑] 뉴클린스왑에이 200매 (부직포)",
@@ -741,7 +829,9 @@
   "unit": "EA",
   "price": 151.8,
   "maker": "한국백신",
-  "last_sold": "2026-03-27"
+  "last_sold": "2026-03-27",
+  "box_qty": 100,
+  "box_unit": "PK"
  },
  "2C0561": {
   "name": "[한국백신]일회용주사침",
@@ -749,7 +839,9 @@
   "unit": "EA",
   "price": 38.2,
   "maker": "한국백신",
-  "last_sold": "2026-08-20"
+  "last_sold": "2026-08-20",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "0C0293": {
   "name": "[건강누리] Cast shoes(칼라)",
@@ -773,7 +865,9 @@
   "unit": "EA",
   "price": 97.8,
   "maker": "한국백신",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "1C0310": {
   "name": "[3M]스테리스트립 R1546",
@@ -781,7 +875,9 @@
   "unit": "EA",
   "price": 1248.0,
   "maker": "3M",
-  "last_sold": "2026-01-05"
+  "last_sold": "2026-01-05",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC2247": {
   "name": "[GENEWEL] MEDIFOAM (2mm)",
@@ -797,7 +893,9 @@
   "unit": "EA",
   "price": 90.0,
   "maker": "성심",
-  "last_sold": "2026-07-24"
+  "last_sold": "2026-07-24",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0011": {
   "name": "[BD] 인슐린 주사기[328820]",
@@ -805,7 +903,9 @@
   "unit": "EA",
   "price": 171.8,
   "maker": "BD",
-  "last_sold": "2026-04-03"
+  "last_sold": "2026-04-03",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0601": {
   "name": "TERASAFE AP gown L (AP가운)",
@@ -813,7 +913,9 @@
   "unit": "EA",
   "price": 310.0,
   "maker": "",
-  "last_sold": "2026-09-04"
+  "last_sold": "2026-09-04",
+  "box_qty": 30,
+  "box_unit": "BOX"
  },
  "DX0183": {
   "name": "[메디탑]뉴클린스왑(지퍼팩) 160G",
@@ -829,7 +931,9 @@
   "unit": "EA",
   "price": 150.0,
   "maker": "",
-  "last_sold": "2026-04-01"
+  "last_sold": "2026-04-01",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "DX0068": {
   "name": "[수성] 고탄력붕대(신축성)S",
@@ -861,7 +965,9 @@
   "unit": "EA",
   "price": 310.0,
   "maker": "",
-  "last_sold": "2026-08-05"
+  "last_sold": "2026-08-05",
+  "box_qty": 30,
+  "box_unit": "BOX"
  },
  "ZC1366": {
   "name": "[신창] 수액세트 유침 23G 1인치 SC profi Set A111 (1700 23G 1″)",
@@ -869,7 +975,9 @@
   "unit": "EA",
   "price": 410.0,
   "maker": "신창",
-  "last_sold": "2026-09-17"
+  "last_sold": "2026-09-17",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "0C0057": {
   "name": "[건강누리] Cast shoes(칼라)",
@@ -885,7 +993,9 @@
   "unit": "EA",
   "price": 91.9,
   "maker": "한국백신",
-  "last_sold": "2026-03-26"
+  "last_sold": "2026-03-26",
+  "box_qty": 100,
+  "box_unit": "PK"
  },
  "ZC1384": {
   "name": "[협성] Air Way(GREEN)",
@@ -901,7 +1011,9 @@
   "unit": "EA",
   "price": 39.0,
   "maker": "성심",
-  "last_sold": "2026-08-29"
+  "last_sold": "2026-08-29",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1174": {
   "name": "필텍 일회용주사기(D/Syringe) BX(100EA)",
@@ -917,7 +1029,9 @@
   "unit": "EA",
   "price": 42.0,
   "maker": "성심",
-  "last_sold": "2026-04-06"
+  "last_sold": "2026-04-06",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "3C0106": {
   "name": "[녹십자] 혈당스틱(세라딘),G-Sense",
@@ -933,7 +1047,9 @@
   "unit": "PAIR",
   "price": 600.0,
   "maker": "유니더스",
-  "last_sold": "2026-01-06"
+  "last_sold": "2026-01-06",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC0306": {
   "name": "메디룩스 하이크로에스(HYCRO-S) 4L",
@@ -949,7 +1065,9 @@
   "unit": "EA",
   "price": 94.3,
   "maker": "한국백신",
-  "last_sold": "2026-04-21"
+  "last_sold": "2026-04-21",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "DX0023": {
   "name": "[수성] 접은거즈(GAUZE)",
@@ -957,7 +1075,9 @@
   "unit": "장",
   "price": 12.15,
   "maker": "수성",
-  "last_sold": "2026-09-15"
+  "last_sold": "2026-09-15",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "2C0826": {
   "name": "[한국백신]일회용주사기 20CC 21G",
@@ -965,7 +1085,9 @@
   "unit": "EA",
   "price": 173.6,
   "maker": "한국백신",
-  "last_sold": "2026-01-27"
+  "last_sold": "2026-01-27",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0538": {
   "name": "[한국백신]일회용주사기 3CC 23G",
@@ -973,7 +1095,9 @@
   "unit": "EA",
   "price": 76.3,
   "maker": "한국백신",
-  "last_sold": "2026-09-16"
+  "last_sold": "2026-09-16",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0649": {
   "name": "SC 수액연결세트",
@@ -981,7 +1105,9 @@
   "unit": "EA",
   "price": 246.0,
   "maker": "",
-  "last_sold": "2026-04-03"
+  "last_sold": "2026-04-03",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0145": {
   "name": "[BD] ANGIOCATH PLUS [382434]",
@@ -989,7 +1115,9 @@
   "unit": "EA",
   "price": 355.8,
   "maker": "BD",
-  "last_sold": "2026-09-10"
+  "last_sold": "2026-09-10",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0581": {
   "name": "[인성] I-Gel",
@@ -1005,7 +1133,9 @@
   "unit": "EA",
   "price": 850.0,
   "maker": "BD",
-  "last_sold": "2026-06-25"
+  "last_sold": "2026-06-25",
+  "box_qty": 40,
+  "box_unit": "BOX"
  },
  "DX0035": {
   "name": "[수성] 접은거즈(GAUZE)",
@@ -1013,7 +1143,9 @@
   "unit": "장",
   "price": 33.75,
   "maker": "수성",
-  "last_sold": "2026-08-21"
+  "last_sold": "2026-08-21",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "3C0386": {
   "name": "케어센스 프로 혈당스트립 (100T)",
@@ -1029,7 +1161,9 @@
   "unit": "EA",
   "price": 1250.0,
   "maker": "3M",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 12,
+  "box_unit": "BOX"
  },
  "2C0147": {
   "name": "[BD] ANGIOCATH PLUS [382444]",
@@ -1037,7 +1171,9 @@
   "unit": "EA",
   "price": 355.8,
   "maker": "BD",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0210": {
   "name": "[두원메디텍] 나비침(100EA/BOX)",
@@ -1045,7 +1181,9 @@
   "unit": "EA",
   "price": 227.0,
   "maker": "두원메디텍",
-  "last_sold": "2026-04-04"
+  "last_sold": "2026-04-04",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "0C0070": {
   "name": "Medizyme(메디자임)",
@@ -1061,7 +1199,9 @@
   "unit": "EA",
   "price": 1166.6666666667,
   "maker": "3M",
-  "last_sold": "2026-09-18"
+  "last_sold": "2026-09-18",
+  "box_qty": 12,
+  "box_unit": "BOX"
  },
  "ZC1061": {
   "name": "[대한] 멸균설압자 (Tongue Depressor) Wood (15cm)-sterile",
@@ -1077,7 +1217,9 @@
   "unit": "EA",
   "price": 30.6,
   "maker": "성심",
-  "last_sold": "2026-04-03"
+  "last_sold": "2026-04-03",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1179": {
   "name": "[협성] 쓰리웨이 (3-Way Stopcock) BOX(50EA)",
@@ -1093,7 +1235,9 @@
   "unit": "EA",
   "price": 80.0,
   "maker": "성심",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "DX0058": {
   "name": "에이덤 롤(방수롤)10cm*10M",
@@ -1109,7 +1253,9 @@
   "unit": "EA",
   "price": 309.0,
   "maker": "한국백신",
-  "last_sold": "2026-06-30"
+  "last_sold": "2026-06-30",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC0292": {
   "name": "[더블세이프] E.O GAS Bag",
@@ -1125,7 +1271,9 @@
   "unit": "EA",
   "price": 284.0,
   "maker": "신창",
-  "last_sold": "2026-04-22"
+  "last_sold": "2026-04-22",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC0605": {
   "name": "[3M]부직반창고",
@@ -1149,7 +1297,9 @@
   "unit": "EA",
   "price": 541.6666666667,
   "maker": "3M",
-  "last_sold": "2026-01-09"
+  "last_sold": "2026-01-09",
+  "box_qty": 24,
+  "box_unit": "BOX"
  },
  "ZC1012": {
   "name": "[수성] 면탄력붕대 [2인치 12EAl/타]",
@@ -1173,7 +1323,9 @@
   "unit": "EA",
   "price": 416.6666666667,
   "maker": "BD",
-  "last_sold": "2026-09-10"
+  "last_sold": "2026-09-10",
+  "box_qty": 30,
+  "box_unit": "BOX"
  },
  "2C0126": {
   "name": "[BD] PosiFlush SYRINGE 생리식염수 주사기[306574]",
@@ -1181,7 +1333,9 @@
   "unit": "EA",
   "price": 422.0,
   "maker": "BD",
-  "last_sold": "2026-04-06"
+  "last_sold": "2026-04-06",
+  "box_qty": 30,
+  "box_unit": "BOX"
  },
  "2C0125": {
   "name": "[BD] PosiFlush SYRINGE 생리식염수 주사기[306573]",
@@ -1189,7 +1343,9 @@
   "unit": "EA",
   "price": 422.0,
   "maker": "BD",
-  "last_sold": "2026-04-17"
+  "last_sold": "2026-04-17",
+  "box_qty": 30,
+  "box_unit": "BOX"
  },
  "ZC1078": {
   "name": "[대한]면탄력붕대S (Elastic Bandage)",
@@ -1213,7 +1369,9 @@
   "unit": "EA",
   "price": 245.8,
   "maker": "한국백신",
-  "last_sold": "2026-01-27"
+  "last_sold": "2026-01-27",
+  "box_qty": 50,
+  "box_unit": "PK"
  },
  "ZC0532": {
   "name": "TERASAFE LATEX EXAM GLOVE(비멸균) XS",
@@ -1221,7 +1379,9 @@
   "unit": "PCS",
   "price": 58.0,
   "maker": "",
-  "last_sold": "2026-09-14"
+  "last_sold": "2026-09-14",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0544": {
   "name": "[성심]일회용주사기 20CC 18G",
@@ -1229,7 +1389,9 @@
   "unit": "EA",
   "price": 189.6,
   "maker": "성심",
-  "last_sold": "2026-09-17"
+  "last_sold": "2026-09-17",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1249": {
   "name": "TERASAFE Exam Lavender Nitrile Glove(니트릴) S",
@@ -1237,7 +1399,9 @@
   "unit": "PCS",
   "price": 59.0,
   "maker": "",
-  "last_sold": "2026-09-16"
+  "last_sold": "2026-09-16",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "3C0081": {
   "name": "[B.B] SPINOCAN SPINAL NEEDLE 26G 3.5″",
@@ -1245,7 +1409,9 @@
   "unit": "EA",
   "price": 2600.0,
   "maker": "B.B",
-  "last_sold": "2026-02-05"
+  "last_sold": "2026-02-05",
+  "box_qty": 25,
+  "box_unit": "BOX"
  },
  "ZC2304": {
   "name": "[더블세이프]소독테이프 (1/2인치)",
@@ -1261,7 +1427,9 @@
   "unit": "EA",
   "price": 247.0,
   "maker": "3M",
-  "last_sold": "2026-07-27"
+  "last_sold": "2026-07-27",
+  "box_qty": 50,
+  "box_unit": "PK"
  },
  "ZC0959": {
   "name": "사라사이드 와입스 (알콜티슈)",
@@ -1277,7 +1445,9 @@
   "unit": "EA",
   "price": 30.5,
   "maker": "성심",
-  "last_sold": "2026-04-02"
+  "last_sold": "2026-04-02",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "DX0059": {
   "name": "[수성위재] 코튼볼",
@@ -1309,7 +1479,9 @@
   "unit": "EA",
   "price": 31.2,
   "maker": "성심",
-  "last_sold": "2026-03-13"
+  "last_sold": "2026-03-13",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1077": {
   "name": "[대한]면탄력붕대S (Elastic Bandage)",
@@ -1325,7 +1497,9 @@
   "unit": "EA",
   "price": 340.0,
   "maker": "BD",
-  "last_sold": "2026-03-30"
+  "last_sold": "2026-03-30",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0560": {
   "name": "[한국백신]일회용주사침",
@@ -1333,7 +1507,9 @@
   "unit": "EA",
   "price": 47.5,
   "maker": "한국백신",
-  "last_sold": "2026-01-26"
+  "last_sold": "2026-01-26",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "2C0178": {
   "name": "[GENEWEL] MEDIFOAM (5mm)",
@@ -1341,7 +1517,9 @@
   "unit": "EA",
   "price": 5200.0,
   "maker": "GENEWEL",
-  "last_sold": "2026-09-14"
+  "last_sold": "2026-09-14",
+  "box_qty": 10,
+  "box_unit": "BOX"
  },
  "2C0177": {
   "name": "[GENEWEL] MEDIFOAM (2mm)",
@@ -1365,7 +1543,9 @@
   "unit": "EA",
   "price": 10.0,
   "maker": "BD",
-  "last_sold": "2026-04-06"
+  "last_sold": "2026-04-06",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0909": {
   "name": "[FA이올] 알콜스왑",
@@ -1397,7 +1577,9 @@
   "unit": "PCS",
   "price": 50.0,
   "maker": "",
-  "last_sold": "2026-09-10"
+  "last_sold": "2026-09-10",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1250": {
   "name": "TERASAFE Exam Lavender Nitrile Glove(니트릴) M",
@@ -1405,7 +1587,9 @@
   "unit": "PCS",
   "price": 45.0,
   "maker": "",
-  "last_sold": "2026-04-10"
+  "last_sold": "2026-04-10",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0835": {
   "name": "[성심]일회용주사침 24G",
@@ -1413,7 +1597,9 @@
   "unit": "EA",
   "price": 28.7,
   "maker": "성심",
-  "last_sold": "2026-02-02"
+  "last_sold": "2026-02-02",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0841": {
   "name": "[세운] BAROVAC SS200M+",
@@ -1429,7 +1615,9 @@
   "unit": "EA",
   "price": 64.5,
   "maker": "",
-  "last_sold": "2026-04-22"
+  "last_sold": "2026-04-22",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "DX0032": {
   "name": "[수성] 목면봉",
@@ -1461,7 +1649,9 @@
   "unit": "EA",
   "price": 41.6,
   "maker": "성심",
-  "last_sold": "2026-04-30"
+  "last_sold": "2026-04-30",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0246": {
   "name": "[성심]일회용주사침 26G",
@@ -1469,7 +1659,9 @@
   "unit": "EA",
   "price": 37.5,
   "maker": "성심",
-  "last_sold": "2026-08-25"
+  "last_sold": "2026-08-25",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0834": {
   "name": "[한국백신]일회용주사기 10CC 18G",
@@ -1477,7 +1669,9 @@
   "unit": "EA",
   "price": 129.5,
   "maker": "한국백신",
-  "last_sold": "2026-02-23"
+  "last_sold": "2026-02-23",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0058": {
   "name": "[BD] Luer lok syringe 루어락주사기[302135]",
@@ -1485,7 +1679,9 @@
   "unit": "EA",
   "price": 211.2,
   "maker": "BD",
-  "last_sold": "2026-09-18"
+  "last_sold": "2026-09-18",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0634": {
   "name": "[성심]일회용주사침 25G",
@@ -1493,7 +1689,9 @@
   "unit": "EA",
   "price": 25.1,
   "maker": "성심",
-  "last_sold": "2026-04-03"
+  "last_sold": "2026-04-03",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0618": {
   "name": "[경기] I.V카테타20G*1+1/4",
@@ -1501,7 +1699,9 @@
   "unit": "EA",
   "price": 308.0,
   "maker": "경기",
-  "last_sold": "2026-01-16"
+  "last_sold": "2026-01-16",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0762": {
   "name": "[성심]인슐린 주사기",
@@ -1509,7 +1709,9 @@
   "unit": "EA",
   "price": 98.0,
   "maker": "성심",
-  "last_sold": "2026-05-07"
+  "last_sold": "2026-05-07",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0917": {
   "name": "[인성] I-Gel",
@@ -1541,7 +1743,9 @@
   "unit": "EA",
   "price": 308.0,
   "maker": "한국백신",
-  "last_sold": "2026-08-03"
+  "last_sold": "2026-08-03",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1244": {
   "name": "TERASAFE Exam Nitrile Glove(니트릴) S",
@@ -1549,7 +1753,9 @@
   "unit": "PCS",
   "price": 59.0,
   "maker": "",
-  "last_sold": "2026-07-31"
+  "last_sold": "2026-07-31",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC2371": {
   "name": "[성심]일회용주사침 29G, 1/2인치(13mm)",
@@ -1557,7 +1763,9 @@
   "unit": "EA",
   "price": 47.0,
   "maker": "성심",
-  "last_sold": "2026-05-18"
+  "last_sold": "2026-05-18",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0641": {
   "name": "[세운]NELATON CATHETER(넬라톤카테타)",
@@ -1573,7 +1781,9 @@
   "unit": "EA",
   "price": 192.0,
   "maker": "",
-  "last_sold": "2026-09-02"
+  "last_sold": "2026-09-02",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0207": {
   "name": "IV SET [59012933]",
@@ -1581,7 +1791,9 @@
   "unit": "EA",
   "price": 408.0,
   "maker": "",
-  "last_sold": "2026-04-02"
+  "last_sold": "2026-04-02",
+  "box_qty": 25,
+  "box_unit": "BOX"
  },
  "DX0014": {
   "name": "[3M]살색 종이반창고-24EA/CAS",
@@ -1589,7 +1801,9 @@
   "unit": "EA",
   "price": 666.6666666667,
   "maker": "3M",
-  "last_sold": "2026-01-19"
+  "last_sold": "2026-01-19",
+  "box_qty": 24,
+  "box_unit": "BOX"
  },
  "ZC2576": {
   "name": "[대한] 알콜탈지면(Skin Cotton)",
@@ -1613,7 +1827,9 @@
   "unit": "EA",
   "price": 24.1,
   "maker": "성심",
-  "last_sold": "2026-04-03"
+  "last_sold": "2026-04-03",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "1C0141": {
   "name": "[문정] 솜면봉(비멸균단면)",
@@ -1629,7 +1845,9 @@
   "unit": "EA",
   "price": 417.2,
   "maker": "한국백신",
-  "last_sold": "2026-09-04"
+  "last_sold": "2026-09-04",
+  "box_qty": 25,
+  "box_unit": "BOX"
  },
  "0C0290": {
   "name": "[대한] 코튼볼 (Cotton Ball)",
@@ -1645,7 +1863,9 @@
   "unit": "EA",
   "price": 233.0,
   "maker": "밴드골드",
-  "last_sold": "2026-01-20"
+  "last_sold": "2026-01-20",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "DX0111": {
   "name": "[밴드골드]슈퍼포아 9*9",
@@ -1653,7 +1873,9 @@
   "unit": "EA",
   "price": 165.0,
   "maker": "밴드골드",
-  "last_sold": "2026-01-20"
+  "last_sold": "2026-01-20",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC3133": {
   "name": "[수성] 인디게이터 테이프 (STEAM)",
@@ -1669,7 +1891,9 @@
   "unit": "EA",
   "price": 300.0,
   "maker": "한국백신",
-  "last_sold": "2026-03-09"
+  "last_sold": "2026-03-09",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0736": {
   "name": "[한국백신]일회용주사침",
@@ -1677,7 +1901,9 @@
   "unit": "EA",
   "price": 33.9,
   "maker": "한국백신",
-  "last_sold": "2026-08-19"
+  "last_sold": "2026-08-19",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "1C0284": {
   "name": "[수성위재] 소프트넥칼라(토마스칼라)M",
@@ -1693,7 +1919,9 @@
   "unit": "EA",
   "price": 378.0,
   "maker": "BD",
-  "last_sold": "2026-06-05"
+  "last_sold": "2026-06-05",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1385": {
   "name": "[협성] Air Way(ORANGE)",
@@ -1717,7 +1945,9 @@
   "unit": "PR",
   "price": 400.0,
   "maker": "유니더스",
-  "last_sold": "2026-03-31"
+  "last_sold": "2026-03-31",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "3C0110": {
   "name": "[아이리] BLACK SILK(6/0)",
@@ -1725,7 +1955,9 @@
   "unit": "EA",
   "price": 2565.8333333333,
   "maker": "아이리",
-  "last_sold": "2026-01-21"
+  "last_sold": "2026-01-21",
+  "box_qty": 24,
+  "box_unit": "BOX"
  },
  "ZC2898": {
   "name": "[신창] 일회용 주사기 3cc 22G 1.25″",
@@ -1733,7 +1965,9 @@
   "unit": "EA",
   "price": 52.3,
   "maker": "신창",
-  "last_sold": "2026-04-22"
+  "last_sold": "2026-04-22",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC2396": {
   "name": "[메디탑] 뉴클린스왑에이 1매 (부직포)",
@@ -1749,7 +1983,9 @@
   "unit": "PCS",
   "price": 59.0,
   "maker": "",
-  "last_sold": "2026-08-28"
+  "last_sold": "2026-08-28",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "1C0118": {
   "name": "[협성] O2 Mask",
@@ -1781,7 +2017,9 @@
   "unit": "EA",
   "price": 354.0,
   "maker": "BD",
-  "last_sold": "2026-09-16"
+  "last_sold": "2026-09-16",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC2449": {
   "name": "[세종]멸균 소독포, BLUE 60*60CM (JSWT06) 500`S/BX",
@@ -1789,7 +2027,9 @@
   "unit": "EA",
   "price": 180.0,
   "maker": "세종",
-  "last_sold": "2026-05-02"
+  "last_sold": "2026-05-02",
+  "box_qty": 500,
+  "box_unit": "BOX"
  },
  "DX0067": {
   "name": "[수성] 고탄력붕대(신축성)S",
@@ -1805,7 +2045,9 @@
   "unit": "EA",
   "price": 145.0,
   "maker": "한국백신",
-  "last_sold": "2026-03-04"
+  "last_sold": "2026-03-04",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "1C0136": {
   "name": "[문정] 복대 - abdominal",
@@ -1821,7 +2063,9 @@
   "unit": "PAIR",
   "price": 1348.0,
   "maker": "",
-  "last_sold": "2026-02-07"
+  "last_sold": "2026-02-07",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "0C0193": {
   "name": "[협성]접은거즈",
@@ -1829,7 +2073,9 @@
   "unit": "EA",
   "price": 35.5,
   "maker": "협성",
-  "last_sold": "2026-09-08"
+  "last_sold": "2026-09-08",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "2C0994": {
   "name": "[퍼슨] 루브에스겔(외과용젤리)",
@@ -1853,7 +2099,9 @@
   "unit": "EA",
   "price": 150.0,
   "maker": "성심",
-  "last_sold": "2026-04-03"
+  "last_sold": "2026-04-03",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "ZC2437": {
   "name": "[퍼슨] 핸드크린겔(H) 500ML",
@@ -1869,7 +2117,9 @@
   "unit": "EA",
   "price": 295.0,
   "maker": "BD",
-  "last_sold": "2026-09-01"
+  "last_sold": "2026-09-01",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "0C0201": {
   "name": "[한국백신]헤파린캡",
@@ -1877,7 +2127,9 @@
   "unit": "EA",
   "price": 144.8,
   "maker": "한국백신",
-  "last_sold": "2026-09-05"
+  "last_sold": "2026-09-05",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0856": {
   "name": "[세운]NELATON CATHETER(넬라톤카테타)",
@@ -1893,7 +2145,9 @@
   "unit": "EA",
   "price": 440.6666666667,
   "maker": "에버레이드",
-  "last_sold": "2026-01-27"
+  "last_sold": "2026-01-27",
+  "box_qty": 30,
+  "box_unit": "BOX"
  },
  "DX0140": {
   "name": "[에버레이드]네오드레싱",
@@ -1901,7 +2155,9 @@
   "unit": "EA",
   "price": 262.8,
   "maker": "에버레이드",
-  "last_sold": "2026-01-27"
+  "last_sold": "2026-01-27",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC2279": {
   "name": "[Theramx]EG-Q BOND N,이지큐본드 N",
@@ -1957,7 +2213,9 @@
   "unit": "EA",
   "price": 1291.6666666667,
   "maker": "아이리",
-  "last_sold": "2026-03-09"
+  "last_sold": "2026-03-09",
+  "box_qty": 24,
+  "box_unit": "BOX"
  },
  "ZC3079": {
   "name": "[더블세이프] 소독테이프 (스팀)",
@@ -1973,7 +2231,9 @@
   "unit": "PAIRS",
   "price": 360.0,
   "maker": "",
-  "last_sold": "2026-09-09"
+  "last_sold": "2026-09-09",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "0C0355": {
   "name": "[오시스] Cast shoes(칼라)",
@@ -2029,7 +2289,9 @@
   "unit": "EA",
   "price": 25.0,
   "maker": "성심",
-  "last_sold": "2026-03-26"
+  "last_sold": "2026-03-26",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0528": {
   "name": "[두원]수액연결줄",
@@ -2037,7 +2299,9 @@
   "unit": "EA",
   "price": 264.0,
   "maker": "두원",
-  "last_sold": "2026-02-02"
+  "last_sold": "2026-02-02",
+  "box_qty": 50,
+  "box_unit": "PK"
  },
  "ZC2004": {
   "name": "I.V카테타(덕우)/ 18G (1-1/4)",
@@ -2045,7 +2309,9 @@
   "unit": "EA",
   "price": 220.0,
   "maker": "",
-  "last_sold": "2026-06-21"
+  "last_sold": "2026-06-21",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1009": {
   "name": "[성심]일회용주사침 26G",
@@ -2053,7 +2319,9 @@
   "unit": "EA",
   "price": 82.0,
   "maker": "성심",
-  "last_sold": "2026-04-03"
+  "last_sold": "2026-04-03",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "2C0328": {
   "name": "수술용장갑-GAMMEX(ANSELL)",
@@ -2061,7 +2329,9 @@
   "unit": "PAIR",
   "price": 1348.0,
   "maker": "",
-  "last_sold": "2026-04-15"
+  "last_sold": "2026-04-15",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1150": {
   "name": "[정림] 일회용주사침(롱니들) BOX(100EA)",
@@ -2077,7 +2347,9 @@
   "unit": "EA",
   "price": 36.6,
   "maker": "한국백신",
-  "last_sold": "2026-09-11"
+  "last_sold": "2026-09-11",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0601": {
   "name": "[아이리] 메스",
@@ -2101,7 +2373,9 @@
   "unit": "EA",
   "price": 107.4,
   "maker": "성심",
-  "last_sold": "2026-09-04"
+  "last_sold": "2026-09-04",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0564": {
   "name": "[한국백신]일회용주사침",
@@ -2109,7 +2383,9 @@
   "unit": "EA",
   "price": 36.6,
   "maker": "한국백신",
-  "last_sold": "2026-09-01"
+  "last_sold": "2026-09-01",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0326": {
   "name": "수술용장갑-GAMMEX(ANSELL)",
@@ -2117,7 +2393,9 @@
   "unit": "PAIR",
   "price": 1348.0,
   "maker": "",
-  "last_sold": "2026-04-17"
+  "last_sold": "2026-04-17",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "DX0095": {
   "name": "[3M]흰색 종이반창고(1530-1)",
@@ -2125,7 +2403,9 @@
   "unit": "EA",
   "price": 991.6666666667,
   "maker": "3M",
-  "last_sold": "2026-08-22"
+  "last_sold": "2026-08-22",
+  "box_qty": 12,
+  "box_unit": "BOX"
  },
  "1C0143": {
   "name": "[문정] 알미늄스프린터(al splint)",
@@ -2149,7 +2429,9 @@
   "unit": "EA",
   "price": 78.0,
   "maker": "성심",
-  "last_sold": "2026-09-08"
+  "last_sold": "2026-09-08",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "DX0093": {
   "name": "[밴드골드]슈퍼포아 9*15",
@@ -2157,7 +2439,9 @@
   "unit": "EA",
   "price": 257.2,
   "maker": "밴드골드",
-  "last_sold": "2026-02-11"
+  "last_sold": "2026-02-11",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "0C0294": {
   "name": "[건강누리] Cast shoes(칼라)",
@@ -2197,7 +2481,9 @@
   "unit": "EA",
   "price": 30.0,
   "maker": "성심",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1349": {
   "name": "[3M]부직반창고",
@@ -2221,7 +2507,9 @@
   "unit": "EA",
   "price": 70.0,
   "maker": "수성",
-  "last_sold": "2026-03-19"
+  "last_sold": "2026-03-19",
+  "box_qty": 50,
+  "box_unit": "PK"
  },
  "ZC1243": {
   "name": "TERASAFE Exam Nitrile Glove(니트릴) XS",
@@ -2229,7 +2517,9 @@
   "unit": "PCS",
   "price": 50.0,
   "maker": "",
-  "last_sold": "2026-07-31"
+  "last_sold": "2026-07-31",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0549": {
   "name": "[성심]일회용주사침 23G",
@@ -2237,7 +2527,9 @@
   "unit": "EA",
   "price": 80.0,
   "maker": "성심",
-  "last_sold": "2026-02-20"
+  "last_sold": "2026-02-20",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "ZC1144": {
   "name": "[정림] 일회용주사침 (D/Needles) BOX(100EA)",
@@ -2261,7 +2553,9 @@
   "unit": "EA",
   "price": 660.0,
   "maker": "유앤미",
-  "last_sold": "2026-06-23"
+  "last_sold": "2026-06-23",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0321": {
   "name": "멸균글러브 7.5 (NATHIS LATEX PF SURGICAL GLOVE)",
@@ -2277,7 +2571,9 @@
   "unit": "EA",
   "price": 265.2,
   "maker": "세운",
-  "last_sold": "2026-09-16"
+  "last_sold": "2026-09-16",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "1C0370": {
   "name": "[수성] 팔걸이",
@@ -2293,7 +2589,9 @@
   "unit": "PAIRS",
   "price": 356.0,
   "maker": "",
-  "last_sold": "2026-09-16"
+  "last_sold": "2026-09-16",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C1202": {
   "name": "[매지션] MagiNabee 나비침 23G",
@@ -2301,7 +2599,9 @@
   "unit": "EA",
   "price": 198.0,
   "maker": "매지션",
-  "last_sold": "2026-09-18"
+  "last_sold": "2026-09-18",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0689": {
   "name": "[세운] 드레인튜브(panrose) 50EA/CAS [8MM]",
@@ -2341,7 +2641,9 @@
   "unit": "EA",
   "price": 328.0,
   "maker": "",
-  "last_sold": "2026-05-26"
+  "last_sold": "2026-05-26",
+  "box_qty": 25,
+  "box_unit": "BOX"
  },
  "1C0581": {
   "name": "TERASAFE Suction Catheter 12Fr",
@@ -2373,7 +2675,9 @@
   "unit": "EA",
   "price": 20.0,
   "maker": "BD",
-  "last_sold": "2026-03-10"
+  "last_sold": "2026-03-10",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0298": {
   "name": "[협성] Feeding Bag",
@@ -2397,7 +2701,9 @@
   "unit": "EA",
   "price": 296.2,
   "maker": "경기",
-  "last_sold": "2026-03-11"
+  "last_sold": "2026-03-11",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "4C0037": {
   "name": "[ETHICON] VICRYL",
@@ -2413,7 +2719,9 @@
   "unit": "EA",
   "price": 520.0,
   "maker": "성심",
-  "last_sold": "2026-03-12"
+  "last_sold": "2026-03-12",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC2272": {
   "name": "[에버레이드]에이덤플러스",
@@ -2421,7 +2729,9 @@
   "unit": "EA",
   "price": 360.62,
   "maker": "에버레이드",
-  "last_sold": "2026-03-13"
+  "last_sold": "2026-03-13",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0097": {
   "name": "ENDO TRACHEAL TUBE-TUOREN-10EA/CAS",
@@ -2469,7 +2779,9 @@
   "unit": "EA",
   "price": 316.2,
   "maker": "경기",
-  "last_sold": "2026-04-06"
+  "last_sold": "2026-04-06",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0482": {
   "name": "[BD] 인슐린주사기 1CC,29G [320320]",
@@ -2477,7 +2789,9 @@
   "unit": "EA",
   "price": 171.8,
   "maker": "BD",
-  "last_sold": "2026-04-24"
+  "last_sold": "2026-04-24",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0690": {
   "name": "[세운] 드레인튜브(panrose) 50EA/CAS [6MM]",
@@ -2493,7 +2807,9 @@
   "unit": "EA",
   "price": 122.0,
   "maker": "에버레이드",
-  "last_sold": "2026-03-20"
+  "last_sold": "2026-03-20",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "3C0535": {
   "name": "[한국백신]일회용주사기 30CC 21G",
@@ -2501,7 +2817,9 @@
   "unit": "EA",
   "price": 300.0,
   "maker": "한국백신",
-  "last_sold": "2026-04-18"
+  "last_sold": "2026-04-18",
+  "box_qty": 50,
+  "box_unit": "PK"
  },
  "ZC1394": {
   "name": "[문정] Cast shoes",
@@ -2557,7 +2875,9 @@
   "unit": "EA",
   "price": 118.8,
   "maker": "세종",
-  "last_sold": "2026-05-18"
+  "last_sold": "2026-05-18",
+  "box_qty": 500,
+  "box_unit": "BOX"
  },
  "2C0487": {
   "name": "[성심]일회용주사침 26G",
@@ -2565,7 +2885,9 @@
   "unit": "EA",
   "price": 331.36,
   "maker": "성심",
-  "last_sold": "2026-04-01"
+  "last_sold": "2026-04-01",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "2C0096": {
   "name": "ENDO TRACHEAL TUBE-TUOREN-10EA/CAS",
@@ -2589,7 +2911,9 @@
   "unit": "PCS",
   "price": 65.0,
   "maker": "",
-  "last_sold": "2026-09-16"
+  "last_sold": "2026-09-16",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0557": {
   "name": "[세운] BAROVAC SS200M",
@@ -2605,7 +2929,9 @@
   "unit": "EA",
   "price": 500.0,
   "maker": "문정",
-  "last_sold": "2026-04-07"
+  "last_sold": "2026-04-07",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "0C0073": {
   "name": "[유니더스] OB/GYN Friend",
@@ -2613,7 +2939,9 @@
   "unit": "EA",
   "price": 260.0,
   "maker": "유니더스",
-  "last_sold": "2026-04-05"
+  "last_sold": "2026-04-05",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C9999": {
   "name": "[한울] 수액세트 Y타입 50EA",
@@ -2653,7 +2981,9 @@
   "unit": "PAIRS",
   "price": 324.0,
   "maker": "",
-  "last_sold": "2026-04-06"
+  "last_sold": "2026-04-06",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C1203": {
   "name": "[매지션] MagiNabee 나비침 24G",
@@ -2661,7 +2991,9 @@
   "unit": "EA",
   "price": 201.7,
   "maker": "매지션",
-  "last_sold": "2026-09-18"
+  "last_sold": "2026-09-18",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0942": {
   "name": "[세운] IV SET(수액셋트) Vented",
@@ -2669,7 +3001,9 @@
   "unit": "EA",
   "price": 540.0,
   "maker": "세운",
-  "last_sold": "2026-04-07"
+  "last_sold": "2026-04-07",
+  "box_qty": 25,
+  "box_unit": "PK"
  },
  "2C0860": {
   "name": "[세운] IV SET(수액셋트) Vented",
@@ -2677,7 +3011,9 @@
   "unit": "EA",
   "price": 440.0,
   "maker": "세운",
-  "last_sold": "2026-04-07"
+  "last_sold": "2026-04-07",
+  "box_qty": 25,
+  "box_unit": "PK"
  },
  "3C0169": {
   "name": "태창 스파이날니들 (Spinal Needle)",
@@ -2701,7 +3037,9 @@
   "unit": "EA",
   "price": 33.0,
   "maker": "신창",
-  "last_sold": "2026-09-15"
+  "last_sold": "2026-09-15",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC2105": {
   "name": "[신창] 일회용 주사침 18G X 1 1/2",
@@ -2717,7 +3055,9 @@
   "unit": "PAIR",
   "price": 1348.0,
   "maker": "",
-  "last_sold": "2026-04-17"
+  "last_sold": "2026-04-17",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "DX0105": {
   "name": "[3M]실크반창고-12EA/CAS",
@@ -2725,7 +3065,9 @@
   "unit": "EA",
   "price": 2025.0,
   "maker": "3M",
-  "last_sold": "2026-09-09"
+  "last_sold": "2026-09-09",
+  "box_qty": 12,
+  "box_unit": "BOX"
  },
  "ZC2431": {
   "name": "[성심] 수액SET 유침",
@@ -2733,7 +3075,9 @@
   "unit": "EA",
   "price": 898.0,
   "maker": "성심",
-  "last_sold": "2026-04-21"
+  "last_sold": "2026-04-21",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC1169": {
   "name": "필텍 일회용주사기(D/Syringe) BOX(25EA)",
@@ -2757,7 +3101,9 @@
   "unit": "PAIRS",
   "price": 338.4,
   "maker": "",
-  "last_sold": "2026-09-03"
+  "last_sold": "2026-09-03",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "0C0189": {
   "name": "[3M]일렉트로이드 2223H(3M)",
@@ -2765,7 +3111,9 @@
   "unit": "EA",
   "price": 157.2,
   "maker": "3M",
-  "last_sold": "2026-04-22"
+  "last_sold": "2026-04-22",
+  "box_qty": 50,
+  "box_unit": "PK"
  },
  "ZC1611": {
   "name": "[수성] 접은거즈(GAUZE)",
@@ -2789,7 +3137,9 @@
   "unit": "EA",
   "price": 355.2,
   "maker": "성심",
-  "last_sold": "2026-04-24"
+  "last_sold": "2026-04-24",
+  "box_qty": 25,
+  "box_unit": "BOX"
  },
  "3C0120": {
   "name": "[HAKKO]스파이날니들",
@@ -2813,7 +3163,9 @@
   "unit": "EA",
   "price": 926.0,
   "maker": "나눔컴퍼니",
-  "last_sold": "2026-09-17"
+  "last_sold": "2026-09-17",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C1206": {
   "name": "[나눔컴퍼니] Mirror Cannula (범용 카테터 캐뉼라)",
@@ -2821,7 +3173,9 @@
   "unit": "EA",
   "price": 1001.0,
   "maker": "나눔컴퍼니",
-  "last_sold": "2026-06-10"
+  "last_sold": "2026-06-10",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C1208": {
   "name": "[나눔컴퍼니] Mirror Cannula (범용 카테터 캐뉼라)",
@@ -2829,7 +3183,9 @@
   "unit": "EA",
   "price": 1001.0,
   "maker": "나눔컴퍼니",
-  "last_sold": "2026-05-06"
+  "last_sold": "2026-05-06",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0567": {
   "name": "[성심]일회용주사침 29G",
@@ -2837,7 +3193,9 @@
   "unit": "EA",
   "price": 125.0,
   "maker": "성심",
-  "last_sold": "2026-04-30"
+  "last_sold": "2026-04-30",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "2C0787": {
   "name": "[성심]일회용주사침 26G",
@@ -2845,7 +3203,9 @@
   "unit": "EA",
   "price": 100.0,
   "maker": "성심",
-  "last_sold": "2026-04-30"
+  "last_sold": "2026-04-30",
+  "box_qty": 200,
+  "box_unit": "BOX"
  },
  "ZC1379": {
   "name": "SC DISPOSABLE SYRINGE 5cc 21G 1.25″",
@@ -2853,7 +3213,9 @@
   "unit": "EA",
   "price": 74.0,
   "maker": "",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "DX0151": {
   "name": "[메디탑] 소독용 에탄올",
@@ -2869,7 +3231,9 @@
   "unit": "EA",
   "price": 143.0,
   "maker": "세운",
-  "last_sold": "2026-08-10"
+  "last_sold": "2026-08-10",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0260": {
   "name": "[세운]레빈튜브 18FR",
@@ -2933,7 +3297,9 @@
   "unit": "EA",
   "price": 33.0,
   "maker": "신창",
-  "last_sold": "2026-09-09"
+  "last_sold": "2026-09-09",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0206": {
   "name": "[매지션] MagiNabee 나비침 21G",
@@ -2941,7 +3307,9 @@
   "unit": "EA",
   "price": 242.0,
   "maker": "매지션",
-  "last_sold": "2026-06-01"
+  "last_sold": "2026-06-01",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC0291": {
   "name": "[더블세이프] E.O GAS Bag",
@@ -2957,7 +3325,9 @@
   "unit": "EA",
   "price": 378.0,
   "maker": "BD",
-  "last_sold": "2026-06-05"
+  "last_sold": "2026-06-05",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "3C0188": {
   "name": "[아이리] BLUE NYLON(나일론) -24EA/CASE-",
@@ -2965,7 +3335,9 @@
   "unit": "EA",
   "price": 1480.0,
   "maker": "아이리",
-  "last_sold": "2026-06-29"
+  "last_sold": "2026-06-29",
+  "box_qty": 24,
+  "box_unit": "BOX"
  },
  "ZC1183": {
   "name": "[협성] 유린백(URINE BAG)",
@@ -2981,7 +3353,9 @@
   "unit": "EA",
   "price": 4300.0,
   "maker": "",
-  "last_sold": "2026-06-18"
+  "last_sold": "2026-06-18",
+  "box_qty": 20,
+  "box_unit": "BOX"
  },
  "DX0008": {
   "name": "[신신] 플라스틱 반창고(Plaster)",
@@ -3077,7 +3451,9 @@
   "unit": "EA",
   "price": 3888.8888888889,
   "maker": "",
-  "last_sold": "2026-06-29"
+  "last_sold": "2026-06-29",
+  "box_qty": 36,
+  "box_unit": "BOX"
  },
  "2C0599": {
   "name": "[아이리] 메스",
@@ -3101,7 +3477,9 @@
   "unit": "EA",
   "price": 98.7,
   "maker": "에버레이드",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C1205": {
   "name": "[나눔컴퍼니] Mirror Cannula (범용 카테터 캐뉼라)",
@@ -3109,7 +3487,9 @@
   "unit": "EA",
   "price": 963.8,
   "maker": "나눔컴퍼니",
-  "last_sold": "2026-07-06"
+  "last_sold": "2026-07-06",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0718": {
   "name": "COLD SNARE (JP119)",
@@ -3133,7 +3513,9 @@
   "unit": "EA",
   "price": 59.0,
   "maker": "신창",
-  "last_sold": "2026-07-07"
+  "last_sold": "2026-07-07",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "1C0149": {
   "name": "[문정] 팔걸이",
@@ -3213,7 +3595,9 @@
   "unit": "EA",
   "price": 2222.2222222222,
   "maker": "ETHICON",
-  "last_sold": "2026-07-27"
+  "last_sold": "2026-07-27",
+  "box_qty": 36,
+  "box_unit": "BOX"
  },
  "2C0831": {
   "name": "[나눔컴퍼니] Mirror Cannula (범용 카테터 캐뉼라)",
@@ -3221,7 +3605,9 @@
   "unit": "EA",
   "price": 1300.0,
   "maker": "나눔컴퍼니",
-  "last_sold": "2026-07-29"
+  "last_sold": "2026-07-29",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "2C0249": {
   "name": "Skin Stapler Remover(WECK)",
@@ -3245,7 +3631,9 @@
   "unit": "EA",
   "price": 2083.3333333333,
   "maker": "아이리",
-  "last_sold": "2026-08-24"
+  "last_sold": "2026-08-24",
+  "box_qty": 24,
+  "box_unit": "BOX"
  },
  "ZC1401": {
   "name": "[문정] 밸포밴드",
@@ -3269,7 +3657,9 @@
   "unit": "EA",
   "price": 116.0,
   "maker": "성심",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0529": {
   "name": "[성심]일회용주사기 50CC 18g",
@@ -3277,7 +3667,9 @@
   "unit": "EA",
   "price": 363.2,
   "maker": "성심",
-  "last_sold": "2026-09-07"
+  "last_sold": "2026-09-07",
+  "box_qty": 25,
+  "box_unit": "BOX"
  },
  "ZC0477": {
   "name": "[세운]폴리카테타(SILICONE FOLEY CATHETER)",
@@ -3293,7 +3685,9 @@
   "unit": "EA",
   "price": 66.5,
   "maker": "성심",
-  "last_sold": "2026-09-14"
+  "last_sold": "2026-09-14",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC1069": {
   "name": "[대한] 외과용패드 (Surgical pad)",
@@ -3309,7 +3703,9 @@
   "unit": "EA",
   "price": 294.0,
   "maker": "성심",
-  "last_sold": "2026-09-08"
+  "last_sold": "2026-09-08",
+  "box_qty": 50,
+  "box_unit": "BOX"
  },
  "ZC2877": {
   "name": "[수성] 멸균 면봉",
@@ -3325,7 +3721,9 @@
   "unit": "EA",
   "price": 201.7,
   "maker": "매지션",
-  "last_sold": "2026-09-01"
+  "last_sold": "2026-09-01",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "2C0541": {
   "name": "[성심]일회용주사기 10CC 23G",
@@ -3333,7 +3731,9 @@
   "unit": "EA",
   "price": 111.3,
   "maker": "성심",
-  "last_sold": "2026-09-04"
+  "last_sold": "2026-09-04",
+  "box_qty": 100,
+  "box_unit": "BOX"
  },
  "ZC3309": {
   "name": "[동방]MTS 니들 2.0MM (30EA,BOX)",
@@ -3349,6 +3749,8 @@
   "unit": "EA",
   "price": 188.0,
   "maker": "성심",
-  "last_sold": "2026-09-05"
+  "last_sold": "2026-09-05",
+  "box_qty": 50,
+  "box_unit": "BOX"
  }
 }
