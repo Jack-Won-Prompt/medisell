@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
  * - 사전 준비: database/data/bluepharm_items.json  (품목/블루팜 판매현황 26년도.xlsx 에서 생성)
  *     코드 => {name, spec, unit, price(블루팜 판매단가, 최근 90일 최빈가), maker, last_sold}
  * - 블루팜 품목: 이름·규격·단위를 블루팜 기준으로 교체, 없으면 신규 등록
- *     정가(price) = 블루팜 단가, 병·의원 회원가(member_price) = 블루팜 단가 × 0.9 (원 단위 반올림)
+ *     정가(price) = 블루팜 단가, 병·의원 회원가(member_price) = 블루팜 단가 × 0.98 (원 단위 반올림)
  *     box_qty 가 있는 품목(블루팜이 낱개가로 적었지만 박스로 팔던 것)은 단가×입수 = 박스가, 단위 BOX/PK
  * - 콜로플라스트(maker=콜로플라스트) 는 그대로 둔다
  * - 그 외 상품은 삭제 (찜·최저가 등은 FK cascade, 주문 품목은 product_id 만 null)
@@ -24,7 +24,7 @@ class SyncBluepharmCatalog extends Command
     protected $description = '블루팜 + 콜로플라스트만 남기고 블루팜 품목을 블루팜 기준(이름·규격·단위·단가)으로 교체';
 
     private const COLOPLAST = '콜로플라스트';
-    private const MEMBER_RATE = 0.9;
+    private const MEMBER_RATE = 0.98;
 
     public function handle(): int
     {
