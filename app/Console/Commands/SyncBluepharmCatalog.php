@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
  * - 사전 준비: database/data/bluepharm_items.json  (품목/블루팜 판매현황 26년도.xlsx 에서 생성)
  *     코드 => {name, spec, unit, price(블루팜 판매단가, 최근 90일 최빈가), maker, last_sold}
  * - 블루팜 품목: 이름·규격·단위를 블루팜 기준으로 교체, 없으면 신규 등록
- *     정가(price) = 블루팜 단가, 병·의원 회원가(member_price) = 블루팜 단가 × 0.98 (원 단위 반올림)
+ *     정가(price) = 블루팜 단가, 병·의원 회원가(member_price) = 블루팜 단가 × 0.98 (원 단위 올림)
  *     box_qty 가 있는 품목(블루팜이 낱개가로 적었지만 박스로 팔던 것)은 단가×입수 = 박스가, 단위 BOX/PK
  * - 콜로플라스트(maker=콜로플라스트) 는 그대로 둔다
  * - 그 외 상품은 삭제 (찜·최저가 등은 FK cascade, 주문 품목은 product_id 만 null)
@@ -81,8 +81,8 @@ class SyncBluepharmCatalog extends Command
                     'is_active' => $r['price'] !== null,
                 ];
                 if ($r['price'] !== null) {
-                    $attrs['price'] = (int) round($r['price'] * $qty);
-                    $attrs['member_price'] = (int) round($r['price'] * $qty * self::MEMBER_RATE);
+                    $attrs['price'] = $this->wonCeil($r['price'] * $qty);
+                    $attrs['member_price'] = $this->wonCeil($r['price'] * $qty * self::MEMBER_RATE);
                 } else {
                     $stat['noprice'][] = $code;
                 }
@@ -155,6 +155,15 @@ class SyncBluepharmCatalog extends Command
         $this->line('최종 상품 수: '.Product::count().' (콜로플라스트 '.Product::where('maker', self::COLOPLAST)->count().')');
 
         return 0;
+    }
+
+    /**
+     * 원 단위 올림. 블루팜 단가는 1166.6666… 처럼 박스가를 나눈 값이라 곱하면 14000.0000004 같은
+     * 부동소수 오차가 생긴다 — 그대로 올리면 1원이 더 붙으므로 소수 4자리에서 정리한 뒤 올린다.
+     */
+    private function wonCeil(float $v): int
+    {
+        return (int) ceil(round($v, 4));
     }
 
     private function loadJson(string $rel): array
