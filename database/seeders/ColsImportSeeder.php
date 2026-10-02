@@ -130,8 +130,8 @@ class ColsImportSeeder extends Seeder
             // 브랜드(제품 라인) 추출
             $brand = $this->resolveBrand($name, $brandCache);
 
-            // 사업자 회원가: 정가의 약 90% (10원 단위)
-            $member = (int) (floor($price * 0.9 / 10) * 10);
+            // 병·의원 회원가: 정가 × 0.98, 원 단위 올림 (블루팜 품목과 같은 규칙)
+            $member = (int) ceil(round($price * 0.98, 4));
             $stock = max(0, min((int) $r->current_stock, 9999));
 
             // 대표 썸네일 + 갤러리 + 상세설명(이미지 포함) 가져오기
