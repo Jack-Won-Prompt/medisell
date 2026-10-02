@@ -2028,8 +2028,8 @@
   "price": 180.0,
   "maker": "세종",
   "last_sold": "2026-05-02",
-  "box_qty": 500,
-  "box_unit": "BOX"
+  "box_qty": 250,
+  "box_unit": "PK"
  },
  "DX0067": {
   "name": "[수성] 고탄력붕대(신축성)S",
@@ -2876,8 +2876,8 @@
   "price": 118.8,
   "maker": "세종",
   "last_sold": "2026-05-18",
-  "box_qty": 500,
-  "box_unit": "BOX"
+  "box_qty": 250,
+  "box_unit": "PK"
  },
  "2C0487": {
   "name": "[성심]일회용주사침 26G",
