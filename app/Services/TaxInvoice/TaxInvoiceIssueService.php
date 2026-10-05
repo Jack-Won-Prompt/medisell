@@ -34,6 +34,12 @@ class TaxInvoiceIssueService
         if ($order->taxInvoices()->whereIn('status', ['issued', 'simulated'])->exists()) {
             throw new \RuntimeException('이미 세금계산서가 발행된 주문입니다.');
         }
+        if ($order->isCardPayment()) {
+            throw new \RuntimeException('카드 결제 주문은 카드매출전표가 증빙이라 세금계산서를 발행할 수 없습니다.');
+        }
+        if ($order->cashReceipts()->whereIn('status', ['issued', 'simulated'])->exists()) {
+            throw new \RuntimeException('현금영수증이 발행된 주문입니다. 현금영수증을 먼저 취소해 주세요.');
+        }
 
         [$kind, $supply, $tax, $total] = $this->calcAmounts($order);
 
@@ -89,7 +95,11 @@ class TaxInvoiceIssueService
         }
     }
 
-    /** 발행 취소 */
+    /**
+     * 발행 취소.
+     * 1) 국세청 전송 전이면 팝빌 발행취소(CancelIssue)
+     * 2) 이미 전송돼 발행취소가 안 되면 수정세금계산서(계약의 해제 · 마이너스 금액)를 새로 발행해 상계한다
+     */
     public function cancel(TaxInvoice $ti, ?string $memo = null): void
     {
         if ($ti->status === 'simulated') {
@@ -97,9 +107,50 @@ class TaxInvoiceIssueService
 
             return;
         }
+        if ($ti->status !== 'issued') {
+            throw new \RuntimeException('발행완료 상태인 세금계산서만 취소할 수 있습니다.');
+        }
+        $supplier = config('popbill.supplier');
+        $corpNum = preg_replace('/\D/', '', (string) $supplier['corp_num']);
+        $userId = $supplier['user_id'] ?: null;
+
+        try {
+            $this->popbill->cancelIssue($corpNum, $ti->mgt_key, $memo, $userId);
+            $ti->update(['status' => 'cancelled', 'popbill_state' => '발행취소', 'cancelled_at' => now()]);
+
+            return;
+        } catch (\Throwable $e) {
+            if (! $ti->nts_confirm_num) {
+                throw $e;   // 승인번호가 없으면 수정세금계산서를 낼 수 없다 — 원래 오류를 그대로 알린다
+            }
+        }
+
+        // 수정세금계산서 — 계약의 해제(modifyCode 4), 원본 승인번호 참조, 금액은 음수
+        $order = $ti->order()->with('items', 'user')->firstOrFail();
+        $user = $order->user;
+        $mgtKey = $this->makeMgtKey($order);
+        $inv = $this->buildInvoice($order, $mgtKey, $ti->invoice_kind,
+            -(int) $ti->supply_amount, -(int) $ti->tax_amount, -(int) $ti->total_amount,
+            $supplier, $corpNum, (string) $ti->receiver_corp_num, $user);
+        $inv->modifyCode = 4;
+        $inv->orgNTSConfirmNum = $ti->nts_confirm_num;
+        $this->popbill->registIssue($corpNum, $inv, $userId, false, $memo ?: '주문취소 — 계약의 해제');
+        $ti->update([
+            'status'        => 'cancelled',
+            'popbill_state' => "수정세금계산서(계약의 해제) 발행 · 문서번호 {$mgtKey}",
+            'cancelled_at'  => now(),
+        ]);
+    }
+
+    /** 고객 보기 URL (시뮬레이트는 없음) */
+    public function customerUrl(TaxInvoice $ti): ?string
+    {
+        if ($ti->status === 'simulated') {
+            return null;
+        }
         $corpNum = preg_replace('/\D/', '', (string) config('popbill.supplier.corp_num'));
-        $this->popbill->cancelIssue($corpNum, $ti->mgt_key, $memo, config('popbill.supplier.user_id') ?: null);
-        $ti->update(['status' => 'cancelled', 'cancelled_at' => now()]);
+
+        return $this->popbill->getMailUrl($corpNum, $ti->mgt_key, config('popbill.supplier.user_id') ?: null);
     }
 
     /** 팝빌 문서 팝업 URL */

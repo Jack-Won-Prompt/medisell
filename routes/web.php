@@ -67,6 +67,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/orders', 'orders')->name('orders');
         Route::get('/orders/{order}', 'order')->name('order');
         Route::post('/orders/{order}/cancel', 'cancelOrder')->name('order.cancel');
+        Route::get('/orders/{order}/evidence/{type}/{id}', 'evidence')->name('order.evidence')
+            ->whereIn('type', ['tax_invoice', 'cash_receipt'])->whereNumber('id');
         Route::get('/points', 'points')->name('points');
         Route::get('/coupons', 'coupons')->name('coupons');
         Route::get('/profile', 'profile')->name('profile');
@@ -133,6 +135,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('/orders/{order}/tax-invoice', [AdminTaxInvoiceController::class, 'issue'])->name('orders.taxinvoice');
     Route::delete('/tax-invoices/{taxInvoice}', [AdminTaxInvoiceController::class, 'cancel'])->name('taxinvoice.cancel');
     Route::get('/tax-invoices/{taxInvoice}/popup', [AdminTaxInvoiceController::class, 'popup'])->name('taxinvoice.popup');
+    // 현금영수증
+    Route::post('/orders/{order}/cash-receipt', [\App\Http\Controllers\Admin\CashReceiptController::class, 'issue'])->name('orders.cashreceipt');
+    Route::delete('/cash-receipts/{cashReceipt}', [\App\Http\Controllers\Admin\CashReceiptController::class, 'cancel'])->name('cashreceipt.cancel');
+    Route::get('/cash-receipts/{cashReceipt}/popup', [\App\Http\Controllers\Admin\CashReceiptController::class, 'popup'])->name('cashreceipt.popup');
 
     // 회원 관리 (병원 승인 + 병원별 전용가 매핑)
     Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');

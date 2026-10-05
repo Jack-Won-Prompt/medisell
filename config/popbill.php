@@ -7,6 +7,34 @@ return [
     'IPRestrictOnOff' => env('POPBILL_IP_RESTRICT_ON_OFF', true),
     'UseStaticIP'     => env('POPBILL_USE_STATIC_IP', false),
     'UseLocalTimeYN'  => env('POPBILL_USE_LOCAL_TIME_YN', true),
+    // 서비스 안에서 env() 를 직접 읽으면 config:cache 후 null 이 되므로 여기서 읽는다
+    'comm_mode'       => env('POPBILL_LINKHUB_COMM_MODE', 'CURL'),
+
+    /*
+    | 발행·발송 사업자 (세금계산서·현금영수증·문자 공통) — LINKTHELAB 연동회원.
+    | 팝빌에 이 사업자로 가입돼 있어야 하고, 세금계산서는 공동인증서, 문자는 발신번호 승인이 필요하다.
+    */
+    'corp_num'        => env('POPBILL_CORP_NUM', env('POPBILL_SMS_CORP_NUM', env('POPBILL_TEST_CORP_NUM', ''))),
+    'user_id'         => env('POPBILL_USER_ID', env('POPBILL_TEST_USER_ID', '')),
+
+    /*
+    | 고객 안내 문자
+    | mode: simulate(발송 안 함, 이력만) / redirect(모두 테스트 번호로) / live(실제 고객에게)
+    */
+    'sms' => [
+        'mode'          => env('POPBILL_SMS_MODE', 'simulate'),
+        'sender'        => env('POPBILL_SENDER_NUM', ''),          // 팝빌에 등록·승인된 발신번호
+        'sender_name'   => env('POPBILL_SENDER_NAME', '메디셀'),
+        'test_receiver' => env('POPBILL_TEST_RECEIVER_HP', ''),
+    ],
+
+    // 현금영수증 — 기본 시뮬레이트(실발행 사고 방지). 실발행: POPBILL_CASHBILL_SIMULATE=false
+    'cashbill' => [
+        'simulate' => env('POPBILL_CASHBILL_SIMULATE', true),
+    ],
+
+    // 승인 병원 회원 주문(카드 결제 제외) 결제 확인 시 세금계산서 자동 발행
+    'auto_taxinvoice' => env('POPBILL_AUTO_TAXINVOICE', true),
 
     /*
     | 시뮬레이트 모드: true 면 실제 팝빌 API를 호출하지 않고 발행이력만 생성.
@@ -24,10 +52,10 @@ return [
         'account_num' => env('POPBILL_BANK_ACCOUNT', ''),            // 조회 계좌번호(하이픈 제외)
     ],
 
-    // 공급자(발행자 = 메디셀 / 현재는 .env 값). 팝빌에 등록된 사업자여야 실발행 가능.
+    // 공급자(발행자) — 위 corp_num 과 같은 사업자. 상호·대표·주소·업태·종목도 그 사업자의 사업자등록증과 같아야 한다.
     'supplier' => [
-        'corp_num'  => env('POPBILL_TEST_CORP_NUM', ''),                 // 사업자등록번호(숫자만)
-        'user_id'   => env('POPBILL_TEST_USER_ID', ''),                  // 팝빌 회원 아이디
+        'corp_num'  => env('POPBILL_CORP_NUM', env('POPBILL_SMS_CORP_NUM', env('POPBILL_TEST_CORP_NUM', ''))), // 숫자만
+        'user_id'   => env('POPBILL_USER_ID', env('POPBILL_TEST_USER_ID', '')),                                // 팝빌 회원 아이디
         'corp_name' => env('COMPANY_CORP_NAME', '메디셀'),
         'ceo_name'  => env('COMPANY_CEO_NAME', '최연아'),
         'addr'      => env('COMPANY_ADDR', '서울특별시 강서구 마곡중앙로 161-8, C동 5층 502호'),

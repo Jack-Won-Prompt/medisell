@@ -334,6 +334,24 @@ class ApiSerializer
             'cashback_amount' => (int) $o->cashback_amount,
         ];
 
+        if ($withItems) {
+            // 증빙 발행 내역 — 보기 URL 은 GET /orders/{id}/evidence/{type}/{id} 로 받는다(팝빌 URL 은 발급 시점마다 새로)
+            $data['evidences'] = array_map(fn ($e) => [
+                'type'         => $e['type'],
+                'id'           => $e['id'],
+                'label'        => $e['label'],
+                'status'       => $e['status'],
+                'status_label' => $e['status_label'],
+                'confirm_num'  => $e['confirm_num'],
+                'amount'       => $e['amount'],
+                'issued_at'    => $e['issued_at']?->toIso8601String(),
+                'cancelled_at' => $e['cancelled_at']?->toIso8601String(),
+                'viewable'     => $e['viewable'],
+            ], $o->evidenceList());
+            $data['evidence_notice'] = $o->evidenceNotice();
+            $data['cash_receipt_type'] = $o->cash_receipt_type;
+        }
+
         if ($withItems && $o->relationLoaded('items')) {
             $data['items'] = $o->items->map(function ($i) use ($request) {
                 return [

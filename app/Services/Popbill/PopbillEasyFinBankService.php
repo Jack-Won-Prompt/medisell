@@ -16,7 +16,7 @@ class PopbillEasyFinBankService
     {
         if ($this->api === null) {
             if (! defined('LINKHUB_COMM_MODE')) {
-                define('LINKHUB_COMM_MODE', env('POPBILL_LINKHUB_COMM_MODE', 'CURL'));
+                define('LINKHUB_COMM_MODE', config('popbill.comm_mode', 'CURL'));
             }
             $api = new PopbillEasyFinBank(config('popbill.LinkID'), config('popbill.SecretKey'));
             $api->IsTest((bool) config('popbill.IsTest', true));

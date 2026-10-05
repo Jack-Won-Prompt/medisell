@@ -81,6 +81,9 @@ class OrderController extends Controller
             'payment_method' => ['required', 'in:bank,toss,portone'],
             'depositor'      => ['required_if:payment_method,bank', 'nullable', 'string', 'max:50'],
             'bank'           => ['required_if:payment_method,bank', 'nullable', 'string', 'max:50'],
+            // 무통장 현금영수증 신청 — 입금 확인 시 자동 발행 (income 소득공제 / expense 지출증빙)
+            'cash_receipt_type'     => ['nullable', 'in:income,expense'],
+            'cash_receipt_identity' => ['required_with:cash_receipt_type', 'nullable', 'string', 'max:30', 'regex:/^[\d\-\s]{10,20}$/'],
             'point_used'     => ['nullable', 'integer', 'min:0'],
             'save_address'   => ['nullable', 'boolean'],
             'agent_buyer_id' => ['nullable', 'integer'],
@@ -136,6 +139,10 @@ class OrderController extends Controller
                 'total'          => $total,
                 'bank'           => $isPg ? null : ($data['bank'] ?? null),
                 'depositor'      => $isPg ? null : ($data['depositor'] ?? null),
+                // 승인 병원 회원은 세금계산서가 자동 발행되므로 현금영수증 신청을 받지 않는다
+                'cash_receipt_type'     => ($isPg || $user->isApprovedBusiness()) ? null : ($data['cash_receipt_type'] ?? null),
+                'cash_receipt_identity' => ($isPg || $user->isApprovedBusiness() || empty($data['cash_receipt_type']))
+                    ? null : preg_replace('/\D/', '', (string) ($data['cash_receipt_identity'] ?? '')),
             ]);
 
             foreach ($items as $i) {
@@ -175,6 +182,11 @@ class OrderController extends Controller
         });
 
         $request->session()->forget('coupon_code');
+
+        if (! $isPg) {
+            \App\Jobs\SendSmsNotice::dispatchAfterResponse('bank_guide', $order->id);
+        }
+        \App\Jobs\NotifyAdmin::dispatchAfterResponse('order', $order->id);   // 관리자 메일+문자 (결제 완료는 markPaid 에서 따로)
 
         // 배송지 주소록 저장 (체크 시, 동일 주소 없을 때만)
         if ($request->boolean('save_address')) {

@@ -56,6 +56,11 @@ class UserController extends Controller
         ]);
         $user->update($data);
 
+        // 병원 회원 승인/반려가 새로 정해졌으면 문자 안내
+        if ($user->wasChanged('biz_status') && in_array($user->biz_status, ['approved', 'rejected'], true)) {
+            \App\Jobs\SendSmsNotice::dispatchAfterResponse('biz', $user->id);
+        }
+
         return back()->with('ok', '회원 정보가 갱신되었습니다.');
     }
 

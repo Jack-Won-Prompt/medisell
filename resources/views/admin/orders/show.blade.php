@@ -102,7 +102,7 @@
             @if(! $business)
                 <p class="muted" style="font-size:13.5px">사업자(병원) 회원 주문만 발행 가능합니다. (사업자등록번호 필요)</p>
             @else
-                @forelse($tis as $ti)
+                @foreach($tis as $ti)
                     <div style="border:1px solid var(--a-line);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:13px;line-height:1.8">
                         <div style="display:flex;justify-content:space-between;align-items:center">
                             <b>{{ $ti->kindLabel() }}</b>
@@ -126,9 +126,13 @@
                             </div>
                         @endif
                     </div>
-                @empty
+                @endforeach
+                {{-- 유효한(발행/시뮬레이트) 계산서가 없으면 발행 버튼 — 취소·실패 뒤 재발행 포함 --}}
+                @unless($tis->whereIn('status', ['issued','simulated'])->count())
                     @php($canIssue = in_array($order->status, ['paid','preparing','shipped','done']))
-                    @if($canIssue)
+                    @if($order->isCardPayment())
+                        <p class="muted" style="font-size:13.5px">카드 결제 주문은 카드매출전표가 증빙이라 세금계산서를 발행하지 않습니다.</p>
+                    @elseif($canIssue)
                         <form method="POST" action="{{ route('admin.orders.taxinvoice', $order) }}">
                             @csrf
                             <div style="font-size:13px;color:#6b7794;margin-bottom:10px">
@@ -136,13 +140,91 @@
                                 @unless(config('popbill.simulate'))<span style="color:#e0322d">※ 실발행 모드 — 실제 세금계산서가 발행됩니다.</span>
                                 @else<span class="pill pill-w">시뮬레이트 모드</span>@endunless
                             </div>
-                            <button class="abtn abtn-pri" style="width:100%;justify-content:center">세금계산서 발행</button>
+                            <button class="abtn abtn-pri" style="width:100%;justify-content:center">세금계산서 {{ $tis->count() ? '재발행' : '발행' }}</button>
                         </form>
                     @else
                         <p class="muted" style="font-size:13.5px">결제완료(입금확인) 이후 발행할 수 있습니다.</p>
                     @endif
-                @endforelse
+                @endunless
             @endif
+        </div>
+    </div>
+
+    <div class="adm-card">
+        <div class="h">현금영수증</div>
+        <div style="padding:20px">
+            @php($crs = $order->cashReceipts()->get())
+            @foreach($crs as $cr)
+                <div style="border:1px solid var(--a-line);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:13px;line-height:1.8">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <b>{{ $cr->trade_usage }} · {{ $cr->maskedIdentity() }}</b>
+                        @if($cr->status==='cancelled')<span class="pill pill-n">취소</span>
+                        @elseif($cr->status==='simulated')<span class="pill pill-w">시뮬레이트</span>
+                        @elseif($cr->status==='issued')<span class="pill pill-y">발행완료</span>
+                        @else<span class="pill pill-n">실패</span>@endif
+                    </div>
+                    공급가 {{ number_format($cr->supply_amount) }} · 세액 {{ number_format($cr->tax_amount) }} · 합계 <b>{{ number_format($cr->total_amount) }}</b>원<br>
+                    승인번호 {{ $cr->confirm_num ?? '-' }} · {{ optional($cr->issued_at)->format('Y.m.d H:i') }}
+                    @if($cr->error_message)<div style="color:#e0322d;font-size:12px">{{ $cr->error_message }}</div>@endif
+                    @if(in_array($cr->status,['issued','simulated']))
+                        <div style="display:flex;gap:6px;margin-top:8px">
+                            @if($cr->status==='issued')
+                                <a href="{{ route('admin.cashreceipt.popup', $cr) }}" target="_blank" class="abtn abtn-ghost abtn-sm">원본보기</a>
+                            @endif
+                            <form method="POST" action="{{ route('admin.cashreceipt.cancel', $cr) }}" onsubmit="return confirm('현금영수증을 취소하시겠습니까? (취소거래 현금영수증이 발행됩니다)')">
+                                @csrf @method('DELETE')
+                                <button class="abtn abtn-red abtn-sm">발행취소</button>
+                            </form>
+                        </div>
+                    @endif
+                </div>
+            @endforeach
+
+            @unless($crs->whereIn('status', ['issued','simulated'])->count())
+                @if($order->isCardPayment())
+                    <p class="muted" style="font-size:13.5px">카드 결제 주문은 현금영수증을 발행하지 않습니다.</p>
+                @elseif($order->taxInvoices()->whereIn('status', ['issued','simulated'])->exists())
+                    <p class="muted" style="font-size:13.5px">세금계산서가 발행된 주문입니다.</p>
+                @elseif(! in_array($order->status, ['paid','preparing','shipped','done']))
+                    <p class="muted" style="font-size:13.5px">
+                        결제완료(입금확인) 이후 발행할 수 있습니다.
+                        @if($order->cash_receipt_type)<br>고객 신청: {{ $order->cash_receipt_type==='income' ? '소득공제용' : '지출증빙용' }} · 입금 확인 시 자동 발행@endif
+                    </p>
+                @else
+                    <form method="POST" action="{{ route('admin.orders.cashreceipt', $order) }}">
+                        @csrf
+                        <div style="display:flex;gap:8px;margin-bottom:8px">
+                            <select name="type" class="aselect" style="width:140px">
+                                <option value="income" {{ $order->cash_receipt_type!=='expense' ? 'selected' : '' }}>소득공제용</option>
+                                <option value="expense" {{ $order->cash_receipt_type==='expense' ? 'selected' : '' }}>지출증빙용</option>
+                            </select>
+                            <input type="text" name="identity" class="ainput" style="flex:1" value="{{ $order->cash_receipt_identity }}" placeholder="휴대폰번호 / 사업자번호" required>
+                        </div>
+                        <div style="font-size:12.5px;color:#6b7794;margin-bottom:8px">
+                            @if(config('popbill.cashbill.simulate', true))<span class="pill pill-w">시뮬레이트 모드</span>
+                            @else<span style="color:#e0322d">※ 실발행 모드 — 국세청에 신고되는 현금영수증이 발행됩니다.</span>@endif
+                        </div>
+                        <button class="abtn abtn-pri" style="width:100%;justify-content:center">현금영수증 {{ $crs->count() ? '재발행' : '발행' }}</button>
+                    </form>
+                @endif
+            @endunless
+        </div>
+    </div>
+
+    <div class="adm-card">
+        <div class="h">안내 문자 <span style="font-weight:400;font-size:12px;color:#97a0b8">· {{ ['simulate'=>'시뮬레이트','redirect'=>'테스트번호 발송','live'=>'실발송'][config('popbill.sms.mode','simulate')] ?? config('popbill.sms.mode') }} 모드</span></div>
+        <div style="padding:14px 20px;font-size:13px">
+            @forelse($order->smsLogs()->get() as $log)
+                <div style="border-bottom:1px solid var(--a-line);padding:8px 0">
+                    <b>{{ $log->kindLabel() }}</b> · {{ $log->receiver }} · {{ $log->msg_type }}
+                    <span class="pill {{ in_array($log->status,['sent','redirected']) ? 'pill-y' : ($log->status==='simulated' ? 'pill-w' : 'pill-n') }}">{{ $log->statusLabel() }}</span>
+                    <span style="color:#97a0b8;font-size:12px">{{ $log->created_at->format('m.d H:i') }}</span>
+                    <div style="white-space:pre-line;color:#4b5570;font-size:12.5px;margin-top:4px">{{ $log->content }}</div>
+                    @if($log->error_message)<div style="color:#e0322d;font-size:12px">{{ $log->error_message }}</div>@endif
+                </div>
+            @empty
+                <p class="muted" style="margin:0">보낸 문자가 없습니다.</p>
+            @endforelse
         </div>
     </div>
 

@@ -80,7 +80,7 @@ class AuthController extends Controller
         if ($isBusiness && $request->hasFile('biz_cert')) {
             $user->storeBizCert($request->file('biz_cert'));
         }
-        \App\Jobs\SendNewMemberMail::dispatchAfterResponse($user->id, '웹');
+        \App\Jobs\NotifyAdmin::dispatchAfterResponse('signup', $user->id, '웹');   // 관리자 메일+문자
 
         // 가입 적립금 로그
         if ($signupPoint > 0) {

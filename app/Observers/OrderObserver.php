@@ -30,5 +30,10 @@ class OrderObserver
             'type'     => 'order',
             'order_id' => $order->id,
         ]);
+
+        // 배송 시작은 문자로도 (송장번호 포함). 결제 완료 문자는 markPaid 에서 보낸다.
+        if ($order->status === 'shipped') {
+            \App\Jobs\SendSmsNotice::dispatchAfterResponse('shipped', $order->id);
+        }
     }
 }

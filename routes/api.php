@@ -66,6 +66,8 @@ Route::prefix('v1')->group(function () {
         Route::get('/orders', [OrderController::class, 'index']);
         Route::get('/orders/{order}', [OrderController::class, 'show']);
         Route::post('/orders/{order}/cancel', [OrderController::class, 'cancel']);
+        Route::get('/orders/{order}/evidence/{type}/{id}', [OrderController::class, 'evidence'])
+            ->whereIn('type', ['tax_invoice', 'cash_receipt'])->whereNumber('id');
 
         // 마이페이지
         Route::get('/mypage', [MypageController::class, 'summary']);

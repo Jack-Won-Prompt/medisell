@@ -45,7 +45,7 @@ class AuthController extends Controller
         if ($isBusiness && $request->hasFile('biz_cert')) {
             $user->storeBizCert($request->file('biz_cert'));
         }
-        \App\Jobs\SendNewMemberMail::dispatchAfterResponse($user->id, '앱');
+        \App\Jobs\NotifyAdmin::dispatchAfterResponse('signup', $user->id, '앱');   // 관리자 메일+문자
 
         if ($user->point > 0) {
             $user->pointLogs()->create([

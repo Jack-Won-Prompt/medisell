@@ -36,6 +36,19 @@ class MypageController extends Controller
         return view('mypage.order', compact('order'));
     }
 
+    /** 증빙(세금계산서·현금영수증) 보기 — 팝빌 고객용 화면으로 이동 */
+    public function evidence(Request $request, Order $order, string $type, int $id)
+    {
+        abort_unless($order->user_id === $request->user()->id, 403);
+
+        $url = \App\Support\EvidenceViewer::url($order, $type, $id);
+        if (! $url) {
+            return back()->with('error', '이 증빙은 아직 볼 수 있는 원본이 없습니다.');
+        }
+
+        return redirect()->away($url);
+    }
+
     public function cancelOrder(Request $request, Order $order)
     {
         abort_unless($order->user_id === $request->user()->id, 403);

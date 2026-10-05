@@ -125,6 +125,34 @@ function msApplyCoupon(code){var i=document.querySelector('input[name=code][form
                         </select>
                     </div>
                     <div class="field"><label>입금자명</label><input type="text" name="depositor" class="input" value="{{ old('depositor', $user->name) }}"></div>
+
+                    {{-- 현금영수증 신청 (입금 확인 시 자동 발행) — 승인 병원 회원은 세금계산서가 자동 발행된다 --}}
+                    @if($user->isApprovedBusiness())
+                        <p class="muted" style="font-size:12.5px;margin:4px 0 0">※ 병원 회원 주문은 입금 확인 후 <b>전자세금계산서</b>가 자동 발행됩니다.</p>
+                    @else
+                        <div class="field" style="margin-bottom:6px">
+                            <label>현금영수증</label>
+                            @php($crType = old('cash_receipt_type', ''))
+                            <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:13.5px">
+                                <label class="inline"><input type="radio" name="cash_receipt_type" value="" {{ $crType==='' ? 'checked' : '' }}> 신청 안 함</label>
+                                <label class="inline"><input type="radio" name="cash_receipt_type" value="income" {{ $crType==='income' ? 'checked' : '' }}> 소득공제용(개인)</label>
+                                <label class="inline"><input type="radio" name="cash_receipt_type" value="expense" {{ $crType==='expense' ? 'checked' : '' }}> 지출증빙용(사업자)</label>
+                            </div>
+                        </div>
+                        <div class="field" id="cr-identity" style="{{ $crType ? '' : 'display:none' }}">
+                            <input type="text" name="cash_receipt_identity" class="input" inputmode="numeric" maxlength="20"
+                                   value="{{ old('cash_receipt_identity', $crType==='expense' ? '' : $user->phone) }}"
+                                   placeholder="소득공제: 휴대폰번호 / 지출증빙: 사업자등록번호">
+                            <small class="muted" style="font-size:12px">입금이 확인되면 자동으로 발행됩니다.</small>
+                        </div>
+                        <script>
+                            document.querySelectorAll('input[name=cash_receipt_type]').forEach(function (r) {
+                                r.addEventListener('change', function () {
+                                    document.getElementById('cr-identity').style.display = this.value ? '' : 'none';
+                                });
+                            });
+                        </script>
+                    @endif
                 </div>
                 <p id="toss-hint" class="muted" style="font-size:13px;margin:0">다음 화면에서 토스페이먼츠 결제창을 통해 카드 또는 가상계좌로 결제합니다.</p>
             </div>

@@ -111,6 +111,8 @@ class OrderController extends Controller
             'payment_method' => ['required', 'in:bank,toss,portone'],
             'depositor'      => ['required_if:payment_method,bank', 'nullable', 'string', 'max:50'],
             'bank'           => ['required_if:payment_method,bank', 'nullable', 'string', 'max:50'],
+            'cash_receipt_type'     => ['nullable', 'in:income,expense'],
+            'cash_receipt_identity' => ['required_with:cash_receipt_type', 'nullable', 'string', 'max:30', 'regex:/^[\d\-\s]{10,20}$/'],
             'point_used'     => ['nullable', 'integer', 'min:0'],
             'coupon_code'    => ['nullable', 'string', 'max:50'],
             'agent_buyer_id' => ['nullable', 'integer'],
@@ -165,6 +167,9 @@ class OrderController extends Controller
                 'total'          => $total,
                 'bank'           => $isPg ? null : ($data['bank'] ?? null),
                 'depositor'      => $isPg ? null : ($data['depositor'] ?? null),
+                'cash_receipt_type'     => ($isPg || $user->isApprovedBusiness()) ? null : ($data['cash_receipt_type'] ?? null),
+                'cash_receipt_identity' => ($isPg || $user->isApprovedBusiness() || empty($data['cash_receipt_type']))
+                    ? null : preg_replace('/\D/', '', (string) ($data['cash_receipt_identity'] ?? '')),
             ]);
 
             foreach ($items as $i) {
@@ -203,6 +208,11 @@ class OrderController extends Controller
 
         $order->load('items.product');
 
+        if (! $isPg) {
+            \App\Jobs\SendSmsNotice::dispatchAfterResponse('bank_guide', $order->id);
+        }
+        \App\Jobs\NotifyAdmin::dispatchAfterResponse('order', $order->id, '앱');
+
         return response()->json([
             'message'  => $isPg ? '주문이 생성되었습니다. 결제를 진행해주세요.' : '주문이 접수되었습니다.',
             'order'    => S::order($order, $request, true),
@@ -236,6 +246,17 @@ class OrderController extends Controller
         $order->load('items.product');
 
         return response()->json(['order' => S::order($order, $request, true)]);
+    }
+
+    /** 증빙 보기 URL — 앱은 받은 url 을 외부 브라우저/웹뷰로 연다 */
+    public function evidence(Request $request, Order $order, string $type, int $id)
+    {
+        abort_unless($order->user_id === $request->user()->id, 403);
+        $url = \App\Support\EvidenceViewer::url($order, $type, $id);
+
+        return $url
+            ? response()->json(['url' => $url])
+            : response()->json(['message' => '이 증빙은 아직 볼 수 있는 원본이 없습니다.'], 404);
     }
 
     public function cancel(Request $request, Order $order)

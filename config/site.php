@@ -24,8 +24,9 @@ return [
     // 결제가 확인된 모든 주문의 주문서(PDF) 수신처
     'order_mail_to' => ['3shub@naver.com', 'adm@linkthelab.co.kr'],
 
-    // 신규 회원가입 알림 수신처 (웹·앱 가입 모두)
-    'signup_mail_to' => ['adm@linkthelab.co.kr'],
+    // 관리자 알림 (회원가입·문의·실시간 상담·주문) — 이메일 + 문자
+    'admin_notify_emails' => ['adm@linkthelab.co.kr'],
+    'admin_notify_phones' => ['01042061393'],
 
     // 무통장 입금계좌
     'banks' => [

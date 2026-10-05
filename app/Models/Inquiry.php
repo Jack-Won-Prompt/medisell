@@ -27,6 +27,12 @@ class Inquiry extends Model
         return $this->belongsTo(User::class);
     }
 
+    protected static function booted(): void
+    {
+        // 웹·앱 어디서 접수되든 관리자에게 메일+문자
+        static::created(fn (Inquiry $q) => \App\Jobs\NotifyAdmin::dispatchAfterResponse('inquiry', $q->id));
+    }
+
     public function typeLabel(): string
     {
         return self::TYPES[$this->type] ?? $this->type;
