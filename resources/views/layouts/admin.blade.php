@@ -30,6 +30,7 @@
                 <div class="grp">주문/회원</div>
                 <a href="{{ route('admin.orders.index') }}" class="{{ request()->routeIs('admin.orders.*') ? 'on' : '' }}"><x-icon name="cart"/> 주문관리</a>
                 <a href="{{ route('admin.bank.index') }}" class="{{ request()->routeIs('admin.bank.*') ? 'on' : '' }}"><x-icon name="coin"/> 입금확인</a>
+                <a href="{{ route('admin.toss.index') }}" class="{{ request()->routeIs('admin.toss.*') ? 'on' : '' }}"><x-icon name="coin"/> 토스 결제 이력</a>
                 <a href="{{ route('admin.popbill.index') }}" class="{{ request()->routeIs('admin.popbill.*') ? 'on' : '' }}"><x-icon name="doc"/> 팝빌 테스트</a>
                 <a href="{{ route('admin.cashbacks.index') }}" class="{{ request()->routeIs('admin.cashbacks.*') ? 'on' : '' }}"><x-icon name="coin"/> 대행 캐쉬백</a>
                 <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'on' : '' }}"><x-icon name="user"/> 회원관리</a>

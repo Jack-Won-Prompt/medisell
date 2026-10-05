@@ -183,6 +183,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::delete('/reviews/{review}', [AdminReviewController::class, 'destroy'])->name('reviews.destroy');
 
     // 무통장 입금확인 (계좌조회)
+    // 토스페이먼츠 결제 이력 (조회 전용 — 토스 거래 내역 ↔ 주문 대사)
+    Route::get('/toss-payments', [\App\Http\Controllers\Admin\TossPaymentController::class, 'index'])->name('toss.index');
+    Route::get('/toss-payments/{paymentKey}', [\App\Http\Controllers\Admin\TossPaymentController::class, 'show'])->name('toss.show')
+        ->where('paymentKey', '[A-Za-z0-9_\-]+');
+
     // 팝빌 테스트 (문자·현금영수증·세금계산서 실발송/실발행·취소)
     Route::get('/popbill-test', [\App\Http\Controllers\Admin\PopbillTestController::class, 'index'])->name('popbill.index');
     Route::post('/popbill-test/sms', [\App\Http\Controllers\Admin\PopbillTestController::class, 'sms'])->name('popbill.sms');
