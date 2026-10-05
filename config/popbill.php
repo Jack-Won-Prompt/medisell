@@ -15,7 +15,8 @@ return [
     | 팝빌에 이 사업자로 가입돼 있어야 하고, 세금계산서는 공동인증서, 문자는 발신번호 승인이 필요하다.
     */
     'corp_num'        => env('POPBILL_CORP_NUM', env('POPBILL_SMS_CORP_NUM', env('POPBILL_TEST_CORP_NUM', ''))),
-    'user_id'         => env('POPBILL_USER_ID', env('POPBILL_TEST_USER_ID', '')),
+    // 발행 사업자의 팝빌 회원 아이디(링크더랩: linkthelab). 옛 TEST_USER_ID(leefriends)로 대체하면 '회원의 아이디가 아닙니다' 오류
+    'user_id'         => env('POPBILL_USER_ID', ''),
 
     /*
     | 고객 안내 문자
@@ -55,7 +56,7 @@ return [
     // 공급자(발행자) — 위 corp_num 과 같은 사업자. 상호·대표·주소·업태·종목도 그 사업자의 사업자등록증과 같아야 한다.
     'supplier' => [
         'corp_num'  => env('POPBILL_CORP_NUM', env('POPBILL_SMS_CORP_NUM', env('POPBILL_TEST_CORP_NUM', ''))), // 숫자만
-        'user_id'   => env('POPBILL_USER_ID', env('POPBILL_TEST_USER_ID', '')),                                // 팝빌 회원 아이디
+        'user_id'   => env('POPBILL_USER_ID', ''),                                                             // 팝빌 회원 아이디
         'corp_name' => env('COMPANY_CORP_NAME', '메디셀'),
         'ceo_name'  => env('COMPANY_CEO_NAME', '최연아'),
         'addr'      => env('COMPANY_ADDR', '서울특별시 강서구 마곡중앙로 161-8, C동 5층 502호'),

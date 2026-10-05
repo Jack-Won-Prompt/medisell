@@ -197,7 +197,7 @@ class TaxInvoiceIssueService
     {
         $inv = $this->popbill->newInvoice();
         $inv->writeDate = now()->format('Ymd');
-        $inv->chargeDirection = '정발행';
+        $inv->chargeDirection = '정과금';   // 과금방향(정과금·역과금) — '정발행' 을 넣으면 팝빌 -99910010 매핑 오류
         $inv->issueType = '정발행';
         $inv->purposeType = '영수';
         $inv->taxType = $kind === 'plain' ? '면세' : '과세';
