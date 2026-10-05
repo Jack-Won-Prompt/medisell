@@ -21,6 +21,7 @@
     <meta property="og:url" content="@yield('canonical', $canonicalUrl)">
     <meta property="og:image" content="@yield('og_image', asset('images/og-default.png'))">
     <meta property="og:locale" content="ko_KR">
+    <link rel="alternate" type="application/rss+xml" title="{{ $site['name'] }} RSS" href="{{ rtrim(config('app.url'), '/') }}/rss">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
     <link rel="icon" href="{{ asset('images/logo-mark.svg') }}">
