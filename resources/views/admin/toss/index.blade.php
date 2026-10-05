@@ -61,8 +61,7 @@
                         @else<span style="color:#16a34a;font-size:12px">일치</span>@endif
                     </td>
                     <td style="white-space:nowrap">
-                        @if(! empty($r['paymentKey']))<a href="{{ route('admin.toss.show', $r['paymentKey']) }}" class="abtn abtn-ghost abtn-sm">상세</a>@endif
-                        @if(! empty($r['receiptUrl']))<a href="{{ $r['receiptUrl'] }}" target="_blank" rel="noopener" class="abtn abtn-ghost abtn-sm">영수증</a>@endif
+                        @if(! empty($r['paymentKey']))<a href="{{ route('admin.toss.show', $r['paymentKey']) }}" class="abtn abtn-ghost abtn-sm js-toss-detail" data-url="{{ route('admin.toss.show', [$r['paymentKey'], 'partial' => 1]) }}">상세</a>@endif
                     </td>
                 </tr>
             @empty
@@ -77,4 +76,34 @@
         @endif
     </div>
 </div>
+{{-- 결제 상세 팝업 --}}
+<div id="toss-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(15,23,42,.45);overflow-y:auto;padding:40px 16px">
+    <div style="max-width:980px;margin:0 auto;background:var(--a-bg, #f4f6fa);border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.25)">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--a-line, #e5e9f2);background:#fff;border-radius:14px 14px 0 0">
+            <b style="font-size:15px">토스 결제 상세</b>
+            <button type="button" id="toss-modal-close" class="abtn abtn-ghost abtn-sm" aria-label="닫기">✕ 닫기</button>
+        </div>
+        <div id="toss-modal-body" style="padding:20px"></div>
+    </div>
+</div>
+<script>
+(function () {
+    var modal = document.getElementById('toss-modal'), body = document.getElementById('toss-modal-body');
+    function close() { modal.style.display = 'none'; body.innerHTML = ''; document.body.style.overflow = ''; }
+    document.querySelectorAll('.js-toss-detail').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+            e.preventDefault();
+            body.innerHTML = '<div style="padding:40px;text-align:center;color:#6b7794">불러오는 중…</div>';
+            modal.style.display = 'block'; document.body.style.overflow = 'hidden';
+            fetch(a.dataset.url, { headers: { 'X-Requested-With': 'XMLHttpRequest' }, credentials: 'same-origin' })
+                .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+                .then(function (html) { body.innerHTML = html; })
+                .catch(function (err) { body.innerHTML = '<div style="padding:30px;color:#e0322d">상세를 불러오지 못했습니다. (' + err.message + ')</div>'; });
+        });
+    });
+    document.getElementById('toss-modal-close').addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.style.display === 'block') close(); });
+})();
+</script>
 @endsection

@@ -95,12 +95,13 @@ class TossPaymentController extends Controller
         ]);
     }
 
-    public function show(string $paymentKey)
+    /** 결제 상세 — ?partial=1 이면 목록 팝업에 넣을 조각만, 아니면 전체 페이지 */
+    public function show(Request $request, string $paymentKey)
     {
         $p = $this->toss->payment($paymentKey);
         $order = empty($p['error']) ? Order::where('order_no', $p['orderId'] ?? '')->first() : null;
 
-        return view('admin.toss.show', [
+        return view($request->boolean('partial') ? 'admin.toss._detail' : 'admin.toss.show', [
             'p'        => $p,
             'order'    => $order,
             'issues'   => empty($p['error']) ? $this->reconcile(['status' => $p['status'] ?? null, 'amount' => $p['totalAmount'] ?? 0], $order) : [],
