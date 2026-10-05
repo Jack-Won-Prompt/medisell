@@ -34,6 +34,7 @@ class TossPaymentController extends Controller
             'to'     => ['nullable', 'date'],
             'status' => ['nullable', 'string', 'max:30'],
             'issue'  => ['nullable', 'boolean'],
+            'all'    => ['nullable', 'boolean'],   // 메디셀 주문이 없는 거래(테스트·삭제된 주문)도 보기
             'after'  => ['nullable', 'string', 'max:100'],
         ]);
         $from = Carbon::parse($data['from'] ?? now()->subDays(6)->toDateString())->startOfDay();
@@ -58,6 +59,14 @@ class TossPaymentController extends Controller
             return $t + ['order' => $order, 'issues' => $this->reconcile($t, $order)];
         });
 
+        // 기본은 메디셀에 주문이 있는 거래만 — 테스트·정리된 주문의 토스 거래는 숨긴다
+        $hidden = 0;
+        if (empty($data['all'])) {
+            $hidden = $rows->whereNull('order')->count();
+            $rows = $rows->whereNotNull('order');
+            $items = $rows->map(fn ($r) => array_diff_key($r, ['order' => 1, 'issues' => 1]));
+        }
+
         if (! empty($data['status'])) {
             $rows = $rows->where('status', $data['status']);
         }
@@ -80,6 +89,7 @@ class TossPaymentController extends Controller
             'to'        => $to,
             'filters'   => $data,
             'nextAfter' => $nextAfter,
+            'hidden'    => $hidden,
             'labels'    => self::STATUS_LABELS,
             'testMode'  => (bool) config('services.toss.test_mode'),
         ]);

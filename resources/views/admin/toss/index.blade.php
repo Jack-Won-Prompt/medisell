@@ -18,8 +18,12 @@
                     @foreach($labels as $k => $v)<option value="{{ $k }}" {{ ($filters['status'] ?? '')===$k ? 'selected' : '' }}>{{ $v }}</option>@endforeach
                 </select></div>
             <label class="acheck" style="display:flex;align-items:center;gap:6px;margin-bottom:8px"><input type="checkbox" name="issue" value="1" {{ ! empty($filters['issue']) ? 'checked' : '' }}> 불일치만</label>
+            <label class="acheck" style="display:flex;align-items:center;gap:6px;margin-bottom:8px"><input type="checkbox" name="all" value="1" {{ ! empty($filters['all']) ? 'checked' : '' }}> 주문 없는 거래도 보기</label>
             <button class="abtn abtn-pri">조회</button>
         </form>
+        @if($hidden)
+            <div class="ahint" style="margin-top:8px;color:#b45309">메디셀 주문이 없는 토스 거래 {{ number_format($hidden) }}건(테스트·정리된 주문)은 숨겼습니다. '주문 없는 거래도 보기'로 볼 수 있습니다.</div>
+        @endif
         <div class="ahint" style="margin-top:8px">최대 92일. 토스 거래 내역(주문번호 = 메디셀 주문번호)을 메디셀 주문과 맞춰 보고 금액·상태가 다르면 표시합니다. 취소·환불은 주문 관리에서 하세요.</div>
     </div>
 </div>
