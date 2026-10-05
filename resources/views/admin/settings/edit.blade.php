@@ -107,6 +107,22 @@
         </div>
     </div>
 
+    {{-- 검색엔진 등록 --}}
+    <div class="adm-card">
+        <div class="h">검색엔진 등록 (네이버 서치어드바이저)</div>
+        <div style="padding:20px">
+            <div class="afield" style="margin-bottom:0">
+                <label>사이트 소유확인 코드</label>
+                <input type="text" name="naver_site_verification" class="ainput" value="{{ old('naver_site_verification', $site['naver_site_verification'] ?? '') }}"
+                       placeholder='&lt;meta name="naver-site-verification" content="..."&gt; 태그를 통째로 붙여넣어도 됩니다'>
+                <div class="ahint">
+                    서치어드바이저 › 사이트 등록 › 소유확인에서 <b>HTML 태그</b> 방식을 고르고 나오는 태그를 붙여넣은 뒤 저장 → 서치어드바이저에서 [소유확인].
+                    사이트맵: <code>{{ rtrim(config('app.url'), '/') }}/sitemap.xml</code> · robots.txt: <code>{{ rtrim(config('app.url'), '/') }}/robots.txt</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- 배송 / 적립 정책 --}}
     <div class="adm-card">
         <div class="h">배송 / 적립 정책</div>

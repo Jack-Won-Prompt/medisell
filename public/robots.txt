@@ -1,2 +1,11 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin
+Disallow: /mypage
+Disallow: /cart
+Disallow: /checkout
+Disallow: /order/
+Disallow: /payment/
+Disallow: /search
+
+Sitemap: https://medisell.co.kr/sitemap.xml

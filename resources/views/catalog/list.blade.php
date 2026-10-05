@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('title', $title.' — 메디셀')
+@if($category)
+    @section('desc', $category->name.' — 병의원 의료소모품 '.$category->name.' 상품을 메디셀에서 합리적인 가격에 구매하세요.')
+@elseif(isset($keyword))
+    {{-- 검색 결과 페이지는 검색엔진 색인에서 제외 (중복·얇은 페이지 방지) --}}
+    @push('head')<meta name="robots" content="noindex, follow">@endpush
+@endif
 
 @section('content')
 <div class="page-head">

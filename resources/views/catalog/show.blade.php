@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('title', $product->name.' — 메디셀')
+@section('desc', \Illuminate\Support\Str::limit(trim($product->name.($product->spec ? ' · '.$product->spec : '').($product->maker ? ' · '.$product->maker : '').' · 판매단위 '.$product->unit.' — 의료소모품 전문 쇼핑몰 메디셀'), 155))
+@section('og_type', 'product')
+@if($product->thumbnail)
+    @section('og_image', $product->thumbnail)
+@endif
 
 @php
     $user = auth()->user();

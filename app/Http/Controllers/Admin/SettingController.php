@@ -38,6 +38,8 @@ class SettingController extends Controller
             // 모바일 앱 스토어 — 비워두면 사이트 하단 앱 다운로드 영역이 숨는다
             'app_android_url' => ['nullable', 'url', 'max:300'],
             'app_ios_url'     => ['nullable', 'url', 'max:300'],
+            // 네이버 서치어드바이저 소유확인 코드 — <meta> 태그를 통째로 붙여넣어도 content 값만 저장
+            'naver_site_verification' => ['nullable', 'string', 'max:300'],
             'banks'              => ['array'],
             'banks.*.bank'       => ['nullable', 'string', 'max:50'],
             'banks.*.account'    => ['nullable', 'string', 'max:60'],
@@ -57,6 +59,12 @@ class SettingController extends Controller
         // 인기검색어 콤마 분리
         $keywords = collect(explode(',', (string) $request->input('popular_keywords', '')))
             ->map(fn ($k) => trim($k))->filter()->values()->all();
+
+        $code = trim((string) ($data['naver_site_verification'] ?? ''));
+        if (preg_match('/content\s*=\s*["\']([^"\']+)["\']/i', $code, $m)) {
+            $code = $m[1];
+        }
+        $data['naver_site_verification'] = preg_replace('/[^A-Za-z0-9_\-]/', '', $code);
 
         $flat = array_diff_key($data, array_flip(['banks', 'popular_keywords']));
 

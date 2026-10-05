@@ -105,6 +105,7 @@ Route::view('/guide/delivery', 'guide.delivery')->name('guide.delivery'); // 당
 Route::view('/guide/payment', 'guide.payment')->name('guide.payment');   // 간편결제 안내
 
 // ===== 약관 / 개인정보 / 계정삭제 (구글 플레이 심사용 — 모두 비로그인 접근) =====
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
 Route::get('/terms', [\App\Http\Controllers\LegalController::class, 'terms'])->name('legal.terms');
 Route::get('/privacy', [\App\Http\Controllers\LegalController::class, 'privacy'])->name('legal.privacy');
 Route::get('/account-deletion', [\App\Http\Controllers\LegalController::class, 'accountDeletion'])->name('legal.account-deletion');

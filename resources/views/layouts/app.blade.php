@@ -8,6 +8,19 @@
     <meta name="pusher-cluster" content="{{ config('broadcasting.connections.pusher.options.cluster') }}">
     <title>@yield('title', $site['name'].' — '.$site['tagline'])</title>
     <meta name="description" content="@yield('desc', '의료소모품 전문 쇼핑몰 메디셀 — 거즈·주사기·수액·소독·글러브 등 병의원 의료소모품을 합리적인 가격에 공급합니다.')">
+    {{-- 검색엔진 소유확인(관리자 사이트설정) · 대표 URL · 공유 미리보기 --}}
+    @if(! empty($site['naver_site_verification']))
+    <meta name="naver-site-verification" content="{{ $site['naver_site_verification'] }}">
+    @endif
+    @php $canonicalUrl = rtrim(config('app.url'), '/').'/'.ltrim(request()->path() === '/' ? '' : request()->path(), '/'); @endphp
+    <link rel="canonical" href="@yield('canonical', $canonicalUrl)">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:site_name" content="{{ $site['name'] }}">
+    <meta property="og:title" content="@yield('title', $site['name'].' — '.$site['tagline'])">
+    <meta property="og:description" content="@yield('desc', '의료소모품 전문 쇼핑몰 메디셀 — 거즈·주사기·수액·소독·글러브 등 병의원 의료소모품을 합리적인 가격에 공급합니다.')">
+    <meta property="og:url" content="@yield('canonical', $canonicalUrl)">
+    <meta property="og:image" content="@yield('og_image', asset('images/og-default.png'))">
+    <meta property="og:locale" content="ko_KR">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
     <link rel="icon" href="{{ asset('images/logo-mark.svg') }}">
