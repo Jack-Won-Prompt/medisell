@@ -26,15 +26,15 @@
         <div class="h">결제수단 상세</div>
         <div style="padding:16px 20px;font-size:13.5px;line-height:2">
             @if(! empty($p['card']))
-                <b>카드</b> {{ $p['card']['issuerCode'] ?? '' }} {{ $p['card']['number'] ?? '' }} · {{ $p['card']['cardType'] ?? '' }}/{{ $p['card']['ownerType'] ?? '' }}<br>
+                <b>카드</b> <span title="카드사 코드 {{ $p['card']['issuerCode'] ?? '' }}">{{ \App\Support\TossCodes::card($p['card']['issuerCode'] ?? null) }}</span> {{ $p['card']['number'] ?? '' }} · {{ $p['card']['cardType'] ?? '' }}/{{ $p['card']['ownerType'] ?? '' }}<br>
                 <b>할부</b> {{ (int) ($p['card']['installmentPlanMonths'] ?? 0) ?: '일시불' }}{{ ($p['card']['installmentPlanMonths'] ?? 0) ? '개월' : '' }} · 승인번호 {{ $p['card']['approveNo'] ?? '-' }}<br>
             @endif
             @if(! empty($p['easyPay']))<b>간편결제</b> {{ $p['easyPay']['provider'] ?? '' }} {{ number_format((int) ($p['easyPay']['amount'] ?? 0)) }}원<br>@endif
             @if(! empty($p['virtualAccount']))
-                <b>가상계좌</b> {{ $p['virtualAccount']['bankCode'] ?? '' }} {{ $p['virtualAccount']['accountNumber'] ?? '' }}<br>
+                <b>가상계좌</b> <span title="은행 코드 {{ $p['virtualAccount']['bankCode'] ?? '' }}">{{ \App\Support\TossCodes::bank($p['virtualAccount']['bankCode'] ?? null) }}</span> {{ $p['virtualAccount']['accountNumber'] ?? '' }}<br>
                 <b>입금자</b> {{ $p['virtualAccount']['customerName'] ?? '-' }} · 기한 {{ $fmt($p['virtualAccount']['dueDate'] ?? null) }} · {{ $p['virtualAccount']['settlementStatus'] ?? '' }}<br>
             @endif
-            @if(! empty($p['transfer']))<b>계좌이체</b> {{ $p['transfer']['bankCode'] ?? '' }} · {{ $p['transfer']['settlementStatus'] ?? '' }}<br>@endif
+            @if(! empty($p['transfer']))<b>계좌이체</b> <span title="은행 코드 {{ $p['transfer']['bankCode'] ?? '' }}">{{ \App\Support\TossCodes::bank($p['transfer']['bankCode'] ?? null) }}</span> · {{ $p['transfer']['settlementStatus'] ?? '' }}<br>@endif
             @if(! empty($p['cashReceipt']))<b>현금영수증</b> {{ $p['cashReceipt']['type'] ?? '' }} · {{ $p['cashReceipt']['issueNumber'] ?? '' }}<br>@endif
             @if(! empty($p['failure']))<b style="color:#e0322d">실패</b> [{{ $p['failure']['code'] ?? '' }}] {{ $p['failure']['message'] ?? '' }}<br>@endif
             @if(empty($p['card']) && empty($p['easyPay']) && empty($p['virtualAccount']) && empty($p['transfer']))<span class="muted">추가 정보 없음</span>@endif
