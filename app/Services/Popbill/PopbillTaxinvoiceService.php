@@ -54,6 +54,19 @@ class PopbillTaxinvoiceService
         return new TaxinvoiceDetail();
     }
 
+    /** 공동인증서 — [유효 여부 메시지, 만료일시(yyyyMMddHHmmss), 인증서 주체] */
+    public function certStatus(string $corpNum, ?string $userId = null): array
+    {
+        try {
+            $check = $this->api()->CheckCertValidation($corpNum, $userId);
+            $info = $this->api()->GetTaxCertInfo($corpNum, $userId);
+
+            return [$check->message, $info->expireDT, $info->subjectDN];
+        } catch (PopbillException $e) {
+            $this->fail($e);
+        }
+    }
+
     public function getBalance(string $corpNum): float
     {
         try {

@@ -33,6 +33,31 @@ class PopbillMessageService
         return $this->api;
     }
 
+    /** 승인된 발신번호 목록 ['번호' => 상태] (상태 1 = 승인) */
+    public function senderNumbers(): array
+    {
+        $corp = preg_replace('/\D/', '', (string) config('popbill.corp_num'));
+        $out = [];
+        foreach ($this->api()->GetSenderNumberList($corp, config('popbill.user_id') ?: null) as $s) {
+            $out[$s->number] = (int) $s->state;
+        }
+
+        return $out;
+    }
+
+    /** [파트너 포인트, 회원 포인트, SMS 단가, LMS 단가] */
+    public function balances(): array
+    {
+        $corp = preg_replace('/\D/', '', (string) config('popbill.corp_num'));
+
+        return [
+            $this->api()->GetPartnerBalance($corp),
+            $this->api()->GetBalance($corp),
+            $this->api()->GetUnitCost($corp, \Linkhub\Popbill\ENumMessageType::SMS),
+            $this->api()->GetUnitCost($corp, \Linkhub\Popbill\ENumMessageType::LMS),
+        ];
+    }
+
     public static function msgType(string $content): string
     {
         return strlen((string) @iconv('UTF-8', 'EUC-KR//IGNORE', $content)) > self::SMS_MAX_BYTES ? 'LMS' : 'SMS';
@@ -42,9 +67,10 @@ class PopbillMessageService
      * 한 건 발송.
      * 반환: ['status' => sent|simulated|redirected, 'receiver' => 실제 받는 번호, 'msg_type' => SMS|LMS, 'receipt_num' => ?string]
      */
-    public function send(string $to, string $content, string $subject = '[메디셀] 안내'): array
+    public function send(string $to, string $content, string $subject = '[메디셀] 안내', ?string $forceMode = null): array
     {
-        $mode = config('popbill.sms.mode', 'simulate');
+        // $forceMode: 관리자 팝빌 테스트 화면처럼 사이트 설정과 무관하게 실발송할 때 'live'
+        $mode = $forceMode ?? config('popbill.sms.mode', 'simulate');
         $type = self::msgType($content);
         $receiver = $to;
         $status = 'sent';

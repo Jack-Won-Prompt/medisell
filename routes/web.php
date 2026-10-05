@@ -183,6 +183,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::delete('/reviews/{review}', [AdminReviewController::class, 'destroy'])->name('reviews.destroy');
 
     // 무통장 입금확인 (계좌조회)
+    // 팝빌 테스트 (문자·현금영수증·세금계산서 실발송/실발행·취소)
+    Route::get('/popbill-test', [\App\Http\Controllers\Admin\PopbillTestController::class, 'index'])->name('popbill.index');
+    Route::post('/popbill-test/sms', [\App\Http\Controllers\Admin\PopbillTestController::class, 'sms'])->name('popbill.sms');
+    Route::post('/popbill-test/cashbill', [\App\Http\Controllers\Admin\PopbillTestController::class, 'cashbill'])->name('popbill.cashbill');
+    Route::post('/popbill-test/taxinvoice', [\App\Http\Controllers\Admin\PopbillTestController::class, 'taxinvoice'])->name('popbill.taxinvoice');
+    Route::post('/popbill-test/{test}/cancel', [\App\Http\Controllers\Admin\PopbillTestController::class, 'cancel'])->name('popbill.cancel');
+
     Route::get('/bank-deposits', [AdminBankDepositController::class, 'index'])->name('bank.index');
     Route::post('/bank-deposits/collect', [AdminBankDepositController::class, 'collect'])->name('bank.collect');
     Route::post('/bank-deposits/auto-match', [AdminBankDepositController::class, 'autoMatch'])->name('bank.automatch');
