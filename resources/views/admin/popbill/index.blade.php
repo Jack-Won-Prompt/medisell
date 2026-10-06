@@ -26,8 +26,14 @@
     </div>
 </div>
 
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:20px">
-    {{-- 문자 --}}
+<div style="margin-top:20px">
+<div class="utabs" data-tabs="popbill" data-default="sms">
+    <button data-tab="sms">문자 보내기</button>
+    <button data-tab="cashbill">현금영수증 발행</button>
+    <button data-tab="taxinvoice">세금계산서 발행</button>
+</div>
+<div class="upanel" data-panel="sms">
+    <div style="max-width:560px">
     <div class="adm-card">
         <div class="h">문자 보내기</div>
         <form method="POST" action="{{ route('admin.popbill.sms') }}" style="padding:20px" onsubmit="return confirm('문자를 실제로 보냅니다. 계속할까요?')">
@@ -38,8 +44,10 @@
             <button class="abtn abtn-pri" style="width:100%;justify-content:center">문자 보내기</button>
         </form>
     </div>
-
-    {{-- 현금영수증 --}}
+    </div>
+</div>
+<div class="upanel" data-panel="cashbill">
+    <div style="max-width:560px">
     <div class="adm-card">
         <div class="h">현금영수증 발행</div>
         <form method="POST" action="{{ route('admin.popbill.cashbill') }}" style="padding:20px" onsubmit="return confirm('현금영수증을 실제로 발행합니다. 테스트 후 아래 목록에서 [취소]를 눌러 주세요. 계속할까요?')">
@@ -54,8 +62,10 @@
             <button class="abtn abtn-pri" style="width:100%;justify-content:center">현금영수증 발행</button>
         </form>
     </div>
-
-    {{-- 세금계산서 --}}
+    </div>
+</div>
+<div class="upanel" data-panel="taxinvoice">
+    <div style="max-width:560px">
     <div class="adm-card">
         <div class="h">세금계산서 발행</div>
         <form method="POST" action="{{ route('admin.popbill.taxinvoice') }}" style="padding:20px" onsubmit="return confirm('세금계산서를 실제로 발행합니다. 오늘 안에 아래 목록에서 [취소]를 누르면 국세청에 남지 않습니다. 계속할까요?')">
@@ -71,6 +81,8 @@
             <button class="abtn abtn-pri" style="width:100%;justify-content:center">세금계산서 발행</button>
         </form>
     </div>
+    </div>
+</div>
 </div>
 
 <div class="adm-card" style="margin-top:20px">

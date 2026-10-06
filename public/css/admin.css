@@ -75,3 +75,15 @@
 .apagination a,.apagination span{min-width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:7px;border:1px solid var(--a-line);background:#fff;font-size:13.5px;color:#6b7794}
 .apagination .active span{background:var(--a-navy);color:#fff;border-color:var(--a-navy)}
 @media(max-width:900px){.adm-side{display:none}.adm-stats{grid-template-columns:repeat(2,1fr)}}
+/* 가로 탭 — 영역이 나뉜 관리자 화면 공용.
+   <div class="utabs" data-tabs="키" data-default="탭"><button data-tab="탭">…</button></div> + 같은 부모 아래 <div class="upanel" data-panel="탭">…</div>.
+   동작은 layouts/admin 의 스크립트. 패널은 스크립트가 부모에 .tabs-on 을 붙인 뒤에만 숨긴다 — 스크립트가 실패해도 모든 영역이 그대로 보이게 */
+.utabs{display:flex;gap:4px;border-bottom:2px solid var(--a-line);margin:0 0 20px;overflow-x:auto}
+.utabs button{background:none;border:0;padding:12px 18px;font-size:14px;font-weight:600;color:#6b7794;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;display:flex;align-items:center;gap:6px;font-family:inherit}
+.utabs button:hover{color:var(--a-ink)}
+.utabs button.on{color:var(--a-navy);border-bottom-color:var(--a-navy)}
+.utabs .dot{width:7px;height:7px;border-radius:50%;background:#f59e0b;display:inline-block}
+.tabs-on>.upanel{display:none}
+.tabs-on>.upanel.on{display:block}
+.ugrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media(max-width:1000px){.ugrid{grid-template-columns:1fr}}

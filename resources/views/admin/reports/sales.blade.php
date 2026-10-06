@@ -19,7 +19,12 @@
     <div class="adm-stat"><span class="ic"><x-icon name="close"/></span><div><div class="v">{{ number_format($summary['cancelled']) }}</div><div class="l">취소 주문</div></div></div>
 </div>
 
-<div style="display:grid;grid-template-columns:1.6fr 1fr;gap:20px;align-items:start">
+<div class="utabs" data-tabs="sales" data-default="daily">
+    <button data-tab="daily">일별 매출</button>
+    <button data-tab="top">인기 상품 TOP 10</button>
+    <button data-tab="status">주문 상태 분포</button>
+</div>
+<div class="upanel" data-panel="daily">
     {{-- 일별 매출 차트 --}}
     <div class="adm-card">
         <div class="h">일별 매출 ({{ $from }} ~ {{ $to }})</div>
@@ -34,22 +39,10 @@
             </div>
         </div>
     </div>
-
-    {{-- 상태 분포 --}}
-    <div class="adm-card">
-        <div class="h">주문 상태 분포</div>
-        <table class="atable">
-            <tbody>
-            @foreach($statuses as $k => $label)
-                <tr><td>{{ $label }}</td><td style="text-align:right"><b>{{ number_format($statusDist[$k] ?? 0) }}</b> 건</td></tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
 </div>
-
+<div class="upanel" data-panel="top">
 {{-- 인기 상품 --}}
-<div class="adm-card" style="margin-top:20px">
+<div class="adm-card">
     <div class="h">인기 상품 TOP 10 (매출 기준)</div>
     <table class="atable">
         <thead><tr><th style="width:50px">순위</th><th>상품명</th><th style="width:120px;text-align:right">판매수량</th><th style="width:140px;text-align:right">매출액</th></tr></thead>
@@ -66,6 +59,22 @@
         @endforelse
         </tbody>
     </table>
+</div>
+</div>
+<div class="upanel" data-panel="status">
+    <div style="max-width:520px">
+    {{-- 상태 분포 --}}
+    <div class="adm-card">
+        <div class="h">주문 상태 분포</div>
+        <table class="atable">
+            <tbody>
+            @foreach($statuses as $k => $label)
+                <tr><td>{{ $label }}</td><td style="text-align:right"><b>{{ number_format($statusDist[$k] ?? 0) }}</b> 건</td></tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+    </div>
 </div>
 
 <style>
