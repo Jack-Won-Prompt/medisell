@@ -23,6 +23,7 @@ Route::prefix('v1')->group(function () {
     // ===== 공개(비로그인 허용, 로그인 시 회원가 반영) =====
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::post('/auth/login', [AuthController::class, 'login']);
+    Route::post('/auth/forgot-password', [AuthController::class, 'forgotPassword'])->middleware('throttle:6,1');
 
     Route::get('/settings', [SettingController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index']);
@@ -46,6 +47,7 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/auth/me', [AuthController::class, 'me']);
         Route::post('/auth/logout', [AuthController::class, 'logout']);
+        Route::post('/account/deletion-request', [AuthController::class, 'deletionRequest']);
 
         Route::post('/product/{product}/review', [CatalogController::class, 'storeReview']);
 
