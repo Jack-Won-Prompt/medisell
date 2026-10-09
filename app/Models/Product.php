@@ -168,6 +168,38 @@ class Product extends Model
         return $this->price;
     }
 
+    /**
+     * priceFor() 가 어느 가격을 썼는지 — 화면 이름을 나누는 데 쓴다.
+     * member(회원 개별 전용가) / account(거래처 전용가) / rate(거래처 할인율) / common(병원 회원 할인가) / list(정가)
+     */
+    public function priceSourceFor(?User $user): string
+    {
+        if (! $user || ! $user->isApprovedBusiness()) {
+            return 'list';
+        }
+        if (isset($user->priceMap()[$this->id])) {
+            return 'member';
+        }
+        if (isset($user->accountPriceMap()[$this->id])) {
+            return 'account';
+        }
+        if ($user->accountDiscountRate() > 0 && $this->price > 0) {
+            return 'rate';
+        }
+
+        return $this->member_price ? 'common' : 'list';
+    }
+
+    /** 쇼핑몰에 붙일 가격 이름 — 상품 공통 할인가는 '병원 회원 할인가', 회원·거래처별 가격은 '전용가' */
+    public function priceLabelFor(?User $user): string
+    {
+        return match ($this->priceSourceFor($user)) {
+            'member', 'account', 'rate' => '전용가',
+            'common' => '병원 회원 할인가',
+            default  => '판매가',
+        };
+    }
+
     /** 해당 회원에게 병원 전용가(정가보다 낮은 가격)가 적용되는지 */
     public function hasSpecialPriceFor(?User $user): bool
     {

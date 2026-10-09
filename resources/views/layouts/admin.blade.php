@@ -46,6 +46,9 @@
                     <div class="grp">{{ $gname }}</div>
                     @foreach($items as $key => $r)
                         <a href="{{ route('admin.index', $key) }}" class="{{ $cur === $key ? 'on' : '' }}"><x-icon :name="$r['icon']"/> {{ $r['label'] }}</a>
+                        @if($key === 'products')
+                            <a href="{{ route('admin.product-prices.index') }}" class="{{ request()->routeIs('admin.product-prices.*') ? 'on' : '' }}"><x-icon name="coin"/> 가격 일괄 관리</a>
+                        @endif
                     @endforeach
                 @endforeach
 

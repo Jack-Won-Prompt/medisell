@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->middleware(\App\Http\Middleware\UseSanctumGuard::class)->group(function () {
 
     // ===== 공개(비로그인 허용, 로그인 시 회원가 반영) =====
     Route::post('/auth/register', [AuthController::class, 'register']);

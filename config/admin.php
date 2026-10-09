@@ -56,7 +56,7 @@ return [
     'products' => [
         'label' => '상품', 'model' => Product::class, 'icon' => 'box', 'group' => '상품관리',
         'order' => ['id', 'desc'], 'with' => ['category', 'brand'],
-        'columns' => ['thumbnail' => '이미지', 'name' => '상품명', 'category.name' => '카테고리', 'price' => '정가', 'member_price' => '회원가', 'stock' => '재고', 'is_active' => '판매'],
+        'columns' => ['thumbnail' => '이미지', 'name' => '상품명', 'category.name' => '카테고리', 'price' => '정가', 'member_price' => '병원 회원 할인가', 'stock' => '재고', 'is_active' => '판매'],
         'fields' => [
             ['name' => 'category_id', 'label' => '카테고리', 'type' => 'select', 'required' => true,
                 'options_from' => ['model' => Category::class, 'key' => 'id', 'label' => 'name', 'order' => 'sort_order']],
@@ -70,7 +70,7 @@ return [
             ['name' => 'maker', 'label' => '제조사', 'type' => 'text'],
             ['name' => 'price', 'label' => '정가(원)', 'type' => 'number', 'required' => true],
             ['name' => 'cost', 'label' => '매입단가(원, 참고용·비노출)', 'type' => 'number', 'hint' => '마진 참고용. 고객 화면에는 표시되지 않습니다.'],
-            ['name' => 'member_price', 'label' => '기본 병원가(원, 전용가 미설정 시 적용)', 'type' => 'number'],
+            ['name' => 'member_price', 'label' => '병원 회원 할인가(원)', 'type' => 'number', 'hint' => '승인된 병원 회원 모두에게 적용되는 상품별 할인가. 비워 두면 정가로 판매. 회원 개별 전용가·거래처 단가가 있으면 그쪽이 우선합니다. 여러 상품은 「가격 일괄 관리」에서 한 번에.'],
             ['name' => 'tax_type', 'label' => '과세구분', 'type' => 'select', 'required' => true,
                 'options' => ['taxable' => '과세', 'exempt' => '면세']],
             ['name' => 'stock', 'label' => '재고', 'type' => 'number'],

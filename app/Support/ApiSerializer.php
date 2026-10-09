@@ -81,6 +81,7 @@ class ApiSerializer
             'list_price'  => (int) $p->price,              // 정가
             'discount_rate' => $p->discountRateFor($price),
             'has_special' => $p->hasSpecialPriceFor($user),
+            'price_label' => $p->hasSpecialPriceFor($user) ? $p->priceLabelFor($user) : '판매가',   // 병원 회원 할인가 / 전용가 / 판매가
             'is_quote'    => $price <= 0,                  // 견적(가격문의) 상품
             'stock'       => (int) $p->stock,
             'is_best'     => (bool) $p->is_best,

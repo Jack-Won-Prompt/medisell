@@ -237,6 +237,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::put('/inquiries/{inquiry}/answer', [AdminInquiryController::class, 'answer'])->name('inquiries.answer');
     Route::delete('/inquiries/{inquiry}', [AdminInquiryController::class, 'destroy'])->name('inquiries.destroy');
 
+    // 가격 일괄 관리 (정가·병원 회원 할인가·재고) — 제네릭 /{resource} 보다 먼저
+    Route::get('/product-prices', [\App\Http\Controllers\Admin\ProductPriceController::class, 'index'])->name('product-prices.index');
+    Route::put('/product-prices', [\App\Http\Controllers\Admin\ProductPriceController::class, 'save'])->name('product-prices.save');
+    Route::get('/product-prices/export', [\App\Http\Controllers\Admin\ProductPriceController::class, 'export'])->name('product-prices.export');
+    Route::post('/product-prices/import', [\App\Http\Controllers\Admin\ProductPriceController::class, 'import'])->name('product-prices.import');
+
     // 설정 기반 제네릭 CRUD (categories, brands, products, banners, notices, faqs)
     Route::get('/{resource}', [AdminResourceController::class, 'index'])->name('index');
     Route::get('/{resource}/create', [AdminResourceController::class, 'create'])->name('create');

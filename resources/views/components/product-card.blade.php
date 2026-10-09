@@ -8,6 +8,9 @@
     $inquiry = $sell <= 0;                                 // 판매가 미설정 → 가격문의
     $soldout = $product->stock <= 0;
     $inWish = in_array($product->id, $wishlistIds ?? []);
+    $priceLabel = $special ? $product->priceLabelFor($user) : '';            // 병원 회원 할인가 / 전용가
+    $hasMemberPrice = $product->member_price && $product->member_price < $product->price;
+    $adminView = $user && $user->is_admin && $hasMemberPrice;                // 관리자는 할인가도 함께 본다
 @endphp
 <div class="card">
     @auth
@@ -20,7 +23,7 @@
     @endauth
     <a href="{{ route('catalog.show', $product->slug) }}" class="thumb">
         <div class="badges">
-            @if($special)<span class="badge badge-plan">병원가</span>@endif
+            @if($special)<span class="badge badge-plan">{{ $priceLabel === '전용가' ? '전용가' : '병원회원가' }}</span>@endif
             @if($product->is_best)<span class="badge badge-best">BEST</span>@endif
             @if($product->is_new)<span class="badge badge-new">NEW</span>@endif
             @if($product->badge)<span class="badge badge-plan">{{ $product->badge }}</span>@endif
@@ -49,9 +52,12 @@
         @if($inquiry)
             <div><span class="mprice">전화·견적문의 가능</span></div>
         @elseif($special)
-            <div><span class="mprice">병원 전용가 적용중</span></div>
-        @elseif(!$isHospital && ($product->member_price || true))
-            <div><span class="mprice">병원 회원 전용가 별도</span></div>
+            <div><span class="mprice">{{ $priceLabel }} 적용중</span></div>
+        @elseif(!$isHospital && $hasMemberPrice)
+            <div><span class="mprice">병원 회원 할인가 별도</span></div>
+        @endif
+        @if($adminView && ! $special)
+            <div style="font-size:12px;color:var(--slate-500);margin-top:2px">병원 회원 할인가 <b style="color:var(--navy-700)">{{ number_format($product->member_price) }}원</b> <span style="font-size:11px">(관리자만 보임)</span></div>
         @endif
     </div>
     <div class="cart-row">

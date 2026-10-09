@@ -14,6 +14,9 @@
     $rate = $special ? $product->discountRateFor($sell) : 0;
     $inquiry = $sell <= 0;                                 // 판매가 미설정 → 가격문의
     $soldout = $product->stock <= 0;
+    $priceLabel = $special ? $product->priceLabelFor($user) : '';            // 병원 회원 할인가 / 전용가
+    $hasMemberPrice = $product->member_price && $product->member_price < $product->price;
+    $adminView = $user && $user->is_admin && $hasMemberPrice;
 @endphp
 
 @section('content')
@@ -87,15 +90,20 @@
                     <div class="row"><span class="lbl">정가</span><span class="o-price" style="text-decoration:line-through;color:var(--slate-400)">{{ number_format($product->price) }}원</span></div>
                 @endif
                 <div class="row" style="align-items:flex-end">
-                    <span class="lbl">{{ $special ? '병원 전용가' : '판매가' }}</span>
+                    <span class="lbl">{{ $special ? $priceLabel : '판매가' }}</span>
                     <span class="big-price">{{ number_format($sell) }}<span class="won">원</span></span>
                 </div>
                 @if($special)
-                    <div style="text-align:right;margin-top:6px"><span class="mtag"><x-icon name="check" :size="14"/> {{ $user->company_name ?? '병원' }} 전용가 적용중 ({{ $rate }}%↓)</span></div>
+                    <div style="text-align:right;margin-top:6px"><span class="mtag"><x-icon name="check" :size="14"/> {{ $priceLabel === '전용가' ? ($user->company_name ?? '병원').' 전용가' : '병원 회원 할인가' }} 적용중 ({{ $rate }}%↓)</span></div>
                 @elseif($isHospital)
-                    <div style="font-size:12.5px;color:var(--slate-500);margin-top:4px">※ 이 제품은 병원 전용가가 설정되어 있지 않아 정가로 판매됩니다.</div>
+                    <div style="font-size:12.5px;color:var(--slate-500);margin-top:4px">※ 이 제품은 병원 회원 할인가가 설정되어 있지 않아 정가로 판매됩니다.</div>
+                @elseif($hasMemberPrice)
+                    <div style="font-size:12.5px;color:var(--slate-500);margin-top:4px">※ 승인된 병원 회원은 병원 회원 할인가로 구매할 수 있습니다.</div>
                 @else
                     <div style="font-size:12.5px;color:var(--slate-500);margin-top:4px">※ 병원 회원으로 로그인하면 병원별 전용가가 적용됩니다.</div>
+                @endif
+                @if($adminView && ! $special)
+                    <div class="row" style="margin-top:6px"><span class="lbl">병원 회원 할인가</span><span style="font-weight:700;color:var(--navy-700)">{{ number_format($product->member_price) }}원 <span style="font-size:11.5px;font-weight:400;color:var(--slate-500)">(관리자만 보임)</span></span></div>
                 @endif
                 @endif
                 <div class="row"><span class="lbl">배송비</span><span>{{ $sell >= $site['free_ship_over'] ? '무료배송' : number_format($site['shipping_fee']).'원 (5만원 이상 무료)' }}</span></div>
